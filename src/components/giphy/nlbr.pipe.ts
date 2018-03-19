@@ -6,12 +6,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 */
 
 @Pipe({
-  name: 'nlbr'
+	name: 'nlbr'
 })
 export class NlbrPipe implements PipeTransform {
-  transform(value: string) {
-    if (!value) return value;
+	transform(value: string) {
+		if (!value) return value;
 
-    return value.replace(/\n/ig, '<br>');
-  }
+		return value.replace(/\n/ig, '<br>');
+	}
 }
