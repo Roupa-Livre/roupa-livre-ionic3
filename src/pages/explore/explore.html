@@ -19,7 +19,7 @@
 </ion-header>
 
 <ion-content class="swipe-bg" no-bounce>
-	
+
 	<div class="h-full no-cards" [hidden]="!isLoading" horizontal layout center center-center>
 		<div class="ripple-container">
 			<div class="thumb-lg ripple-trigger">
@@ -42,34 +42,26 @@
 							<div class="font-bold text-xl">{{c.name}}, {{c.age}}</div>
 							<div>{{c.job_title}}</div>
 						</div>
+
 						<div class="pull-right">
 							<ion-icon class="text-2x" name="md-information-circle" color="white"></ion-icon>
 						</div>
 					</div>
 
-					<div class="stamp stamp-like">Like</div>
-					<div class="stamp stamp-nope">Nope</div>
+					<div class="stamp stamp-like">Sim</div>
+					<div class="stamp stamp-nope">Não</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="bottom-actions" horizontal layout center around-justified>
-			<button ion-button color="white" class="button-revert" (click)="getMoreCards()">
-				<ion-icon name="md-refresh"></ion-icon>
-			</button>
 			<button ion-button color="white" class="button-dislike" (click)="disliked()">
 				<ion-icon name="md-close"></ion-icon>
-			</button>
-			<button ion-button color="white" class="button-star">
-				<ion-icon name="md-star"></ion-icon>
 			</button>
 			<button ion-button color="white" class="button-like" (click)="liked()">
 				<ion-icon name="md-heart"></ion-icon>
 			</button>
-			<button ion-button color="white" class="button-superlike">
-				<ion-icon name="ios-flash"></ion-icon>
-			</button>
 		</div>
 	</div>
-	
+
 </ion-content>

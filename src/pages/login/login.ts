@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { LoginServiceProvider } from '../../providers/login-service/login-service';
+
+
 @IonicPage()
 @Component({
 	selector: 'page-login',
@@ -9,8 +12,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class LoginPage {
 
 	constructor(
-		public navCtrl: NavController, 
-		public navParams: NavParams
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public loginSProvider: LoginServiceProvider,
 	) {
 		console.log('LOGINPAGE - CONSTRUCTOR');
 	}
@@ -20,10 +24,15 @@ export class LoginPage {
 	}
 
 	login() {
-		// TODO : IMPLEMENTS FACEBOOK LOGIN
-		
-		console.log('LOGINPAGE - LOGIN - GO EXPLOREPAGE');
-		this.navCtrl.setRoot('ExplorePage');
+		this.loginSProvider.login()
+		.then((logged: boolean) => {
+
+			if (logged) {
+				console.log('LOGINPAGE - LOGIN - LOGGED : ', logged);
+				this.navCtrl.setRoot('ExplorePage');
+			}
+
+		})
 	}
 
 }

@@ -13,6 +13,8 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { LoginServiceProvider } from '../providers/login-service/login-service';
+
 @NgModule({
 	declarations: [
 		MyApp
@@ -35,7 +37,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 		SplashScreen,
 		Keyboard,
 		ImagePicker,
-		{provide: ErrorHandler, useClass: IonicErrorHandler}
+
+		LoginServiceProvider,
+
+		{provide: ErrorHandler, useClass: IonicErrorHandler},
 	]
 })
 export class AppModule {}
