@@ -14,7 +14,7 @@ export class LoginPage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		public loginSProvider: LoginServiceProvider,
+		public loginProvider: LoginServiceProvider,
 	) {
 		console.log('LOGINPAGE - CONSTRUCTOR');
 	}
@@ -24,7 +24,7 @@ export class LoginPage {
 	}
 
 	login() {
-		this.loginSProvider.login()
+		this.loginProvider.login()
 		.then((logged: boolean) => {
 
 			if (logged) {

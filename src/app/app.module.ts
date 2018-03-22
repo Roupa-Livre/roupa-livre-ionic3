@@ -13,6 +13,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { ApparelServiceProvider } from '../providers/apparel-service/apparel-service';
 import { LoginServiceProvider } from '../providers/login-service/login-service';
 
 @NgModule({
@@ -38,6 +39,7 @@ import { LoginServiceProvider } from '../providers/login-service/login-service';
 		Keyboard,
 		ImagePicker,
 
+		ApparelServiceProvider,
 		LoginServiceProvider,
 
 		{provide: ErrorHandler, useClass: IonicErrorHandler},

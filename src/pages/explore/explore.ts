@@ -14,6 +14,8 @@ import {
 	SwingStackComponent,
 	SwingCardComponent } from 'angular2-swing';
 
+import { ApparelServiceProvider } from './../../providers/apparel-service/apparel-service';
+
 @IonicPage()
 @Component({
 	selector: 'page-explore',
@@ -26,12 +28,13 @@ export class ExplorePage {
 
 	cards: any[];
 	stackConfig: StackConfig;
-	users: any[];
+	apparels: any[];
 	isLoading: boolean = true;
 
 	constructor(
-		public navCtrl: NavController, 
-		public modalCtrl: ModalController
+		public navCtrl: NavController,
+		public modalCtrl: ModalController,
+		public apparelProvider: ApparelServiceProvider,
 	) {
 		this.stackConfig = {
 			// Default setting only allows UP, LEFT and RIGHT so you can override this as below
@@ -53,56 +56,19 @@ export class ExplorePage {
 
 	ngAfterViewInit() {
 		this.cards = [];
-		this.users = [
-			{
-				id: 1,
-				name: 'Hieu Pham',
-				age: 29,
-				job_title: 'UX/UI lover',
-				profile_image_url: 'assets/img/hieu.png'
-			},
-			{
-				id: 2,
-				name: 'Adam Saddler',
-				age: 39,
-				job_title: 'Ionic Team is awesome',
-				profile_image_url: 'assets/img/adam.png'
-			},
-			{
-				id: 3,
-				name: 'Ben Affleck',
-				age: 30,
-				job_title: 'Another awesome Ionic guy',
-				profile_image_url: 'assets/img/ben.png'
-			},
-			{
-				id: 4,
-				name: 'Max Payne',
-				age: 35,
-				job_title: 'Game character assasin',
-				profile_image_url: 'assets/img/max.png'
-			},
-			{
-				id: 5,
-				name: 'Big Mike',
-				age: 31,
-				job_title: 'All guys are awesome',
-				profile_image_url: 'assets/img/mike.png'
-			},
-			{
-				id: 6,
-				name: 'Perry',
-				age: 41,
-				job_title: 'Ionic again',
-				profile_image_url: 'assets/img/perry.png'
-			}
-		]
+		this.apparels = [];
 
-		this.addNewCard();
-		this.addNewCard();
-		
 		setTimeout(() => {
 			this.isLoading = false;
+
+			this.apparelProvider.getApparels()
+			.then((apparels: any[]) => {
+				this.apparels = apparels;
+
+				this.addNewCard();
+				this.addNewCard();
+			});
+
 		}, 3000);
 	}
 
@@ -127,19 +93,19 @@ export class ExplorePage {
 
 	// Add new cards to our array
 	addNewCard() {
-		let difference = _.difference(this.users, this.cards);
+		let difference = _.difference(this.apparels, this.cards);
 		let randomIndex = Math.floor(Math.random() * (difference.length));
 
 		this.cards.push(difference[randomIndex]);
 
-		console.info('CURRENT STACK:', this.cards.map(c => c.name));
+		console.info('EXPLOREPAGE - ADDNEWCARD - CURRENT STACK : ', this.cards.map(c => c.title));
 	}
 
 	disliked() {
 		this.addNewCard();
 		let removedCard = this.cards.shift();
 
-		console.log('You disliked: ' + removedCard.name);
+		console.log('EXPLOREPAGE - DISLIKED - YOU DISLIKED : ' + removedCard.title);
 	}
 
 	liked() {
@@ -147,11 +113,11 @@ export class ExplorePage {
 		let removedCard = this.cards.shift();
 		this.checkMatching(removedCard);
 
-		console.log('You liked: ' + removedCard.name);
+		console.log('EXPLOREPAGE - LIKED - YOU LIKED : ' + removedCard.title);
 	}
 
 	checkMatching(card) {
-		if (card.name == 'Hieu Pham') {
+		if (card.title == 'Sapatos') {
 			let modal = this.modalCtrl.create('MatchedPage');
 			modal.present();
 		}

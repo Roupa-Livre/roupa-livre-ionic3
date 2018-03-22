@@ -5,7 +5,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class LoginServiceProvider {
 
-	constructor(public http: Http) {
+	constructor(
+		public http: Http
+	) {
 		console.log('LOGINSERVICEPROVIDER - CONSTRUCTOR');
 	}
 
