@@ -1,12 +1,12 @@
 page-me {
-	.button-muted {
+	.button-round {
 		border-radius: 999em;
 		font-size: 14px;
 		font-weight: 700;
 		width: 48px;
 		height: 48px;
 		background-color: color($colors, light);
-		color: lighten(color($colors, muted), 20%);
+		color: color($colors, primary);
 	}
 
 	.me-bottom-bg {
@@ -57,18 +57,7 @@ page-me {
 	}
 
 	.swiper-pagination-bullet-active {
-		&:nth-child(1) {
-			background: color($colors, gold);
-		}
-		&:nth-child(2) {
-			background: color($colors, superlike);
-		}
-		&:nth-child(3) {
-			background: color($colors, star);
-		}
-		&:nth-child(4) {
-			background: color($colors, superlike);
-		}
+		background: color($colors, primary);
 	}
 
 	.slide-title {

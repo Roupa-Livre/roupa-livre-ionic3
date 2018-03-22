@@ -2,7 +2,7 @@
 	<ion-navbar color="white" hideBackButton>
 		<ion-title>
 			<button ion-button icon-only clear>
-				<ion-icon name="md-person" color="danger"></ion-icon>
+				<ion-icon name="menu" color="danger"></ion-icon>
 			</button>
 		</ion-title>
 
@@ -21,24 +21,30 @@
 				<div class="big-thumb" (click)="openProfile()">
 					<img src="assets/img/hieu.png" class="rounded box-shadow" alt="">
 				</div>
-				<div class="text-2x">Hieu, 29</div>
-				<div class="">Front-end dev. UX/UI lover</div>
+				<div class="text-2x">oiê, Henrique</div>
+				<div class="">liberte suas roupas</div>
 			</div>
 
 			<div>
 				<ion-grid>
 					<ion-row>
-						<ion-col col-6 class="text-center b-r b-light">
-							<button ion-button icon-only color="light" class="button-muted" (click)="openSettings()">
-								<ion-icon name="md-settings"></ion-icon>
+						<ion-col col-4 class="text-center b-r b-light">
+							<button ion-button icon-only color="primary" class="button-round" (click)="openProfileEdit()">
+								<ion-icon name="search"></ion-icon>
 							</button>
-							<div class="text-muted text-xs l-s-1x m-t-xs">SETTINGS</div>
+							<div class="text-muted text-xs l-s-1x m-t-xs">filtrar</div>
 						</ion-col>
-						<ion-col col-6 class="text-center">
-							<button ion-button icon-only color="light" class="button-muted" (click)="openProfileEdit()">
-								<ion-icon name="md-create"></ion-icon>
+						<ion-col col-4 class="text-center b-r b-light">
+							<button ion-button icon-only color="primary" class="button-round" (click)="openProfileEdit()">
+								<ion-icon name="shirt"></ion-icon>
 							</button>
-							<div class="text-muted text-xs l-s-1x m-t-xs">EDIT INFO</div>
+							<div class="text-muted text-xs l-s-1x m-t-xs">minhas peças</div>
+						</ion-col>
+						<ion-col col-4 class="text-center">
+							<button ion-button icon-only color="primary" class="button-round" (click)="openSettings()">
+								<ion-icon name="md-information-circle"></ion-icon>
+							</button>
+							<div class="text-muted text-xs l-s-1x m-t-xs">sobre</div>
 						</ion-col>
 					</ion-row>
 				</ion-grid>
@@ -51,41 +57,44 @@
 			<ion-slides pager class="bottom-slides" autoplay="3000" (ionSlideDidChange)="slideChanged()">
 				<ion-slide>
 					<div class="slide-title">
-						<ion-icon name="md-flame" color="gold"></ion-icon>
-						Get Tinder Gold
+						<ion-icon name="md-create" color="primary"></ion-icon>
+						Cadastre
 					</div>
-					<p>See who Likes You & more</p>
+					<p>suas peças e comece a trocar.</p>
 				</ion-slide>
 				<ion-slide>
 					<div class="slide-title">
-						<ion-icon name="ios-flash" color="superlike"></ion-icon>
-						Get Matches Faster
+						<ion-icon name="shirt" color="primary"></ion-icon>
+						Encontre
 					</div>
-					<p>Boost your profile once a month</p>
+					<p>peças que combinam com você.</p>
 				</ion-slide>
 				<ion-slide>
 					<div class="slide-title">
-						<ion-icon name="md-star" color="star"></ion-icon>
-						Stand Out with Super Likes
+						<ion-icon name="search" color="primary"></ion-icon>
+						Use o Filtro
 					</div>
-					<p>You're 3x more likely to get a match!</p>
+					<p>para encontrar aquela peça especial.</p>
 				</ion-slide>
 				<ion-slide>
 					<div class="slide-title">
-						<ion-icon name="md-pin" color="superlike"></ion-icon>
-						Swipe Around The World
+						<ion-icon name="star" color="primary"></ion-icon>
+						Combinou!
 					</div>
-					<p>Passport to anywhere with Tinder Plus!</p>
+					<p>Você e alguém curtiram a peça um do outro.</p>
+				</ion-slide>
+				<ion-slide>
+					<div class="slide-title">
+						<ion-icon name="chatbubbles" color="primary"></ion-icon>
+						Combine
+					</div>
+					<p>a troca através do nosso chat!</p>
 				</ion-slide>
 			</ion-slides>
 
 			<div class="wrapper text-center">
-				<button *ngIf="currentSlideIndex == 0" ion-button color="light" class="btn-default" (click)="openTinderPlus()">
-					<span ion-text color="gold">GET TINDER GOLD</span>
-				</button>
-
-				<button *ngIf="currentSlideIndex != 0" ion-button color="light" class="btn-default" (click)="openTinderPlus()">
-					MY TINDER PLUS
+				<button ion-button color="light" class="btn-default" (click)="openTinderPlus()">
+					<span ion-text color="primary">OFERECER PEÇA</span>
 				</button>
 			</div>
 		</div>
