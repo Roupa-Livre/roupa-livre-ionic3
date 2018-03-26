@@ -5,9 +5,10 @@ import { Component, Input } from '@angular/core';
 	templateUrl: 'demo-avatar.html'
 })
 export class DemoAvatarComponent {
-	@Input() sizeClass: string = 'thumb';// Can be 'thumb-xs'-'thumb-sm'-'thumb-md'-'thumb-lg'
+	@Input() sizeClass: string = 'thumb';
+	// Can be 'thumb-xs'-'thumb-sm'-'thumb-md'-'thumb-lg'
 
-	images: [any] = [
+	images: any[] = [
 		'adam.png',
 		'ben.png',
 		'hieu.png',

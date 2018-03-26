@@ -20,7 +20,7 @@
 		<div>
 			<div class="m-b">
 				<div class="text-lg">You matched with <b>Tindie</b></div>
-				<div>3 hours ago</div>
+				<div>3 horas atrás</div>
 			</div>
 			<div class="m-b">
 				<demo-avatar [sizeClass]="'thumb-xl'"></demo-avatar>
@@ -51,25 +51,21 @@
 				</div>
 			</div>
 
-			<div class="chat-item-status" *ngIf="item.isMe">Sent</div>
+			<div class="chat-item-status" *ngIf="item.isMe">Enviado</div>
 		</div>
 	</div>
 </ion-content>
 
 <ion-footer no-border [keyboardAttach]="content">
-	<giphy *ngIf="showGiphy" (onSelect)="sendGif($event)" (onClose)="toggleGiphy()"></giphy>
 
 	<ion-toolbar class="has-elastic-input giphy-input" *ngIf="!showGiphy">
-		<ion-buttons left align-self-bottom class="stick-bottom">
-			<button ion-button small class="button-gif" (click)="toggleGiphy()">
-				GIF
-			</button>
-		</ion-buttons>
-		<ion-textarea fz-elastic [(ngModel)]="typingMessage" placeholder="Type a message"></ion-textarea>
+		<ion-textarea fz-elastic [(ngModel)]="typingMessage" placeholder="Digite uma mensagem"></ion-textarea>
+
 		<ion-buttons right class="stick-bottom button-submit">
 			<button type="submit" [disabled]="typingMessage.length == 0" ion-button small color="dark" (tap)="sendText(typingMessage)">
-				Send
+				Enviar
 			</button>
 		</ion-buttons>
 	</ion-toolbar>
+
 </ion-footer>

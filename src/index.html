@@ -1,59 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Ionic App</title>
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="msapplication-tap-highlight" content="no">
+	<meta charset="UTF-8">
+	<title>Ionic App</title>
+	<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
 
-  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4e8ef7">
+	<link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+	<link rel="manifest" href="manifest.json">
+	<meta name="theme-color" content="#4e8ef7">
 
-  <!-- add to homescreen for ios -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- ADD TO HOMESCREEN FOR IOS -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-  <!-- cordova.js required for cordova apps -->
-  <script src="cordova.js"></script>
+	<!-- CORDOVA.JS REQUIRED FOR CORDOVA APPS -->
+	<script src="cordova.js"></script>
 
-  <!-- un-comment this code to enable service worker
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('service worker installed'))
-        .catch(err => console.error('Error', err));
-    }
-  </script>-->
+	<!-- UN-COMMENT THIS CODE TO ENABLE SERVICE WORKER
+	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('service-worker.js')
+				.then(() => console.log('service worker installed'))
+				.catch(err => console.error('Error', err));
+		}
+	</script> -->
 
-  <link href="build/main.css" rel="stylesheet">
-
+	<link href="build/main.css" rel="stylesheet">
 </head>
+
 <body>
+	<!-- IONIC'S ROOT COMPONENT AND WHERE THE APP WILL LOAD -->
+	<ion-app></ion-app>
 
-  <!-- Ionic's root component and where the app will load -->
-  <ion-app></ion-app>
+	<!-- THE POLYFILLS JS IS GENERATED DURING THE BUILD PROCESS -->
+	<script src="build/polyfills.js"></script>
 
-  <!-- The polyfills js is generated during the build process -->
-  <script src="build/polyfills.js"></script>
+	<!-- THE VENDOR JS IS GENERATED DURING THE BUILD PROCESS IT CONTAINS ALL OF THE DEPENDENCIES IN NODE_MODULES -->
+	<script src="build/vendor.js"></script>
 
-  <!-- The vendor js is generated during the build process
-       It contains all of the dependencies in node_modules -->
-  <script src="build/vendor.js"></script>
+	<!-- THE MAIN BUNDLE JS IS GENERATED DURING THE BUILD PROCESS -->
+	<script src="build/main.js"></script>
 
-  <!-- The main bundle js is generated during the build process -->
-  <script src="build/main.js"></script>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107162725-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-107162725-2');
-  </script>
-
+	<!-- GLOBAL SITE TAG (GTAG.JS) - GOOGLE ANALYTICS -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107162725-2"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-107162725-2');
+	</script>
 </body>
+
 </html>

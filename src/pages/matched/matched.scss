@@ -1,5 +1,10 @@
 page-matched {
 	text-align: center;
+
+	.title {
+		font-family: Kaushan Script, cursive !important;
+	}
+
 	.bg-blur {
 		background: url('../../assets/img/bgBlur.jpg') center center transparent;
 		background-size: cover;

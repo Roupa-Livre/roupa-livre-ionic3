@@ -8,7 +8,7 @@ import { NlbrPipe } from './giphy/nlbr.pipe';
 
 @NgModule({
 	declarations: [
-    DemoAvatarComponent,
+    	DemoAvatarComponent,
 		GiphyComponent,
 		NlbrPipe
 	],
@@ -21,7 +21,7 @@ import { NlbrPipe } from './giphy/nlbr.pipe';
 		GiphyComponent
 	],
 	exports: [
-    DemoAvatarComponent,
+    	DemoAvatarComponent,
 		GiphyComponent,
 		NlbrPipe
 	]
