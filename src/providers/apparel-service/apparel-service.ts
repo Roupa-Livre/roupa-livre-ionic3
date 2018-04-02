@@ -21,6 +21,7 @@ export class ApparelServiceProvider {
 					title: 'Vestido',
 					size: 'P',
 					description: 'descriçao detalhada do vestuário',
+					tags: '#tag1 #tag2 #tag3 #tag4',
 					profile_image_url: 'assets/img/hieu.png'
 				},
 				{
@@ -28,6 +29,7 @@ export class ApparelServiceProvider {
 					title: 'Blusa',
 					size: 'XG',
 					description: 'descriçao detalhada do vestuário',
+					tags: '#tag1 #tag2 #tag3 #tag4',
 					profile_image_url: 'assets/img/adam.png'
 				},
 				{
@@ -35,6 +37,7 @@ export class ApparelServiceProvider {
 					title: 'Casaco',
 					size: 'M',
 					description: 'descriçao detalhada do vestuário',
+					tags: '#tag1 #tag2 #tag3 #tag4',
 					profile_image_url: 'assets/img/ben.png'
 				},
 				{
@@ -42,6 +45,7 @@ export class ApparelServiceProvider {
 					title: 'Sapatos',
 					size: '38',
 					description: 'descriçao detalhada do vestuário',
+					tags: '#tag1 #tag2 #tag3 #tag4',
 					profile_image_url: 'assets/img/max.png'
 				},
 				{
@@ -49,6 +53,7 @@ export class ApparelServiceProvider {
 					title: 'Saia',
 					size: '36',
 					description: 'descriçao detalhada do vestuário',
+					tags: '#tag1 #tag2 #tag3 #tag4',
 					profile_image_url: 'assets/img/mike.png'
 				},
 				{
@@ -56,6 +61,7 @@ export class ApparelServiceProvider {
 					title: 'Camisa Social',
 					size: '4',
 					description: 'descriçao detalhada do vestuário',
+					tags: '#tag1 #tag2 #tag3 #tag4',
 					profile_image_url: 'assets/img/perry.png'
 				}
 			];

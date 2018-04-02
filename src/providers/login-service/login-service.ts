@@ -14,7 +14,17 @@ export class LoginServiceProvider {
 	login() {
 		return new Promise(resolve => {
 			console.log('LOGINSERVICEPROVIDER - LOGIN');
+
 			// TODO : IMPLEMENTS FACEBOOK LOGIN
+			resolve(true);
+		});
+	}
+
+	isFirstTime() {
+		return new Promise(resolve => {
+			console.log('LOGINSERVICEPROVIDER - ISFIRSTTIME');
+
+			// TODO : IMPLEMENTS STORAGE TO VERIFY IF FIRST TIME LOGIN
 			resolve(true);
 		});
 	}
