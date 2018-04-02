@@ -4,9 +4,10 @@
 			<div class="title text-3x">Combinou!</div>
 			<p class="text-lg">Você curtiu uma peça da Amanda <br> que curtiu uma peça sua.</p>
 		</div>
+
 		<div>
 			<div class="thumb-xl match-avatar match-left">
-				<img class="rounded b b-2x b-white box-shadow" src="assets/img/hieu.png" alt="">
+				<img class="rounded b b-2x b-white box-shadow" src="assets/img/icon.png" alt="">
 			</div>
 			<div class="thumb-xl match-avatar match-right">
 				<img class="rounded b b-2x b-white box-shadow" src="assets/img/icon.png" alt="">
@@ -14,8 +15,8 @@
 		</div>
 
 		<div>
-			<button ion-button round class="btn-gd m-b" (click)="close()">combinar a troca</button>
-			<button ion-button round class="btn-outline" outline (click)="close()">continuar trocando</button>
+			<button ion-button round class="btn-gd m-b" (tap)="goToChat()">combinar a troca</button>
+			<button ion-button round outline class="btn-outline" (tap)="close()">continuar trocando</button>
 		</div>
 	</div>
 </ion-content>
