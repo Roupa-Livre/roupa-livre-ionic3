@@ -1,19 +1,19 @@
 <ion-header no-border>
 	<ion-navbar color="white" hideBackButton>
 		<ion-buttons start>
-			<button ion-button clear (click)="goToExplore()">
-				<img src="assets/img/logo_bw.png" width="24" alt="">
+			<button ion-button clear (tap)="goToExplore()">
+				<img src="assets/img/headerLogo.png" width="24" alt="">
 			</button>
 		</ion-buttons>
 		<ion-title>
 			<button ion-button icon-only clear>
-				<ion-icon name="ios-chatbubbles" color="danger"></ion-icon>
+				<img src="assets/img/headerChatActive.png" width="24" alt="">
 			</button>
 		</ion-title>
 	</ion-navbar>
 
 	<ion-toolbar color="white">
-		<ion-searchbar placeholder="Search Matches"></ion-searchbar>
+		<ion-searchbar placeholder="Buscar items combinados"></ion-searchbar>
 	</ion-toolbar>
 </ion-header>
 
@@ -21,17 +21,17 @@
 	<div>
 		<div class="wrapper-xs padder">
 			<div ion-text color="danger" class="font-bold">
-				New Matches
+				Novos itens combinados
 				<ion-badge color="danger">1</ion-badge>
 			</div>
 		</div>
 		<div class="wrapper-xs padder matches-thumbs">
 			<ion-scroll scrollX="true">
 				<div class="thumbs-wrapper">
-					<div class="matches-thumb" *ngFor="let i of [0,1,2,3,4,5,6]" (click)="goToChat(true)">
+					<div class="matches-thumb" *ngFor="let i of [0,1,2,3,4,5,6]" (tap)="goToChat(true)">
 						<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
 						<div class="online-status"></div>
-						<div class="text-center text-ellipsis">Tindie</div>
+						<div class="text-center text-ellipsis">Miguel</div>
 					</div>
 				</div>
 			</ion-scroll>
@@ -41,29 +41,29 @@
 	<div>
 		<div class="wrapper-xs padder">
 			<div ion-text color="danger" class="font-bold">
-				Messages
+				Mensagens
 			</div>
 		</div>
 		<div class="wrapper-xs padder-sm">
-			<ion-row align-items-center (click)="goToChat()">
+			<ion-row align-items-center (tap)="goToChat()">
 				<ion-col col-auto>
 					<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
 				</ion-col>
 				<ion-col>
 					<div>
-						<div class="text-lg">Tinder Match</div>
-						<div class="text-muted">Sent you a GIPHY</div>
+						<div class="text-lg">João</div>
+						<div class="text-muted">Enviou uma mensagem</div>
 					</div>
 				</ion-col>
 			</ion-row>
-			<ion-row align-items-center (click)="goToChat()">
+			<ion-row align-items-center (tap)="goToChat()">
 				<ion-col col-auto>
 					<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
 				</ion-col>
 				<ion-col>
 					<div>
-						<div class="text-lg">Another Match</div>
-						<div class="text-muted">Sent you a GIPHY</div>
+						<div class="text-lg">Antônio</div>
+						<div class="text-muted">Enviou uma mensagem</div>
 					</div>
 				</ion-col>
 			</ion-row>
