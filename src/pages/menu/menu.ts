@@ -3,53 +3,47 @@ import { IonicPage, NavController, NavParams, Slides, ModalController } from 'io
 
 @IonicPage()
 @Component({
-	selector: 'page-me',
-	templateUrl: 'me.html',
+	selector: 'page-menu',
+	templateUrl: 'menu.html',
 })
-export class MePage {
+export class MenuPage {
 	@ViewChild(Slides) slides: Slides;
 	currentSlideIndex: number = 0;
 
+	// CONSTRUCTOR
 	constructor(
-		public navCtrl: NavController, 
-		public navParams: NavParams, 
+		public navCtrl: NavController,
+		public navParams: NavParams,
 		public modalCtrl: ModalController
 	) {
 	}
 
+	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad MePage');
-		// this.openProfileEdit();// TODO
 	}
 
 	slideChanged() {
 		this.currentSlideIndex = this.slides.getActiveIndex();
 	}
 
+	// CLICK EVENTS
 	goToExplore() {
 		this.navCtrl.push('ExplorePage', {}, {
 			direction: 'forward'
 		});
 	}
 
-	openProfile() {
-		let modal = this.modalCtrl.create('ProfilePage');
-		modal.present();
+	goToSearch() {
+		this.navCtrl.push('AboutPage');
 	}
 
-	openProfileEdit() {
-		let modal = this.modalCtrl.create('ProfileEditPage');
-		modal.present();
+	goToMyApparels() {
+		this.navCtrl.push('ApparelPage');
 	}
 
-	openSettings() {
-		let modal = this.modalCtrl.create('SettingsPage');
-		modal.present();
-	}
-
-	openTinderPlus() {
-		let modal = this.modalCtrl.create('TinderPlusPage');
-		modal.present();
+	goToAbout() {
+		this.navCtrl.push('AboutPage');
 	}
 
 }

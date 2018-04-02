@@ -5,13 +5,15 @@ import { ImagePicker } from '@ionic-native/image-picker';
 
 @IonicPage()
 @Component({
-	selector: 'page-profile-edit',
-	templateUrl: 'profile-edit.html',
+	selector: 'page-apparel-edit',
+	templateUrl: 'apparel-edit.html',
 })
-export class ProfileEditPage {
+export class ApparelEditPage {
 
+	// VARS
 	profileImages: any[];
 
+	// CONSTRUCTOR
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
@@ -29,10 +31,12 @@ export class ProfileEditPage {
 			]
 	}
 
+	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad ProfileEditPage');
 	}
 
+	// CLICK EVENTS
 	close() {
 		this.viewCtrl.dismiss();
 	}

@@ -1,0 +1,42 @@
+page-about {
+
+	background-color: fff;
+
+	div.logo {
+		margin-bottom: 20px;
+		margin-bottom: 10vh;
+
+		img {
+			display: block;
+			margin: 20% auto 10px auto;
+			margin: 15vh auto 5vh auto;
+			width: 118px;
+			height: auto;
+		}
+
+		span.version {
+			display: block;
+			color: #676767;
+			text-align: center;
+		}
+	}
+
+	button {
+		color: #0062f2;
+
+		font-size: 0.9em !important;
+
+		margin: 8vh 40px 0 40px;
+
+		text-align: center !important;
+
+		display: block;
+		text-decoration: none;
+
+		word-wrap: break-word !important;
+		white-space: normal !important;
+
+		width: 100%;
+	}
+
+}

@@ -1,4 +1,4 @@
-page-me {
+page-menu {
 	.button-round {
 		border-radius: 999em;
 		font-size: 14px;
@@ -15,13 +15,13 @@ page-me {
 	}
 
 	.big-thumb {
-		width: 128px;
+		width: 90px;
 		display: inline-block;
 	}
 
 	@media screen and (max-width: 320px) {
 		.big-thumb {
-			width: 128px;
+			width: 100px;
 		}
 	}
 

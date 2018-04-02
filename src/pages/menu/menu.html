@@ -2,13 +2,13 @@
 	<ion-navbar color="white" hideBackButton>
 		<ion-title>
 			<button ion-button icon-only clear>
-				<ion-icon name="menu" color="danger"></ion-icon>
+				<img src="assets/img/headerMenuActive.png" width="24" alt="">
 			</button>
 		</ion-title>
 
 		<ion-buttons end>
-			<button ion-button clear (click)="goToExplore()">
-				<img src="assets/img/logo_bw.png" width="24" alt="">
+			<button ion-button icon-only clear (tap)="goToExplore()">
+				<img src="assets/img/headerLogo.png" width="24" alt="">
 			</button>
 		</ion-buttons>
 	</ion-navbar>
@@ -18,7 +18,7 @@
 	<div layout vertical>
 		<div flex three class="bg-white">
 			<div class="wrapper text-center">
-				<div class="big-thumb" (click)="openProfile()">
+				<div class="big-thumb">
 					<img src="assets/img/hieu.png" class="rounded box-shadow" alt="">
 				</div>
 				<div class="text-2x">oiê, Henrique</div>
@@ -29,19 +29,19 @@
 				<ion-grid>
 					<ion-row>
 						<ion-col col-4 class="text-center b-r b-light">
-							<button ion-button icon-only color="primary" class="button-round" (click)="openProfileEdit()">
+							<button ion-button icon-only color="primary" class="button-round" (tap)="goToSearch()">
 								<ion-icon name="search"></ion-icon>
 							</button>
 							<div class="text-muted text-xs l-s-1x m-t-xs">filtrar</div>
 						</ion-col>
 						<ion-col col-4 class="text-center b-r b-light">
-							<button ion-button icon-only color="primary" class="button-round" (click)="openProfileEdit()">
+							<button ion-button icon-only color="primary" class="button-round" (tap)="goToMyApparels()">
 								<ion-icon name="shirt"></ion-icon>
 							</button>
 							<div class="text-muted text-xs l-s-1x m-t-xs">minhas peças</div>
 						</ion-col>
 						<ion-col col-4 class="text-center">
-							<button ion-button icon-only color="primary" class="button-round" (click)="openSettings()">
+							<button ion-button icon-only color="primary" class="button-round" (tap)="goToAbout()">
 								<ion-icon name="md-information-circle"></ion-icon>
 							</button>
 							<div class="text-muted text-xs l-s-1x m-t-xs">sobre</div>
@@ -93,7 +93,7 @@
 			</ion-slides>
 
 			<div class="wrapper text-center">
-				<button ion-button color="light" class="btn-default" (click)="openTinderPlus()">
+				<button ion-button color="light" class="btn-default" (tap)="goToOfferApparel()">
 					<span ion-text color="primary">OFERECER PEÇA</span>
 				</button>
 			</div>
