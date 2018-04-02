@@ -3,15 +3,9 @@
 		<ion-title>
 			<div class="avatar-title">
 				<demo-avatar [sizeClass]="'thumb-xs'"></demo-avatar>
-				<div class="avatar-name">Tindie</div>
+				<div class="avatar-name">Miguel</div>
 			</div>
 		</ion-title>
-
-		<ion-buttons end>
-			<button ion-button icon-only>
-				<ion-icon name="md-flag" color="danger"></ion-icon>
-			</button>
-		</ion-buttons>
 	</ion-navbar>
 </ion-header>
 
@@ -19,13 +13,13 @@
 	<div class="wrapper text-center h-full" layout vertical center center-center *ngIf="isNewMatch && messages.length == 0">
 		<div>
 			<div class="m-b">
-				<div class="text-lg">You matched with <b>Tindie</b></div>
+				<div class="text-lg">Você e o <b>Miguel</b> curtiram a peça um do outro</div>
 				<div>3 horas atrás</div>
 			</div>
 			<div class="m-b">
 				<demo-avatar [sizeClass]="'thumb-xl'"></demo-avatar>
 			</div>
-			<div class="text-lg">Are your hands tied or something?</div>
+			<div class="text-lg">Suas mãos estão amarradas ou algo do tipo?</div>
 		</div>
 	</div>
 
@@ -58,7 +52,7 @@
 
 <ion-footer no-border [keyboardAttach]="content">
 
-	<ion-toolbar class="has-elastic-input giphy-input" *ngIf="!showGiphy">
+	<ion-toolbar class="has-elastic-input">
 		<ion-textarea fz-elastic [(ngModel)]="typingMessage" placeholder="Digite uma mensagem"></ion-textarea>
 
 		<ion-buttons right class="stick-bottom button-submit">

@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 
+import { ChatServiceProvider } from './../../providers/chat-service/chat-service';
+
 @IonicPage()
 @Component({
 	selector: 'page-chat',
@@ -8,98 +10,61 @@ import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 })
 export class ChatPage {
 
+	// VARS
 	isNewMatch: boolean = false;
-	messages: any[] = [];
 	typingMessage: string = '';
-	showGiphy: boolean = false;
+	messages: any[] = [];
 	@ViewChild(Content) content: Content;
 
+	// CONSTRUCTOR
 	constructor(
-		public navCtrl: NavController, 
-		public navParams: NavParams
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		private chatService: ChatServiceProvider
 	) {
 		this.isNewMatch = this.navParams.get('isNewMatch');
 		this.init();
 	}
 
-	ionViewDidLoad() {
-		console.log('ionViewDidLoad ChatPage');
-		this.scrollBottom();
-	}
-
 	init() {
-		// TODO: can be an API response
+		console.log('CHAT-PAGE - INIT');
+
 		if (!this.isNewMatch) {
-			this.messages = [
-				{
-					isMe: true,
-					type: 'image',// text || image
-					body: 'https://media.giphy.com/media/3oz8xSjBmD1ZyELqW4/giphy.gif',
-					timestamp: 'Oct 10, 2017 9:47am'
-				},
-				{
-					isMe: false,
-					avatar: 'assets/img/hieu.png',
-					type: 'text',// text || image
-					body: 'Hey yo what\'s up?',
-					timestamp: 'Oct 10, 2017 9:48am'
-				},
-				{
-					isMe: true,
-					type: 'image',// text || image
-					body: 'https://media.giphy.com/media/lXiRyZVS9B79r2YOQ/giphy.gif',
-					timestamp: 'Oct 10, 2017 9:50am'
-				},
-				{
-					isMe: false,
-					avatar: 'assets/img/hieu.png',
-					type: 'image',// text || image
-					body: 'https://media.giphy.com/media/JUMLTR3dHEGpW/giphy.gif',
-					timestamp: 'Oct 10, 2017 9:52am'
-				},
-				{
-					isMe: true,
-					type: 'text',// text || image
-					body: 'Where are you, buddy?',
-					timestamp: 'Oct 10, 2017 9:53am'
-				},
-				{
-					isMe: false,
-					avatar: 'assets/img/hieu.png',
-					type: 'text',// text || image
-					body: 'I\'m almost there',
-					timestamp: 'Oct 10, 2017 9:53am'
-				}
-			];
+			this.chatService.getChatHistory()
+			.then((response: any[]) => {
+				this.messages = response;
+			});
 		}
 	}
 
-	sendGif(imageUrl) {
-		this.messages.push({
-			isMe: true,
-			type: 'image',
-			body: imageUrl,
-			timestamp: 'Oct 13, 2017 9:53am'
-		});
-		this.scrollBottom();
+	// LIFECYCLE EVENTS
+	ionViewDidLoad() {
+		console.log('CHAT-PAGE - IONVIEWDIDLOAD');
 
-		this.fakeReply();
+		this.scrollBottom();
 	}
 
+	// CLICK EVENTS
 	sendText() {
+		console.log('CHAT-PAGE - SENDTEXT');
+
 		this.messages.push({
 			isMe: true,
 			type: 'text',
 			body: this.typingMessage,
-			timestamp: 'Oct 13, 2017 9:55am'
+			timestamp: 'Mar 13, 2018 9:55am'
 		});
 		this.typingMessage = '';
+
 		this.scrollBottom();
 
-		this.fakeReply();
+		this.receiveMessage();
 	}
 
-	fakeReply() {
+	receiveMessage() {
+		console.log('CHAT-PAGE - RECEIVEMESSAGE');
+
+		// TODO : CHANGE THIS TO A WS
 		setTimeout(() => {
 			this.messages.push({
 				isMe: false,
@@ -113,14 +78,12 @@ export class ChatPage {
 		}, 500);
 	}
 
+	// SCROLL METHODS
 	scrollBottom() {
+		console.log('CHAT-PAGE - SCROLLBOTTOM');
+
 		this.content.resize();
 		this.content.scrollTo(0, this.content.scrollHeight, 350);
-	}
-
-	toggleGiphy() {
-		this.showGiphy = !this.showGiphy;
-		this.content.resize();
 	}
 
 }
