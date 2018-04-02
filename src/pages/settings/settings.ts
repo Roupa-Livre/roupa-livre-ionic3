@@ -8,20 +8,24 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class SettingsPage {
 
+	// VARS
 	distance: number = 80;
 	ageRange: object = {lower: 18, upper: 30};
 
+	// CONSTRUCTOR
 	constructor(
-		public navCtrl: NavController, 
-		public navParams: NavParams, 
+		public navCtrl: NavController,
+		public navParams: NavParams,
 		public viewCtrl: ViewController
 	) {
 	}
 
+	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad SettingsPage');
 	}
 
+	// CLICK EVENTS
 	close() {
 		this.viewCtrl.dismiss();
 	}

@@ -15,6 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { ApparelServiceProvider } from '../providers/apparel-service/apparel-service';
 import { LoginServiceProvider } from '../providers/login-service/login-service';
+import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 
 @NgModule({
 	declarations: [
@@ -43,6 +44,7 @@ import { LoginServiceProvider } from '../providers/login-service/login-service';
 		LoginServiceProvider,
 
 		{provide: ErrorHandler, useClass: IonicErrorHandler},
+    ChatServiceProvider,
 	]
 })
 export class AppModule {}
