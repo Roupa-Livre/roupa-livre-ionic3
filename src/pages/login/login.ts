@@ -11,6 +11,7 @@ import { LoginServiceProvider } from '../../providers/login-service/login-servic
 })
 export class LoginPage {
 
+	// CONSTRUCTOR
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
@@ -19,20 +20,33 @@ export class LoginPage {
 		console.log('LOGINPAGE - CONSTRUCTOR');
 	}
 
+	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
 		console.log('LOGINPAGE - IONVIEWDIDLOAD');
 	}
 
+	// CLICK EVENTS
 	login() {
-		this.loginProvider.login()
-		.then((logged: boolean) => {
+		Promise.all([
+			this.loginProvider.login(),
+			this.loginProvider.isFirstTime()
+		]).then((responses) => {
+			let logged = responses[0];
+			let isFirstTime = responses[1];
 
 			if (logged) {
 				console.log('LOGINPAGE - LOGIN - LOGGED : ', logged);
-				this.navCtrl.setRoot('ExplorePage');
-			}
 
-		})
+				if (isFirstTime) {
+					console.log('LOGINPAGE - LOGIN - ISFIRSTTIME : ', isFirstTime);
+
+					this.navCtrl.setRoot('TermsPage');
+				} else {
+					this.navCtrl.setRoot('ExplorePage');
+				}
+			}
+		});
+
 	}
 
 }
