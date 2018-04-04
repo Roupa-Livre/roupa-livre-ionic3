@@ -18,18 +18,15 @@ export class MatchedPage {
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-		console.log('MATCHED-PAGE - IONVIEWDIDLOAD');
 	}
 
 	// CLICK EVENTS
 	goToChat() {
-		console.log('MATCHED-PAGE - GOTOCHAT');
 		this.viewCtrl.dismiss();
-		this.navCtrl.push('ChatPage', { 'isNewMatch': true });
+		this.navCtrl.push('ChatDetailsPage', { 'isNewMatch': true });
 	}
 
 	close() {
-		console.log('MATCHED-PAGE - CLOSE');
 		this.viewCtrl.dismiss();
 	}
 }

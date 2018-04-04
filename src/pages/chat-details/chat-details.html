@@ -9,6 +9,8 @@
 	</ion-navbar>
 </ion-header>
 
+
+
 <ion-content #content padding>
 	<div class="wrapper text-center h-full" layout vertical center center-center *ngIf="isNewMatch && messages.length == 0">
 		<div>
@@ -50,16 +52,16 @@
 	</div>
 </ion-content>
 
-<ion-footer no-border [keyboardAttach]="content">
 
+
+<ion-footer no-border [keyboardAttach]="content">
 	<ion-toolbar class="has-elastic-input">
 		<ion-textarea fz-elastic [(ngModel)]="typingMessage" placeholder="Digite uma mensagem"></ion-textarea>
 
 		<ion-buttons right class="stick-bottom button-submit">
 			<button type="submit" [disabled]="typingMessage.length == 0" ion-button small color="dark" (tap)="sendText(typingMessage)">
-				Enviar
+				<img src="assets/img/iconSendMessage.png" width="24" alt="">
 			</button>
 		</ion-buttons>
 	</ion-toolbar>
-
 </ion-footer>

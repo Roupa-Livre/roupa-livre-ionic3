@@ -8,13 +8,10 @@ export class ApparelServiceProvider {
 	constructor(
 		public http: Http
 	) {
-		console.log('APPARELSERVICEPROVIDER - CONSTRUCTOR');
 	}
 
 	getApparels() {
 		return new Promise(resolve => {
-			console.log('APPARELSERVICEPROVIDER - GETAPPARELS');
-
 			let data = [
 				{
 					id: 1,

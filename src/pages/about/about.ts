@@ -17,12 +17,10 @@ export class AboutPage {
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-		console.log('ABOUT-PAGE - IONVIEWDIDLOAD');
 	}
 
 	// CLICK EVENTS
 	navigate(url: string) {
-		console.log('ABOUT-PAGE - NAVIGATE');
 		// TODO : IMPLEMENTS IN-APP BROWSER
 	}
 

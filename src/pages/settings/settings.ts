@@ -22,7 +22,6 @@ export class SettingsPage {
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad SettingsPage');
 	}
 
 	// CLICK EVENTS

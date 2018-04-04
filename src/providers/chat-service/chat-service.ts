@@ -8,13 +8,10 @@ export class ChatServiceProvider {
 	constructor(
 		public http: Http
 	) {
-		console.log('CHATSERVICEPROVIDER - CONSTRUCTOR');
 	}
 
 	getChatHistory() {
 		return new Promise(resolve => {
-			console.log('CHATSERVICEPROVIDER - GETCHATHISTORY');
-
 			let messages = [
 				{
 					isMe: true,

@@ -6,23 +6,23 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
 
+
+<ion-content padding>
 	<div class="logo">
 		<img src="assets/img/logo.png" alt="" />
 		<span class="version">Versão 1.2.1</span>
 	</div>
 
-	<button ion-button clear (tap)="navigate('http://roupalivre.com.br/app')">
+	<button class="extLink" ion-button clear (tap)="navigate('http://roupalivre.com.br/app')">
 		Financiado coletivamente por 315 lindos apoiadores
 	</button>
 
-	<button ion-button clear (tap)="navigate('https://github.com/Nucleo-235/roupa-livre-ionic')">
+	<button class="extLink" ion-button clear (tap)="navigate('https://github.com/Nucleo-235/roupa-livre-ionic')">
 		Open Source sob a licença GPL-3.0
 	</button>
 
-	<button ion-button clear (tap)="navigate('https://docs.google.com/document/d/11JL3w2G0NUf8K2nPC477UA-WKFQyHeDSk3q_IfLFTkw/edit?usp=sharing')">
+	<button class="extLink" ion-button clear (tap)="navigate('https://docs.google.com/document/d/11JL3w2G0NUf8K2nPC477UA-WKFQyHeDSk3q_IfLFTkw/edit?usp=sharing')">
 		Termos de Uso e Política de Privacidade
 	</button>
-
 </ion-content>

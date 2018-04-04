@@ -8,13 +8,10 @@ export class LoginServiceProvider {
 	constructor(
 		public http: Http
 	) {
-		console.log('LOGINSERVICEPROVIDER - CONSTRUCTOR');
 	}
 
 	login() {
 		return new Promise(resolve => {
-			console.log('LOGINSERVICEPROVIDER - LOGIN');
-
 			// TODO : IMPLEMENTS FACEBOOK LOGIN
 			resolve(true);
 		});
@@ -22,8 +19,6 @@ export class LoginServiceProvider {
 
 	isFirstTime() {
 		return new Promise(resolve => {
-			console.log('LOGINSERVICEPROVIDER - ISFIRSTTIME');
-
 			// TODO : IMPLEMENTS STORAGE TO VERIFY IF FIRST TIME LOGIN
 			resolve(true);
 		});

@@ -9,16 +9,27 @@ import { Keyboard } from '@ionic-native/keyboard';
 	templateUrl: 'app.html'
 })
 export class MyApp {
+
+	// VARS
 	rootPage:any = 'LoginPage';
 
-	constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, keyboard: Keyboard) {
-		platform.ready().then(() => {
-			// Okay, so the platform is ready and our plugins are available.
-			// Here you can do any higher level native things you might need.
+	// CONSTRUCTOR
+	constructor(
+		platform: Platform,
+		statusBar: StatusBar,
+		splashScreen: SplashScreen,
+		keyboard: Keyboard
+	) {
+		platform.ready()
+		.then(() => {
+			// OKAY, SO THE PLATFORM IS READY AND OUR PLUGINS ARE AVAILABLE.
+			// HERE YOU CAN DO ANY HIGHER LEVEL NATIVE THINGS YOU MIGHT NEED.
+
 			statusBar.styleDefault();
 			splashScreen.hide();
 			keyboard.disableScroll(true);
 			keyboard.hideKeyboardAccessoryBar(true);
 		});
 	}
+
 }

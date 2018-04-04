@@ -12,6 +12,7 @@ export class ApparelPage {
 
 	// VARS
 	@ViewChild(Slides) slides: Slides;
+
 	currentSlideIndex: number = 0;
 	slideImages: any[] = [
 		{ url: 'assets/img/hieu.png' },
@@ -30,16 +31,19 @@ export class ApparelPage {
 		public modalCtrl: ModalController,
 		public app: App
 	) {
-		platform.ready().then(() => {
-			statusBar.hide();
-		});
+		this.isMe = (typeof this.navParams.get('isMe') == 'undefined') ? true : this.navParams.get('isMe');
+		this.init();
+	}
 
-		this.isMe = typeof this.navParams.get('isMe') == 'undefined' ? true : this.navParams.get('isMe');
+	init() {
+		this.platform.ready()
+		.then(() => {
+			this.statusBar.hide();
+		});
 	}
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad ApparelPage');
 	}
 
 	slideChanged() {

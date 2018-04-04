@@ -7,7 +7,10 @@ import { IonicPage, NavController, NavParams, Slides, ModalController } from 'io
 	templateUrl: 'menu.html',
 })
 export class MenuPage {
+
+	// VARS
 	@ViewChild(Slides) slides: Slides;
+
 	currentSlideIndex: number = 0;
 
 	// CONSTRUCTOR
@@ -20,7 +23,6 @@ export class MenuPage {
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad MePage');
 	}
 
 	slideChanged() {
@@ -29,17 +31,17 @@ export class MenuPage {
 
 	// CLICK EVENTS
 	goToExplore() {
-		this.navCtrl.push('ExplorePage', {}, {
+		this.navCtrl.push('ApparelExplorePage', {}, {
 			direction: 'forward'
 		});
 	}
 
 	goToSearch() {
-		this.navCtrl.push('AboutPage');
+		this.navCtrl.push('ApparelSearchPage');
 	}
 
 	goToMyApparels() {
-		this.navCtrl.push('ApparelPage');
+		this.navCtrl.push('ApparelMainPage');
 	}
 
 	goToAbout() {

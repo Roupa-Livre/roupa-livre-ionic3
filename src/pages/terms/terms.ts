@@ -8,24 +8,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TermsPage {
 
+	// CONSTRUCTOR
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams
 	) {
-		console.log('TERMSPAGE - CONSTRUCTOR');
 	}
 
+	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-		console.log('TERMSPAGE - IONVIEWDIDLOAD');
 	}
 
+	// CLICK EVENTS
 	agree() {
-		console.log('TERMSPAGE - AGREE');
-		this.navCtrl.setRoot('ExplorePage');
+		this.navCtrl.setRoot('ApparelExplorePage');
 	}
 
 	cancel() {
-		console.log('TERMSPAGE - CANCEL');
 		this.navCtrl.setRoot("LoginPage");
 	}
 

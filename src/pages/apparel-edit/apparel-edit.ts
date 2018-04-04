@@ -21,19 +21,22 @@ export class ApparelEditPage {
 		public imagePicker: ImagePicker,
 		public app: App
 	) {
-			this.profileImages = [
-				'assets/img/hieu.png',
-				'assets/img/hieu.png',
-				'assets/img/hieu.png',
-				'assets/img/hieu.png',
-				'assets/img/hieu.png',
-				''
-			]
+		this.init();
+	}
+
+	init() {
+		this.profileImages = [
+			'assets/img/hieu.png',
+			'assets/img/hieu.png',
+			'assets/img/hieu.png',
+			'assets/img/hieu.png',
+			'assets/img/hieu.png',
+			''
+		];
 	}
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad ProfileEditPage');
 	}
 
 	// CLICK EVENTS
@@ -45,7 +48,9 @@ export class ApparelEditPage {
 		this.imagePicker.getPictures({ maximumImagesCount: 1 })
 		.then((results) => {
 			this.profileImages[index] = results[0];
-		}, (err) => { });
+		}, (err) => {
+
+		});
 	}
 
 	removeImage(index) {

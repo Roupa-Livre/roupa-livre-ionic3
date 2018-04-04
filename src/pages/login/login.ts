@@ -17,12 +17,10 @@ export class LoginPage {
 		public navParams: NavParams,
 		public loginProvider: LoginServiceProvider,
 	) {
-		console.log('LOGINPAGE - CONSTRUCTOR');
 	}
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-		console.log('LOGINPAGE - IONVIEWDIDLOAD');
 	}
 
 	// CLICK EVENTS
@@ -35,14 +33,10 @@ export class LoginPage {
 			let isFirstTime = responses[1];
 
 			if (logged) {
-				console.log('LOGINPAGE - LOGIN - LOGGED : ', logged);
-
 				if (isFirstTime) {
-					console.log('LOGINPAGE - LOGIN - ISFIRSTTIME : ', isFirstTime);
-
 					this.navCtrl.setRoot('TermsPage');
 				} else {
-					this.navCtrl.setRoot('ExplorePage');
+					this.navCtrl.setRoot('ApparelExplorePage');
 				}
 			}
 		});

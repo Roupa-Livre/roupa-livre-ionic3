@@ -3,10 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-	selector: 'page-messaging',
-	templateUrl: 'messaging.html',
+	selector: 'page-chat-main',
+	templateUrl: 'chat-main.html',
 })
-export class MessagingPage {
+export class ChatMainPage {
 
 	// CONSTRUCTOR
 	constructor(
@@ -17,16 +17,15 @@ export class MessagingPage {
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad MessagingPage');
 	}
 
 	// CLICK EVENTS
 	goToChat(isNewMatch = false) {
-		this.navCtrl.push('ChatPage', {isNewMatch: isNewMatch});
+		this.navCtrl.push('ChatDetailsPage', {isNewMatch: isNewMatch});
 	}
 
 	goToExplore() {
-		this.navCtrl.push('ExplorePage', {}, {
+		this.navCtrl.push('ApparelExplorePage', {}, {
 			direction: 'back'
 		});
 	}

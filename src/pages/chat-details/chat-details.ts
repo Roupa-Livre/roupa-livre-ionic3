@@ -5,16 +5,17 @@ import { ChatServiceProvider } from './../../providers/chat-service/chat-service
 
 @IonicPage()
 @Component({
-	selector: 'page-chat',
-	templateUrl: 'chat.html',
+	selector: 'page-chat-details',
+	templateUrl: 'chat-details.html',
 })
-export class ChatPage {
+export class ChatDetailsPage {
 
 	// VARS
+	@ViewChild(Content) content: Content;
+
 	isNewMatch: boolean = false;
 	typingMessage: string = '';
 	messages: any[] = [];
-	@ViewChild(Content) content: Content;
 
 	// CONSTRUCTOR
 	constructor(
@@ -27,8 +28,6 @@ export class ChatPage {
 	}
 
 	init() {
-		console.log('CHAT-PAGE - INIT');
-
 		if (!this.isNewMatch) {
 			this.chatService.getChatHistory()
 			.then((response: any[]) => {
@@ -39,15 +38,11 @@ export class ChatPage {
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-		console.log('CHAT-PAGE - IONVIEWDIDLOAD');
-
-		this.scrollBottom();
+		this.scrollToBottom();
 	}
 
 	// CLICK EVENTS
 	sendText() {
-		console.log('CHAT-PAGE - SENDTEXT');
-
 		this.messages.push({
 			isMe: true,
 			type: 'text',
@@ -56,14 +51,11 @@ export class ChatPage {
 		});
 		this.typingMessage = '';
 
-		this.scrollBottom();
-
+		this.scrollToBottom();
 		this.receiveMessage();
 	}
 
 	receiveMessage() {
-		console.log('CHAT-PAGE - RECEIVEMESSAGE');
-
 		// TODO : CHANGE THIS TO A WS
 		setTimeout(() => {
 			this.messages.push({
@@ -74,14 +66,12 @@ export class ChatPage {
 				timestamp: 'Oct 10, 2017 9:55am'
 			});
 
-			this.scrollBottom();
+			this.scrollToBottom();
 		}, 500);
 	}
 
 	// SCROLL METHODS
-	scrollBottom() {
-		console.log('CHAT-PAGE - SCROLLBOTTOM');
-
+	scrollToBottom() {
 		this.content.resize();
 		this.content.scrollTo(0, this.content.scrollHeight, 350);
 	}
