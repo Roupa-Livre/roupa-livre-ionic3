@@ -3,10 +3,10 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 
 @IonicPage()
 @Component({
-	selector: 'page-matched',
-	templateUrl: 'matched.html',
+	selector: 'page-apparel-matched',
+	templateUrl: 'apparel-matched.html',
 })
-export class MatchedPage {
+export class ApparelMatchedPage {
 
 	// CONSTRUCTOR
 	constructor(

@@ -5,10 +5,10 @@ import { Platform } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-	selector: 'page-apparel',
-	templateUrl: 'apparel.html',
+	selector: 'page-apparel-details',
+		templateUrl: 'apparel-details.html',
 })
-export class ApparelPage {
+export class ApparelDetailsPage {
 
 	// VARS
 	@ViewChild(Slides) slides: Slides;
