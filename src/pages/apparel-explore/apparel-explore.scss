@@ -41,8 +41,8 @@ page-apparel-explore {
 		top: 20px;
 		right: 10px;
 		font-size: 30px;
-		color: color($colors, danger);
-		border: 3px solid color($colors, danger);
+		color: color($colors, dislike);
+		border: 3px solid color($colors, dislike);
 		border-radius: 4px;
 		padding: 0px 4px;
 		letter-spacing: 1px;
@@ -53,8 +53,8 @@ page-apparel-explore {
 		&.stamp-like {
 			right: initial;
 			left: 10px;
-			color: color($colors, secondary);
-			border-color: color($colors, secondary);
+			color: color($colors, like);
+			border-color: color($colors, like);
 			transform: rotate(-15deg);
 			letter-spacing: 3px;
 		}

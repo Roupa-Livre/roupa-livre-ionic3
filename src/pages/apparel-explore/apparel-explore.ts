@@ -108,7 +108,7 @@ export class ApparelExplorePage {
 		this.cards.push(difference[randomIndex]);
 	}
 
-	// CLICK EVENTS
+	// SWIPE EVENTS
 	disliked() {
 		this.addNewCard();
 		let removedCard = this.cards.shift();
@@ -124,11 +124,16 @@ export class ApparelExplorePage {
 	checkMatching(card) {
 		// TODO : CHANGE HOW VERIFY IF IS MATCHED
 		if (card.title == 'Sapatos') {
-			let modal = this.modalCtrl.create('MatchedPage');
+			let modal = this.modalCtrl.create('ApparelMatchedPage');
 			modal.present();
 		}
 	}
 
+	trackByFn(index, item) {
+		return item.id;
+	}
+
+	// CLICK EVENTS
 	goToMenu() {
 		this.navCtrl.push('MenuPage', {}, {
 			direction: 'back'
@@ -141,12 +146,10 @@ export class ApparelExplorePage {
 		});
 	}
 
-	openProfile(isMe) {
-		let modal = this.modalCtrl.create('ProfilePage', {isMe: isMe});
+	openApparelDetails() {
+		let modal = this.modalCtrl.create('ApparelDetailsPage');
+
 		modal.present();
 	}
 
-	trackByFn(index, item) {
-		return item.id;
-	}
 }

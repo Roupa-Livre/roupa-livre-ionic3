@@ -40,7 +40,8 @@ export class ApparelEditPage {
 	}
 
 	// CLICK EVENTS
-	close() {
+	save() {
+		// TODO : IMPLMENTS SAVE
 		this.viewCtrl.dismiss();
 	}
 

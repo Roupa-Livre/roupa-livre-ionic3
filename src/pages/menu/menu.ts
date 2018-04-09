@@ -10,7 +10,6 @@ export class MenuPage {
 
 	// VARS
 	@ViewChild(Slides) slides: Slides;
-
 	currentSlideIndex: number = 0;
 
 	// CONSTRUCTOR

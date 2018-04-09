@@ -21,7 +21,7 @@
   background-color: white;
   box-shadow: 0 4px 9px 0 rgba(213,218,224,.3);
   border-radius: 999em;
-  color: color($colors, danger);
+  color: color($colors, primary);
 }
 
 @media only screen and (orientation: landscape)  {
@@ -70,7 +70,7 @@ ion-row.no-padder ion-col {
 
 // Override back button color
 ion-header ion-icon.back-button-icon.icon {
-  color: map-get($colors, danger);
+  color: map-get($colors, primary);
 }
 
 .header-shadow {

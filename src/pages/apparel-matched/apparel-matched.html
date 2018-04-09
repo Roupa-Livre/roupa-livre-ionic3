@@ -1,22 +1,27 @@
 <ion-content padding no-bounce class="bg-blur">
 	<div class="h-full" layout vertical center center-center>
 		<div>
-			<div class="title text-3x">Combinou!</div>
-			<p class="text-lg">Você curtiu uma peça da Amanda <br> que curtiu uma peça sua.</p>
+			<div class="title text-4x">Combinou!</div>
+
+			<p class="text-lg">
+				Você curtiu uma peça da Amanda<br>
+				que curtiu uma peça sua.
+			</p>
 		</div>
 
 		<div>
 			<div class="thumb-xl match-avatar match-left">
 				<img class="rounded b b-2x b-white box-shadow" src="assets/img/icon.png" alt="">
 			</div>
+
 			<div class="thumb-xl match-avatar match-right">
 				<img class="rounded b b-2x b-white box-shadow" src="assets/img/icon.png" alt="">
 			</div>
 		</div>
 
 		<div>
-			<button ion-button round class="btn-gd m-b" (tap)="goToChat()">combinar a troca</button>
-			<button ion-button round outline class="btn-outline" (tap)="close()">continuar trocando</button>
+			<button ion-button round class="match m-b" (tap)="goToChat()">combinar a troca</button>
+			<button ion-button round outline class="continue" (tap)="close()">continuar trocando</button>
 		</div>
 	</div>
 </ion-content>

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { AppVersion } from '@ionic-native/app-version';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 @IonicPage()
 @Component({
 	selector: 'page-about',
@@ -8,20 +11,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AboutPage {
 
+	// VARS
+	public versionNumber;
+
 	// CONSTRUCTOR
 	constructor(
 		public navCtrl: NavController,
-		public navParams: NavParams
+		public navParams: NavParams,
+		private appVersion: AppVersion,
+		private iab: InAppBrowser
 	) {
 	}
 
 	// LIFECYCLE EVENTS
-	ionViewDidLoad() {
+	ionViewDidEnter() {
+		this.appVersion.getVersionNumber()
+		.then(version => {
+			this.versionNumber = version;
+		})
+		.catch(error => {
+			console.log("ABOUTPAGE : IONVIEWDIDENTER - GETVERSIONNUMBER - ERROR : ", error);
+		});
 	}
 
 	// CLICK EVENTS
 	navigate(url: string) {
-		// TODO : IMPLEMENTS IN-APP BROWSER
+		this.iab.create(url);
 	}
 
 }

@@ -8,8 +8,12 @@ import { MyApp } from './app.component';
 import { DirectivesModule } from '../directives/directives.module';
 import { ComponentsModule } from '../components/components.module';
 
-import { ImagePicker } from '@ionic-native/image-picker';
+import { IonicStorageModule } from '@ionic/storage';
+
+import { AppVersion } from '@ionic-native/app-version';
 import { Keyboard } from '@ionic-native/keyboard';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -27,18 +31,25 @@ import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 			mode: 'ios', // TODO : to have same iOS look for all platforms
 			backButtonText: '',
 		}),
+
+		IonicStorageModule.forRoot(),
+
 		DirectivesModule,
 		ComponentsModule,
 	],
-	bootstrap: [IonicApp],
+	bootstrap: [
+		IonicApp
+	],
 	entryComponents: [
 		MyApp
 	],
 	providers: [
-		StatusBar,
-		SplashScreen,
+		AppVersion,
 		Keyboard,
 		ImagePicker,
+		InAppBrowser,
+		SplashScreen,
+		StatusBar,
 
 		ApparelServiceProvider,
 		LoginServiceProvider,

@@ -22,29 +22,9 @@
 <ion-content>
 	<div>
 		<div class="wrapper-xs padder">
-			<div ion-text color="danger" class="font-bold">
-				Novos itens combinados
-				<ion-badge color="danger">1</ion-badge>
-			</div>
-		</div>
-
-		<div class="wrapper-xs padder matches-thumbs">
-			<ion-scroll scrollX="true">
-				<div class="thumbs-wrapper">
-					<div class="matches-thumb" *ngFor="let i of [0,1,2,3,4,5,6]" (tap)="goToChat(true)">
-						<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
-						<div class="online-status"></div>
-						<div class="text-center text-ellipsis">Miguel</div>
-					</div>
-				</div>
-			</ion-scroll>
-		</div>
-	</div>
-
-	<div>
-		<div class="wrapper-xs padder">
-			<div ion-text color="danger" class="font-bold">
+			<div ion-text color="primary" class="font-bold">
 				Mensagens
+				<ion-badge color="primary">10</ion-badge>
 			</div>
 		</div>
 

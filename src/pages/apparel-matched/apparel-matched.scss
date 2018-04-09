@@ -11,16 +11,30 @@ page-apparel-matched {
 		color: white;
 	}
 
-	.btn-gd {
-		padding: 16px 3em;
+	button.match {
+		border: none;
+
+		background-color: #0062f2;
+		box-shadow: 0px 5px #004AB5;
+		color: #fff;
+
+		font-size: 1.2em;
 		font-weight: 700;
-		background: linear-gradient(260deg,#fd267d,#ff7854);
+
+		padding: 16px 3em;
 	}
 
-	.btn-outline {
+	button.continue {
+		border: none;
+
+		background-color:#f46554;
+		box-shadow:0px 5px #b74c3f;
+		color:#fff;
+
+		font-size: 1.2em;
+        font-weight: 700;
+
 		padding: 16px 3em;
-		border: 2px solid #fd267d;
-		color: white;
 	}
 
 	.match-avatar {
