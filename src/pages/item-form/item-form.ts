@@ -5,10 +5,10 @@ import { ImagePicker } from '@ionic-native/image-picker';
 
 @IonicPage()
 @Component({
-	selector: 'page-apparel-edit',
-	templateUrl: 'apparel-edit.html',
+	selector: 'page-item-form',
+	templateUrl: 'item-form.html',
 })
-export class ApparelEditPage {
+export class ItemFormPage {
 
 	// VARS
 	profileImages: any[];

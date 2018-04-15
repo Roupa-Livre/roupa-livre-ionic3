@@ -1,0 +1,113 @@
+<ion-header no-border>
+	<ion-navbar color="white">
+		<ion-title>Cadastrar/Editar</ion-title>
+
+		<ion-buttons end>
+			<button ion-button clear color="primary" (click)="save()">
+				Salvar
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+
+
+<ion-content class="bg-custom">
+	<ion-list no-lines>
+		<ion-list-header>
+			Imagens
+		</ion-list-header>
+		<ion-item>
+			<div class="profile-images-edit">
+				<div class="profile-image" *ngFor="let image of profileImages; let i = index" (click)="openPhotoPicker(i)">
+					<div [style.backgroundImage]="'url(' + profileImages[i] + ')'" class="div-img img-square r-3x"></div>
+					<button ion-button icon-only clear class="btn-edit" (click)="removeImage(i)" *ngIf="profileImages[i] != ''">
+						<ion-icon name="md-close" color="primary"></ion-icon>
+					</button>
+					<button ion-button icon-only clear class="btn-edit" *ngIf="profileImages[i] == ''">
+						<ion-icon name="md-add-circle" color="primary"></ion-icon>
+					</button>
+				</div>
+			</div>
+		</ion-item>
+	</ion-list>
+
+	<ion-list no-lines>
+		<ion-list-header>
+			Título
+		</ion-list-header>
+
+		<ion-item class="text-muted" text-wrap>
+			<input type="text" placeholder="qual peça você vai trocar?" />
+		</ion-item>
+	</ion-list>
+
+	<ion-list no-lines>
+		<ion-list-header>
+			Categoria
+		</ion-list-header>
+
+		<ion-label></ion-label>
+		<ion-select [(ngModel)]="categoria">
+			<ion-option value="1">Acessórios</ion-option>
+			<ion-option value="2">Roupas</ion-option>
+			<ion-option value="3">Calçados</ion-option>
+			<ion-option value="4">Bolsas</ion-option>
+		</ion-select>
+
+		<ion-label>Tipo</ion-label>
+		<ion-select [(ngModel)]="tipo">
+			<ion-option value="1">Bota</ion-option>
+			<ion-option value="2">Sandália</ion-option>
+			<ion-option value="3">Rasterinha</ion-option>
+			<ion-option value="4">Sapatilha</ion-option>
+			<ion-option value="5">Sapato</ion-option>
+			<ion-option value="5">Tênis</ion-option>
+		</ion-select>
+
+		<ion-label>Adulto ou Infantil</ion-label>
+		<ion-select [(ngModel)]="adultoInfantil">
+			<ion-option value="1">Adulto</ion-option>
+			<ion-option value="2">Infantil</ion-option>
+		</ion-select>
+
+		<ion-label>Tamanho</ion-label>
+		<ion-select [(ngModel)]="tamanho">
+			<ion-option value="1">Único</ion-option>
+			<ion-option value="2">34</ion-option>
+			<ion-option value="2">60</ion-option>
+			<ion-option value="2">PP</ion-option>
+			<ion-option value="2">P</ion-option>
+			<ion-option value="2">M</ion-option>
+			<ion-option value="2">G</ion-option>
+			<ion-option value="2">GG</ion-option>
+			<ion-option value="2">GGG</ion-option>
+		</ion-select>
+	</ion-list>
+
+	<ion-list no-lines>
+		<ion-list-header>
+			Hashtags
+		</ion-list-header>
+
+		<ion-item class="text-muted" text-wrap>
+			<input type="text" placeholder="separe com vírgulas" />
+		</ion-item>
+	</ion-list>
+
+	<ion-list no-lines>
+		<ion-list-header>
+			Descrição
+		</ion-list-header>
+
+		<ion-item class="text-muted" text-wrap>
+			<ion-textarea placeholder="descreva detalhes para ajudar sua peça a ganhar um novo lar."></ion-textarea>
+		</ion-item>
+		<ion-item>
+			<ion-note item-end>
+				<span class="text-xs">435</span>
+			</ion-note>
+		</ion-item>
+	</ion-list>
+
+</ion-content>

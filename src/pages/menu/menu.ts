@@ -30,21 +30,25 @@ export class MenuPage {
 
 	// CLICK EVENTS
 	goToExplore() {
-		this.navCtrl.push('ApparelExplorePage', {}, {
+		this.navCtrl.push('ItemExplorePage', {}, {
 			direction: 'forward'
 		});
 	}
 
 	goToSearch() {
-		this.navCtrl.push('ApparelSearchPage');
+		this.navCtrl.push('ItemSearchPage');
 	}
 
-	goToMyApparels() {
-		this.navCtrl.push('ApparelMainPage');
+	goToMyItems() {
+		this.navCtrl.push('MyItemsPage');
 	}
 
 	goToAbout() {
 		this.navCtrl.push('AboutPage');
+	}
+
+	goToOfferItem() {
+		this.navCtrl.push('ItemFormPage');
 	}
 
 }

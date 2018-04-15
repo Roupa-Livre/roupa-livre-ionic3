@@ -3,14 +3,14 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class ApparelServiceProvider {
+export class ItemServiceProvider {
 
 	constructor(
 		public http: Http
 	) {
 	}
 
-	getApparels() {
+	getItems() {
 		return new Promise(resolve => {
 			let data = [
 				{

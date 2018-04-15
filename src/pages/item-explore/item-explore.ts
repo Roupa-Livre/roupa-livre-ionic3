@@ -14,14 +14,14 @@ import {
 	SwingStackComponent,
 	SwingCardComponent } from 'angular2-swing';
 
-import { ApparelServiceProvider } from './../../providers/apparel-service/apparel-service';
+import { ItemServiceProvider } from './../../providers/item-service/item-service';
 
 @IonicPage()
 @Component({
-	selector: 'page-apparel-explore',
-	templateUrl: 'apparel-explore.html'
+	selector: 'page-item-explore',
+	templateUrl: 'item-explore.html'
 })
-export class ApparelExplorePage {
+export class ItemExplorePage {
 
 	// VARS
 	@ViewChild('cardStack') swingStack: SwingStackComponent;
@@ -29,14 +29,14 @@ export class ApparelExplorePage {
 
 	cards: any[];
 	stackConfig: StackConfig;
-	apparels: any[];
+	items: any[];
 	isLoading: boolean = true;
 
 	// CONSTRUCTOR
 	constructor(
 		public navCtrl: NavController,
 		public modalCtrl: ModalController,
-		public apparelProvider: ApparelServiceProvider,
+		public itemProvider: ItemServiceProvider,
 	) {
 		this.init();
 	}
@@ -62,14 +62,14 @@ export class ApparelExplorePage {
 	// LIFECYCLE EVENTS
 	ngAfterViewInit() {
 		this.cards = [];
-		this.apparels = [];
+		this.items = [];
 
 		setTimeout(() => {
 			this.isLoading = false;
 
-			this.apparelProvider.getApparels()
-			.then((apparels: any[]) => {
-				this.apparels = apparels;
+			this.itemProvider.getItems()
+			.then((items: any[]) => {
+				this.items = items;
 
 				this.addNewCard();
 				this.addNewCard();
@@ -101,8 +101,7 @@ export class ApparelExplorePage {
 
 	addNewCard() {
 		// ADD NEW CARDS TO OUR ARRAY
-
-		let difference = _.difference(this.apparels, this.cards);
+		let difference = _.difference(this.items, this.cards);
 		let randomIndex = Math.floor(Math.random() * (difference.length));
 
 		this.cards.push(difference[randomIndex]);
@@ -124,7 +123,7 @@ export class ApparelExplorePage {
 	checkMatching(card) {
 		// TODO : CHANGE HOW VERIFY IF IS MATCHED
 		if (card.title == 'Sapatos') {
-			let modal = this.modalCtrl.create('ApparelMatchedPage');
+			let modal = this.modalCtrl.create('ItemMatchedPage');
 			modal.present();
 		}
 	}
@@ -146,8 +145,8 @@ export class ApparelExplorePage {
 		});
 	}
 
-	openApparelDetails() {
-		let modal = this.modalCtrl.create('ApparelDetailsPage');
+	openItemDetails() {
+		let modal = this.modalCtrl.create('ItemDetailsPage');
 
 		modal.present();
 	}

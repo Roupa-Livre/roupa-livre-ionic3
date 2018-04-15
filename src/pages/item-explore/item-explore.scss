@@ -1,6 +1,6 @@
 @import "../../app/helper.scss";
 
-page-apparel-explore {
+page-item-explore {
 	.swipe-bg {
 		background: #fff;
 		background-image: linear-gradient(#fff, #f6f7fb);
@@ -69,6 +69,7 @@ page-apparel-explore {
 	height: 84px;
 	padding: 12px;
 	justify-content: center;
+
 	button {
 		border-radius: 999em;
 		box-shadow: 0 4px 9px 0 rgba(213,218,224,.3);
@@ -80,20 +81,24 @@ page-apparel-explore {
 		width: 60px;
 		height: 60px;
 
-		&.button-revert {
-			color: color($colors, revert);
+		&:nth-child(2n) {
+			width: 40px !important;
+			height: 40px !important;
+			padding: 0 !important;
+
+			ion-icon {
+				font-size: 0.8em !important;
+			}
 		}
+
 		&.button-dislike {
 			color: color($colors, dislike);
 		}
-		&.button-star {
-			color: color($colors, star);
+		&.button-warning {
+			color: color($colors, warning);
 		}
 		&.button-like {
 			color: color($colors, like);
-		}
-		&.button-superlike {
-			color: color($colors, superlike);
 		}
 	}
 }

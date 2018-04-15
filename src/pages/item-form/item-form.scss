@@ -1,6 +1,7 @@
-page-apparel-edit {
+page-item-form {
 	.profile-images-edit {
 		padding: 5px;
+
 		.div-img {
 			padding-bottom: 99%;
 			background-color: #e0dfe5;
@@ -29,7 +30,7 @@ page-apparel-edit {
 	}
 
 	.label-special {
-		background-color: color($colors, danger);
+		background-color: color($colors, primary);
 		border-radius: 999em;
 		text-transform: none;
 		padding: 1px 6px;

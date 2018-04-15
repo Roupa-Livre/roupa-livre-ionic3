@@ -10,7 +10,7 @@ page-chat-main {
 				position: relative;
 				margin-bottom: 12px;
 				.online-status {
-					background-color: color($colors, danger);
+					background-color: color($colors, primary);
 					position: absolute;
 					right: -8px;
 					top: 26px;

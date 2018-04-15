@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 
-import { ApparelExplorePage } from './apparel-explore';
+import { ItemExplorePage } from './item-explore';
 
 import { ElasticModule } from 'ng-elastic';
 import { SwingModule } from 'angular2-swing';
 
 @NgModule({
 	declarations: [
-		ApparelExplorePage,
+		ItemExplorePage,
 	],
 	imports: [
-		IonicPageModule.forChild(ApparelExplorePage),
+		IonicPageModule.forChild(ItemExplorePage),
 		SwingModule,
 		ElasticModule,
 	],
 	entryComponents: [
-		ApparelExplorePage
+		ItemExplorePage
 	]
 })
-export class ApparelExplorePageModule {}
+export class ItemExplorePageModule {}

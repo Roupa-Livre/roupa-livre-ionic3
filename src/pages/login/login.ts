@@ -36,7 +36,7 @@ export class LoginPage {
 				if (isFirstTime) {
 					this.navCtrl.setRoot('TermsPage');
 				} else {
-					this.navCtrl.setRoot('ApparelExplorePage');
+					this.navCtrl.setRoot('ItemExplorePage');
 				}
 			}
 		});

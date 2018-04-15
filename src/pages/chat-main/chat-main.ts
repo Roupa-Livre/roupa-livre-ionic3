@@ -25,7 +25,7 @@ export class ChatMainPage {
 	}
 
 	goToExplore() {
-		this.navCtrl.push('ApparelExplorePage', {}, {
+		this.navCtrl.push('ItemExplorePage', {}, {
 			direction: 'back'
 		});
 	}

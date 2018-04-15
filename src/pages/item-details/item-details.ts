@@ -5,10 +5,10 @@ import { Platform } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-	selector: 'page-apparel-details',
-		templateUrl: 'apparel-details.html',
+	selector: 'page-item-details',
+		templateUrl: 'item-details.html',
 })
-export class ApparelDetailsPage {
+export class ItemDetailsPage {
 
 	// VARS
 	@ViewChild(Slides) slides: Slides;
@@ -19,6 +19,7 @@ export class ApparelDetailsPage {
 		{ url: 'assets/img/adam.png' },
 		{ url: 'assets/img/max.png' }
 	];
+
 	isMe: boolean = true;
 
 	// CONSTRUCTOR
@@ -58,7 +59,7 @@ export class ApparelDetailsPage {
 
 	edit() {
 		this.close();
-		let modal = this.modalCtrl.create('ApparelEditPage');
+		let modal = this.modalCtrl.create('ItemFormPage');
 		modal.present();
 	}
 

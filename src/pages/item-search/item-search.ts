@@ -3,10 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-	selector: 'page-terms',
-	templateUrl: 'terms.html',
+	selector: 'page-item-search',
+	templateUrl: 'item-search.html',
 })
-export class TermsPage {
+export class ItemSearchPage {
 
 	// CONSTRUCTOR
 	constructor(
@@ -17,15 +17,6 @@ export class TermsPage {
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-	}
-
-	// CLICK EVENTS
-	agree() {
-		this.navCtrl.setRoot('ItemExplorePage');
-	}
-
-	cancel() {
-		this.navCtrl.setRoot("LoginPage");
 	}
 
 }

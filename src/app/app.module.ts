@@ -17,7 +17,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { ApparelServiceProvider } from '../providers/apparel-service/apparel-service';
+import { ItemServiceProvider } from '../providers/item-service/item-service';
 import { LoginServiceProvider } from '../providers/login-service/login-service';
 import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 
@@ -51,7 +51,7 @@ import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 		SplashScreen,
 		StatusBar,
 
-		ApparelServiceProvider,
+		ItemServiceProvider,
 		LoginServiceProvider,
 
 		{provide: ErrorHandler, useClass: IonicErrorHandler},
