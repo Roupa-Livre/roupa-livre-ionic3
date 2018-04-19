@@ -19,4 +19,13 @@ export class ItemSearchPage {
 	ionViewDidLoad() {
 	}
 
+	// CLICK EVENTS
+	clean() {
+		// TODO : CLEAN FORM
+	}
+
+	search() {
+		this.navCtrl.setRoot('ItemExplorePage');
+	}
+
 }

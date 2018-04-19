@@ -1,10 +1,7 @@
 <ion-header no-border class="header-shadow">
 	<ion-navbar color="white">
 		<ion-title>
-			<div class="avatar-title">
-				<demo-avatar [sizeClass]="'thumb-xs'"></demo-avatar>
-				<div class="avatar-name">Miguel</div>
-			</div>
+			Miguel
 		</ion-title>
 	</ion-navbar>
 </ion-header>
@@ -59,7 +56,7 @@
 		<ion-textarea fz-elastic [(ngModel)]="typingMessage" placeholder="Digite uma mensagem"></ion-textarea>
 
 		<ion-buttons right class="stick-bottom button-submit">
-			<button type="submit" [disabled]="typingMessage.length == 0" ion-button small color="dark" (tap)="sendText(typingMessage)">
+			<button type="submit" [disabled]="typingMessage.length == 0" ion-button small color="dark" (tap)="sendMessage()">
 				<img src="assets/img/iconSendMessage.png" width="24" alt="">
 			</button>
 		</ion-buttons>

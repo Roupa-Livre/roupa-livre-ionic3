@@ -5,9 +5,18 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ChatServiceProvider {
 
+	// CONSTRUCTOR
 	constructor(
 		public http: Http
 	) {
+	}
+
+	// METHODS
+	sendMessage(message) {
+		return new Promise(resolve => {
+			// TODO : CREATE REAL METHOD
+			resolve(true);
+		});
 	}
 
 	getChatHistory() {

@@ -20,8 +20,8 @@ export class ChatMainPage {
 	}
 
 	// CLICK EVENTS
-	goToChat(isNewMatch = false) {
-		this.navCtrl.push('ChatDetailsPage', {isNewMatch: isNewMatch});
+	goToChatDetails(isNewMatch = false) {
+		this.navCtrl.push('ChatDetailsPage', { isNewMatch: isNewMatch });
 	}
 
 	goToExplore() {

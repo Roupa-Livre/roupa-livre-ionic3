@@ -42,17 +42,26 @@ export class ChatDetailsPage {
 	}
 
 	// CLICK EVENTS
-	sendText() {
-		this.messages.push({
+	sendMessage() {
+		let message = {
 			isMe: true,
 			type: 'text',
 			body: this.typingMessage,
 			timestamp: 'Mar 13, 2018 9:55am'
-		});
-		this.typingMessage = '';
+		};
 
-		this.scrollToBottom();
-		this.receiveMessage();
+		this.chatService.sendMessage(message)
+		.then((isSended) => {
+
+			if (isSended) {
+				this.messages.push(message);
+				this.typingMessage = '';
+
+				this.scrollToBottom();
+				this.receiveMessage();
+			}
+		});
+
 	}
 
 	receiveMessage() {

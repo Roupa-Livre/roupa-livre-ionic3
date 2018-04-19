@@ -8,13 +8,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MyItemsPage {
 
+	// CONSTRUCTOR
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams
 	) {
 	}
 
+	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
+	}
+
+	// CLICK EVENTS
+	goToItemDetails() {
+		this.navCtrl.push('ItemDetailsPage');
+	}
+
+	edit() {
+		this.navCtrl.push('ItemFormPage');
+	}
+
+	delete() {
+		// TODO : DELETE ITEM
 	}
 
 }

@@ -51,4 +51,8 @@ export class MenuPage {
 		this.navCtrl.push('ItemFormPage');
 	}
 
+	editProfile() {
+		this.navCtrl.push('ProfileEditPage');
+	}
+
 }

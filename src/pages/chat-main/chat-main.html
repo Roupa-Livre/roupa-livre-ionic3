@@ -5,6 +5,7 @@
 				<img src="assets/img/headerLogo.png" width="24" alt="">
 			</button>
 		</ion-buttons>
+
 		<ion-title>
 			<button ion-button icon-only clear>
 				<img src="assets/img/headerChatActive.png" width="24" alt="">
@@ -29,7 +30,7 @@
 		</div>
 
 		<div class="wrapper-xs padder-sm">
-			<ion-row align-items-center (tap)="goToChat()">
+			<ion-row align-items-center (tap)="goToChatDetails()">
 				<ion-col col-auto>
 					<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
 				</ion-col>
@@ -40,13 +41,24 @@
 					</div>
 				</ion-col>
 			</ion-row>
-			<ion-row align-items-center (tap)="goToChat()">
+			<ion-row align-items-center (tap)="goToChatDetails()">
 				<ion-col col-auto>
 					<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
 				</ion-col>
 				<ion-col>
 					<div>
 						<div class="text-lg">Antônio</div>
+						<div class="text-muted">Enviou uma mensagem</div>
+					</div>
+				</ion-col>
+			</ion-row>
+			<ion-row align-items-center (tap)="goToChatDetails()">
+				<ion-col col-auto>
+					<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+				</ion-col>
+				<ion-col>
+					<div>
+						<div class="text-lg">Daniel</div>
 						<div class="text-muted">Enviou uma mensagem</div>
 					</div>
 				</ion-col>

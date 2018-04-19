@@ -1,12 +1,85 @@
-<ion-header>
-
-	<ion-navbar>
-		<ion-title>my-items</ion-title>
+<ion-header no-border class="header-shadow">
+	<ion-navbar color="white">
+		<ion-title>
+			Minhas Peças
+		</ion-title>
 	</ion-navbar>
 
+	<ion-toolbar color="white">
+		<ion-searchbar placeholder="Filtrar minhas peças"></ion-searchbar>
+	</ion-toolbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+	<div>
+		<div class="wrapper-xs padder-sm">
+			<ion-row align-items-center>
+				<ion-col col-auto (tap)="goToItemDetails()">
+					<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+				</ion-col>
+				<ion-col (tap)="goToItemDetails()">
+					<div>
+						<div class="text-lg">Sapatos</div>
+						<div class="text-muted">Enviou uma mensagem</div>
+					</div>
+				</ion-col>
 
+				<ion-col col-2>
+					<button ion-button clear icon-only (tap)="edit()">
+						<ion-icon name="md-create"></ion-icon>
+					</button>
+				</ion-col>
+				<ion-col col-2>
+					<button ion-button clear icon-only color="danger" (tap)="delete()">
+						<ion-icon name="md-trash"></ion-icon>
+					</button>
+				</ion-col>
+			</ion-row>
+			<ion-row align-items-center>
+				<ion-col col-auto (tap)="goToItemDetails()">
+					<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+				</ion-col>
+				<ion-col (tap)="goToItemDetails()">
+					<div>
+						<div class="text-lg">Camisa Social</div>
+						<div class="text-muted">Enviou uma mensagem</div>
+					</div>
+				</ion-col>
+
+				<ion-col col-2>
+					<button ion-button clear icon-only (tap)="edit()">
+						<ion-icon name="md-create"></ion-icon>
+					</button>
+				</ion-col>
+				<ion-col col-2>
+					<button ion-button clear icon-only color="danger" (tap)="delete()">
+						<ion-icon name="md-trash"></ion-icon>
+					</button>
+				</ion-col>
+			</ion-row>
+			<ion-row align-items-center>
+				<ion-col col-auto (tap)="goToItemDetails()">
+					<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+				</ion-col>
+				<ion-col (tap)="goToItemDetails()">
+					<div>
+						<div class="text-lg">Cinto Fivela</div>
+						<div class="text-muted">Enviou uma mensagem</div>
+					</div>
+				</ion-col>
+
+				<ion-col col-2>
+					<button ion-button clear icon-only (tap)="edit()">
+						<ion-icon name="md-create"></ion-icon>
+					</button>
+				</ion-col>
+				<ion-col col-2>
+					<button ion-button clear icon-only color="danger" (tap)="delete()">
+						<ion-icon name="md-trash"></ion-icon>
+					</button>
+				</ion-col>
+			</ion-row>
+		</div>
+	</div>
 </ion-content>

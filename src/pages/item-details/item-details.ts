@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { App, IonicPage, NavController, NavParams, Slides, ViewController, ModalController } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams, Slides, ViewController, ModalController, ActionSheetController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Platform } from 'ionic-angular';
 
@@ -17,6 +17,9 @@ export class ItemDetailsPage {
 	slideImages: any[] = [
 		{ url: 'assets/img/hieu.png' },
 		{ url: 'assets/img/adam.png' },
+		{ url: 'assets/img/max.png' },
+		{ url: 'assets/img/hieu.png' },
+		{ url: 'assets/img/adam.png' },
 		{ url: 'assets/img/max.png' }
 	];
 
@@ -29,7 +32,7 @@ export class ItemDetailsPage {
 		public viewCtrl: ViewController,
 		public statusBar: StatusBar,
 		public platform: Platform,
-		public modalCtrl: ModalController,
+		public actionSheetCtrl: ActionSheetController,
 		public app: App
 	) {
 		this.isMe = (typeof this.navParams.get('isMe') == 'undefined') ? true : this.navParams.get('isMe');
@@ -57,10 +60,53 @@ export class ItemDetailsPage {
 		this.viewCtrl.dismiss();
 	}
 
-	edit() {
-		this.close();
-		let modal = this.modalCtrl.create('ItemFormPage');
-		modal.present();
+	disliked() {
+		this.statusBar.show();
+		this.viewCtrl.dismiss();
 	}
+
+	liked() {
+		this.statusBar.show();
+		this.viewCtrl.dismiss();
+	}
+
+	doComplaint() {
+		let complaintActionSheet = this.actionSheetCtrl.create({
+			title: 'Deseja denunciar esta peça?',
+			buttons: [
+				{
+					text: 'Não é uma peça',
+					handler: () => {
+						console.log('Option 1 clicked');
+					}
+				}, {
+					text: 'É ofensivo',
+					handler: () => {
+						console.log('Option 2 clicked');
+					}
+				}, {
+					text: 'É spam',
+					handler: () => {
+						console.log('Option 3 clicked');
+					}
+				}, {
+					text: 'Outro motivo',
+					handler: () => {
+						console.log('Option 4 clicked');
+					}
+				}, {
+					text: 'Cancelar',
+					role: 'cancel',
+					handler: () => {
+						console.log('Cancel clicked');
+					}
+				}
+			]
+		});
+
+		complaintActionSheet.present();
+	}
+
+
 
 }

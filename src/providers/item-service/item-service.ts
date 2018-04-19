@@ -5,11 +5,13 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ItemServiceProvider {
 
+	// CONSTRUCTOR
 	constructor(
 		public http: Http
 	) {
 	}
 
+	// METHODS
 	getItems() {
 		return new Promise(resolve => {
 			let data = [

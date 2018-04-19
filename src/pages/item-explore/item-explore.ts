@@ -1,5 +1,5 @@
 import { Component, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { IonicPage, NavController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController, ActionSheetController } from 'ionic-angular';
 
 import 'rxjs/Rx';
 import * as _ from 'lodash';
@@ -36,6 +36,7 @@ export class ItemExplorePage {
 	constructor(
 		public navCtrl: NavController,
 		public modalCtrl: ModalController,
+		public actionSheetCtrl: ActionSheetController,
 		public itemProvider: ItemServiceProvider,
 	) {
 		this.init();
@@ -149,6 +150,43 @@ export class ItemExplorePage {
 		let modal = this.modalCtrl.create('ItemDetailsPage');
 
 		modal.present();
+	}
+
+	doComplaint() {
+		let complaintActionSheet = this.actionSheetCtrl.create({
+			title: 'Deseja denunciar esta peça?',
+			buttons: [
+				{
+					text: 'Não é uma peça',
+					handler: () => {
+						console.log('Option 1 clicked');
+					}
+				}, {
+					text: 'É ofensivo',
+					handler: () => {
+						console.log('Option 2 clicked');
+					}
+				}, {
+					text: 'É spam',
+					handler: () => {
+						console.log('Option 3 clicked');
+					}
+				}, {
+					text: 'Outro motivo',
+					handler: () => {
+						console.log('Option 4 clicked');
+					}
+				}, {
+					text: 'Cancelar',
+					role: 'cancel',
+					handler: () => {
+						console.log('Cancel clicked');
+					}
+				}
+			]
+		});
+
+		complaintActionSheet.present();
 	}
 
 }
