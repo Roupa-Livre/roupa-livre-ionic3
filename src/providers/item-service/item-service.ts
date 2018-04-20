@@ -21,7 +21,7 @@ export class ItemServiceProvider {
 					size: 'P',
 					description: 'descriçao detalhada do vestuário',
 					tags: '#tag1 #tag2 #tag3 #tag4',
-					profile_image_url: 'assets/img/hieu.png'
+					profile_image_url: 'assets/img/dummy/camisa.jpg'
 				},
 				{
 					id: 2,
@@ -29,15 +29,15 @@ export class ItemServiceProvider {
 					size: 'XG',
 					description: 'descriçao detalhada do vestuário',
 					tags: '#tag1 #tag2 #tag3 #tag4',
-					profile_image_url: 'assets/img/adam.png'
+					profile_image_url: 'assets/img/dummy/blusa.jpg'
 				},
 				{
 					id: 3,
-					title: 'Casaco',
+					title: 'Turbante',
 					size: 'M',
 					description: 'descriçao detalhada do vestuário',
 					tags: '#tag1 #tag2 #tag3 #tag4',
-					profile_image_url: 'assets/img/ben.png'
+					profile_image_url: 'assets/img/dummy/turbante.jpg'
 				},
 				{
 					id: 4,
@@ -45,7 +45,7 @@ export class ItemServiceProvider {
 					size: '38',
 					description: 'descriçao detalhada do vestuário',
 					tags: '#tag1 #tag2 #tag3 #tag4',
-					profile_image_url: 'assets/img/max.png'
+					profile_image_url: 'assets/img/dummy/camisa2.jpg'
 				},
 				{
 					id: 5,
@@ -53,7 +53,7 @@ export class ItemServiceProvider {
 					size: '36',
 					description: 'descriçao detalhada do vestuário',
 					tags: '#tag1 #tag2 #tag3 #tag4',
-					profile_image_url: 'assets/img/mike.png'
+					profile_image_url: 'assets/img/dummy/turbante.jpg'
 				},
 				{
 					id: 6,
@@ -61,7 +61,7 @@ export class ItemServiceProvider {
 					size: '4',
 					description: 'descriçao detalhada do vestuário',
 					tags: '#tag1 #tag2 #tag3 #tag4',
-					profile_image_url: 'assets/img/perry.png'
+					profile_image_url: 'assets/img/dummy/camisa2.jpg'
 				}
 			];
 

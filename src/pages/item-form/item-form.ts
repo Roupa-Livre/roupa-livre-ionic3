@@ -26,11 +26,11 @@ export class ItemFormPage {
 
 	init() {
 		this.profileImages = [
-			'assets/img/hieu.png',
-			'assets/img/hieu.png',
-			'assets/img/hieu.png',
-			'assets/img/hieu.png',
-			'assets/img/hieu.png',
+			'assets/img/dummy/camisa.jpg',
+			'assets/img/dummy/camisa.jpg',
+			'assets/img/dummy/camisa.jpg',
+			'assets/img/dummy/camisa.jpg',
+			'assets/img/dummy/camisa.jpg',
 			''
 		];
 	}

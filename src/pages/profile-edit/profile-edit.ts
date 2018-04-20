@@ -16,11 +16,11 @@ export class ProfileEditPage {
 		public imagePicker: ImagePicker,
 		public app: App ) {
 			this.profileImages = [
-				'assets/img/hieu.png',
-				'assets/img/hieu.png',
-				'assets/img/hieu.png',
-				'assets/img/hieu.png',
-				'assets/img/hieu.png',
+				'assets/img/dummy/hieu.png',
+				'assets/img/dummy/hieu.png',
+				'assets/img/dummy/hieu.png',
+				'assets/img/dummy/hieu.png',
+				'assets/img/dummy/hieu.png',
 				''
 			]
 	}

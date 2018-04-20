@@ -30,7 +30,7 @@ export class ChatServiceProvider {
 				},
 				{
 					isMe: false,
-					avatar: 'assets/img/hieu.png',
+					avatar: 'assets/img/dummy/hieu.png',
 					type: 'text',
 					body: 'Olá tudo bom?',
 					timestamp: 'Mar 10, 2018 9:48am'
@@ -43,7 +43,7 @@ export class ChatServiceProvider {
 				},
 				{
 					isMe: false,
-					avatar: 'assets/img/hieu.png',
+					avatar: 'assets/img/dummy/hieu.png',
 					type: 'text',
 					body: 'E eu da sua bolsa',
 					timestamp: 'Mar 10, 2018 9:52am'
@@ -56,7 +56,7 @@ export class ChatServiceProvider {
 				},
 				{
 					isMe: false,
-					avatar: 'assets/img/hieu.png',
+					avatar: 'assets/img/dummy/hieu.png',
 					type: 'text',
 					body: 'Vamos sim...',
 					timestamp: 'Mar 10, 2018 9:53am'

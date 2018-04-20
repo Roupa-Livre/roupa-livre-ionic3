@@ -55,7 +55,9 @@
     },
     "devDependencies": {
         "@ionic/app-scripts": "3.0.0",
-        "typescript": "2.3.4"
+        "typescript": "2.3.4",
+        "autoprefixer": "^8.3.0",
+        "@angular/tsc-wrapped": "^4.4.6"
     },
     "description": "An Ionic project",
     "cordova": {

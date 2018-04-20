@@ -69,7 +69,7 @@ export class ChatDetailsPage {
 		setTimeout(() => {
 			this.messages.push({
 				isMe: false,
-				avatar: 'assets/img/hieu.png',
+				avatar: 'assets/img/dummy/hieu.png',
 				type: 'text',
 				body: 'Nice. Keep typing dude',
 				timestamp: 'Oct 10, 2017 9:55am'

@@ -20,6 +20,6 @@ export class DemoAvatarComponent {
 
 	constructor() {
 		let randomIndex = Math.floor(Math.random() * (this.images.length - 1));
-		this.imageUrl = `assets/img/${this.images[randomIndex]}`;
+		this.imageUrl = `assets/img/dummy/${this.images[randomIndex]}`;
 	}
 }
