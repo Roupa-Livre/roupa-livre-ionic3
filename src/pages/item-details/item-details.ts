@@ -16,11 +16,11 @@ export class ItemDetailsPage {
 	currentSlideIndex: number = 0;
 	slideImages: any[] = [
 		{ url: 'assets/img/dummy/camisa.jpg' },
-		{ url: 'assets/img/dummy/turbante.png' },
-		{ url: 'assets/img/dummy/camisa2.png' },
-		{ url: 'assets/img/dummy/blusa.png' },
-		{ url: 'assets/img/dummy/camisa.png' },
-		{ url: 'assets/img/dummy/camisa2.png' }
+		{ url: 'assets/img/dummy/turbante.jpg' },
+		{ url: 'assets/img/dummy/camisa2.jpg' },
+		{ url: 'assets/img/dummy/blusa.jpg' },
+		{ url: 'assets/img/dummy/camisa.jpg' },
+		{ url: 'assets/img/dummy/camisa2.jpg' }
 	];
 
 	isMe: boolean = true;
