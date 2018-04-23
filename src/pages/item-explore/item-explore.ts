@@ -124,8 +124,13 @@ export class ItemExplorePage {
 	checkMatching(card) {
 		// TODO : CHANGE HOW VERIFY IF IS MATCHED
 		if (card.title == 'Sapatos') {
-			let modal = this.modalCtrl.create('ItemMatchedPage');
-			modal.present();
+			let modalMatched = this.modalCtrl.create('ItemMatchedPage');
+			modalMatched.present();
+		}
+
+		if (card.title == 'Vestido') {
+			let modalNotFound = this.modalCtrl.create('ItemNotFoundPage');
+			modalNotFound.present();
 		}
 	}
 

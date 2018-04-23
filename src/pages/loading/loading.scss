@@ -1,0 +1,35 @@
+page-loading {
+
+    .loading {
+
+        background: url('../../assets/img/bgBlur.jpg') center center transparent;
+        background-size: cover;
+
+        .box {
+            justify-content: space-around;
+            height: 100%;
+
+            .logo {
+                img {
+                    margin: 0 auto;
+
+                    width: 118px;
+                    height: auto;
+                }
+            }
+
+            .info {
+                color: #fff;
+
+                padding: 0 3em;
+
+                font-size: 1.2em;
+                font-weight: 700;
+
+                margin: 0 auto;
+
+                text-align: center;
+            }
+        }
+    }
+}

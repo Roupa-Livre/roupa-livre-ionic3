@@ -1,0 +1,75 @@
+page-item-not-found {
+
+    text-align: center;
+
+	.title {
+		font-family: Kaushan Script, cursive !important;
+	}
+
+	.bg-blur {
+		background: url('../../assets/img/bgBlur.jpg') center center transparent;
+		background-size: cover;
+		color: white;
+	}
+
+	button.match {
+		border: none;
+
+		background-color: #0062f2;
+		box-shadow: 0px 5px #004AB5;
+		color: #fff;
+
+		font-size: 1.2em;
+		font-weight: 700;
+
+		padding: 16px 3em;
+	}
+
+	button.continue {
+		border: none;
+
+		background-color:#f46554;
+		box-shadow:0px 5px #b74c3f;
+		color:#fff;
+
+		font-size: 1.2em;
+        font-weight: 700;
+
+		padding: 16px 3em;
+	}
+
+	.match-avatar {
+		margin: 16px 4px;
+		animation: fromLeft 1s ease-in;
+		&.match-right {
+			animation-name: fromRight;
+		}
+	}
+
+	.fadeIn {
+		animation: fadeIn 1s 1s ease-in;
+	}
+
+	@keyframes fromLeft {
+		0% {
+			transform: translate3d(-100px, 0, 0);
+		}
+		100% {
+			transform: translate3d(0, 0, 0);
+		}
+	}
+	@keyframes fromRight {
+		0% {
+			transform: translate3d(100px, 0, 0);
+		}
+		100% {
+			transform: translate3d(0, 0, 0);
+		}
+	}
+
+	@keyframes fadeIn {
+		from {opacity: 0}
+		to {opacity: 1}
+	}
+
+}
