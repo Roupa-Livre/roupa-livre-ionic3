@@ -28,7 +28,8 @@ export class LoginPage {
 		Promise.all([
 			this.loginProvider.login(),
 			this.loginProvider.isFirstTime()
-		]).then((responses) => {
+		])
+		.then((responses) => {
 			let logged = responses[0];
 			let isFirstTime = responses[1];
 

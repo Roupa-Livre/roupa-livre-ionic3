@@ -14,6 +14,7 @@ import { AppVersion } from '@ionic-native/app-version';
 import { Keyboard } from '@ionic-native/keyboard';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Facebook } from '@ionic-native/facebook';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -45,7 +46,8 @@ import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 	],
 	providers: [
 		AppVersion,
-		Keyboard,
+    Keyboard,
+    Facebook,
 		ImagePicker,
 		InAppBrowser,
 		SplashScreen,
