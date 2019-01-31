@@ -3,7 +3,7 @@
 */
 
 import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
-import { Keyboard } from '@ionic-native/keyboard';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { Content, Platform } from 'ionic-angular';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -56,7 +56,7 @@ export class KeyboardAttachDirective implements OnInit, OnDestroy {
     this.platform.ready()
       .then(() => {
         if (this.platform.is('cordova') && this.platform.is('ios')) {
-          this.keyboard.disableScroll(true);
+          // this.keyboard.disableScroll(true);
           this.onShowSubscription = this.keyboard.onKeyboardShow().subscribe(e => this.onShow(e));
           this.onHideSubscription = this.keyboard.onKeyboardHide().subscribe(() => this.onHide());
         }
@@ -65,7 +65,7 @@ export class KeyboardAttachDirective implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.platform.is('cordova') && this.platform.is('ios')) {
-      this.keyboard.disableScroll(false);
+      // this.keyboard.disableScroll(false);
     }
 
     if (this.onShowSubscription) {

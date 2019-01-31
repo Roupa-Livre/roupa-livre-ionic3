@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, Slides, ViewController, ModalController, ActionSheetController } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from 'ionic-angular';
 
 @IonicPage()

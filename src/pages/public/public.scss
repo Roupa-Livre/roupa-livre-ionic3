@@ -1,6 +1,6 @@
-page-login {
+page-public {
 
-	.login {
+	.public {
 		background: url('../assets/img/bgFocus.jpg') center center transparent;
 		background-size: cover;
 
@@ -40,11 +40,6 @@ page-login {
 
 				margin: 0 auto;
 				padding: 25px 3em;
-			}
-			.list.fieldset {
-				ion-item {
-					margin-bottom: 20px;
-				}
 			}
 		}
 	}

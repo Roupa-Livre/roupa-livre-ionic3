@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 import { Storage } from '@ionic/storage';
 
 import 'rxjs/add/operator/map';
+import { AngularTokenService } from 'angular-token';
 
 @Injectable()
 export class LoginServiceProvider {
@@ -14,10 +15,14 @@ export class LoginServiceProvider {
 		public http: Http,
 		private storage: Storage,
 		private fb: Facebook,
-	) {
+		private _tokenService: AngularTokenService) {
 	}
 
-	login() {
+	isLogged() : boolean {
+		return this._tokenService.userSignedIn();
+	}
+
+	loginWithFacebook() {
     // TODO : IMPLEMENTS FACEBOOK LOGIN
 
 		// return this.fb.login(['public_profile', 'email'])
@@ -32,8 +37,14 @@ export class LoginServiceProvider {
 			resolve(true);
 		});
 	}
+	login(email, password) {
+		return this._tokenService.signIn({ login: email, password }).toPromise().then(res => {
+			console.log('login', res);
+			return res;
+		});
+	}
 
-	isFirstTime() {
+	isFirstTime() : Promise<boolean> {
 
 		return new Promise(resolve => {
 

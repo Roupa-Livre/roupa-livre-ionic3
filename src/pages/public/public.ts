@@ -2,24 +2,20 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoginServiceProvider } from '../../providers/login-service/login-service';
-import { ToastService } from '../../providers/utils/toast-service';
+
 
 @IonicPage()
 @Component({
-	selector: 'page-login',
-	templateUrl: 'login.html',
+	selector: 'page-public',
+	templateUrl: 'public.html',
 })
-export class LoginPage {
-
-	public email: string;
-	public password: string;
+export class PublicPage {
 
 	// CONSTRUCTOR
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public loginProvider: LoginServiceProvider,
-		private toast: ToastService,
 	) {
 	}
 
@@ -27,10 +23,22 @@ export class LoginPage {
 	ionViewDidLoad() {
 	}
 
+	manualLogin() {
+		this.navCtrl.push('LoginPage', {}, {
+			direction: 'forward'
+		});
+	}
+
+	register() {
+		this.navCtrl.push('LoginPage', {}, {
+			direction: 'forward'
+		});
+	}
+
 	// CLICK EVENTS
-	login() {
+	loginWithFacebook() {
 		Promise.all([
-			this.loginProvider.login(this.email, this.password),
+			this.loginProvider.loginWithFacebook(),
 			this.loginProvider.isFirstTime()
 		])
 		.then((responses) => {
@@ -43,13 +51,6 @@ export class LoginPage {
 				} else {
 					this.navCtrl.setRoot('ItemExplorePage');
 				}
-			}
-		}, error => {
-			if (error && error.status === 401) {
-				console.log('toast');
-				this.toast.showError(`Email/senha inválidos`);
-			} else {
-				this.toast.showError(`Erro inesperado ao efetuar login`);
 			}
 		});
 

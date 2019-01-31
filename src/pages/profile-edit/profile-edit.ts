@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { ImagePicker } from '@ionic-native/image-picker';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 @IonicPage()
 @Component({

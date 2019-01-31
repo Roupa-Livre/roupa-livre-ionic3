@@ -15,13 +15,15 @@ import {
 	SwingCardComponent } from 'angular2-swing';
 
 import { ItemServiceProvider } from './../../providers/item-service/item-service';
+import { AuthPage } from '../auth-page';
+import { LoginServiceProvider } from '../../providers/login-service/login-service';
 
 @IonicPage()
 @Component({
 	selector: 'page-item-explore',
 	templateUrl: 'item-explore.html'
 })
-export class ItemExplorePage {
+export class ItemExplorePage extends AuthPage {
 
 	// VARS
 	@ViewChild('cardStack') swingStack: SwingStackComponent;
@@ -34,11 +36,13 @@ export class ItemExplorePage {
 
 	// CONSTRUCTOR
 	constructor(
+		loginService: LoginServiceProvider,
 		public navCtrl: NavController,
 		public modalCtrl: ModalController,
 		public actionSheetCtrl: ActionSheetController,
 		public itemProvider: ItemServiceProvider,
 	) {
+		super(loginService);
 		this.init();
 	}
 
