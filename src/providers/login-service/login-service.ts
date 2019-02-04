@@ -1,20 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { InAppBrowser, InAppBrowserEvent, InAppBrowserObject, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+import { Platform } from 'ionic-angular';
+
+// import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 import { Storage } from '@ionic/storage';
+
 
 import 'rxjs/add/operator/map';
 import { AngularTokenService } from 'angular-token';
+import { resolveComponentResources } from '@angular/core/src/metadata/resource_loading';
 
 @Injectable()
 export class LoginServiceProvider {
 
 	// CONSTRUCTOR
 	constructor(
+		private platform: Platform,
+		private inAppBrowser: InAppBrowser,
 		public http: Http,
 		private storage: Storage,
-		private fb: Facebook,
+		// private fb: Facebook,
 		private _tokenService: AngularTokenService) {
 	}
 
@@ -22,25 +29,42 @@ export class LoginServiceProvider {
 		return this._tokenService.userSignedIn();
 	}
 
+	hasAgreed() : boolean {
+		return this.isLogged() && (this._tokenService.currentUserData as any).agreed;
+	}
+
+	getInitialPage() {
+		const userData: any = this._tokenService.currentUserData;
+		console.log('userData', userData);
+		if (userData) {
+			if (userData.agreed) {
+				return 'ItemExplorePage';
+			} else {
+				return 'TermsPage';
+			}
+		} else {
+			return 'PublicPage';
+		}
+	}
+
 	loginWithFacebook() {
-    // TODO : IMPLEMENTS FACEBOOK LOGIN
-
-		// return this.fb.login(['public_profile', 'email'])
-		// .then((response: FacebookLoginResponse) => {
-		// 	console.log('USER LOGGED INTO FACEBOOK - RESPONSE : ', response);
-		// })
-		// .catch(e => {
-		// 	console.log('ERROR LOGGING USER INTO FACEBOOK : ', e);
-		// });
-
-		return new Promise(resolve => {
-			resolve(true);
+		return new Promise((resolve, reject) => {
+			return this._tokenService.signInOAuth('facebook', this.inAppBrowser, this.platform).subscribe((response: any) => {
+				// console.log('USER LOGGED INTO FACEBOOK - RESPONSE : ', response);
+				// throw 'err';
+				return resolve(true);
+			}, e => {
+				console.log('ERROR LOGGING USER INTO FACEBOOK : ', e);
+				reject(e);
+			});
 		});
 	}
 	login(email, password) {
-		return this._tokenService.signIn({ login: email, password }).toPromise().then(res => {
-			console.log('login', res);
-			return res;
+		return new Promise((resolve, reject) => {
+			return this._tokenService.signIn({ login: email, password }).subscribe(res => {
+				// console.log('login', res);
+				resolve(res);
+			}, reject);
 		});
 	}
 

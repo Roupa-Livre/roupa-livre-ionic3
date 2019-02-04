@@ -46,7 +46,6 @@ export class LoginPage {
 			}
 		}, error => {
 			if (error && error.status === 401) {
-				console.log('toast');
 				this.toast.showError(`Email/senha inválidos`);
 			} else {
 				this.toast.showError(`Erro inesperado ao efetuar login`);

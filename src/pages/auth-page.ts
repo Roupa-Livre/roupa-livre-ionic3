@@ -7,7 +7,7 @@ export abstract class AuthPage {
 	constructor(public loginProvider: LoginServiceProvider) {}
 
 	ionViewCanEnter() {
-    return this.loginProvider.isLogged();
+    return this.loginProvider.hasAgreed();
   }
 
 }

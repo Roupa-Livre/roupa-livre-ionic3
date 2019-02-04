@@ -42,8 +42,13 @@ import { ToastService } from '../providers/utils/toast-service';
 		AngularTokenModule.forRoot({
 			apiBase: 'http://localhost:3000',
 			signOutFailedValidate: true,
+			oAuthBase: 'http://localhost:3000',
+			oAuthWindowType: 'inAppBrowser',
 			oAuthPaths: {
-				github: 'auth/github'
+				facebook: 'auth/facebook'
+			},
+			oAuthBrowserCallbacks: {
+				facebook: 'auth/facebook/callback'
 			},
 		}),
 		HttpClientModule,

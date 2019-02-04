@@ -39,11 +39,7 @@ export class MyApp {
 			
 			if (this._tokenService.userSignedIn()) {
 				this._tokenService.validateToken().toPromise().then(res => {
-					if (res.success) {
-						this.rootPage = 'ItemExplorePage';
-					} else {
-						this.rootPage = 'PublicPage';
-					}
+					this.rootPage = loginProvider.getInitialPage();
 				}, error => {
 					// console.log('validateToken err', error);
 					this.rootPage = 'PublicPage';

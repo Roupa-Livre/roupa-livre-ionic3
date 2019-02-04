@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LoginServiceProvider } from '../../providers/login-service/login-service';
 
 @IonicPage()
 @Component({
@@ -11,13 +12,18 @@ export class TermsPage {
 	// CONSTRUCTOR
 	constructor(
 		public navCtrl: NavController,
-		public navParams: NavParams
+		public navParams: NavParams,
+		private loginProvider: LoginServiceProvider,
 	) {
 	}
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
 	}
+
+	ionViewCanEnter() {
+    return this.loginProvider.isLogged();
+  }
 
 	// CLICK EVENTS
 	agree() {
