@@ -1,85 +1,87 @@
-<ion-content>
+<ion-content padding>
+  <div layout vertical center>
 
-  <div class="headerIcon">
-    <img src="assets/img/newLayout/what-you-icon.png" />
+    <div class="headerIcon">
+      <img src="assets/img/newLayout/what-you-icon.png" />
+    </div>
+
+    <h2 class="title">Que peças vai libertar?</h2>
+
+    <p class="subtitle">Tipo de Peça</p>
+
+    <ion-grid class="optionsGrid">
+      <ion-row>
+        <ion-col col-4>
+          <div class="option" (tap)="chooseReleaseOption()">
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="option" (tap)="chooseReleaseOption()">
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="option" (tap)="chooseReleaseOption()">
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <p class="subtitle">Gênero</p>
+
+    <ion-grid class="optionsGrid">
+      <ion-row>
+        <ion-col col-4>
+          <div class="option" (tap)="chooseReleaseOption()">
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="option" (tap)="chooseReleaseOption()">
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="option" (tap)="chooseReleaseOption()">
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <p class="subtitle">Tamanho</p>
+
+    <ion-grid class="optionsGrid">
+      <ion-row>
+        <ion-col col-4>
+          <div class="option" (tap)="chooseReleaseOption()">
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="option" (tap)="chooseReleaseOption()">
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </div>
+        </ion-col>
+        <ion-col col-4>
+          <div class="option" (tap)="chooseReleaseOption()">
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="groupButtons">
+      <button ion-button block round class="gradient" (tap)="releaseApparel()">
+        OFERECER PEÇA
+      </button>
+
+      <button ion-button block clear color="gray" (tap)="skip()">
+        DEIXAR PARA DEPOIS
+      </button>
+    </div>
+
   </div>
-
-  <h2 class="title">Que peças vai libertar?</h2>
-
-  <p class="subtitle">Tipo de Peça</p>
-
-  <ion-grid class="optionsGrid">
-    <ion-row>
-      <ion-col col-4>
-        <div class="option" (tap)="chooseReleaseOption()">
-          <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-        </div>
-      </ion-col>
-      <ion-col col-4>
-        <div class="option" (tap)="chooseReleaseOption()">
-          <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-        </div>
-      </ion-col>
-      <ion-col col-4>
-        <div class="option" (tap)="chooseReleaseOption()">
-          <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <p class="subtitle">Gênero</p>
-
-  <ion-grid class="optionsGrid">
-    <ion-row>
-      <ion-col col-4>
-        <div class="option" (tap)="chooseReleaseOption()">
-          <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-        </div>
-      </ion-col>
-      <ion-col col-4>
-        <div class="option" (tap)="chooseReleaseOption()">
-          <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-        </div>
-      </ion-col>
-      <ion-col col-4>
-        <div class="option" (tap)="chooseReleaseOption()">
-          <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <p class="subtitle">Tamanho</p>
-
-  <ion-grid class="optionsGrid">
-    <ion-row>
-      <ion-col col-4>
-        <div class="option" (tap)="chooseReleaseOption()">
-          <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-        </div>
-      </ion-col>
-      <ion-col col-4>
-        <div class="option" (tap)="chooseReleaseOption()">
-          <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-        </div>
-      </ion-col>
-      <ion-col col-4>
-        <div class="option" (tap)="chooseReleaseOption()">
-          <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <div class="groupButtons">
-    <button ion-button block round class="gradient" (tap)="releaseApparel()">
-      OFERECER PEÇA
-    </button>
-
-    <button ion-button block clear color="gray" (tap)="skip()">
-      DEIXAR PARA DEPOIS
-    </button>
-  </div>
-
 </ion-content>
