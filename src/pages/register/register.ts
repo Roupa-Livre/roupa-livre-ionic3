@@ -24,14 +24,15 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
-  login() {
-    this.navCtrl.setRoot('LoginPage');
-  }
-
+  // CLICK EVENTS
   register() {
     console.log('RegisterPage register');
     // TODO : IMPLEMENTAR O METODO CORRETAMENTE
-    this.navCtrl.setRoot('TermsPage');
+    this.navCtrl.setRoot('PermissionLocationPage');
+  }
+
+  login() {
+    this.navCtrl.setRoot('LoginPage');
   }
 
 }

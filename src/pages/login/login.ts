@@ -30,28 +30,31 @@ export class LoginPage {
 
 	// CLICK EVENTS
 	login() {
-		Promise.all([
-			this.loginProvider.login(this.email, this.password),
-			this.loginProvider.isFirstTime()
-		])
-		.then((responses) => {
-			let logged = responses[0];
-			let isFirstTime = responses[1];
+    // TODO : IMPLEMENTAR O METODO CORRETAMENTE
+    this.navCtrl.setRoot('PermissionLocationPage');
 
-			if (logged) {
-				if (isFirstTime) {
-					this.navCtrl.setRoot('TermsPage');
-				} else {
-					this.navCtrl.setRoot('ItemExplorePage');
-				}
-			}
-		}, error => {
-			if (error && error.status === 401) {
-				this.toast.showError(`Email/senha inválidos`);
-			} else {
-				this.toast.showError(`Erro inesperado ao efetuar login`);
-			}
-		});
+		// Promise.all([
+		// 	this.loginProvider.login(this.email, this.password),
+		// 	this.loginProvider.isFirstTime()
+		// ])
+		// .then((responses) => {
+		// 	let logged = responses[0];
+		// 	let isFirstTime = responses[1];
+
+		// 	if (logged) {
+		// 		if (isFirstTime) {
+		// 			this.navCtrl.setRoot('TermsPage');
+		// 		} else {
+		// 			this.navCtrl.setRoot('ItemExplorePage');
+		// 		}
+		// 	}
+		// }, error => {
+		// 	if (error && error.status === 401) {
+		// 		this.toast.showError(`Email/senha inválidos`);
+		// 	} else {
+		// 		this.toast.showError(`Erro inesperado ao efetuar login`);
+		// 	}
+		// });
 
   }
 
