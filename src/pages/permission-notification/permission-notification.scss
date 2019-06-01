@@ -1,0 +1,52 @@
+page-permission-notification {
+
+  ion-content {
+    background: #f2f2f2 !important;
+  }
+
+  .headerIcon {
+    width: 201px;
+    height: 180px;
+    margin: 40px auto 20px auto;
+  }
+
+  h2.title {
+    color: #000;
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight: 800 !important;
+    width: 100%;
+  }
+
+  p.subtitle {
+    color: #979797;
+    text-align: center;
+    font-size: 1.8rem;
+    width: 80%;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .groupButtons {
+    margin: 5rem auto 0 auto;
+    width: 100%;
+
+    button {
+      position: relative;
+      margin: 0 auto 1.5rem auto;
+      width: 70%;
+
+      font-size: 12px;
+      font-weight: bold;
+
+      height: 48px;
+
+      &.gradient {
+        background: linear-gradient(-20deg, #86e1d7 0%,#53cbf1 40%,#008de9 100%) !important;
+      }
+
+    }
+
+  }
+
+}
