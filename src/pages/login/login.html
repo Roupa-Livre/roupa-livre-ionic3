@@ -1,32 +1,37 @@
-<ion-header no-border >
-	<ion-navbar transparent>
-	</ion-navbar>
-</ion-header>
+<ion-content padding>
+	<div layout vertical center>
 
-<ion-content class="login" padding>
-	<div layout vertical center class="box">
-		<div class="logo">
-			<img src="assets/img/mudanca.png" alt="roupa livre" />
-		</div>
+    <div class="headerIcon">
+      <img src="assets/img/newLayout/login-register-icon.png" />
+    </div>
 
-		<div class="slogan">
-			Já faz parte da mudança?
-			<p>Faça seu login com a conta cadastrada ou cadastre-se</p>
-		</div>
+    <h2 class="title">Já faz parte da mudança?</h2>
 
-		<ion-list no-lines class="fieldset">
-			<!-- <ion-list-header>E-mail</ion-list-header> -->
-			<ion-item class="text-muted" text-wrap>
-				<input type="text" placeholder="E-mail" [(ngModel)]="email" />
-			</ion-item>
-			<!-- <ion-list-header>Senha</ion-list-header> -->
-			<ion-item class="text-muted" text-wrap>
-				<input type="text" placeholder="Senha" [(ngModel)]="password" />
-			</ion-item>
-		</ion-list>
+    <p class="subtitle">Faça seu login com a conta cadastrada ou cadastre-se:</p>
 
-		<button ion-button round class="login" (tap)="login()">
-			entrar
-		</button>
+    <ion-list class="loginForm" no-padding>
+
+      <ion-item class="rounded">
+        <ion-label floating>E-mail ou telefone</ion-label>
+        <ion-input type="text" [(ngModel)]="email"></ion-input>
+      </ion-item>
+
+      <ion-item class="rounded">
+        <ion-label floating>Senha</ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div class="groupButtons">
+      <button ion-button block round class="gradient" (click)="login()">
+        ENTRAR
+      </button>
+
+      <button ion-button block round outline color="gray" (click)="register()">
+        FAZER CADASTRO
+      </button>
+    </div>
+
 	</div>
 </ion-content>

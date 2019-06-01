@@ -1,51 +1,92 @@
 page-login {
 
-	.login {
-		background: url('../assets/img/bgFocus.jpg') center center transparent;
-		background-size: cover;
+  ion-content {
+    background: #f2f2f2 !important;
+  }
 
-		.box {
-			justify-content: space-around;
-			height: 100%;
+  .headerIcon {
+    width: 201px;
+    height: 180px;
+    margin: 40px auto 20px auto;
+  }
 
-			.logo {
-				img {
-					margin: 0 auto;
+  h2.title {
+    color: #000;
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight: 800 !important;
+    width: 100%;
+  }
 
-					width: 118px;
-					height: auto;
-				}
-			}
+  p.subtitle {
+    color: #979797;
+    text-align: center;
+    font-size: 1.8rem;
+    width: 80%;
+    padding: 0;
+    margin: 0 auto;
+  }
 
-			.slogan {
-				color: #fff;
+  .rounded {
+    width: 80%;
+    height: 65px;
+    border-radius: 10px;
+    border: 0;
+    box-shadow: 0px 0px 1px 1px rgba(233,233,233,0.80);
+    margin: 0 auto 10px auto;
 
-				padding: 0 3em;
+    * {
+      box-sizing: unset !important;
+    }
 
-				font-size: 1.2em;
-				font-weight: 700;
+    ion-label {
+      font-size: 18px !important;
+      height: 20px !important;
+    }
 
-				margin: 0 auto;
+    .input-has-focus {
 
-				text-align: center;
-			}
+      ion-label {
+        font-size: 12px !important;
+        height: 20px !important;
+      }
 
-			button.facebookLogin {
-				background-color: #0062f2;
-				box-shadow: 0px 5px #004AB5;
-				color: #fff;
+    }
 
-				font-size: 1.2em;
-				font-weight: 700;
+    input {
+      color: #5f5f5f !important;
+      border: 0 !important;
+      text-decoration: none !important;
+    }
 
-				margin: 0 auto;
-				padding: 25px 3em;
-			}
-			.list.fieldset {
-				ion-item {
-					margin-bottom: 20px;
-				}
-			}
-		}
-	}
+  }
+
+  .loginForm {
+    margin: 20px 0 10px 0;
+    width: 100%;
+  }
+
+  .groupButtons {
+    margin: 1rem auto 0 auto;
+    width: 100%;
+
+    button {
+      position: relative;
+      margin: 0 auto 1.5rem auto;
+      width: 80%;
+
+      font-size: 12px;
+      font-weight: bold !important;
+
+      height: 48px;
+
+      &.gradient {
+        background: linear-gradient(-20deg, #86e1d7 0%,#53cbf1 40%,#008de9 100%) !important;
+        font-weight: 900 !important;
+      }
+
+    }
+
+  }
+
 }

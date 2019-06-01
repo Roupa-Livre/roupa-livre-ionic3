@@ -52,6 +52,10 @@ export class LoginPage {
 			}
 		});
 
-	}
+  }
+
+  register() {
+    this.navCtrl.setRoot('RegisterPage');
+  }
 
 }
