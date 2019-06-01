@@ -24,13 +24,13 @@ export class PublicPage {
 	}
 
 	manualLogin() {
-		this.navCtrl.push('LoginPage', {}, {
+		this.navCtrl.setRoot('LoginPage', {}, {
 			direction: 'forward'
 		});
 	}
 
 	register() {
-		this.navCtrl.push('RegisterPage', {}, {
+		this.navCtrl.setRoot('RegisterPage', {}, {
 			direction: 'forward'
 		});
 	}
