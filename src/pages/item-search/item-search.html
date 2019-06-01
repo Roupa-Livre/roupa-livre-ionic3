@@ -1,17 +1,21 @@
-<ion-header no-border class="header-shadow">
+<ion-header no-border>
 	<ion-navbar color="white">
-		<ion-title>
-			Filtrar
-		</ion-title>
+
+    <ion-title>Filtrar</ion-title>
+
+    <ion-buttons end>
+      <button ion-button color="blueLight" (tap)="search()">OK</button>
+    </ion-buttons>
+
 	</ion-navbar>
 </ion-header>
 
 
-<ion-content class="bg-custom">
+<ion-content>
 
 	<ion-list no-lines>
 		<ion-list-header>
-			Palavras chave e/ou hashtags
+			Palavras chave ou hashtags
 		</ion-list-header>
 
 		<ion-item>
@@ -21,12 +25,13 @@
 
 	<ion-list no-lines>
 		<ion-list-header>
-			Caracteristicas
+      <button ion-button color="blueLight" clear (tap)="cleanFilters()">Limpar filtros</button>
+			Características da Peça
 		</ion-list-header>
 
-		<ion-item>
+		<ion-item detail-push>
 			<ion-label>Categoria</ion-label>
-			<ion-select [(ngModel)]="categoria">
+			<ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="category">
 				<ion-option value="1">Acessórios</ion-option>
 				<ion-option value="2">Roupas</ion-option>
 				<ion-option value="3">Calçados</ion-option>
@@ -34,9 +39,9 @@
 			</ion-select>
 		</ion-item>
 
-		<ion-item>
+		<ion-item detail-push>
 			<ion-label>Tipo</ion-label>
-			<ion-select [(ngModel)]="tipo">
+			<ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="type">
 				<ion-option value="1">Bota</ion-option>
 				<ion-option value="2">Sandália</ion-option>
 				<ion-option value="3">Rasterinha</ion-option>
@@ -46,17 +51,17 @@
 			</ion-select>
 		</ion-item>
 
-		<ion-item>
-			<ion-label>Adulto ou Infantil</ion-label>
-			<ion-select [(ngModel)]="adultoInfantil">
+		<ion-item detail-push>
+			<ion-label>Idade</ion-label>
+			<ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="age">
 				<ion-option value="1">Adulto</ion-option>
 				<ion-option value="2">Infantil</ion-option>
 			</ion-select>
 		</ion-item>
 
-		<ion-item>
+		<ion-item detail-push>
 			<ion-label>Tamanho</ion-label>
-			<ion-select [(ngModel)]="tamanho">
+			<ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="size">
 				<ion-option value="1">Único</ion-option>
 				<ion-option value="2">34</ion-option>
 				<ion-option value="3">60</ion-option>
@@ -68,35 +73,44 @@
 				<ion-option value="9">GGG</ion-option>
 			</ion-select>
 		</ion-item>
-	</ion-list>
 
-	<ion-list no-lines>
-		<ion-list-header>
-			Distância
-		</ion-list-header>
+    <ion-item detail-push>
+      <ion-label>Modelagem</ion-label>
+      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="modeling">
+        <ion-option value="1">Pequena</ion-option>
+      </ion-select>
+    </ion-item>
 
-		<ion-item class="line-merge-down">
-			<ion-label stacked>
-				<span [hidden]="distance > 99">Até {{ distance || 1 }}km de distância</span>
-				<span [hidden]="distance <= 99 || distance == null">Sem filtro de distância</span>
-			</ion-label>
-			<ion-range no-padding min="1" max="100" [(ngModel)]="distance" color="primary">
-				<ion-label range-left>1km</ion-label>
-				<ion-label range-right>não filtrar</ion-label>
-			</ion-range>
-		</ion-item>
-	</ion-list>
+    <ion-item detail-push>
+      <ion-label>Padrão</ion-label>
+      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="pattern">
+        <ion-option value="1">Liso</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item detail-push>
+      <ion-label>Cor</ion-label>
+      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="color">
+        <ion-option value="1">Vermelho</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list no-lines>
+
+    <ion-list-header>
+      Sobre o Dono
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Distância</ion-label>
+      <ion-input class="distance" type="text" value="{{ distance }}km" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-range min="1" max="100" step="5" color="blueLight" [(ngModel)]="distance"></ion-range>
+    </ion-item>
+
+  </ion-list>
 
 </ion-content>
-
-<ion-footer>
-	<ion-toolbar>
-		<button ion-button round class="clean" (tap)="clean()">
-			limpar filtros
-		</button>
-
-		<button ion-button round class="search" (tap)="search()">
-			filtrar
-		</button>
-	</ion-toolbar>
-</ion-footer>
