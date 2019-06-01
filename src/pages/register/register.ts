@@ -30,6 +30,8 @@ export class RegisterPage {
 
   register() {
     console.log('RegisterPage register');
+    // TODO : IMPLEMENTAR O METODO CORRETAMENTE
+    this.navCtrl.setRoot('TermsPage');
   }
 
 }
