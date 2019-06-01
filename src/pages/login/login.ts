@@ -11,6 +11,7 @@ import { ToastService } from '../../providers/utils/toast-service';
 })
 export class LoginPage {
 
+  // VARS
 	public email: string;
 	public password: string;
 
