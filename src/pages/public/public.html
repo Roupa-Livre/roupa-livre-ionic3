@@ -1,23 +1,23 @@
-<ion-content class="public" padding>
-	<div layout vertical center class="box">
-		<div class="logo">
-			<img src="assets/img/logoWhite.png" alt="roupa livre" />
-		</div>
+<ion-content padding>
+	<div layout vertical center>
 
-		<div class="slogan">
-			liberte suas roupas
-		</div>
+    <div class="headerDetail"></div>
 
-		<button ion-button round class="facebookLogin" (tap)="loginWithFacebook()">
-			entrar com facebook
-		</button>
+    <h2 class="title">Liberte suas peças usadas</h2>
 
-		<button ion-button round class="login" (tap)="register()">
-			Criar minha conta
-		</button>
+    <div class="bottomButtons">
+      <button ion-button block round (tap)="loginWithFacebook()" class="facebookButton">
+        ENTRAR COM O FACEBOOK
+      </button>
 
-		<div class="extra">
-			<span (tap)="manualLogin()">Já faz parte? Faça login.</span>
-		</div>
+      <button ion-button block round outline (tap)="register()" color="white">
+        CRIAR MINHA CONTA
+      </button>
+
+      <button ion-button block clear (tap)="manualLogin()" color="white">
+        Já faz parte?&nbsp;<strong>Faça login</strong>
+      </button>
+    </div>
+
 	</div>
 </ion-content>

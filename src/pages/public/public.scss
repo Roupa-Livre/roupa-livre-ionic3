@@ -1,46 +1,54 @@
 page-public {
 
-	.public {
-		background: url('../assets/img/bgFocus.jpg') center center transparent;
-		background-size: cover;
+  ion-content {
+    background: linear-gradient(240deg, #3FF2D7 0%, #0372EF 100%) !important;
+  }
 
-		.box {
-			justify-content: space-around;
-			height: 100%;
+  .headerDetail {
+    background: transparent url("/assets/img/newLayout/home-header.svg") 0 0 repeat-x;
+    position: absolute;
+    top: 47px;
 
-			.logo {
-				img {
-					margin: 0 auto;
+    width: 100%;
+    height: 34px;
+  }
 
-					width: 118px;
-					height: auto;
-				}
-			}
+  .title {
+    position: absolute;
+    top: 128px;
 
-			.slogan {
-				color: #fff;
+    width: 100%;
 
-				padding: 0 3em;
+    color: #fff;
+    font-size: 1.9rem;
+    font-weight: bold;
 
-				font-size: 1.2em;
-				font-weight: 700;
+    text-align: center;
+  }
 
-				margin: 0 auto;
+  .bottomButtons {
+    position: absolute;
+    bottom: 0;
 
-				text-align: center;
-			}
+    width: 100%;
 
-			button.facebookLogin {
-				background-color: #0062f2;
-				box-shadow: 0px 5px #004AB5;
-				color: #fff;
+    button {
+      position: relative;
+      margin: 0 auto 1.5rem auto;
 
-				font-size: 1.2em;
-				font-weight: 700;
+      width: 70%;
 
-				margin: 0 auto;
-				padding: 25px 3em;
-			}
-		}
-	}
+      font-size: 12px;
+      font-weight: bold;
+
+      height: 48px;
+
+      &.facebookButton {
+        background: linear-gradient(-20deg, #0062F2 0%, #394499 100%) !important;
+      }
+
+    }
+
+  }
+
 }

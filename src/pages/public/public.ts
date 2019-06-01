@@ -30,7 +30,7 @@ export class PublicPage {
 	}
 
 	register() {
-		this.navCtrl.push('LoginPage', {}, {
+		this.navCtrl.push('RegisterPage', {}, {
 			direction: 'forward'
 		});
 	}
