@@ -2,15 +2,18 @@ import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 
+import { AppHeaderComponent } from './app-header/app-header';
+
 import { DemoAvatarComponent } from './demo-avatar/demo-avatar';
 import { GiphyComponent } from './giphy/giphy';
 import { NlbrPipe } from './giphy/nlbr.pipe';
 
 @NgModule({
 	declarations: [
-    	DemoAvatarComponent,
+    AppHeaderComponent,
+    DemoAvatarComponent,
 		GiphyComponent,
-		NlbrPipe
+		NlbrPipe,
 	],
 	imports: [
 		HttpModule,
@@ -21,9 +24,10 @@ import { NlbrPipe } from './giphy/nlbr.pipe';
 		GiphyComponent
 	],
 	exports: [
-    	DemoAvatarComponent,
+    AppHeaderComponent,
+    DemoAvatarComponent,
 		GiphyComponent,
-		NlbrPipe
+		NlbrPipe,
 	]
 })
 export class ComponentsModule {}

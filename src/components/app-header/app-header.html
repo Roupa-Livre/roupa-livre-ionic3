@@ -1,0 +1,31 @@
+<ion-navbar>
+  <ion-buttons start>
+    <button ion-button clear class="profileIcon" *ngIf="activeView == 'main'" (click)="goProfile()">
+      <img src="assets/img/newLayout/header-profile-off.svg" width="34px" height="34px">
+    </button>
+    <button ion-button clear class="mainIcon" *ngIf="activeView == 'chat'" (click)="goMain()">
+      <img src="assets/img/newLayout/header-main-off.svg" width="44px" height="31px">
+    </button>
+  </ion-buttons>
+
+  <ion-title>
+    <button ion-button clear class="mainIcon" *ngIf="activeView == 'main'">
+      <img src="assets/img/newLayout/header-main-on.svg" width="44px" height="31px">
+    </button>
+    <button ion-button clear class="chatIcon" *ngIf="activeView == 'chat'">
+      <img src="assets/img/newLayout/header-chat-on.svg" width="38px" height="34px">
+    </button>
+    <button ion-button clear class="profileIcon" *ngIf="activeView == 'profile'">
+      <img src="assets/img/newLayout/header-profile-on.svg" width="34px" height="34px">
+    </button>
+  </ion-title>
+
+  <ion-buttons end>
+    <button ion-button clear class="chatIcon" *ngIf="activeView == 'main'" (click)="goChat()">
+      <img src="assets/img/newLayout/header-chat-off.svg" width="38px" height="34px">
+    </button>
+    <button ion-button clear class="mainIcon" *ngIf="activeView == 'profile'" (click)="goMain()">
+      <img src="assets/img/newLayout/header-main-off.svg" width="44px" height="31px">
+    </button>
+  </ion-buttons>
+</ion-navbar>
