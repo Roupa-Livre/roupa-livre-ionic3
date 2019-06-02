@@ -21,6 +21,7 @@ export class ItemSearchLoadingPage {
     // TODO : IMPLEMENTAR O METODO
     const TIME_IN_MS = 5000;
     setTimeout(() => {
+      console.log('ionViewDidLoad - GO TO ITEMEXPLOREPAGE');
       this.navCtrl.setRoot("ItemExplorePage");
     }, TIME_IN_MS);
   }
