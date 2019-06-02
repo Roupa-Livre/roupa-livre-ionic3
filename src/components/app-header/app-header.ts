@@ -23,13 +23,13 @@ export class AppHeaderComponent {
   // CLICK METHODS
   goMain() {
     console.log('AppHeaderComponent goMain');
-    this.navCtrl.setRoot('MainPage');
+    this.navCtrl.setRoot('ItemExplorePage');
     //this.mainClicked.emit();
   }
 
   goProfile() {
     console.log('AppHeaderComponent goProfile');
-    this.navCtrl.setRoot('ProfilePage');
+    this.navCtrl.setRoot('MenuPage');
     //this.profileClicked.emit();
   }
 

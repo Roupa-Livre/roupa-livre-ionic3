@@ -6,6 +6,8 @@ import { ItemExplorePage } from './item-explore';
 import { ElasticModule } from 'ng-elastic';
 import { SwingModule } from 'angular2-swing';
 
+import { ComponentsModule } from '../../components/components.module';
+
 @NgModule({
 	declarations: [
 		ItemExplorePage,
@@ -13,7 +15,8 @@ import { SwingModule } from 'angular2-swing';
 	imports: [
 		IonicPageModule.forChild(ItemExplorePage),
 		SwingModule,
-		ElasticModule,
+    ElasticModule,
+    ComponentsModule
 	],
 	entryComponents: [
 		ItemExplorePage
