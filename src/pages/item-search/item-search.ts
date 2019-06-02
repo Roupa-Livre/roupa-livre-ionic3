@@ -41,7 +41,7 @@ export class ItemSearchPage {
 
 	// CLICK EVENTS
 	search() {
-		this.navCtrl.setRoot('ItemExplorePage');
+		this.navCtrl.setRoot('ItemSearchLoadingPage');
   }
 
   cleanFilters() {
