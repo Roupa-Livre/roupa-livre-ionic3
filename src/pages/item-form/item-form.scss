@@ -21,7 +21,12 @@ page-item-form {
 
 		&:first-child {
 			width: calc(3 * 100% / 4 - 10px);
-			height: calc(3 * 100% / 3 - 10px);
+      height: calc(3 * 100% / 3 - 10px);
+
+      .btn-edit {
+        width: 24px;
+        height: 24px;
+      }
     }
 
 		.btn-edit {
