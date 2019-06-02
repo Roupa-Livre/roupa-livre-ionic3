@@ -22,20 +22,30 @@ export class AppHeaderComponent {
 
   // CLICK METHODS
   goMain() {
-    console.log('AppHeaderComponent goMain');
-    this.navCtrl.setRoot('ItemExplorePage');
+    console.log('AppHeaderComponent goMain - activeView : ', this.activeView);
+
+    let direction = (this.activeView == "chat") ? "back" : "foward";
+    this.navCtrl.setRoot('ItemExplorePage', {}, {
+			direction: direction
+		});
     //this.mainClicked.emit();
   }
 
   goProfile() {
-    console.log('AppHeaderComponent goProfile');
-    this.navCtrl.setRoot('MenuPage');
+    console.log('AppHeaderComponent goProfile - activeView : ', this.activeView);
+
+    this.navCtrl.setRoot('MenuPage', {}, {
+			direction: "back"
+		});
     //this.profileClicked.emit();
   }
 
   goChat() {
-    console.log('AppHeaderComponent goChat');
-    this.navCtrl.setRoot('ChatMainPage');
+    console.log('AppHeaderComponent goChat - activeView : ', this.activeView);
+
+    this.navCtrl.setRoot('ChatMainPage', {}, {
+			direction: "foward"
+		});
     //this.chatClicked.emit();
   }
 
