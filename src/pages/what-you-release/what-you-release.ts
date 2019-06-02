@@ -15,6 +15,7 @@ export class WhatYouReleasePage {
   ) {
   }
 
+  // LIFECYCLE EVENTS
   ionViewDidLoad() {
     console.log('ionViewDidLoad WhatYouReleasePage');
   }
@@ -25,11 +26,15 @@ export class WhatYouReleasePage {
   }
 
   releaseApparel() {
-    this.navCtrl.setRoot("WhatYouLookForPage");
+    this.navCtrl.setRoot("WhatYouLookForPage", {}, {
+			direction: 'forward'
+		});
   }
 
   skip() {
-    this.navCtrl.setRoot("WhatYouLookForPage");
+    this.navCtrl.setRoot("WhatYouLookForPage", {}, {
+			direction: 'forward'
+		});
   }
 
 }

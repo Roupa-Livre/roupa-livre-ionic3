@@ -15,14 +15,18 @@ export class ItemSearchLoadingPage {
   ) {
   }
 
+  // LIFECYCLE EVENTS
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemSearchLoadingPage');
 
     // TODO : IMPLEMENTAR O METODO
     const TIME_IN_MS = 5000;
     setTimeout(() => {
-      console.log('ionViewDidLoad - GO TO ITEMEXPLOREPAGE');
-      this.navCtrl.setRoot("ItemExplorePage");
+      console.log('ITEMSEARCHLOADINGPAGE - IONVIEWDIDLOAD - GO TO ITEMEXPLOREPAGE');
+
+      this.navCtrl.setRoot("ItemExplorePage", {}, {
+        direction: 'forward'
+      });
     }, TIME_IN_MS);
   }
 

@@ -23,6 +23,7 @@ export class PublicPage {
 	ionViewDidLoad() {
 	}
 
+  // CLICK EVENTS
 	manualLogin() {
 		this.navCtrl.setRoot('LoginPage', {}, {
 			direction: 'forward'
@@ -35,7 +36,6 @@ export class PublicPage {
 		});
 	}
 
-	// CLICK EVENTS
 	loginWithFacebook() {
 		Promise.all([
 			this.loginProvider.loginWithFacebook(),

@@ -41,7 +41,9 @@ export class ItemSearchPage {
 
 	// CLICK EVENTS
 	search() {
-		this.navCtrl.setRoot('ItemSearchLoadingPage');
+		this.navCtrl.setRoot('ItemSearchLoadingPage', {}, {
+			direction: 'forward'
+		});
   }
 
   cleanFilters() {

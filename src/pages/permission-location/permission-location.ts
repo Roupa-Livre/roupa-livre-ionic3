@@ -15,6 +15,7 @@ export class PermissionLocationPage {
   ) {
   }
 
+  // LIFECYCLE EVENTS
   ionViewDidLoad() {
     console.log('ionViewDidLoad PermissionLocationPage');
   }
@@ -23,12 +24,16 @@ export class PermissionLocationPage {
   activeLocation() {
     console.log("PERMISSION LOCATION - ACTIVE LOCATION");
     // TODO : ACTIVATE THE LOCATION
-    this.navCtrl.push("PermissionNotificationPage");
+    this.navCtrl.setRoot("PermissionNotificationPage", {}, {
+			direction: 'forward'
+		});
   }
 
   denyLocation() {
     console.log("PERMISSION LOCATION - DENY LOCATION");
-    this.navCtrl.push("PermissionNotificationPage");
+    this.navCtrl.setRoot("PermissionNotificationPage", {}, {
+			direction: 'forward'
+		});
   }
 
 }

@@ -31,7 +31,9 @@ export class LoginPage {
 	// CLICK EVENTS
 	login() {
     // TODO : IMPLEMENTAR O METODO CORRETAMENTE
-    this.navCtrl.setRoot('PermissionLocationPage');
+    this.navCtrl.setRoot('PermissionLocationPage', {}, {
+			direction: 'forward'
+		});
 
 		// Promise.all([
 		// 	this.loginProvider.login(this.email, this.password),
@@ -59,7 +61,9 @@ export class LoginPage {
   }
 
   register() {
-    this.navCtrl.setRoot('RegisterPage');
+    this.navCtrl.setRoot('RegisterPage', {}, {
+			direction: 'forward'
+		});
   }
 
 }

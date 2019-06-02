@@ -8,9 +8,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ItemSavingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  // CONSTRUCTOR
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams
+  ) {
   }
 
+  // LIFECYCLE EVENTS
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemSavingPage');
   }

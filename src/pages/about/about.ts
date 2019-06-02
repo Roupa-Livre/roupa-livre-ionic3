@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { initDomAdapter } from '@angular/platform-browser/src/browser';
 
 @IonicPage()
 @Component({
@@ -25,14 +26,19 @@ export class AboutPage {
 
 	// LIFECYCLE EVENTS
 	ionViewDidEnter() {
-		this.appVersion.getVersionNumber()
+		this.init();
+  }
+
+  init() {
+    this.appVersion.getVersionNumber()
 		.then(version => {
+      console.log("ABOUTPAGE : INIT - GETVERSIONNUMBER - VERSION : ", version);
 			this.versionNumber = version;
 		})
 		.catch(error => {
-			console.log("ABOUTPAGE : IONVIEWDIDENTER - GETVERSIONNUMBER - ERROR : ", error);
+			console.log("ABOUTPAGE : INIT - GETVERSIONNUMBER - ERROR : ", error);
 		});
-	}
+  }
 
 	// CLICK EVENTS
 	navigate(url: string) {

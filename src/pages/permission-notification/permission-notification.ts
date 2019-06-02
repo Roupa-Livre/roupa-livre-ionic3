@@ -15,6 +15,7 @@ export class PermissionNotificationPage {
   ) {
   }
 
+  // LIFECYCLE EVENTS
   ionViewDidLoad() {
     console.log('ionViewDidLoad PermissionNotificationPage');
   }
@@ -23,12 +24,16 @@ export class PermissionNotificationPage {
   activePermission() {
     console.log("PERMISSION NOTIFICATION - ACTIVE NOTIFICATION");
     // TODO : ACTIVATE NOTIFICATIONS
-    this.navCtrl.push("WhatYouReleasePage");
+    this.navCtrl.setRoot("WhatYouReleasePage", {}, {
+			direction: 'forward'
+		});
   }
 
   denyPermission() {
     console.log("PERMISSION NOTIFICATION - DENY NOTIFICATION");
-    this.navCtrl.push("WhatYouReleasePage");
+    this.navCtrl.setRoot("WhatYouReleasePage", {}, {
+			direction: 'forward'
+		});
   }
 
 }

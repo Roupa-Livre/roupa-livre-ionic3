@@ -20,6 +20,7 @@ export class RegisterPage {
   ) {
   }
 
+  // LIFECYCLE EVENTS
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
@@ -28,11 +29,15 @@ export class RegisterPage {
   register() {
     console.log('RegisterPage register');
     // TODO : IMPLEMENTAR O METODO CORRETAMENTE
-    this.navCtrl.setRoot('PermissionLocationPage');
+    this.navCtrl.setRoot('PermissionLocationPage', {}, {
+			direction: 'forward'
+		});
   }
 
   login() {
-    this.navCtrl.setRoot('LoginPage');
+    this.navCtrl.setRoot('LoginPage', {}, {
+			direction: 'forward'
+		});
   }
 
 }

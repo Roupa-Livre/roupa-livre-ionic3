@@ -15,6 +15,7 @@ export class WhatYouLookForPage {
   ) {
   }
 
+  // LIFECYCLE EVENTS
   ionViewDidLoad() {
     console.log('ionViewDidLoad WhatYouLookForPage');
   }
@@ -25,11 +26,15 @@ export class WhatYouLookForPage {
   }
 
   searchApparels() {
-    this.navCtrl.setRoot("MainPage");
+    this.navCtrl.setRoot("ItemExplorePage", {}, {
+			direction: 'forward'
+		});
   }
 
   skip() {
-    this.navCtrl.setRoot("MainPage");
+    this.navCtrl.setRoot("ItemExplorePage", {}, {
+			direction: 'forward'
+		});
   }
 
 }
