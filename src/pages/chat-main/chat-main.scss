@@ -1,25 +1,51 @@
 page-chat-main {
-	.matches-thumbs {
-		ion-scroll {
-			height: 96px;
-			white-space: nowrap;
-			.matches-thumb {
-				display: inline-block;
-				width: 64px;
-				margin-right: 12px;
-				position: relative;
-				margin-bottom: 12px;
-				.online-status {
-					background-color: color($colors, primary);
-					position: absolute;
-					right: -8px;
-					top: 26px;
-					width: 16px;
-					height: 16px;
-					border-radius: 999em;
-					border: 3px solid white;
-				}
-			}
-		}
-	}
+
+  ion-content {
+    background: #f2f2f2 !important;
+  }
+
+  ion-toolbar, .toolbar-background {
+    background: #f2f2f2 !important;
+
+    .searchbar-input {
+      border-radius: 10px !important;
+    }
+  }
+
+  .chatPerson {
+    color: #323232;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .chatDescription {
+    color: #C3C8D0;
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+
+	// .matches-thumbs {
+	// 	ion-scroll {
+	// 		height: 96px;
+	// 		white-space: nowrap;
+	// 		.matches-thumb {
+	// 			display: inline-block;
+	// 			width: 64px;
+	// 			margin-right: 12px;
+	// 			position: relative;
+	// 			margin-bottom: 12px;
+	// 			.online-status {
+	// 				background-color: color($colors, primary);
+	// 				position: absolute;
+	// 				right: -8px;
+	// 				top: 26px;
+	// 				width: 16px;
+	// 				height: 16px;
+	// 				border-radius: 999em;
+	// 				border: 3px solid white;
+	// 			}
+	// 		}
+	// 	}
+  // }
+
 }

@@ -1,56 +1,86 @@
 <ion-header no-border>
 	<app-header [activeView]="'chat'"></app-header>
 
-	<ion-toolbar color="white">
-		<ion-searchbar placeholder="Buscar items combinados"></ion-searchbar>
+	<ion-toolbar>
+		<ion-searchbar placeholder="Buscar"></ion-searchbar>
 	</ion-toolbar>
 </ion-header>
 
 
-
 <ion-content>
-	<div>
-		<div class="wrapper-xs padder">
-			<div ion-text color="primary" class="font-bold">
-				Mensagens
-				<ion-badge color="primary">10</ion-badge>
-			</div>
-		</div>
 
-		<div class="wrapper-xs padder-sm">
-			<ion-row align-items-center (tap)="goToChatDetails()">
-				<ion-col col-auto>
-					<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
-				</ion-col>
-				<ion-col>
-					<div>
-						<div class="text-lg">João</div>
-						<div class="text-muted">Enviou uma mensagem</div>
-					</div>
-				</ion-col>
-			</ion-row>
-			<ion-row align-items-center (tap)="goToChatDetails()">
-				<ion-col col-auto>
-					<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
-				</ion-col>
-				<ion-col>
-					<div>
-						<div class="text-lg">Antônio</div>
-						<div class="text-muted">Enviou uma mensagem</div>
-					</div>
-				</ion-col>
-			</ion-row>
-			<ion-row align-items-center (tap)="goToChatDetails()">
-				<ion-col col-auto>
-					<demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
-				</ion-col>
-				<ion-col>
-					<div>
-						<div class="text-lg">Daniel</div>
-						<div class="text-muted">Enviou uma mensagem</div>
-					</div>
-				</ion-col>
-			</ion-row>
-		</div>
-	</div>
+  <ion-list>
+    <ion-list-header>
+      PEÇAS QUE COMBINARAM COM AS SUAS
+    </ion-list-header>
+
+    <ion-item>
+      <ion-row align-items-center no-padding>
+        <ion-col col-auto>
+          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+        </ion-col>
+        <ion-col col-auto>
+          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+        </ion-col>
+        <ion-col col-auto>
+          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+        </ion-col>
+        <ion-col col-auto>
+          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+        </ion-col>
+        <ion-col col-auto>
+          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      CONVERSAS
+    </ion-list-header>
+
+    <ion-item detail-push (tap)="goToChatDetails()">
+      <ion-row align-items-center no-padding>
+        <ion-col col-auto>
+          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+        </ion-col>
+        <ion-col>
+          <div>
+            <div class="chatPerson">Sandra</div>
+            <div class="chatDescription">Listrada tamanho 36</div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item detail-push (tap)="goToChatDetails()">
+      <ion-row align-items-center no-padding>
+        <ion-col col-auto>
+          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+        </ion-col>
+        <ion-col>
+          <div>
+            <div class="chatPerson">Giovana</div>
+            <div class="chatDescription">Listrada tamanho 36</div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item detail-push (tap)="goToChatDetails()">
+      <ion-row align-items-center no-padding>
+        <ion-col col-auto>
+          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+        </ion-col>
+        <ion-col>
+          <div>
+            <div class="chatPerson">Pedro</div>
+            <div class="chatDescription">Listrada tamanho 36</div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
