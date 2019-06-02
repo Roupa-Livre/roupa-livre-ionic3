@@ -25,7 +25,7 @@ export class AppHeaderComponent {
     console.log('AppHeaderComponent goMain - activeView : ', this.activeView);
 
     let direction = (this.activeView == "chat") ? "back" : "foward";
-    this.navCtrl.setRoot('ItemExplorePage', {}, {
+    this.navCtrl.push('ItemExplorePage', {}, {
 			direction: direction
 		});
     //this.mainClicked.emit();
@@ -34,7 +34,7 @@ export class AppHeaderComponent {
   goProfile() {
     console.log('AppHeaderComponent goProfile - activeView : ', this.activeView);
 
-    this.navCtrl.setRoot('MenuPage', {}, {
+    this.navCtrl.push('MenuPage', {}, {
 			direction: "back"
 		});
     //this.profileClicked.emit();
@@ -43,7 +43,7 @@ export class AppHeaderComponent {
   goChat() {
     console.log('AppHeaderComponent goChat - activeView : ', this.activeView);
 
-    this.navCtrl.setRoot('ChatMainPage', {}, {
+    this.navCtrl.push('ChatMainPage', {}, {
 			direction: "foward"
 		});
     //this.chatClicked.emit();
