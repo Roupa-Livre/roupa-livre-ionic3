@@ -1,41 +1,83 @@
 page-item-form {
 	.profile-images-edit {
-		padding: 5px;
+		padding: 5px 0;
 
 		.div-img {
 			padding-bottom: 99%;
-			background-color: #e0dfe5;
+			background-color: #EBEDF0;
 		}
-	}
+  }
+
+  ion-list:first-child {
+    margin-top: 24px;
+  }
 
 	.profile-image {
 		position: relative;
-		width: calc(100% / 3 - 10px);
+		width: calc(100% / 4 - 10px);
+		height: calc(100% / 3 - 10px);
 		margin: 5px;
-		float: left;
+    float: left;
+
 		&:first-child {
-			width: calc(2 * 100% / 3 - 10px);
-		}
+			width: calc(3 * 100% / 4 - 10px);
+			height: calc(3 * 100% / 3 - 10px);
+    }
+
 		.btn-edit {
 			position: absolute;
-			right: -8px;
-			bottom: -8px;
-			background-color: color($colors, bg);
-			font-size: 12px;
-			font-weight: 700;
-			width: 28px;
-			height: 28px;
-			border-radius: 999em;
-		}
-	}
+			top: 3px;
+      right: 3px;
+      background-color: #3AE6D9;
+			background: linear-gradient(180deg, #3AE6D9 0%, #26B9E2 100%) !important;
+			font-size: 10px;
+			width: 18px;
+			height: 18px;
+      border-radius: 999em;
 
-	.label-special {
-		background-color: color($colors, primary);
-		border-radius: 999em;
-		text-transform: none;
-		padding: 1px 6px;
-		letter-spacing: 0;
-		font-size: 9px;
-		color: #fff;
-	}
+      ion-icon {
+        font-weight: 800 !important;
+      }
+		}
+  }
+
+  .text-input-clear-icon {
+    background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='rgba(232, 232, 232, 1)'%20d='M403.1,108.9c-81.2-81.2-212.9-81.2-294.2,0s-81.2,212.9,0,294.2c81.2,81.2,212.9,81.2,294.2,0S484.3,190.1,403.1,108.9z%20M352,340.2L340.2,352l-84.4-84.2l-84,83.8L160,339.8l84-83.8l-84-83.8l11.8-11.8l84,83.8l84.4-84.2l11.8,11.8L267.6,256L352,340.2z'/></svg>") !important
+  }
+
+  .select-icon {
+    display: none !important;
+  }
+
+  textarea {
+    min-height: 127px !important;
+  }
+
+  .groupButtons {
+    margin: 1rem auto 0 auto;
+    width: 100%;
+
+    button {
+      position: relative;
+      margin: 0 auto 1.5rem auto;
+      width: 80%;
+
+      font-size: 12px;
+      font-weight: bold !important;
+
+      height: 48px;
+
+      &.gradient {
+        background: linear-gradient(-20deg, #86e1d7 0%,#53cbf1 40%,#008de9 100%) !important;
+        font-weight: 900 !important;
+      }
+
+      &.redGradient {
+        background: linear-gradient(-20deg, #FFB100 0%,#FF7575 40%,#D03535 100%) !important;
+        font-weight: 900 !important;
+      }
+
+    }
+
+  }
 }
