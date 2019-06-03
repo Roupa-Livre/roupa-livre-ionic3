@@ -34,7 +34,7 @@ export class AppHeaderComponent {
   goProfile() {
     console.log('AppHeaderComponent goProfile - activeView : ', this.activeView);
 
-    this.navCtrl.push('MenuPage', {}, {
+    this.navCtrl.push('ProfilePage', {}, {
 			direction: "back"
 		});
     //this.profileClicked.emit();
