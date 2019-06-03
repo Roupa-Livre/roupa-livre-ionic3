@@ -1,0 +1,79 @@
+<ion-header no-border>
+	<app-header [activeView]="'profile'"></app-header>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-card-content>
+      <div class="profilePhoto">
+        <button ion-button icon-only clear class="btn-edit" (tap)="goToSettings()">
+          <ion-icon name="ios-settings" color="white"></ion-icon>
+        </button>
+        <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+      </div>
+
+      <h2 class="title">Oiê, Mari</h2>
+      <p class="subtitle">Liberte suas roupas!</p>
+
+      <div class="groupButtons">
+        <button ion-button block round class="gradient" (tap)="goToOfferItem()">
+          OFERECER PEÇAS
+        </button>
+
+        <!-- <button ion-button block clear color="gray" (tap)="showSettings()">
+          CONFIGURAÇÕES
+        </button> -->
+      </div>
+
+      <ion-list no-padding>
+
+        <ion-list-header>
+          MINHAS PEÇAS
+        </ion-list-header>
+
+        <ion-item detail-push>
+          <ion-thumbnail item-start>
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </ion-thumbnail>
+          <h2>Brusinha</h2>
+          <p>Listrada tamanho 36</p>
+          <button ion-button clear color="blueLight" class="matches">2 Matches</button>
+        </ion-item>
+
+        <ion-item detail-push>
+          <ion-thumbnail item-start>
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </ion-thumbnail>
+          <h2>Brusinha</h2>
+          <p>Listrada tamanho 36</p>
+          <button ion-button clear color="blueLight" class="matches">2 Matches</button>
+        </ion-item>
+
+        <ion-item detail-push>
+          <ion-thumbnail item-start>
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </ion-thumbnail>
+          <h2>Brusinha</h2>
+          <p>Listrada tamanho 36</p>
+          <button ion-button clear color="blueLight" class="matches">2 Matches</button>
+        </ion-item>
+
+        <ion-item detail-push>
+          <ion-thumbnail item-start>
+            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+          </ion-thumbnail>
+          <h2>Brusinha</h2>
+          <p>Listrada tamanho 36</p>
+          <button ion-button clear color="blueLight" class="matches">2 Matches</button>
+        </ion-item>
+
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>
