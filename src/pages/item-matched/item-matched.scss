@@ -38,14 +38,14 @@ page-item-matched {
       width: 177px;
 
       &.match-left {
-        animation: fromLeft 1s ease-in;
+        animation: fromLeft .5s ease-in;
 
         img.item {
           left: 72px;
         }
       }
       &.match-right {
-        animation: fromRight 1s ease-in;
+        animation: fromRight .5s ease-in;
 
         img.item {
           right: 74px;
