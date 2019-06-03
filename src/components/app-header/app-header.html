@@ -1,9 +1,9 @@
 <ion-navbar hideBackButton>
   <ion-buttons start>
-    <button ion-button clear class="profileIcon" *ngIf="activeView == 'main'" (click)="goProfile()">
+    <button ion-button clear class="profileIcon" *ngIf="activeView == 'main'" (tap)="goProfile()">
       <img src="assets/img/newLayout/header-profile-off.svg" width="34px" height="34px">
     </button>
-    <button ion-button clear class="mainIcon" *ngIf="activeView == 'chat'" (click)="goMain()">
+    <button ion-button clear class="mainIcon" *ngIf="activeView == 'chat'" (tap)="goMain()">
       <img src="assets/img/newLayout/header-main-off.svg" width="44px" height="31px">
     </button>
   </ion-buttons>
@@ -21,10 +21,10 @@
   </ion-title>
 
   <ion-buttons end>
-    <button ion-button clear class="chatIcon" *ngIf="activeView == 'main'" (click)="goChat()">
+    <button ion-button clear class="chatIcon" *ngIf="activeView == 'main'" (tap)="goChat()">
       <img src="assets/img/newLayout/header-chat-off.svg" width="38px" height="34px">
     </button>
-    <button ion-button clear class="mainIcon" *ngIf="activeView == 'profile'" (click)="goMain()">
+    <button ion-button clear class="mainIcon" *ngIf="activeView == 'profile'" (tap)="goMain()">
       <img src="assets/img/newLayout/header-main-off.svg" width="44px" height="31px">
     </button>
   </ion-buttons>

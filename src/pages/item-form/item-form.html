@@ -3,7 +3,7 @@
 		<ion-title>Nova/Editar peça</ion-title>
 
 		<ion-buttons end>
-			<button ion-button clear color="blueLight" (click)="cancel()">
+			<button ion-button clear color="blueLight" (tap)="cancel()">
 				Cancelar
 			</button>
 		</ion-buttons>
@@ -21,9 +21,9 @@
 
 		<ion-item>
 			<div class="profile-images-edit">
-				<div class="profile-image" *ngFor="let image of profileImages; let i = index" (click)="openPhotoPicker(i)">
+				<div class="profile-image" *ngFor="let image of profileImages; let i = index" (tap)="openPhotoPicker(i)">
 					<div [style.backgroundImage]="'url(' + profileImages[i] + ')'" class="div-img img-square r-3x"></div>
-					<button ion-button icon-only clear class="btn-edit" (click)="removeImage(i)" *ngIf="profileImages[i] != ''">
+					<button ion-button icon-only clear class="btn-edit" (tap)="removeImage(i)" *ngIf="profileImages[i] != ''">
 						<ion-icon name="ios-close" color="white"></ion-icon>
 					</button>
 					<button ion-button icon-only clear class="btn-edit" *ngIf="profileImages[i] == ''">
