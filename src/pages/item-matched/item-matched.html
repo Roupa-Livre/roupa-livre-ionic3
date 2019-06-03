@@ -1,27 +1,31 @@
-<ion-content padding no-bounce class="bg-blur">
-	<div class="h-full" layout vertical center center-center>
-		<div>
-			<div class="title text-4x">Combinou!</div>
+<ion-content no-bounce>
+	<div layout vertical center>
+		<h2 class="title">Combinou!</h2>
 
-			<p class="text-lg">
-				Você curtiu uma peça da Amanda<br>
-				que curtiu uma peça sua.
-			</p>
-		</div>
-
-		<div>
-			<div class="thumb-xl match-avatar match-left">
-				<img class="rounded b b-2x b-white box-shadow thumb-xl" src="assets/img/dummy/camisa.jpg" alt="">
+		<div class="matchToastItems">
+			<div class="match-avatar match-left">
+				<img class="hanger" src="assets/img/newLayout/matched-hand-with-hanger-left.svg" alt="">
+				<img class="item" src="assets/img/dummy/camisa.jpg" alt="">
 			</div>
 
-			<div class="thumb-xl match-avatar match-right">
-				<img class="rounded b b-2x b-white box-shadow thumb-xl" src="assets/img/dummy/turbante.jpg" alt="">
+			<div class="match-avatar match-right">
+				<img class="hanger" src="assets/img/newLayout/matched-hand-with-hanger-right.svg" alt="">
+				<img class="item" src="assets/img/dummy/turbante.jpg" alt="">
 			</div>
-		</div>
+    </div>
 
-		<div>
-			<button ion-button round class="match m-b" (tap)="goToChat()">combinar a troca</button>
-			<button ion-button round outline class="continue" (tap)="close()">continuar trocando</button>
+    <p class="description">
+      Você curtiu uma peça da Amanda<br>
+      que curtiu uma peça sua.
+    </p>
+
+    <div class="groupButtons">
+			<button ion-button round block class="match" (tap)="goToChat()">
+        COMBINAR A TROCA
+      </button>
+			<button ion-button round block class="continue" (tap)="close()">
+        CONTINUAR TROCANDO
+      </button>
 		</div>
 	</div>
 </ion-content>
