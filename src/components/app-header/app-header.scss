@@ -6,14 +6,14 @@
       background: transparent !important;
       border: 0 !important;
 
-      margin: 0 !important;
-      padding: 0 !important;
+      // margin: 0 !important;
+      // padding: 0 !important;
     }
 
   }
 
   .profileIcon {
-    width:38px;
+    width:34px;
     height:34px;
 
     padding: 0;
@@ -23,22 +23,44 @@
       width:34px;
       height:34px;
 
-      padding: 0 2px;
+      padding: 0;
+      margin: 0;
+    }
+
+    &.off {
+      width:25px;
+      height:25px;
+
+      img {
+        width:25px;
+        height:25px;
+      }
     }
   }
 
   .mainIcon {
-    width:44px;
+    width:47px;
     height:34px;
 
     padding: 0;
     margin: 0;
 
     img {
-      width:44px;
-      height:31px;
+      width:47px;
+      height:34px;
 
-      padding: 1.5px 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    &.off {
+      width:38px;
+      height:25px;
+
+      img {
+        width:38px;
+        height:25px;
+      }
     }
   }
 
@@ -52,7 +74,37 @@
     img {
       width:38px;
       height:34px;
+
+      padding: 0;
+      margin: 0;
+    }
+
+    &.off {
+      width:29px;
+      height:25px;
+
+      img {
+        width:29px;
+        height:25px;
+      }
     }
   }
+
+  button {
+
+    img.pushPin {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      width:8px !important;
+      height:8px !important;
+
+      margin: 0;
+      padding: 0;
+    }
+
+  }
+
 
 }
