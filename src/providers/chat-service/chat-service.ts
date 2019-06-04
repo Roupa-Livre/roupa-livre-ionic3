@@ -26,40 +26,40 @@ export class ChatServiceProvider {
 					isMe: true,
 					type: 'text',
 					body: 'Olá',
-					timestamp: 'Mar 10, 2018 9:47am'
+					timestamp: '10 de Março de 2019'
 				},
 				{
 					isMe: false,
 					avatar: 'assets/img/dummy/hieu.png',
 					type: 'text',
 					body: 'Olá tudo bom?',
-					timestamp: 'Mar 10, 2018 9:48am'
+					timestamp: '10 de Março de 2019'
 				},
 				{
 					isMe: true,
 					type: 'text',
 					body: 'Gostei do seu vestido',
-					timestamp: 'Mar 10, 2018 9:50am'
+					timestamp: '10 de Março de 2019'
 				},
 				{
 					isMe: false,
 					avatar: 'assets/img/dummy/hieu.png',
 					type: 'text',
 					body: 'E eu da sua bolsa',
-					timestamp: 'Mar 10, 2018 9:52am'
+					timestamp: '10 de Março de 2019'
 				},
 				{
 					isMe: true,
 					type: 'text',
 					body: 'Vamos trocar?',
-					timestamp: 'Mar 10, 2018 9:53am'
+					timestamp: '10 de Março de 2019'
 				},
 				{
 					isMe: false,
 					avatar: 'assets/img/dummy/hieu.png',
 					type: 'text',
 					body: 'Vamos sim...',
-					timestamp: 'Mar 10, 2018 9:53am'
+					timestamp: '10 de Março de 2019'
 				}
 			];
 

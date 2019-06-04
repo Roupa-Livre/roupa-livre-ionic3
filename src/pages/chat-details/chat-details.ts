@@ -47,7 +47,7 @@ export class ChatDetailsPage {
 			isMe: true,
 			type: 'text',
 			body: this.typingMessage,
-			timestamp: 'Mar 13, 2018 9:55am'
+			timestamp: '13 de Março de 2019'
 		};
 
 		this.chatService.sendMessage(message)
@@ -71,8 +71,8 @@ export class ChatDetailsPage {
 				isMe: false,
 				avatar: 'assets/img/dummy/hieu.png',
 				type: 'text',
-				body: 'Nice. Keep typing dude',
-				timestamp: 'Oct 10, 2017 9:55am'
+				body: 'Show. me conta mais...',
+				timestamp: '14 de Março de 2019'
 			});
 
 			this.scrollToBottom();

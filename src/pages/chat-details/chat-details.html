@@ -1,7 +1,8 @@
 <ion-header no-border class="header-shadow">
 	<ion-navbar color="white">
 		<ion-title>
-			Miguel
+      <img class="headerAvatar" src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+			<span class="nameAvatar">Miguel</span>
 		</ion-title>
 	</ion-navbar>
 </ion-header>
@@ -29,12 +30,12 @@
 			</div>
 
 			<div class="chat-item-content">
-				<div class="chat-avatar" *ngIf="!item.isMe">
+				<!-- <div class="chat-avatar" *ngIf="!item.isMe">
 					<img [src]="item.avatar">
-				</div>
+				</div> -->
 
 				<div class="chat-item-bubble" [ngClass]="{'bubble-image': item.type == 'image'}">
-					<i class="icon-tail"></i>
+					<!-- <i class="icon-tail"></i> -->
 					<div class="chat-body" *ngIf="item.type !== 'image'" [innerHtml]="item.body | nlbr"></div>
 					<img [src]="item.body" *ngIf="item.type == 'image'">
 				</div>
@@ -56,8 +57,8 @@
 		<ion-textarea fz-elastic [(ngModel)]="typingMessage" placeholder="Digite uma mensagem"></ion-textarea>
 
 		<ion-buttons right class="stick-bottom button-submit">
-			<button type="submit" [disabled]="typingMessage.length == 0" ion-button small color="dark" (tap)="sendMessage()">
-				<img src="assets/img/iconSendMessage.png" width="24" alt="">
+			<button class="sendButton" type="submit" [disabled]="typingMessage.length == 0" ion-button small color="dark" (tap)="sendMessage()">
+				<ion-icon name="ios-send" color="white"></ion-icon>
 			</button>
 		</ion-buttons>
 	</ion-toolbar>
