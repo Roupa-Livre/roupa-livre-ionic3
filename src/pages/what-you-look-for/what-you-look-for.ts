@@ -26,13 +26,13 @@ export class WhatYouLookForPage {
   }
 
   searchApparels() {
-    this.navCtrl.setRoot("ItemExplorePage", {}, {
+    this.navCtrl.push("ItemExplorePage", {}, {
 			direction: 'forward'
 		});
   }
 
   skip() {
-    this.navCtrl.setRoot("ItemExplorePage", {}, {
+    this.navCtrl.push("ItemExplorePage", {}, {
 			direction: 'forward'
 		});
   }

@@ -24,14 +24,14 @@ export class PermissionLocationPage {
   activeLocation() {
     console.log("PERMISSION LOCATION - ACTIVE LOCATION");
     // TODO : ACTIVATE THE LOCATION
-    this.navCtrl.setRoot("PermissionNotificationPage", {}, {
+    this.navCtrl.push("PermissionNotificationPage", {}, {
 			direction: 'forward'
 		});
   }
 
   denyLocation() {
     console.log("PERMISSION LOCATION - DENY LOCATION");
-    this.navCtrl.setRoot("PermissionNotificationPage", {}, {
+    this.navCtrl.push("PermissionNotificationPage", {}, {
 			direction: 'forward'
 		});
   }

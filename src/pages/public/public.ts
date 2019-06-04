@@ -25,13 +25,13 @@ export class PublicPage {
 
   // CLICK EVENTS
 	manualLogin() {
-		this.navCtrl.setRoot('LoginPage', {}, {
+		this.navCtrl.push('LoginPage', {}, {
 			direction: 'forward'
 		});
 	}
 
 	register() {
-		this.navCtrl.setRoot('RegisterPage', {}, {
+		this.navCtrl.push('RegisterPage', {}, {
 			direction: 'forward'
 		});
 	}
@@ -47,9 +47,13 @@ export class PublicPage {
 
 			if (logged) {
 				if (isFirstTime) {
-					this.navCtrl.setRoot('TermsPage');
+					this.navCtrl.push('TermsPage', {}, {
+            direction: 'forward'
+          });
 				} else {
-					this.navCtrl.setRoot('ItemExplorePage');
+					this.navCtrl.push('ItemExplorePage', {}, {
+            direction: 'forward'
+          });
 				}
 			}
 		});

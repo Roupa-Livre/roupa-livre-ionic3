@@ -24,14 +24,14 @@ export class PermissionNotificationPage {
   activePermission() {
     console.log("PERMISSION NOTIFICATION - ACTIVE NOTIFICATION");
     // TODO : ACTIVATE NOTIFICATIONS
-    this.navCtrl.setRoot("WhatYouReleasePage", {}, {
+    this.navCtrl.push("WhatYouReleasePage", {}, {
 			direction: 'forward'
 		});
   }
 
   denyPermission() {
     console.log("PERMISSION NOTIFICATION - DENY NOTIFICATION");
-    this.navCtrl.setRoot("WhatYouReleasePage", {}, {
+    this.navCtrl.push("WhatYouReleasePage", {}, {
 			direction: 'forward'
 		});
   }

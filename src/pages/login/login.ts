@@ -31,7 +31,7 @@ export class LoginPage {
 	// CLICK EVENTS
 	login() {
     // TODO : IMPLEMENTAR O METODO CORRETAMENTE
-    this.navCtrl.setRoot('PermissionLocationPage', {}, {
+    this.navCtrl.push('PermissionLocationPage', {}, {
 			direction: 'forward'
 		});
 
@@ -45,9 +45,13 @@ export class LoginPage {
 
 		// 	if (logged) {
 		// 		if (isFirstTime) {
-		// 			this.navCtrl.setRoot('TermsPage');
+		// 			this.navCtrl.push('TermsPage', {}, {
+    //        direction: 'forward'
+    //      });
 		// 		} else {
-		// 			this.navCtrl.setRoot('ItemExplorePage');
+		// 			this.navCtrl.push('ItemExplorePage', {}, {
+    //        direction: 'forward'
+    //      });
 		// 		}
 		// 	}
 		// }, error => {

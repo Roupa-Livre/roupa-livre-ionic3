@@ -49,14 +49,16 @@ export class LoginServiceProvider {
 
 	loginWithFacebook() {
 		return new Promise((resolve, reject) => {
-			return this._tokenService.signInOAuth('facebook', this.inAppBrowser, this.platform).subscribe((response: any) => {
-				// console.log('USER LOGGED INTO FACEBOOK - RESPONSE : ', response);
-				// throw 'err';
-				return resolve(true);
-			}, e => {
-				console.log('ERROR LOGGING USER INTO FACEBOOK : ', e);
-				reject(e);
-			});
+      return null;
+      // return this._tokenService.signInOAuth('facebook', this.inAppBrowser, this.platform)
+      // .subscribe((response: any) => {
+			// 	// console.log('USER LOGGED INTO FACEBOOK - RESPONSE : ', response);
+			// 	// throw 'err';
+			// 	return resolve(true);
+			// }, e => {
+			// 	console.log('ERROR LOGGING USER INTO FACEBOOK : ', e);
+			// 	reject(e);
+			// });
 		});
 	}
 	login(email, password) {

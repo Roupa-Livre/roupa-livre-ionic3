@@ -26,13 +26,13 @@ export class WhatYouReleasePage {
   }
 
   releaseApparel() {
-    this.navCtrl.setRoot("WhatYouLookForPage", {}, {
+    this.navCtrl.push("WhatYouLookForPage", {}, {
 			direction: 'forward'
 		});
   }
 
   skip() {
-    this.navCtrl.setRoot("WhatYouLookForPage", {}, {
+    this.navCtrl.push("WhatYouLookForPage", {}, {
 			direction: 'forward'
 		});
   }

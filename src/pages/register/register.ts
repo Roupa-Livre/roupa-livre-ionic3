@@ -29,13 +29,13 @@ export class RegisterPage {
   register() {
     console.log('RegisterPage register');
     // TODO : IMPLEMENTAR O METODO CORRETAMENTE
-    this.navCtrl.setRoot('PermissionLocationPage', {}, {
+    this.navCtrl.push('PermissionLocationPage', {}, {
 			direction: 'forward'
 		});
   }
 
   login() {
-    this.navCtrl.setRoot('LoginPage', {}, {
+    this.navCtrl.push('LoginPage', {}, {
 			direction: 'forward'
 		});
   }
