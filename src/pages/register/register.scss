@@ -25,7 +25,7 @@ page-register {
 
   .rounded {
     width: 80%;
-    height: 65px;
+    height: 55px;
     border-radius: 10px;
     border: 0;
     box-shadow: 0px 0px 1px 1px rgba(233,233,233,0.80);
@@ -35,16 +35,34 @@ page-register {
       box-sizing: unset !important;
     }
 
-    ion-label {
+    ion-label.label[floating] {
+      color: #bababa;
       font-size: 18px !important;
+
       height: 20px !important;
+      min-height: 20px !important;
+      width: 100% !important;
+
+      margin: 0 !important;
+      padding: 0 !important;
+
+      display: block !important;
     }
 
-    .input-has-focus {
+    .input-has-focus, .item-input-has-focus {
 
-      ion-label {
+      ion-label.label[floating] {
+        color: #bababa;
         font-size: 12px !important;
-        height: 20px !important;
+
+        height: 16px !important;
+        min-height: 16px !important;
+        width: 100% !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        display: block !important;
       }
 
     }
