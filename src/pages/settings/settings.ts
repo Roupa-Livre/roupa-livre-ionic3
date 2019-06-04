@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -8,40 +7,22 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 	templateUrl: 'settings.html',
 })
 export class SettingsPage {
-	profileImages: any[];
 
-	constructor(public navCtrl: NavController,
+  // CONSTRUCTOR
+  constructor(
+    public navCtrl: NavController,
 		public navParams: NavParams,
-		public viewCtrl: ViewController,
-		public imagePicker: ImagePicker,
-		public app: App ) {
-			this.profileImages = [
-				'assets/img/dummy/hieu.png',
-				'assets/img/dummy/hieu.png',
-				'assets/img/dummy/hieu.png',
-				'assets/img/dummy/hieu.png',
-				'assets/img/dummy/hieu.png',
-				''
-			]
+  ) {
 	}
 
+  // LIFECYCLE EVENTS
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad SettingsPage');
-	}
+  }
 
-	close() {
-		this.viewCtrl.dismiss();
-	}
-
-	openPhotoPicker(index) {
-		this.imagePicker.getPictures({ maximumImagesCount: 1 })
-			.then((results) => {
-				this.profileImages[index] = results[0];
-			}, (err) => { });
-	}
-
-	removeImage(index) {
-		this.profileImages[index] = '';
-	}
+  // CLICK EVENTS
+  changeProfilePhoto() {
+    console.log('SETTINGSPAGE - CHANGEPROFILEPHOTO');
+  }
 
 }

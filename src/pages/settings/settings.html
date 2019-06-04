@@ -1,50 +1,88 @@
-<ion-header no-border>
-	<ion-navbar color="white">
-		<ion-title>Perfil</ion-title>
-
-		<ion-buttons end>
-			<button ion-button clear color="primary" (tap)="close()">
-				Salvar
-			</button>
-		</ion-buttons>
-	</ion-navbar>
+<ion-header>
+  <ion-navbar>
+    <ion-title>Configurações</ion-title>
+  </ion-navbar>
 </ion-header>
 
+<ion-content>
 
-<ion-content class="bg-custom">
-	<div class="profile-images-edit">
-		<div class="profile-image" *ngFor="let image of profileImages; let i = index" (tap)="openPhotoPicker(i)">
-			<div [style.backgroundImage]="'url(' + profileImages[i] + ')'" class="div-img img-square r-3x"></div>
-			<button ion-button icon-only clear class="btn-edit" (tap)="removeImage(i)" *ngIf="profileImages[i] != ''">
-				<ion-icon name="md-close" color="danger"></ion-icon>
-			</button>
-			<button ion-button icon-only clear class="btn-edit" *ngIf="profileImages[i] == ''">
-				<ion-icon name="md-add-circle" color="danger"></ion-icon>
-			</button>
-		</div>
-	</div>
+  <div class="profilePhoto">
+    <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+  </div>
 
-	<ion-list no-lines>
-		<ion-list-header>
-			SOBRE MIM
-		</ion-list-header>
-		<ion-item class="text-muted" text-wrap>
-			<ion-textarea placeholder="Insira uma descrição"></ion-textarea>
-		</ion-item>
-		<ion-item>
-			<ion-note item-end>
-				<span class="text-xs">435</span>
-			</ion-note>
-		</ion-item>
-	</ion-list>
+  <button ion-button color="blueLight" block clear (tap)="changeProfilePhoto()">MUDAR FOTO DE PERFIL</button>
 
-	<ion-list>
-		<ion-list-header>
-			GÊNERO
-		</ion-list-header>
-		<button ion-item>
-			Masculino
-		</button>
-	</ion-list>
+  <ion-list class="personalInfo">
 
+    <ion-item>
+      <ion-label fixed>Nome</ion-label>
+      <ion-input type="text" value="Mari Pelicari"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>E-mail</ion-label>
+      <ion-input type="text" value="maripelicari@gmail.com"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Telefone</ion-label>
+      <ion-input type="text" value="+55 11 99999-8888"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Endereço</ion-label>
+      <ion-textarea rows="3" maxLength="500" value="Rua Artur de Azevedo, 55
+Pinheiros - SP
+CEP 05404-000">
+      </ion-textarea>
+    </ion-item>
+
+  </ion-list>
+
+  <p class="info">
+    Fique tranquilo que só você vê essas informações, ok? ;)
+  </p>
+
+  <ion-list>
+
+    <ion-list-header>
+      Contas Sincronizadas
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Facebook</ion-label>
+      <ion-toggle color="secondary" checked="false"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Twiter</ion-label>
+      <ion-toggle color="secondary" checked="false"></ion-toggle>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list class="aboutInfo">
+
+    <ion-list-header>
+      Sobre
+    </ion-list-header>
+
+    <ion-item detail-push>
+      Termos de Uso
+    </ion-item>
+
+    <ion-item detail-push>
+      Política de Privacidade
+    </ion-item>
+
+    <ion-item detail-push>
+      Perguntas Frequentes
+    </ion-item>
+
+  </ion-list>
+
+  <p class="info">
+    Financiado coletivamento por 315 linds apoiadores.<br />
+    Open Source sob a licença GPL 3.0
+  </p>
 </ion-content>
