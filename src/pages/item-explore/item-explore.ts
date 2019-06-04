@@ -23,7 +23,8 @@ import { LoginServiceProvider } from '../../providers/login-service/login-servic
 	selector: 'page-item-explore',
 	templateUrl: 'item-explore.html'
 })
-export class ItemExplorePage extends AuthPage {
+// export class ItemExplorePage extends AuthPage {
+export class ItemExplorePage {
 
 	// VARS
 	@ViewChild('cardStack') swingStack: SwingStackComponent;
@@ -42,7 +43,7 @@ export class ItemExplorePage extends AuthPage {
 		public actionSheetCtrl: ActionSheetController,
 		public itemProvider: ItemServiceProvider,
 	) {
-		super(loginService);
+		//super(loginService);
 		this.init();
 	}
 
@@ -143,8 +144,8 @@ export class ItemExplorePage extends AuthPage {
 	}
 
 	// CLICK EVENTS
-	goToMenu() {
-		this.navCtrl.push('MenuPage', {}, {
+	goToProfile() {
+		this.navCtrl.push('ProfilePage', {}, {
 			direction: 'back'
 		});
 	}

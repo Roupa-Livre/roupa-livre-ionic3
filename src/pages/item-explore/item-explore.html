@@ -23,13 +23,15 @@
 
 					<div class="card-caption" (tap)="openItemDetails()">
 						<div class="card-text pull-left">
-							<div class="font-bold text-xl">{{c.title}}, {{c.size}}</div>
-							<div>{{c.description}}</div>
-							<div>{{c.tags}}</div>
+							<div class="title">{{c.title}}</div>
+							<div class="features">{{c.features}}</div>
+							<div class="description">{{c.description}}</div>
 						</div>
 
-						<div class="pull-right">
-							<ion-icon class="text-2x" name="md-information-circle" color="white"></ion-icon>
+						<div class="moreInfo">
+              <button ion-button icon-only clear class="btnInfo">
+                <ion-icon name="ios-add" color="white"></ion-icon>
+              </button>
 						</div>
 					</div>
 
@@ -40,16 +42,16 @@
 		</div>
 
 		<div class="bottom-actions" horizontal layout center center-center>
-			<button ion-button color="white" class="button-dislike" (tap)="disliked()">
-				<ion-icon name="md-close"></ion-icon>
+			<button ion-button (tap)="disliked()">
+				<img src="assets/img/newLayout/dislike-button.svg" />
 			</button>
 
-			<button ion-button color="white" class="button-warning" (tap)="doComplaint()">
-				<ion-icon name="ios-warning-outline"></ion-icon>
+			<button ion-button (tap)="doComplaint()">
+				<img src="assets/img/newLayout/pin-button.svg" />
 			</button>
 
-			<button ion-button color="white" class="button-like" (tap)="liked()">
-				<ion-icon name="md-heart"></ion-icon>
+			<button ion-button (tap)="liked()">
+				<img src="assets/img/newLayout/like-button.svg" />
 			</button>
 		</div>
 	</div>

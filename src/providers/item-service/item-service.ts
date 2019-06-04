@@ -18,7 +18,7 @@ export class ItemServiceProvider {
 				{
 					id: 1,
 					title: 'Vestido',
-					size: 'P',
+					features: 'Tamanho P - Feminino Adulto',
 					description: 'descriçao detalhada do vestuário',
 					tags: '#tag1 #tag2 #tag3 #tag4',
 					profile_image_url: 'assets/img/dummy/camisa.jpg'
@@ -26,7 +26,7 @@ export class ItemServiceProvider {
 				{
 					id: 2,
 					title: 'Blusa',
-					size: 'XG',
+					features: 'Tamanho XG - Masculino Infantil',
 					description: 'descriçao detalhada do vestuário',
 					tags: '#tag1 #tag2 #tag3 #tag4',
 					profile_image_url: 'assets/img/dummy/blusa.jpg'
@@ -34,7 +34,7 @@ export class ItemServiceProvider {
 				{
 					id: 3,
 					title: 'Turbante',
-					size: 'M',
+					features: 'Tamanho M - Feminino Adulto',
 					description: 'descriçao detalhada do vestuário',
 					tags: '#tag1 #tag2 #tag3 #tag4',
 					profile_image_url: 'assets/img/dummy/turbante.jpg'
@@ -42,7 +42,7 @@ export class ItemServiceProvider {
 				{
 					id: 4,
 					title: 'Sapatos',
-					size: '38',
+					features: 'Tamanho 28 - Masculino Infantil',
 					description: 'descriçao detalhada do vestuário',
 					tags: '#tag1 #tag2 #tag3 #tag4',
 					profile_image_url: 'assets/img/dummy/camisa2.jpg'
@@ -50,7 +50,7 @@ export class ItemServiceProvider {
 				{
 					id: 5,
 					title: 'Saia',
-					size: '36',
+					features: 'Tamanho 36 - Feminino Adulto',
 					description: 'descriçao detalhada do vestuário',
 					tags: '#tag1 #tag2 #tag3 #tag4',
 					profile_image_url: 'assets/img/dummy/turbante.jpg'
@@ -58,7 +58,7 @@ export class ItemServiceProvider {
 				{
 					id: 6,
 					title: 'Camisa Social',
-					size: '4',
+					features: 'Tamanho 4 - Masculino Adulto',
 					description: 'descriçao detalhada do vestuário',
 					tags: '#tag1 #tag2 #tag3 #tag4',
 					profile_image_url: 'assets/img/dummy/camisa2.jpg'
