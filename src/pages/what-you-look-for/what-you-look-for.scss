@@ -32,7 +32,7 @@
 
     .optionsGrid {
 
-      width: 80%;
+      width: 100%;
       margin: 0.5rem auto 0 auto;
 
       div.option {
@@ -40,10 +40,12 @@
 
         img {
           background: #eee;
-          width: 89px;
-          height: 89px;
+          width: 100%;
+          height: 100%;
+          max-width: 89px;
+          max-height: 89px;
 
-          border-radius: 45px;
+          border-radius: 999em;
 
           display: block;
           margin: 0 auto 0.5rem auto;
