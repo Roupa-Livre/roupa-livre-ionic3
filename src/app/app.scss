@@ -39,8 +39,8 @@ ion-row.no-padder ion-col {
   padding: 0;
 }
 
-.bg-custom {
-  background-color: color($colors, bg);
+ion-content {
+  background: #f2f2f2 !important;
 }
 
 .card-custom {
@@ -70,7 +70,7 @@ ion-row.no-padder ion-col {
 
 // Override back button color
 ion-header ion-icon.back-button-icon.icon {
-  color: map-get($colors, primary);
+  color: #2FD0DD !important;
 }
 
 .header-shadow {
