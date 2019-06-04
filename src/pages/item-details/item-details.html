@@ -10,57 +10,94 @@
 			</ion-slide>
 		</ion-slides>
 		<button ion-button icon-button color="primary" round class="btn-rounded btn-fab" (tap)="close()">
-			<ion-icon name="md-arrow-round-down"></ion-icon>
+			<ion-icon name="md-arrow-round-up"></ion-icon>
 		</button>
-	</div>
+  </div>
 
-	<div class="wrapper b-b b-light">
-		<div class="text-xl m-b-sm">
-			<span class="font-bold">Sapatos</span>, 29
-		</div>
-		<div class="text-muted l-h text-xs">
-			<ion-icon name="ios-person-outline"></ion-icon>
-			Miguel R Ayoub
-			<br>
-			<ion-icon name="ios-pin-outline" class="m-r-xs"></ion-icon>
-			Está a menos de 5km
-		</div>
-	</div>
+  <ion-grid>
 
-	<div class="wrapper text-muted b-b b-light">
-		<div class="color-black font-bold text-sm m-b">Caracteristicas</div>
-		Calçados | Sapato | Adulto | Tamanho 29
-	</div>
+    <ion-row align-items-top no-padding>
+      <ion-col class="title">
+        Bota de franja marrom
+      </ion-col>
+    </ion-row>
 
-	<div class="wrapper text-muted b-b b-light">
-		<div class="color-black font-bold text-sm m-b">Descrição</div>
-		Uma descrição detalhada da peça ou produto que esta sendo apresentado.
-	</div>
+    <ion-row align-items-top no-padding>
+      <ion-col col-auto>
+        <img src="assets/img/newLayout/size-icon.svg">
+      </ion-col>
+      <ion-col class="feature">
+        Adulto - Tamanho 29
+      </ion-col>
+    </ion-row>
 
-	<div class="wrapper text-muted b-b b-light">
-		<div class="color-black font-bold text-sm m-b">Hashtags</div>
+    <ion-row align-items-top no-padding>
+      <ion-col col-auto>
+        <img src="assets/img/newLayout/gender-icon.svg">
+      </ion-col>
+      <ion-col class="feature">
+        Feminino
+      </ion-col>
+    </ion-row>
 
-		<div>
-			<button ion-button outline small color="primary">hash 01</button>
-			<button ion-button outline small color="primary">hashtag02</button>
-			<button ion-button outline small color="primary">h03</button>
-			<button ion-button outline small color="primary">ht 04</button>
-			<button ion-button outline small color="primary">h-005</button>
-			<button ion-button outline small color="primary">hasht06</button>
-			<button ion-button outline small color="primary">htag 07</button>
-			<button ion-button outline small color="primary">h 08</button>
-		</div>
-	</div>
+    <ion-row align-items-top no-padding>
+      <ion-col col-auto>
+        <img src="assets/img/newLayout/star-icon.svg">
+      </ion-col>
+      <ion-col class="feature">
+        Usada poucas vezes
+      </ion-col>
+    </ion-row>
+
+    <ion-row align-items-top no-padding>
+      <ion-col class="description">
+        Uma descrição detalhada da peça ou produto que esta sendo apresentado.
+      </ion-col>
+    </ion-row>
+
+    <ion-row align-items-top no-padding>
+      <ion-col class="hashtags">
+        <button ion-button outline small color="blueLight">hash 01</button>
+        <button ion-button outline small color="blueLight">hashtag02</button>
+        <button ion-button outline small color="blueLight">h03</button>
+        <button ion-button outline small color="blueLight">ht 04</button>
+        <button ion-button outline small color="blueLight">h-005</button>
+        <button ion-button outline small color="blueLight">hasht06</button>
+        <button ion-button outline small color="blueLight">htag 07</button>
+        <button ion-button outline small color="blueLight">h 08</button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  <ion-list no-padding class="ownerInfo">
+
+    <ion-item detail-push >
+      <ion-thumbnail item-start>
+        <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+      </ion-thumbnail>
+
+      <h2>Sarah Lima</h2>
+      <p>cerca de 12km</p>
+      <button ion-button clear small color="blueLight" class="allItems">
+        VER TODAS PEÇAS
+      </button>
+    </ion-item>
+
+  </ion-list>
+
+  <div class="bottom-actions" horizontal layout center center-center>
+    <button ion-button (tap)="disliked()">
+      <img src="assets/img/newLayout/dislike-button.svg" />
+    </button>
+
+    <button ion-button (tap)="doComplaint()">
+      <img src="assets/img/newLayout/pin-button.svg" />
+    </button>
+
+    <button ion-button (tap)="liked()">
+      <img src="assets/img/newLayout/like-button.svg" />
+    </button>
+  </div>
+
 </ion-content>
-
-<div class="bottom-actions bottom-buttons" horizontal layout center center-center>
-	<button ion-button color="light" class="button-dislike" (tap)="disliked()">
-		<ion-icon name="md-close"></ion-icon>
-	</button>
-	<button ion-button color="light" class="button-warning" (tap)="doComplaint()">
-		<ion-icon name="ios-warning-outline"></ion-icon>
-	</button>
-	<button ion-button color="light" class="button-like" (tap)="liked()">
-		<ion-icon name="md-heart"></ion-icon>
-	</button>
-</div>
