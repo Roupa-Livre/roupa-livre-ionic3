@@ -4,10 +4,10 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 @IonicPage()
 @Component({
-	selector: 'page-profile-edit',
-	templateUrl: 'profile-edit.html',
+	selector: 'page-settings',
+	templateUrl: 'settings.html',
 })
-export class ProfileEditPage {
+export class SettingsPage {
 	profileImages: any[];
 
 	constructor(public navCtrl: NavController,
@@ -26,7 +26,7 @@ export class ProfileEditPage {
 	}
 
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad ProfileEditPage');
+		console.log('ionViewDidLoad SettingsPage');
 	}
 
 	close() {
