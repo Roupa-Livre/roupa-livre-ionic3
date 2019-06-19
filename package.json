@@ -35,7 +35,7 @@
         "@types/lodash": "^4.14.120",
         "ajv": "^6.7.0",
         "ajv-keywords": "^3.3.0",
-        "angular-token": file:../angular-token/dist/angular-token",
+        "angular-token": "file:../angular-token/dist/angular-token",
         "angular2-swing": "0.14.0",
         "com.synconset.imagepicker": "^2.1.10",
         "cordova-android": "7.1.4",
