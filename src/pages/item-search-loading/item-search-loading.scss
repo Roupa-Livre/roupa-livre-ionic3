@@ -2,19 +2,31 @@ page-item-search-loading {
 
   ion-content {
     background: linear-gradient(-40deg, #3FF2D7 0%, #0372EF 100%) !important;
+
+    video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: 100%;
+      z-index: -100;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
   }
 
-  .headerIcon {
-    width: 137px;
-    height: 137px;
-    margin: 50% auto 60px auto;
-  }
+  // .headerIcon {
+  //   width: 137px;
+  //   height: 137px;
+  //   margin: 50% auto 60px auto;
+  // }
 
-  h2 {
-    color: #ffffff;
-    font-size: 3.4rem;
-    text-align: center;
-  }
-
+  // h2 {
+  //   color: #ffffff;
+  //   font-size: 3.4rem;
+  //   text-align: center;
+  // }
 
 }
