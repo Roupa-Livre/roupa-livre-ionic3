@@ -1,7 +1,7 @@
 <ion-header no-border>
 	<ion-navbar color="white">
 
-    <ion-title>Filtrar</ion-title>
+    <ion-title>Buscar</ion-title>
 
     <ion-buttons end>
       <button ion-button color="blueLight" (tap)="search()">OK</button>
@@ -75,13 +75,6 @@
 		</ion-item>
 
     <ion-item detail-push>
-      <ion-label>Modelagem</ion-label>
-      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="modeling">
-        <ion-option value="1">Pequena</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item detail-push>
       <ion-label>Padrão</ion-label>
       <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="pattern">
         <ion-option value="1">Liso</ion-option>
@@ -99,7 +92,7 @@
   <ion-list no-lines>
 
     <ion-list-header>
-      Sobre o Dono
+      Localização da Peça
     </ion-list-header>
 
     <ion-item>

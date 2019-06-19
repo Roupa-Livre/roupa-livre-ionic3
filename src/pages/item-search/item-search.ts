@@ -13,7 +13,6 @@ export class ItemSearchPage {
   public type: string = "";
   public age: string = "";
   public size: string = "";
-  public modeling: string = "";
   public pattern: string = "";
   public color: string = "";
 
@@ -28,7 +27,6 @@ export class ItemSearchPage {
     this.type = "1";
     this.age = "1";
     this.size = "1";
-    this.modeling = "1";
     this.pattern = "1";
     this.color = "1";
 
