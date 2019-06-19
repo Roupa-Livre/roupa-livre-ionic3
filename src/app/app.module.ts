@@ -41,15 +41,15 @@ import { ToastService } from '../providers/utils/toast-service';
 		IonicStorageModule.forRoot(),
 		AngularTokenModule.forRoot({
 			apiBase: 'http://localhost:3000',
-			// signOutFailedValidate: true,
-			// oAuthBase: 'http://localhost:3000',
-			// oAuthWindowType: 'inAppBrowser',
-			// oAuthPaths: {
-			// 	facebook: 'auth/facebook'
-			// },
-			// oAuthBrowserCallbacks: {
-			// 	facebook: 'auth/facebook/callback'
-			// },
+			signOutFailedValidate: true,
+			oAuthBase: 'http://localhost:3000',
+			oAuthWindowType: 'inAppBrowser',
+			oAuthPaths: {
+				facebook: 'auth/facebook'
+			},
+			oAuthBrowserCallbacks: {
+				facebook: 'auth/facebook/callback'
+			},
 		}),
 		HttpClientModule,
 		DirectivesModule,

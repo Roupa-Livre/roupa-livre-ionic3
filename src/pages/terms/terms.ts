@@ -22,7 +22,7 @@ export class TermsPage {
 	}
 
 	ionViewCanEnter() {
-    //return this.loginProvider.isLogged();
+    return this.loginProvider.isLogged();
   }
 
 	// CLICK EVENTS
