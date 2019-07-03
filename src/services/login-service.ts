@@ -10,7 +10,7 @@ import { Storage } from '@ionic/storage';
 
 import 'rxjs/add/operator/map';
 import { AngularTokenService } from 'angular-token';
-import { resolveComponentResources } from '@angular/core/src/metadata/resource_loading';
+import { RegisteringUser } from '../models/user';
 
 @Injectable()
 export class LoginServiceProvider {
@@ -49,22 +49,29 @@ export class LoginServiceProvider {
 
 	loginWithFacebook() {
 		return new Promise((resolve, reject) => {
-      return null;
-      // return this._tokenService.signInOAuth('facebook', this.inAppBrowser, this.platform)
-      // .subscribe((response: any) => {
-			// 	// console.log('USER LOGGED INTO FACEBOOK - RESPONSE : ', response);
-			// 	// throw 'err';
-			// 	return resolve(true);
-			// }, e => {
-			// 	console.log('ERROR LOGGING USER INTO FACEBOOK : ', e);
-			// 	reject(e);
-			// });
+      return this._tokenService.signInOAuth('facebook', this.inAppBrowser, this.platform)
+        .subscribe((response: any) => {
+          // console.log('USER LOGGED INTO FACEBOOK - RESPONSE : ', response);
+          // throw 'err';
+          return resolve(true);
+        }, e => {
+          console.log('ERROR LOGGING USER INTO FACEBOOK : ', e);
+          reject(e);
+        });
 		});
-	}
+  }
+
 	login(email, password) {
 		return new Promise((resolve, reject) => {
 			return this._tokenService.signIn({ login: email, password }).subscribe(res => {
-				// console.log('login', res);
+				resolve(res);
+			}, reject);
+		});
+  }
+
+  register(registeringUser: RegisteringUser) {
+		return new Promise((resolve, reject) => {
+			return this._tokenService.registerAccount(registeringUser).subscribe(res => {
 				resolve(res);
 			}, reject);
 		});

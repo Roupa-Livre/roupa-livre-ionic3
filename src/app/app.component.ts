@@ -7,7 +7,7 @@ import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { Push, PushObject, PushOptions } from "@ionic-native/push/ngx";
 
 import { AngularTokenService } from 'angular-token';
-import { LoginServiceProvider } from "../providers/login-service/login-service";
+import { LoginServiceProvider } from "../services/login-service";
 
 @Component({
   templateUrl: "app.html"
@@ -15,7 +15,7 @@ import { LoginServiceProvider } from "../providers/login-service/login-service";
 export class MyApp {
   // VARS
 	rootPage: any;
-	
+
 	pushObject: PushObject;
 
   // CONSTRUCTOR
@@ -36,7 +36,7 @@ export class MyApp {
       splashScreen.hide();
       // keyboard.disableScroll(true);
 			// keyboard.hideKeyboardAccessoryBar(true);
-			
+
 			if (this._tokenService.userSignedIn()) {
 				this._tokenService.validateToken().toPromise().then(res => {
 					this.rootPage = loginProvider.getInitialPage();
@@ -47,7 +47,7 @@ export class MyApp {
 			} else {
 				this.rootPage = 'PublicPage';
 			}
-			
+
 			if (this.platform.is('cordova')) {
 				this.push.hasPermission().then((res: any) => {
 					if (res.isEnabled) {
@@ -56,7 +56,7 @@ export class MyApp {
 						console.log("We do not have permission to send push notifications");
 					}
 				});
-				
+
 				this.pushObject = this.push.init({
 					android: {
 						iconColor: '#0064f0'
@@ -67,10 +67,10 @@ export class MyApp {
 						sound: "true"
 					}
 				});
-	
+
 				this.pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
 				this.pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-	
+
 				this.pushObject.on('notification').subscribe((notification: any) => {
 					console.log('Received a notification', notification);
 				});

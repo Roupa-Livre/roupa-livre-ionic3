@@ -14,9 +14,9 @@ import {
 	SwingStackComponent,
 	SwingCardComponent } from 'angular2-swing';
 
-import { ItemServiceProvider } from './../../providers/item-service/item-service';
+import { ItemServiceProvider } from './../../services/item-service';
 import { AuthPage } from '../auth-page';
-import { LoginServiceProvider } from '../../providers/login-service/login-service';
+import { LoginServiceProvider } from '../../services/login-service';
 
 @IonicPage()
 @Component({

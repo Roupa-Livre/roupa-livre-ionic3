@@ -18,15 +18,16 @@ import { Toast } from '@ionic-native/toast/ngx';
 
 import { AngularTokenModule } from 'angular-token';
 
-import { ItemServiceProvider } from '../providers/item-service/item-service';
-import { LoginServiceProvider } from '../providers/login-service/login-service';
-import { ChatServiceProvider } from '../providers/chat-service/chat-service';
+import { ItemServiceProvider } from '../services/item-service';
+import { LoginServiceProvider } from '../services/login-service';
+import { ChatServiceProvider } from '../services/chat-service';
 
 import { MyApp } from './app.component';
 
 import { DirectivesModule } from '../directives/directives.module';
 import { ComponentsModule } from '../components/components.module';
-import { ToastService } from '../providers/utils/toast-service';
+import { ToastService } from '../services/toast-service';
+import { Environment } from '../config/environment';
 
 @NgModule({
 	declarations: [
@@ -40,9 +41,9 @@ import { ToastService } from '../providers/utils/toast-service';
 		}),
 		IonicStorageModule.forRoot(),
 		AngularTokenModule.forRoot({
-			apiBase: 'http://localhost:3000',
+			apiBase: Environment.API_URL,
 			signOutFailedValidate: true,
-			oAuthBase: 'http://localhost:3000',
+			oAuthBase: Environment.API_URL,
 			oAuthWindowType: 'inAppBrowser',
 			oAuthPaths: {
 				facebook: 'auth/facebook'

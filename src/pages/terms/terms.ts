@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LoginServiceProvider } from '../../providers/login-service/login-service';
+import { LoginServiceProvider } from '../../services/login-service';
 
 @IonicPage()
 @Component({

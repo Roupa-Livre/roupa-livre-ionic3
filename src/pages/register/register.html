@@ -1,4 +1,5 @@
 <ion-content padding>
+  <form (ngSubmit)="register()">
     <div layout vertical center>
 
       <div class="headerIcon">
@@ -7,29 +8,34 @@
 
       <h2 class="title">Comece a trocar agora</h2>
 
-      <p class="subtitle">Cadastre-se com seu e-mail ou telefone:</p>
+      <p class="subtitle">Cadastre-se com seu e-mail:</p>
 
       <ion-list class="loginForm" no-padding>
 
         <ion-item class="rounded">
-          <ion-label floating>E-mail ou telefone</ion-label>
-          <ion-input type="text" [(ngModel)]="email"></ion-input>
+          <ion-label floating>Nome</ion-label>
+          <ion-input type="text" name="name" [(ngModel)]="user.name" required></ion-input>
+        </ion-item>
+
+        <ion-item class="rounded">
+          <ion-label floating>E-mail</ion-label>
+          <ion-input type="email" name="email" [(ngModel)]="user.login" required></ion-input>
         </ion-item>
 
         <ion-item class="rounded">
           <ion-label floating>Senha</ion-label>
-          <ion-input type="password" [(ngModel)]="password"></ion-input>
+          <ion-input type="password" name="password" [(ngModel)]="user.password" required></ion-input>
         </ion-item>
 
         <ion-item class="rounded">
-            <ion-label floating>Confirmar Senha</ion-label>
-            <ion-input type="password" [(ngModel)]="repassword"></ion-input>
-          </ion-item>
+          <ion-label floating>Confirmar Senha</ion-label>
+          <ion-input type="password" name="passwordConfirmation" [(ngModel)]="user.passwordConfirmation" required></ion-input>
+        </ion-item>
 
       </ion-list>
 
       <div class="groupButtons">
-        <button ion-button block round class="gradient" (tap)="register()">
+        <button ion-button block round class="gradient" type="submit">
           FAZER CADASTRO
         </button>
 
@@ -37,6 +43,6 @@
           Já faz parte?&nbsp;<strong>Faça login</strong>
         </button>
       </div>
-
     </div>
-  </ion-content>
+  </form>
+</ion-content>

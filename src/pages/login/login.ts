@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { LoginServiceProvider } from '../../providers/login-service/login-service';
-import { ToastService } from '../../providers/utils/toast-service';
+import { LoginServiceProvider } from '../../services/login-service';
+import { ToastService } from '../../services/toast-service';
 
 @IonicPage()
 @Component({
@@ -29,11 +29,20 @@ export class LoginPage {
 	}
 
 	// CLICK EVENTS
-	login() {
+	async login() {
     // TODO : IMPLEMENTAR O METODO CORRETAMENTE
-    this.navCtrl.push('PermissionLocationPage', {}, {
-			direction: 'forward'
-		});
+    // this.navCtrl.push('PermissionLocationPage', {}, {
+		// 	direction: 'forward'
+    // });
+
+    try {
+      const user = await this.loginProvider.login(this.email, this.password);
+      this.navCtrl.push('PermissionLocationPage', {}, {
+        direction: 'forward'
+      });
+    } catch(ex) {
+      this.toast.showError(`Email/senha inválidos`);
+    }
 
 		// Promise.all([
 		// 	this.loginProvider.login(this.email, this.password),

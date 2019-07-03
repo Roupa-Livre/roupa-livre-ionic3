@@ -25,6 +25,20 @@ export class ToastService {
         }).present();
       }
     });
+  }
+
+  showMessage(errorMessage) {
+    this.platform.ready().then(() => {
+      if (this.platform.is('cordova')) {
+        this.toast.show(errorMessage, '3000', 'center');
+      } else {
+        this.toastCtrl.create({
+          message: errorMessage,
+          duration: 3000,
+          position: 'middle'
+        }).present();
+      }
+    });
 	}
 
 }

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { RegisteringUser } from '../../models/user';
+import { LoginServiceProvider } from '../../services/login-service';
+import { ToastService } from '../../services/toast-service';
 
 @IonicPage()
 @Component({
@@ -9,14 +12,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class RegisterPage {
 
   // VARS
-  public email: string;
-	public password: string;
-	public repassword: string;
+  public user: RegisteringUser = new RegisteringUser;
 
   // CONSTRUCTOR
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    private loginProvider: LoginServiceProvider,
+    private toast: ToastService,
   ) {
   }
 
@@ -26,12 +29,21 @@ export class RegisterPage {
   }
 
   // CLICK EVENTS
-  register() {
-    console.log('RegisterPage register');
-    // TODO : IMPLEMENTAR O METODO CORRETAMENTE
-    this.navCtrl.push('PermissionLocationPage', {}, {
-			direction: 'forward'
-		});
+  async register() {
+    try {
+      console.log('register', this.user);
+      this.user.type = 'KindHeartedUser';
+      const result = await this.loginProvider.register(this.user);
+      console.log('register', result);
+
+      this.toast.showMessage(`Oba! Que bom que você se conectou com a gente!`);
+
+      this.navCtrl.push('PermissionLocationPage', {}, {
+        direction: 'forward'
+      });
+    } catch (ex) {
+      this.toast.showError(`Por favor preencha todos os campos`);
+    }
   }
 
   login() {
