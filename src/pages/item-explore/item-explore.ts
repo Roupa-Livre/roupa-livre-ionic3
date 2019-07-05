@@ -115,7 +115,14 @@ export class ItemExplorePage {
     if (this.items.length <= 2) {
       await this.loadMore();
     }
-    this.items.shift();
+
+    // Item not found
+    if (this.items.length <= 1) {
+      let modalNotFound = this.modalCtrl.create('ItemNotFoundPage');
+			modalNotFound.present();
+    } else {
+      this.items.shift();
+    }
   }
 
 	// SWIPE EVENTS
@@ -143,15 +150,9 @@ export class ItemExplorePage {
   }
 
 	private checkMatching(item, likeResult) {
-		// TODO : CHANGE HOW VERIFY IF IS MATCHED
 		if (likeResult.chat) {
 			let modalMatched = this.modalCtrl.create('ItemMatchedPage', { item, likeResult });
 			modalMatched.present();
-		}
-
-		if (item.title == 'Vestido') {
-			let modalNotFound = this.modalCtrl.create('ItemNotFoundPage');
-			modalNotFound.present();
 		}
 	}
 
