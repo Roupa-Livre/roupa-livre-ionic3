@@ -29,6 +29,7 @@ import { ComponentsModule } from '../components/components.module';
 import { ToastService } from '../services/toast-service';
 import { Environment } from '../config/environment';
 import { ItemSearcherService } from '../services/item-searcher-service';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
 	declarations: [
@@ -55,7 +56,8 @@ import { ItemSearcherService } from '../services/item-searcher-service';
 		}),
 		HttpClientModule,
 		DirectivesModule,
-		ComponentsModule,
+    ComponentsModule,
+    PipesModule,
 	],
 	bootstrap: [
 		IonicApp

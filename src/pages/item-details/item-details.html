@@ -6,7 +6,7 @@
 
 		<ion-slides (ionSlideDidChange)="slideChanged()">
 			<ion-slide *ngFor="let image of item.apparel_images; let i = index">
-				<div [style.backgroundImage]="'url(' + image.file_url + ')'" class="div-img"></div>
+				<div [style.backgroundImage]="'url(' + (image | itemImageSrc) + ')'" class="div-img"></div>
 			</ion-slide>
 		</ion-slides>
 		<button ion-button icon-button color="primary" round class="btn-rounded btn-fab" (tap)="close()">
@@ -25,20 +25,28 @@
         <img src="assets/img/newLayout/size-icon.svg">
       </ion-col>
       <ion-col class="feature">
-        Adulto - Tamanho 29
+        <span *ngIf="item.size_info && (item.age_info)">
+          {{item.age_info}} - Tamanho {{item.size_info}}
+        </span>
+        <span *ngIf="!item.size_info && (item.age_info)">
+          {{item.age_info}}
+        </span>
+        <span *ngIf="item.size_info && !(item.age_info)">
+          Tamanho {{item.size_info}}
+        </span>
       </ion-col>
     </ion-row>
 
-    <ion-row align-items-top no-padding>
+    <ion-row align-items-top no-padding *ngIf="item.gender">
       <ion-col col-auto>
         <img src="assets/img/newLayout/gender-icon.svg">
       </ion-col>
       <ion-col class="feature">
-        Feminino
+        {{item.gender}}
       </ion-col>
     </ion-row>
 
-    <ion-row align-items-top no-padding>
+    <ion-row align-items-top no-padding *ngIf="item.use_info">
       <ion-col col-auto>
         <img src="assets/img/newLayout/star-icon.svg">
       </ion-col>
@@ -49,20 +57,13 @@
 
     <ion-row align-items-top no-padding>
       <ion-col class="description">
-        Uma descrição detalhada da peça ou produto que esta sendo apresentado.
+        {{item.description}}
       </ion-col>
     </ion-row>
 
-    <ion-row align-items-top no-padding>
+    <ion-row align-items-top no-padding *ngIf="item.apparel_tags && item.apparel_tags.length > 0">
       <ion-col class="hashtags">
-        <button ion-button outline small color="blueLight">hash 01</button>
-        <button ion-button outline small color="blueLight">hashtag02</button>
-        <button ion-button outline small color="blueLight">h03</button>
-        <button ion-button outline small color="blueLight">ht 04</button>
-        <button ion-button outline small color="blueLight">h-005</button>
-        <button ion-button outline small color="blueLight">hasht06</button>
-        <button ion-button outline small color="blueLight">htag 07</button>
-        <button ion-button outline small color="blueLight">h 08</button>
+        <button *ngFor="let tag of item.apparel_tags" ion-button outline small color="blueLight" (click)="openTag(tag)">{{tag.name}}</button>
       </ion-col>
     </ion-row>
 
@@ -72,12 +73,12 @@
 
     <ion-item detail-push >
       <ion-thumbnail item-start>
-        <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+        <img [src]="item.user ? (item.user | userImageSrc) : 'https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png'">
       </ion-thumbnail>
 
-      <h2>Sarah Lima</h2>
-      <p>cerca de 12km</p>
-      <button ion-button clear small color="blueLight" class="allItems">
+      <h2>{{item.user | shortName}}</h2>
+      <p>{{ item.distance | distanceToString }}</p>
+      <button ion-button clear small color="blueLight" class="allItems" (click)="openProfile(entry.user)">
         VER TODAS PEÇAS
       </button>
     </ion-item>

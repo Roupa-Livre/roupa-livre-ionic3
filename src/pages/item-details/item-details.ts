@@ -29,7 +29,6 @@ export class ItemDetailsPage {
 		public app: App
 	) {
     this.isMe = (typeof this.navParams.get('isMe') == 'undefined') ? true : this.navParams.get('isMe');
-    // console.log('data', this.navParams.data);
     this.item = this.navParams.data.item;
 		this.init();
 	}
@@ -57,12 +56,14 @@ export class ItemDetailsPage {
 
 	disliked() {
 		this.statusBar.show();
-		this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss();
+    this.navParams.data.likeCallback(this.item);
 	}
 
 	liked() {
 		this.statusBar.show();
-		this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss();
+    this.navParams.data.dislikeCallback(this.item);
 	}
 
 	doComplaint() {

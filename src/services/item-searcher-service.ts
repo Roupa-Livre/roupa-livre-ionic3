@@ -28,7 +28,6 @@ export class SearchFilter {
 
 @Injectable()
 export class ItemSearcherService {
-  private alreadySeenIDs: number[] = [];
   private currentApparels: Apparel[] = [];
   private filter: SearchFilter = new SearchFilter;
 
@@ -55,19 +54,18 @@ export class ItemSearcherService {
   };
 
   private clearCache() {
-    this.alreadySeenIDs = [];
     this.currentApparels = [];
   }
 
-  private getPageSize() {
-    return 6; // TODO
+  private getPageSize(minCount) {
+    return minCount > 6 ? minCount : 6; // TODO
     // if (window.Connection) {
     //   // console.log(navigator.connection.type);
     //   if (navigator.connection.type == Connection.ETHERNET || navigator.connection.type == Connection.WIFI)
     //     return 6;
     // }
 
-    // return 2;
+    // return count;
   };
 
   async getNextItems(count: number = 3) : Promise<Apparel[]> {
@@ -76,15 +74,13 @@ export class ItemSearcherService {
       while (this.currentApparels.length > 0 && apparels.length < count) {
         const apparel = this.currentApparels[0];
         this.currentApparels.splice(0, 1);
-        this.alreadySeenIDs.push(apparel.id);
         apparels.push(apparel);
       }
     }
 
     if (apparels.length < count) {
       const params: any = Object.assign({}, this.filter);
-      params.ignore = this.alreadySeenIDs.map(i => i.toString()).join(',');
-      params.page_size = this.getPageSize();
+      params.page_size = this.getPageSize(count);
 
       const items = await this.itemService.getItems(params);
       if (items && items.length > 0) {
@@ -92,7 +88,6 @@ export class ItemSearcherService {
         while (this.currentApparels.length > 0 && apparels.length < count) {
           const apparel = this.currentApparels[0];
           this.currentApparels.splice(0, 1);
-          this.alreadySeenIDs.push(apparel.id);
           apparels.push(apparel);
         }
       }

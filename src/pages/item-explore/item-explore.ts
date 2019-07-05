@@ -107,28 +107,36 @@ export class ItemExplorePage {
       let cardBehind = cardsArray[1].getNativeElement();
       cardBehind.style['transform'] = `scale(${0.94 + 0.06 * caculatedValue}, ${0.94 + 0.06 * caculatedValue})`;
     }
-	}
+  }
+
+  private async goToNext() {
+    if (this.items.length <= 2) {
+      await this.loadMore();
+    }
+    this.items.shift();
+  }
 
 	// SWIPE EVENTS
-	async disliked(item) {
-    // DISLIKE
-    if (this.items.length <= 2) {
-      await this.loadMore();
-    }
-    this.items.shift();
+	async disliked() {
+    const item = this.items[0];
+    await this.doDislike(item);
 	}
 
-	async liked(item) {
-    // LIKE
-    if (this.items.length <= 2) {
-      await this.loadMore();
-    }
-    this.items.shift();
+	async liked() {
+    const item = this.items[0];
+    await this.doLike(item);
+  }
 
+  private async doLike(item) {
     this.checkMatching(item);
-	}
+    await this.goToNext();
+  }
 
-	checkMatching(item) {
+  private async doDislike(item) {
+    await this.goToNext();
+  }
+
+	private checkMatching(item) {
 		// TODO : CHANGE HOW VERIFY IF IS MATCHED
 		if (item.title == 'Sapatos') {
 			let modalMatched = this.modalCtrl.create('ItemMatchedPage', { item });
@@ -159,8 +167,14 @@ export class ItemExplorePage {
 	}
 
 	openItemDetails(item) {
-		let modal = this.modalCtrl.create('ItemDetailsPage', { item });
-
+    let modal = this.modalCtrl.create('ItemDetailsPage', { item,
+      likeCallback: item => {
+        this.doLike(item);
+      },
+      deslikeCallback: item => {
+        this.doLike(item);
+      }
+    });
 		modal.present();
 	}
 

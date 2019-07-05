@@ -17,25 +17,25 @@
 
 	<div class="swipe-container" [hidden]="isLoading">
 		<div class="h-full wrapper-sm">
-			<div class="card-stack" swing-stack #cardStack [stackConfig]="stackConfig" (throwoutleft)="disliked(items[0])" (throwoutright)="liked(items[0])">
-				<div class="card-item" #card [style.zIndex]="-1 * i" swing-card *ngFor="let c of items; trackBy: trackByFn; let i = index">
-					<div [style.backgroundImage]="'url(' + c.apparel_images[0].file_url + ')'" class="div-img h-full r-3x"></div>
+			<div class="card-stack" swing-stack #cardStack [stackConfig]="stackConfig" (throwoutleft)="disliked()" (throwoutright)="liked()">
+				<div class="card-item" #card [style.zIndex]="-1 * i" swing-card *ngFor="let item of items; trackBy: trackByFn; let i = index">
+					<div [style.backgroundImage]="'url(' + (item.apparel_images[0] | itemImageSrc) + ')'" class="div-img h-full r-3x"></div>
 
-					<div class="card-caption" (tap)="openItemDetails(c)">
+					<div class="card-caption" (tap)="openItemDetails(item)">
 						<div class="card-text pull-left">
-							<div class="title">{{c.title}}</div>
+							<div class="title">{{item.title}}</div>
 							<div class="features">
-                <span *ngIf="c.size_info && (c.age_info || c.gender)">
-                  Tamanho {{c.size_info}} - {{c.gender}} {{ c.age_info }}
+                <span *ngIf="item.size_info && (item.age_info || item.gender)">
+                  Tamanho {{item.size_info}} - {{item.gender}} {{ item.age_info }}
                 </span>
-                <span *ngIf="!c.size_info && (c.age_info || c.gender)">
-                  {{c.gender}} {{ c.age_info }}
+                <span *ngIf="!item.size_info && (item.age_info || item.gender)">
+                  {{item.gender}} {{ item.age_info }}
                 </span>
-                <span *ngIf="c.size_info && !(c.age_info || c.gender)">
-                  Tamanho {{c.size_info}}
+                <span *ngIf="item.size_info && !(item.age_info || item.gender)">
+                  Tamanho {{item.size_info}}
                 </span>
               </div>
-							<div class="description">{{c.description}}</div>
+							<div class="description">{{item.description}}</div>
 						</div>
 
 						<div class="moreInfo">
