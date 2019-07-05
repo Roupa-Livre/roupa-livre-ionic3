@@ -171,7 +171,7 @@ export class ItemExplorePage {
       likeCallback: item => {
         this.doLike(item);
       },
-      deslikeCallback: item => {
+      dislikeCallback: item => {
         this.doLike(item);
       }
     });
