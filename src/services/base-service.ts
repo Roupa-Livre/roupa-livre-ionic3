@@ -22,12 +22,8 @@ export abstract class BaseService extends BaseHttpService {
 
   // Parse Auth data from response
   protected handleResponse(res: any): any {
-    console.log('handling', typeof res);
     if (res && res.url) {
-      console.log('handling2A', this.tokenService.tokenOptions.apiBase);
-      console.log('handling2B', res.url);
       if (this.tokenService.tokenOptions.apiBase === null || (res.url && res.url.match(this.tokenService.tokenOptions.apiBase))) {
-        console.log('actualyy handling');
         this.tokenService.getAuthHeadersFromResponse(<any>res);
       }
     }

@@ -18,6 +18,7 @@ import { AuthPage } from '../auth-page';
 import { LoginServiceProvider } from '../../services/login-service';
 import { ItemSearcherService } from '../../services/item-searcher-service';
 import { Apparel } from '../../models/apparel';
+import { ItemServiceProvider } from '../../services/item-service';
 
 @IonicPage()
 @Component({
@@ -41,7 +42,8 @@ export class ItemExplorePage {
 		public navCtrl: NavController,
 		public modalCtrl: ModalController,
 		public actionSheetCtrl: ActionSheetController,
-		public itemSearcher: ItemSearcherService,
+    public itemSearcher: ItemSearcherService,
+    private itemService: ItemServiceProvider,
 	) {
 		//super(loginService);
 		this.init();
@@ -128,18 +130,22 @@ export class ItemExplorePage {
   }
 
   private async doLike(item) {
-    this.checkMatching(item);
+    const likeResult = await this.itemService.rate(item, true);
+    // console.log('likeResult', likeResult);
+    this.checkMatching(item, likeResult);
     await this.goToNext();
   }
 
   private async doDislike(item) {
+    const dislikeResult = await this.itemService.rate(item, false);
+    // console.log('deslikeResult', dislikeResult);
     await this.goToNext();
   }
 
-	private checkMatching(item) {
+	private checkMatching(item, likeResult) {
 		// TODO : CHANGE HOW VERIFY IF IS MATCHED
-		if (item.title == 'Sapatos') {
-			let modalMatched = this.modalCtrl.create('ItemMatchedPage', { item });
+		if (likeResult.chat) {
+			let modalMatched = this.modalCtrl.create('ItemMatchedPage', { item, likeResult });
 			modalMatched.present();
 		}
 
