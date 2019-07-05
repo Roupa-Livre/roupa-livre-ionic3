@@ -2,7 +2,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -28,6 +28,7 @@ import { DirectivesModule } from '../directives/directives.module';
 import { ComponentsModule } from '../components/components.module';
 import { ToastService } from '../services/toast-service';
 import { Environment } from '../config/environment';
+import { ItemSearcherService } from '../services/item-searcher-service';
 
 @NgModule({
 	declarations: [
@@ -55,7 +56,6 @@ import { Environment } from '../config/environment';
 		HttpClientModule,
 		DirectivesModule,
 		ComponentsModule,
-		AngularTokenModule,
 	],
 	bootstrap: [
 		IonicApp
@@ -73,10 +73,12 @@ import { Environment } from '../config/environment';
 		StatusBar,
 		Push,
 		Toast,
-		ItemServiceProvider,
+    ItemServiceProvider,
+    ItemSearcherService,
 		LoginServiceProvider,
+    AngularTokenModule,
 		ToastService,
-		{provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
     ChatServiceProvider,
 	]
 })

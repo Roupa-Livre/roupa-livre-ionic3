@@ -23,7 +23,11 @@ export class LoginServiceProvider {
 		private storage: Storage,
 		// private fb: Facebook,
 		private _tokenService: AngularTokenService) {
-	}
+  }
+
+  public validate() : Promise<any> {
+    return this._tokenService.validateToken().toPromise();
+  }
 
 	isLogged() : boolean {
 		return this._tokenService.userSignedIn();
@@ -35,7 +39,6 @@ export class LoginServiceProvider {
 
 	getInitialPage() {
 		const userData: any = this._tokenService.currentUserData;
-		console.log('userData', userData);
 		if (userData) {
 			if (userData.agreed) {
 				return 'ItemExplorePage';

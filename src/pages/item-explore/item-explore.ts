@@ -14,9 +14,10 @@ import {
 	SwingStackComponent,
 	SwingCardComponent } from 'angular2-swing';
 
-import { ItemServiceProvider } from './../../services/item-service';
 import { AuthPage } from '../auth-page';
 import { LoginServiceProvider } from '../../services/login-service';
+import { ItemSearcherService } from '../../services/item-searcher-service';
+import { Apparel } from '../../models/apparel';
 
 @IonicPage()
 @Component({
@@ -30,18 +31,17 @@ export class ItemExplorePage {
 	@ViewChild('cardStack') swingStack: SwingStackComponent;
 	@ViewChildren('card') swingCards: QueryList<SwingCardComponent>;
 
-	cards: any[];
 	stackConfig: StackConfig;
-	items: any[];
+  items: Apparel[] = [];
 	isLoading: boolean = true;
 
 	// CONSTRUCTOR
 	constructor(
-		loginService: LoginServiceProvider,
+		private loginService: LoginServiceProvider,
 		public navCtrl: NavController,
 		public modalCtrl: ModalController,
 		public actionSheetCtrl: ActionSheetController,
-		public itemProvider: ItemServiceProvider,
+		public itemSearcher: ItemSearcherService,
 	) {
 		//super(loginService);
 		this.init();
@@ -67,21 +67,22 @@ export class ItemExplorePage {
 
 	// LIFECYCLE EVENTS
 	ngAfterViewInit() {
-		this.cards = [];
 		this.items = [];
 
-		setTimeout(() => {
-			this.isLoading = false;
+		this.loginService.validate().then(() => {
+      this.loadMore();
+    })
+  }
 
-			this.itemProvider.getItems()
-			.then((items: any[]) => {
-				this.items = items;
-
-				this.addNewCard();
-				this.addNewCard();
-			});
-		}, 3000);
-	}
+  async loadMore() {
+    this.isLoading = true;
+    try {
+      const items = await this.itemSearcher.getNextItems();
+      Array.prototype.push.apply(this.items, items);
+    } finally {
+      this.isLoading = false;
+    }
+  }
 
 	// CARDS EVENTS
 	onItemMove(element, x, y, r) {
@@ -100,40 +101,41 @@ export class ItemExplorePage {
 
 		element.style['transform'] = `translate3d(0, 0, 0) translate(${x}px, ${y}px) rotate(${r}deg)`;
 
-		// ZOOM EFFECT FOR THE CARDS UNDERNEATH
-		let cardBehind = this.swingCards.toArray()[1].getNativeElement();
-		cardBehind.style['transform'] = `scale(${0.94 + 0.06 * caculatedValue}, ${0.94 + 0.06 * caculatedValue})`;
-	}
-
-	addNewCard() {
-		// ADD NEW CARDS TO OUR ARRAY
-		let difference = _.difference(this.items, this.cards);
-		let randomIndex = Math.floor(Math.random() * (difference.length));
-
-		this.cards.push(difference[randomIndex]);
+    // ZOOM EFFECT FOR THE CARDS UNDERNEATH
+    const cardsArray = this.swingCards.toArray();
+    if (cardsArray.length > 1) {
+      let cardBehind = cardsArray[1].getNativeElement();
+      cardBehind.style['transform'] = `scale(${0.94 + 0.06 * caculatedValue}, ${0.94 + 0.06 * caculatedValue})`;
+    }
 	}
 
 	// SWIPE EVENTS
-	disliked() {
-		this.addNewCard();
-		let removedCard = this.cards.shift();
+	async disliked(item) {
+    // DISLIKE
+    if (this.items.length <= 2) {
+      await this.loadMore();
+    }
+    this.items.shift();
 	}
 
-	liked() {
-		this.addNewCard();
-		let removedCard = this.cards.shift();
+	async liked(item) {
+    // LIKE
+    if (this.items.length <= 2) {
+      await this.loadMore();
+    }
+    this.items.shift();
 
-		this.checkMatching(removedCard);
+    this.checkMatching(item);
 	}
 
-	checkMatching(card) {
+	checkMatching(item) {
 		// TODO : CHANGE HOW VERIFY IF IS MATCHED
-		if (card.title == 'Sapatos') {
-			let modalMatched = this.modalCtrl.create('ItemMatchedPage');
+		if (item.title == 'Sapatos') {
+			let modalMatched = this.modalCtrl.create('ItemMatchedPage', { item });
 			modalMatched.present();
 		}
 
-		if (card.title == 'Vestido') {
+		if (item.title == 'Vestido') {
 			let modalNotFound = this.modalCtrl.create('ItemNotFoundPage');
 			modalNotFound.present();
 		}
@@ -156,8 +158,8 @@ export class ItemExplorePage {
 		});
 	}
 
-	openItemDetails() {
-		let modal = this.modalCtrl.create('ItemDetailsPage');
+	openItemDetails(item) {
+		let modal = this.modalCtrl.create('ItemDetailsPage', { item });
 
 		modal.present();
 	}

@@ -1,5 +1,5 @@
 export const Production = {
-  API_URL: "http://localhost:3000",
+  API_URL: 'http://api.roupalivre.com.br',
 }
 export const StagingOnly = {
   API_URL: "http://localhost:3000",
@@ -9,3 +9,4 @@ export const Development = {
 }
 
 export const Environment = Production;
+// export const Environment = Development;

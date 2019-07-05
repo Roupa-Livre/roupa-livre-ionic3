@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, Slides, ViewController, ModalController, ActionSheetController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from 'ionic-angular';
+import { Apparel } from '../../models/apparel';
 
 @IonicPage()
 @Component({
@@ -14,16 +15,8 @@ export class ItemDetailsPage {
 	@ViewChild(Slides) slides: Slides;
 
 	currentSlideIndex: number = 0;
-	slideImages: any[] = [
-		{ url: 'assets/img/dummy/camisa.jpg' },
-		{ url: 'assets/img/dummy/turbante.jpg' },
-		{ url: 'assets/img/dummy/camisa2.jpg' },
-		{ url: 'assets/img/dummy/blusa.jpg' },
-		{ url: 'assets/img/dummy/camisa.jpg' },
-		{ url: 'assets/img/dummy/camisa2.jpg' }
-	];
-
-	isMe: boolean = true;
+  isMe: boolean = true;
+  item: Apparel;
 
 	// CONSTRUCTOR
 	constructor(
@@ -35,7 +28,9 @@ export class ItemDetailsPage {
 		public actionSheetCtrl: ActionSheetController,
 		public app: App
 	) {
-		this.isMe = (typeof this.navParams.get('isMe') == 'undefined') ? true : this.navParams.get('isMe');
+    this.isMe = (typeof this.navParams.get('isMe') == 'undefined') ? true : this.navParams.get('isMe');
+    // console.log('data', this.navParams.data);
+    this.item = this.navParams.data.item;
 		this.init();
 	}
 

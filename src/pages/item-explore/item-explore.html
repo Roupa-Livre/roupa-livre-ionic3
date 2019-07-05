@@ -17,11 +17,11 @@
 
 	<div class="swipe-container" [hidden]="isLoading">
 		<div class="h-full wrapper-sm">
-			<div class="card-stack" swing-stack #cardStack [stackConfig]="stackConfig" (throwoutleft)="disliked(c)" (throwoutright)="liked(c)">
-				<div class="card-item" #card [style.zIndex]="-1 * i" swing-card *ngFor="let c of cards; trackBy: trackByFn; let i = index">
-					<div [style.backgroundImage]="'url(' + c.profile_image_url + ')'" class="div-img h-full r-3x"></div>
+			<div class="card-stack" swing-stack #cardStack [stackConfig]="stackConfig" (throwoutleft)="disliked(items[0])" (throwoutright)="liked(items[0])">
+				<div class="card-item" #card [style.zIndex]="-1 * i" swing-card *ngFor="let c of items; trackBy: trackByFn; let i = index">
+					<div [style.backgroundImage]="'url(' + c.apparel_images[0].file_url + ')'" class="div-img h-full r-3x"></div>
 
-					<div class="card-caption" (tap)="openItemDetails()">
+					<div class="card-caption" (tap)="openItemDetails(c)">
 						<div class="card-text pull-left">
 							<div class="title">{{c.title}}</div>
 							<div class="features">{{c.features}}</div>
@@ -42,15 +42,15 @@
 		</div>
 
 		<div class="bottom-actions" horizontal layout center center-center>
-			<button ion-button (tap)="disliked()">
+			<button ion-button (tap)="disliked(item)">
 				<img src="assets/img/newLayout/dislike-button.svg" />
 			</button>
 
-			<button ion-button (tap)="doComplaint()">
+			<button ion-button (tap)="doComplaint(item)">
 				<img src="assets/img/newLayout/pin-button.svg" />
 			</button>
 
-			<button ion-button (tap)="liked()">
+			<button ion-button (tap)="liked(item)">
 				<img src="assets/img/newLayout/like-button.svg" />
 			</button>
 		</div>

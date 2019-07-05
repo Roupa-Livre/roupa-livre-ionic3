@@ -1,12 +1,12 @@
 <ion-content class="bottom-padding">
 	<div class="header-cover">
 		<div class="slide-pager" layout horizontal center>
-			<div flex class="pager-bullet" *ngFor="let item of slideImages; let i = index" [ngClass]="{active: i == currentSlideIndex}"></div>
+			<div flex class="pager-bullet" *ngFor="let image of item.apparel_images; let i = index" [ngClass]="{active: i == currentSlideIndex}"></div>
 		</div>
 
 		<ion-slides (ionSlideDidChange)="slideChanged()">
-			<ion-slide *ngFor="let item of slideImages; let i = index">
-				<div [style.backgroundImage]="'url(' + item.url + ')'" class="div-img"></div>
+			<ion-slide *ngFor="let image of item.apparel_images; let i = index">
+				<div [style.backgroundImage]="'url(' + image.file_url + ')'" class="div-img"></div>
 			</ion-slide>
 		</ion-slides>
 		<button ion-button icon-button color="primary" round class="btn-rounded btn-fab" (tap)="close()">
@@ -17,9 +17,7 @@
   <ion-grid>
 
     <ion-row align-items-top no-padding>
-      <ion-col class="title">
-        Bota de franja marrom
-      </ion-col>
+      <ion-col class="title">{{item.title}}</ion-col>
     </ion-row>
 
     <ion-row align-items-top no-padding>

@@ -31,10 +31,8 @@ export class RegisterPage {
   // CLICK EVENTS
   async register() {
     try {
-      console.log('register', this.user);
       this.user.type = 'KindHeartedUser';
       const result = await this.loginProvider.register(this.user);
-      console.log('register', result);
 
       this.toast.showMessage(`Oba! Que bom que você se conectou com a gente!`);
 
