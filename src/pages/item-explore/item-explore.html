@@ -24,7 +24,17 @@
 					<div class="card-caption" (tap)="openItemDetails(c)">
 						<div class="card-text pull-left">
 							<div class="title">{{c.title}}</div>
-							<div class="features">{{c.features}}</div>
+							<div class="features">
+                <span *ngIf="c.size_info && (c.age_info || c.gender)">
+                  Tamanho {{c.size_info}} - {{c.gender}} {{ c.age_info }}
+                </span>
+                <span *ngIf="!c.size_info && (c.age_info || c.gender)">
+                  {{c.gender}} {{ c.age_info }}
+                </span>
+                <span *ngIf="c.size_info && !(c.age_info || c.gender)">
+                  Tamanho {{c.size_info}}
+                </span>
+              </div>
 							<div class="description">{{c.description}}</div>
 						</div>
 
