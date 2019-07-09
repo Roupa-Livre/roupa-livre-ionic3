@@ -31,6 +31,10 @@ export class LoginServiceProvider {
 
 	isLogged() : boolean {
 		return this._tokenService.userSignedIn();
+  }
+
+  user() : any {
+		return this._tokenService.currentUserData;
 	}
 
 	hasAgreed() : boolean {

@@ -5,18 +5,18 @@
 		<div class="matchToastItems">
 			<div class="match-avatar match-left">
 				<img class="hanger" src="assets/img/newLayout/matched-hand-with-hanger-left.svg" alt="">
-				<img class="item" src="assets/img/dummy/camisa.jpg" alt="">
+				<img class="item" [src]="chat.other_user_apparels[0] | itemImageSrc" alt="">
 			</div>
 
 			<div class="match-avatar match-right">
 				<img class="hanger" src="assets/img/newLayout/matched-hand-with-hanger-right.svg" alt="">
-				<img class="item" src="assets/img/dummy/turbante.jpg" alt="">
+				<img class="item" [src]="chat.other_user_apparels[0] | itemImageSrc" alt="">
 			</div>
     </div>
 
     <p class="description">
-      Você curtiu uma peça da Amanda<br>
-      e a Amanda curtiu uma peça sua.
+      Você curtiu uma peça da {{ chat.other_user | shortName }}<br>
+      e a {{ chat.other_user | shortName }} curtiu uma peça sua.
     </p>
 
     <div class="groupButtons">

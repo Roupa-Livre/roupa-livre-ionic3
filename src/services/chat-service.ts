@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import Chat from '../models/chat';
+import { BaseService } from './base-service';
 
 @Injectable()
-export class ChatServiceProvider {
-
-	// CONSTRUCTOR
-	constructor(
-		public http: Http
-	) {
-	}
+export class ChatServiceProvider extends BaseService {
 
 	// METHODS
 	sendMessage(message) {
@@ -69,6 +65,10 @@ export class ChatServiceProvider {
 
 		});
 
-	}
+  }
+
+  getChat(id: number) : Promise<Chat> {
+    return this.getOne(`chats/${id}`);
+  }
 
 }

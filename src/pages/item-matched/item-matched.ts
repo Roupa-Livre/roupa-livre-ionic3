@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import User from '../../models/user';
+import Chat from '../../models/chat';
+import { LoginServiceProvider } from '../../services/login-service';
 
 @IonicPage()
 @Component({
@@ -8,12 +11,18 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class ItemMatchedPage {
 
+  public user: any;
+  public chat: Chat;
+
 	// CONSTRUCTOR
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    private loginService: LoginServiceProvider,
 	) {
+    this.chat = this.navParams.data.chat;
+    this.user = this.loginService.user();
 	}
 
 	// LIFECYCLE EVENTS
@@ -22,11 +31,11 @@ export class ItemMatchedPage {
 
 	// CLICK EVENTS
 	goToChat() {
-		this.viewCtrl.dismiss();
-		this.navCtrl.push('ChatDetailsPage', { 'isNewMatch': true });
+		this.viewCtrl.dismiss(true);
+		this.navCtrl.push('ChatDetailsPage', { id: this.chat });
 	}
 
 	close() {
-		this.viewCtrl.dismiss();
+		this.viewCtrl.dismiss(false);
 	}
 }

@@ -19,6 +19,7 @@ import { LoginServiceProvider } from '../../services/login-service';
 import { ItemSearcherService } from '../../services/item-searcher-service';
 import { Apparel } from '../../models/apparel';
 import { ItemServiceProvider } from '../../services/item-service';
+import { ChatServiceProvider } from '../../services/chat-service';
 
 @IonicPage()
 @Component({
@@ -44,6 +45,7 @@ export class ItemExplorePage {
 		public actionSheetCtrl: ActionSheetController,
     public itemSearcher: ItemSearcherService,
     private itemService: ItemServiceProvider,
+    private chatService: ChatServiceProvider,
 	) {
 		//super(loginService);
 		this.init();
@@ -137,10 +139,15 @@ export class ItemExplorePage {
   }
 
   private async doLike(item) {
-    const likeResult = await this.itemService.rate(item, true);
-    // console.log('likeResult', likeResult);
-    this.checkMatching(item, likeResult);
-    await this.goToNext();
+    this.isLoading = true;
+    try {
+      const likeResult = await this.itemService.rate(item, true);
+      const goNext = !(await this.checkMatching(item, likeResult));
+      if (goNext)
+        await this.goToNext();
+    } finally {
+      this.isLoading = false;
+    }
   }
 
   private async doDislike(item) {
@@ -149,11 +156,17 @@ export class ItemExplorePage {
     await this.goToNext();
   }
 
-	private checkMatching(item, likeResult) {
-		if (likeResult.chat) {
-			let modalMatched = this.modalCtrl.create('ItemMatchedPage', { item, likeResult });
-			modalMatched.present();
-		}
+	private async checkMatching(item, likeResult) : Promise<boolean> {
+    if (likeResult.chat) {
+      return new Promise<boolean>((resolve, reject) => {
+        this.chatService.getChat(likeResult.chat.id).then(chat => {
+          let modalMatched = this.modalCtrl.create('ItemMatchedPage', { item, chat });
+          modalMatched.onDidDismiss(resolve);
+          modalMatched.present().catch(reject);
+        }, reject);
+      });
+    }
+    return false;
 	}
 
 	trackByFn(index, item) {
