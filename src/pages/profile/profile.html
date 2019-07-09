@@ -34,40 +34,29 @@
           MINHAS PEÇAS
         </ion-list-header>
 
-        <ion-item detail-push>
-          <ion-thumbnail item-start>
-            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-          </ion-thumbnail>
-          <h2>Brusinha</h2>
-          <p>Listrada tamanho 36</p>
-          <button ion-button clear color="blueLight" class="matches">2 Combinações</button>
+        <ion-item detail-push *ngIf="!items || items.length == 0">
+          <p (tap)="goToOfferItem()">
+            Ainda não tem peças? Cadastre-já!
+          </p>
         </ion-item>
 
-        <ion-item detail-push>
+        <ion-item detail-push *ngFor="let item of items" (tap)="goToOfferItem(item)">
           <ion-thumbnail item-start>
-            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+            <img [src]="item.apparel_images[0] | itemImageSrc">
           </ion-thumbnail>
-          <h2>Brusinha</h2>
-          <p>Listrada tamanho 36</p>
-          <button ion-button clear color="blueLight" class="matches">2 Combinações</button>
-        </ion-item>
-
-        <ion-item detail-push>
-          <ion-thumbnail item-start>
-            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-          </ion-thumbnail>
-          <h2>Brusinha</h2>
-          <p>Listrada tamanho 36</p>
-          <button ion-button clear color="blueLight" class="matches">2 Combinações</button>
-        </ion-item>
-
-        <ion-item detail-push>
-          <ion-thumbnail item-start>
-            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-          </ion-thumbnail>
-          <h2>Brusinha</h2>
-          <p>Listrada tamanho 36</p>
-          <button ion-button clear color="blueLight" class="matches">2 Combinações</button>
+          <h2>{{ item.title }}</h2>
+          <p>
+            <span *ngIf="item.size_info && (item.age_info || item.gender)">
+              Tamanho {{item.size_info}} - {{item.gender}} {{ item.age_info }}
+            </span>
+            <span *ngIf="!item.size_info && (item.age_info || item.gender)">
+              {{item.gender}} {{ item.age_info }}
+            </span>
+            <span *ngIf="item.size_info && !(item.age_info || item.gender)">
+              Tamanho {{item.size_info}}
+            </span>
+          </p>
+          <button *ngIf="item.likes_count" ion-button clear color="blueLight" class="matches">{{item.likes_count}} Combinações</button>
         </ion-item>
 
       </ion-list>

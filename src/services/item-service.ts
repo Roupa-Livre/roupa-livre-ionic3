@@ -16,6 +16,15 @@ export class ItemServiceProvider extends BaseService {
     return this.getMany<Apparel>('apparels', mergedParams);
   }
 
+  getOwned(params = {}) : Promise<ApiArray<Apparel>>{
+    var mergedParams: any = Object.assign({}, params)
+    if (mergedParams.range && mergedParams.range >= 100)
+      delete mergedParams["range"];
+      mergedParams
+
+    return this.getMany<Apparel>('apparels/owned', mergedParams);
+  }
+
   rate(apparel: Apparel, liked: boolean) {
     const apparel_rating = new ApparelRating();
     apparel_rating.apparel_id = apparel.id;
