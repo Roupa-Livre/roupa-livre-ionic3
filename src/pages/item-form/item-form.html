@@ -12,7 +12,7 @@
 
 
 
-<ion-content>
+<ion-content *ngIf="item">
 
 	<ion-list no-lines>
 		<ion-list-header>
@@ -21,12 +21,13 @@
 
 		<ion-item>
 			<div class="profile-images-edit">
-				<div class="profile-image" *ngFor="let image of profileImages; let i = index" (tap)="openPhotoPicker(i)">
-					<div [style.backgroundImage]="'url(' + profileImages[i] + ')'" class="div-img img-square r-3x"></div>
-					<button ion-button icon-only clear class="btn-edit" (tap)="removeImage(i)" *ngIf="profileImages[i] != ''">
+				<div class="profile-image" *ngFor="let image of profileImages; let i = index" (tap)="togglePhotoPicker(i)">
+          <div *ngIf="hasImage(i)" [style.backgroundImage]="item.apparel_images[i] | itemImageBgSrc" class="div-img img-square r-3x"></div>
+          <div *ngIf="!hasImage(i)" class="div-img img-square r-3x"></div>
+					<button ion-button icon-only clear class="btn-edit" *ngIf="hasImage(i)">
 						<ion-icon name="ios-close" color="white"></ion-icon>
 					</button>
-					<button ion-button icon-only clear class="btn-edit" *ngIf="profileImages[i] == ''">
+					<button ion-button icon-only clear class="btn-edit" *ngIf="!hasImage(i)">
 						<ion-icon name="ios-add" color="white"></ion-icon>
 					</button>
 				</div>
@@ -40,7 +41,7 @@
 		</ion-list-header>
 
 		<ion-item class="text-muted" text-wrap>
-			<ion-input type="text" clearInput="true" placeholder="qual peça você vai trocar?"></ion-input>
+			<ion-input type="text" clearInput="true" name="title" [(ngModel)]="item.title" placeholder="qual peça você vai trocar?"></ion-input>
 		</ion-item>
   </ion-list>
 
@@ -50,7 +51,7 @@
     </ion-list-header>
 
     <ion-item class="text-muted" text-wrap>
-      <ion-input type="text" clearInput="true" placeholder="separe com vírgulas"></ion-input>
+      <ion-tags-input [(ngModel)]="tags" [canBackspaceRemove]="true" placeholder="separe com vírgulas"></ion-tags-input>
     </ion-item>
   </ion-list>
 
@@ -59,69 +60,10 @@
 			CARACTERÍSTICAS DA PEÇA
 		</ion-list-header>
 
-    <ion-item detail-push>
-      <ion-label>Categoria</ion-label>
-      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="category">
-        <ion-option value="1">Acessórios</ion-option>
-        <ion-option value="2">Roupas</ion-option>
-        <ion-option value="3">Calçados</ion-option>
-        <ion-option value="4">Bolsas</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item detail-push>
-      <ion-label>Tipo</ion-label>
-      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="type">
-        <ion-option value="1">Bota</ion-option>
-        <ion-option value="2">Sandália</ion-option>
-        <ion-option value="3">Rasterinha</ion-option>
-        <ion-option value="4">Sapatilha</ion-option>
-        <ion-option value="5">Sapato</ion-option>
-        <ion-option value="5">Tênis</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item detail-push>
-      <ion-label>Idade</ion-label>
-      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="age">
-        <ion-option value="1">Adulto</ion-option>
-        <ion-option value="2">Infantil</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item detail-push>
-      <ion-label>Tamanho</ion-label>
-      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="size">
-        <ion-option value="1">Único</ion-option>
-        <ion-option value="2">34</ion-option>
-        <ion-option value="3">60</ion-option>
-        <ion-option value="4">PP</ion-option>
-        <ion-option value="5">P</ion-option>
-        <ion-option value="6">M</ion-option>
-        <ion-option value="7">G</ion-option>
-        <ion-option value="8">GG</ion-option>
-        <ion-option value="9">GGG</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item detail-push>
-      <ion-label>Modelagem</ion-label>
-      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="modeling">
-        <ion-option value="1">Pequena</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item detail-push>
-      <ion-label>Padrão</ion-label>
-      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="pattern">
-        <ion-option value="1">Liso</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item detail-push>
-      <ion-label>Cor</ion-label>
-      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="color">
-        <ion-option value="1">Vermelho</ion-option>
+    <ion-item detail-push *ngFor="let group of propertyGroups">
+      <ion-label>{{group.name}}</ion-label>
+      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="item.apparel_property[group.prop_name]" (ngModelChange)="groupPropertySelectionChanged(group)">
+        <ion-option *ngFor="let option of group.properties" [value]="option.id">{{option.name}}</ion-option>
       </ion-select>
     </ion-item>
 	</ion-list>
@@ -132,26 +74,21 @@
 		</ion-list-header>
 
 		<ion-item class="text-muted" text-wrap>
-			<ion-textarea placeholder="descreva detalhes para ajudar sua peça a ganhar um novo lar."></ion-textarea>
+			<ion-textarea name="title" [(ngModel)]="item.description" placeholder="descreva detalhes para ajudar sua peça a ganhar um novo lar."></ion-textarea>
 		</ion-item>
   </ion-list>
 
   <div class="groupButtons">
     <!-- USAR PARA NOVA PEÇA -->
     <button ion-button block round class="gradient" (tap)="save()">
-      OFERECER PEÇA
+      {{ item.id ? 'ATUALIZAR INFORMAÇÕES' : 'OFERECER PEÇA' }}
     </button>
 
     <button ion-button block round outline color="gray" (tap)="cancel()">
       CANCELAR
     </button>
 
-    <!-- USAR PARA EDITAR PEÇA -->
-    <button ion-button block round class="gradient" (tap)="save()">
-      ATUALIZAR INFORMAÇÕES
-    </button>
-
-    <button ion-button block round class="redGradient" (tap)="save()">
+    <button *ngIf="item.id" ion-button block round class="redGradient" (tap)="remove()">
       DELETAR PEÇA
     </button>
 

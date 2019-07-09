@@ -16,6 +16,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Push } from '@ionic-native/push/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
 
+import { ImageCompressService,ResizeOptions,ImageUtilityService } from 'ng2-image-compress';
+
 import { AngularTokenModule } from 'angular-token';
 
 import { ItemServiceProvider } from '../services/item-service';
@@ -30,6 +32,7 @@ import { ToastService } from '../services/toast-service';
 import { Environment } from '../config/environment';
 import { ItemSearcherService } from '../services/item-searcher-service';
 import { PipesModule } from '../pipes/pipes.module';
+import { PropertyGroupService } from '../services/property-group-service';
 
 @NgModule({
 	declarations: [
@@ -82,6 +85,9 @@ import { PipesModule } from '../pipes/pipes.module';
 		ToastService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ChatServiceProvider,
+    PropertyGroupService,
+    ImageCompressService,
+    ResizeOptions,
 	]
 })
 export class AppModule {}

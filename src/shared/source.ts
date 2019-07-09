@@ -1,6 +1,8 @@
 import { AngularTokenService } from "angular-token";
 
 export function getProbableApiUrl(auth: AngularTokenService, url) {
+  if (url.startsWith('data:image/'))
+    return url;
   var fixedUrl = url ? (url.indexOf('?') > 1 ? url + '&type=large' : url + '?type=large') : url;
   if (fixedUrl[0] == '/')
     return auth.apiBase + '/' + fixedUrl;

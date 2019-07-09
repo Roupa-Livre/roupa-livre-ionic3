@@ -20,9 +20,21 @@ export class ItemServiceProvider extends BaseService {
     var mergedParams: any = Object.assign({}, params)
     if (mergedParams.range && mergedParams.range >= 100)
       delete mergedParams["range"];
-      mergedParams
 
     return this.getMany<Apparel>('apparels/owned', mergedParams);
+  }
+
+  save(item) {
+    const data = { apparel: Object.assign({}, item) }
+    data.apparel.apparel_property_attributes = item.apparel_property;
+    data.apparel.apparel_images_attributes = item.apparel_images;
+    data.apparel.apparel_tags_attributes = item.apparel_tags;
+
+    if (item.id > 0) {
+      return this.put(`apparels/${item.id}`, data);
+    } else {
+      return this.post('apparels', data);
+    }
   }
 
   rate(apparel: Apparel, liked: boolean) {

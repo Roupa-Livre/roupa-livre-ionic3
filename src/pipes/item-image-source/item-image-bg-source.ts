@@ -9,12 +9,12 @@ import { DomSanitizer } from '@angular/platform-browser';
  * See https://angular.io/api/core/Pipe for more info on Angular Pipes.
  */
 @Pipe({
-  name: 'itemImageSrc',
+  name: 'itemImageBgSrc',
 })
-export class ItemImageSourcePipe implements PipeTransform {
+export class ItemImageBgSourcePipe implements PipeTransform {
   constructor(private tokenService: AngularTokenService, private sanitizer: DomSanitizer) {}
 
   transform(image: any, ...args) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(getImageAsSource(this.tokenService, image));
+    return this.sanitizer.bypassSecurityTrustStyle(`url(${getImageAsSource(this.tokenService, image)})`);
   }
 }

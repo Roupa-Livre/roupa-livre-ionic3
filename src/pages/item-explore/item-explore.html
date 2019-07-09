@@ -19,7 +19,7 @@
 		<div class="h-full wrapper-sm">
 			<div class="card-stack" swing-stack #cardStack [stackConfig]="stackConfig" (throwoutleft)="disliked()" (throwoutright)="liked()">
 				<div class="card-item" #card [style.zIndex]="-1 * i" swing-card *ngFor="let item of items; trackBy: trackByFn; let i = index">
-					<div [style.backgroundImage]="'url(' + (item.apparel_images[0] | itemImageSrc) + ')'" class="div-img h-full r-3x"></div>
+					<div [style.backgroundImage]="(item.apparel_images[0] | itemImageBgSrc)" class="div-img h-full r-3x"></div>
 
 					<div class="card-caption" (tap)="openItemDetails(item)">
 						<div class="card-text pull-left">

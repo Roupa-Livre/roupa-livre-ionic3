@@ -6,7 +6,7 @@
 
 		<ion-slides (ionSlideDidChange)="slideChanged()">
 			<ion-slide *ngFor="let image of item.apparel_images; let i = index">
-				<div [style.backgroundImage]="'url(' + (image | itemImageSrc) + ')'" class="div-img"></div>
+				<div [style.backgroundImage]="(image | itemImageBgSrc)" class="div-img"></div>
 			</ion-slide>
 		</ion-slides>
 		<button ion-button icon-button color="primary" round class="btn-rounded btn-fab" (tap)="close()">

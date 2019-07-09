@@ -19,11 +19,11 @@ export class ProfilePage {
     public navParams: NavParams,
     private itemsService: ItemServiceProvider
 	) {
-    this.loadItems();
 	}
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
+    this.loadItems();
   }
 
   async loadItems() {
@@ -34,7 +34,13 @@ export class ProfilePage {
   goToOfferItem(item = null){
     this.navCtrl.push('ItemFormPage', { item }, {
 			direction: 'forward'
-		});
+		}).then(() => {
+      this.navCtrl.getActive().onDidDismiss(data => {
+        if (data) {
+          this.loadItems();
+        }
+      });
+    });
   }
 
   goToSettings() {
