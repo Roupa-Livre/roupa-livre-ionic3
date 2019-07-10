@@ -71,11 +71,41 @@ export class ItemExplorePage {
 
 	// LIFECYCLE EVENTS
 	ngAfterViewInit() {
-		this.items = [];
 
-		this.loginService.validate().then(() => {
-      this.loadMore();
+  }
+
+	// LIFECYCLE EVENTS
+	ionViewWillEnter() {
+    this.initialLoad();
+	}
+
+  async initialLoad() {
+    this.items = [];
+
+    await this.loginService.validate();
+    await this.loadMore();
+
+    if (this.items.length == 0) {
+      this.showNotFound();
+    }
+  }
+
+  showNotFound() {
+    let modalNotFound = this.modalCtrl.create('ItemNotFoundPage');
+    modalNotFound.onDidDismiss(data => {
+      if (data && data.page) {
+        const promise = this.navCtrl.push(data.page, data.params);
+        if (data.removeNav) {
+          promise.then(() => {
+            const pagesCount = this.navCtrl.length();
+            if (pagesCount > 2) {
+              this.navCtrl.remove(1, 1);
+            }
+          })
+        }
+      }
     })
+    modalNotFound.present();
   }
 
   async loadMore() {
@@ -120,8 +150,7 @@ export class ItemExplorePage {
 
     // Item not found
     if (this.items.length <= 1) {
-      let modalNotFound = this.modalCtrl.create('ItemNotFoundPage');
-			modalNotFound.present();
+      this.showNotFound();
     } else {
       this.items.shift();
     }
@@ -142,8 +171,10 @@ export class ItemExplorePage {
     this.isLoading = true;
     try {
       const likeResult = await this.itemService.rate(item, true);
-      const goNext = !(await this.checkMatching(item, likeResult));
-      if (goNext)
+      const goToCustom = await this.checkMatching(item, likeResult);
+      if (goToCustom)
+        this.navCtrl.push(goToCustom.page, goToCustom.params);
+      else
         await this.goToNext();
     } finally {
       this.isLoading = false;
@@ -156,7 +187,7 @@ export class ItemExplorePage {
     await this.goToNext();
   }
 
-	private async checkMatching(item, likeResult) : Promise<boolean> {
+	private async checkMatching(item, likeResult) : Promise<any> {
     if (likeResult.chat) {
       return new Promise<boolean>((resolve, reject) => {
         this.chatService.getChat(likeResult.chat.id).then(chat => {

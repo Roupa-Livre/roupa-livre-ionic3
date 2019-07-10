@@ -31,8 +31,7 @@ export class ItemMatchedPage {
 
 	// CLICK EVENTS
 	goToChat() {
-		this.viewCtrl.dismiss(true);
-		this.navCtrl.push('ChatDetailsPage', { id: this.chat });
+		this.viewCtrl.dismiss({ page: 'ChatDetailsPage', params: { id: this.chat.id, chat: this.chat } });
 	}
 
 	close() {

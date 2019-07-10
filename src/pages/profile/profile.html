@@ -12,10 +12,10 @@
         <button ion-button icon-only clear class="btn-edit" (tap)="goToSettings()">
           <ion-icon name="ios-settings" color="white"></ion-icon>
         </button>
-        <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
+        <img [src]="(user | userImageSrc) || 'https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png'">
       </div>
 
-      <h2 class="title">Oiê, Mari</h2>
+      <h2 class="title">Oiê, {{ this.user | shortName  }}</h2>
       <p class="subtitle">Liberte suas roupas!</p>
 
       <div class="groupButtons">

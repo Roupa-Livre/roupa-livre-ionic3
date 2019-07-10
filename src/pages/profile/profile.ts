@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ItemServiceProvider } from '../../services/item-service';
 import { Apparel } from '../../models/apparel';
 import { ApiArray } from '../../models/api-array';
+import { LoginServiceProvider } from '../../services/login-service';
 
 @IonicPage()
 @Component({
@@ -11,19 +12,23 @@ import { ApiArray } from '../../models/api-array';
 })
 export class ProfilePage {
 
+  public user: any;
   public items: ApiArray<Apparel>;
 
 	// CONSTRUCTOR
 	constructor(
 		public navCtrl: NavController,
     public navParams: NavParams,
-    private itemsService: ItemServiceProvider
+    private itemsService: ItemServiceProvider,
+    private loginService: LoginServiceProvider,
 	) {
 	}
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
     this.loadItems();
+
+    this.user = this.loginService.user();
   }
 
   async loadItems() {

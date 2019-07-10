@@ -4,12 +4,13 @@
 			<div class="title text-4x">Oops!</div>
 
 			<p class="text-lg">
-				 Você ainda não combinou com ninguém.
+         Essas foram as peças que encontramos.<br />
+         Ainda não combinou com ninguém? Que tal oferecer algumas peças?
 			</p>
 		</div>
 
 		<div>
-			<button ion-button round class="match m-b" (tap)="close()">voltar para troca</button>
+			<button ion-button round class="match m-b" *ngIf="hasFilter" (tap)="close()">voltar para troca</button>
 			<button ion-button round outline class="continue" (tap)="offerNewItem()">oferecer peças</button>
 		</div>
 	</div>

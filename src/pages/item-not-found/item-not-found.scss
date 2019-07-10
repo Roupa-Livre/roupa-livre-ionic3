@@ -1,6 +1,9 @@
 page-item-not-found {
 
-    text-align: center;
+  text-align: center;
+  ion-content {
+    background: linear-gradient(-40deg, #3FF2D7 0%, #0372EF 100%) !important;
+  }
 
 	.title {
 		font-family: Kaushan Script, cursive !important;
