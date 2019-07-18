@@ -1,5 +1,15 @@
 # App Roupa Livre IONIC #
 
+## Como Rodar com Docker ##
+
+Base: https://gist.github.com/piccaso/a6bd436dff7279d57e54c69d3b012431
+
+Na raiz do Projeto:
+```
+docker-composer build
+docker-composer up
+```
+
 ## Como Rodar ##
 
 Setting up the Environment
