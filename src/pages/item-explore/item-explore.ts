@@ -77,6 +77,7 @@ export class ItemExplorePage {
 	// LIFECYCLE EVENTS
 	ionViewWillEnter() {
     this.initialLoad();
+    this.loginService.updateLatLng();
 	}
 
   async initialLoad() {

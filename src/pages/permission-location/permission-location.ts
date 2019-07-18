@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LoginServiceProvider } from '../../services/login-service';
 
 @IonicPage()
 @Component({
@@ -11,7 +12,8 @@ export class PermissionLocationPage {
   // CONSTRUCTOR
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    private loginService: LoginServiceProvider,
   ) {
   }
 
@@ -21,7 +23,11 @@ export class PermissionLocationPage {
   }
 
   // CLICK EVENTS
-  activeLocation() {
+  async activeLocation() {
+    try {
+      await this.loginService.updateLatLng();
+    } catch (ex) { }
+
     console.log("PERMISSION LOCATION - ACTIVE LOCATION");
     // TODO : ACTIVATE THE LOCATION
     this.navCtrl.push("PermissionNotificationPage", {}, {

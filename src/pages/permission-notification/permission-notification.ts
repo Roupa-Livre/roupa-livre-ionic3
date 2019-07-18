@@ -21,9 +21,12 @@ export class PermissionNotificationPage {
   }
 
   // CLICK EVENTS
-  activePermission() {
+  async activePermission() {
     console.log("PERMISSION NOTIFICATION - ACTIVE NOTIFICATION");
-    // TODO : ACTIVATE NOTIFICATIONS
+    try {
+      // await this.loginService.requuestPushPermission();
+    } catch (ex) { }
+
     this.navCtrl.push("WhatYouReleasePage", {}, {
 			direction: 'forward'
 		});

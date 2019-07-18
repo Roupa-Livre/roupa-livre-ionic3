@@ -11,7 +11,7 @@ import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
 
 @Injectable()
 export abstract class BaseService extends BaseHttpService {
-  constructor(http: Http, private tokenService: AngularTokenService) {
+  constructor(http: Http, protected tokenService: AngularTokenService) {
     super(http);
   }
 

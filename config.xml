@@ -77,6 +77,9 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
+        <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
+            <string>Para encontrarmos as peças de roupa mais próximas de você.</string>
+        </edit-config>
     </platform>
     <allow-navigation href="http://192.168.0.28:8100" />
     <allow-navigation href="http://192.168.0.22:8100" />
@@ -103,7 +106,14 @@
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.36.0" />
     </plugin>
     <plugin name="cordova-plugin-x-toast" spec="2.7.2" />
+    <plugin name="cordova-plugin-geolocation" spec="4.0.1">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Para encontrarmos as peças de roupa mais próximas de você" />
+    </plugin>
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="7.1.4" />
     <engine name="browser" spec="5.0.4" />
+    <plugin name="phonegap-plugin-push" spec="2.2.3">
+        <variable name="ANDROID_SUPPORT_V13_VERSION" value="27.+" />
+        <variable name="FCM_VERSION" value="11.6.2" />
+    </plugin>
 </widget>

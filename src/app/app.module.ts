@@ -1,5 +1,8 @@
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Push } from '@ionic-native/push/ngx';
+
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -13,7 +16,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Push } from '@ionic-native/push/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
 
 import { ImageCompressService,ResizeOptions,ImageUtilityService } from 'ng2-image-compress';
@@ -61,6 +63,7 @@ import { PropertyGroupService } from '../services/property-group-service';
 		DirectivesModule,
     ComponentsModule,
     PipesModule,
+    // Geolocation,
 	],
 	bootstrap: [
 		IonicApp
@@ -88,6 +91,7 @@ import { PropertyGroupService } from '../services/property-group-service';
     PropertyGroupService,
     ImageCompressService,
     ResizeOptions,
+    Geolocation
 	]
 })
 export class AppModule {}
