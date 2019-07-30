@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 
 import { ChatServiceProvider } from './../../services/chat-service';
+import Chat from '../../models/chat';
 
 @IonicPage()
 @Component({
@@ -16,6 +17,7 @@ export class ChatDetailsPage {
 	isNewMatch: boolean = false;
 	typingMessage: string = '';
 	messages: any[] = [];
+	chat: Chat = null;
 
 	// CONSTRUCTOR
 	constructor(
@@ -24,12 +26,13 @@ export class ChatDetailsPage {
 		private chatService: ChatServiceProvider
 	) {
 		this.isNewMatch = this.navParams.get('isNewMatch');
+		this.chat = this.navParams.data.chat;
 		this.init();
 	}
 
 	init() {
 		if (!this.isNewMatch) {
-			this.chatService.getChatHistory()
+			this.chatService.getChatHistory(this.chat.id)
 			.then((response: any[]) => {
 				this.messages = response;
 			});
@@ -45,9 +48,8 @@ export class ChatDetailsPage {
 	sendMessage() {
 		let message = {
 			isMe: true,
-			type: 'text',
-			body: this.typingMessage,
-			timestamp: '13 de Março de 2019'
+			message: this.typingMessage,
+			chat_id: this.chat.id
 		};
 
 		this.chatService.sendMessage(message)

@@ -3,63 +3,39 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import Chat from '../models/chat';
 import { BaseService } from './base-service';
+import { ApiArray } from '../models/api-array';
 
 @Injectable()
 export class ChatServiceProvider extends BaseService {
-
+	
 	// METHODS
 	sendMessage(message) {
 		return new Promise(resolve => {
-			// TODO : CREATE REAL METHOD
-			resolve(true);
+			const data = { chat_message: Object.assign({}, message) }
+			if (message.id > 0) {
+				resolve (this.put(`chat_messages/${message.id}`, data));
+			} else {
+				resolve (this.post('chat_messages', data));
+			}
 		});
 	}
 
-	getChatHistory() {
+	// METHODS
+	getChatMessages(id) : Promise<ApiArray<any>>{
+		return this.getMany<any>(`chat_messages/?chat_id=${id}`);
+  	}
+
+	getChatHistory(id) {
 		return new Promise(resolve => {
-			let messages = [
-				{
-					isMe: true,
-					type: 'text',
-					body: 'Olá',
-					timestamp: '10 de Março de 2019'
-				},
-				{
-					isMe: false,
-					avatar: 'assets/img/dummy/hieu.png',
-					type: 'text',
-					body: 'Olá tudo bom?',
-					timestamp: '10 de Março de 2019'
-				},
-				{
-					isMe: true,
-					type: 'text',
-					body: 'Gostei do seu vestido',
-					timestamp: '10 de Março de 2019'
-				},
-				{
-					isMe: false,
-					avatar: 'assets/img/dummy/hieu.png',
-					type: 'text',
-					body: 'E eu da sua bolsa',
-					timestamp: '10 de Março de 2019'
-				},
-				{
-					isMe: true,
-					type: 'text',
-					body: 'Vamos trocar?',
-					timestamp: '10 de Março de 2019'
-				},
-				{
-					isMe: false,
-					avatar: 'assets/img/dummy/hieu.png',
-					type: 'text',
-					body: 'Vamos sim...',
-					timestamp: '10 de Março de 2019'
-				}
-			];
+			let messages = this.getChatMessages(id);
 
 			// TODO : IMPLEMENTS WS USE TO GET DATA
+			// {
+			// 	isMe: true,
+			// 	type: 'text',
+			// 	body: 'Olá',
+			// 	timestamp: '10 de Março de 2019'
+			// }
 
 			resolve(messages);
 
