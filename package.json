@@ -23,7 +23,7 @@
         "@angular/router": "7.0.0",
         "@ionic-native/app-version": "5.0.0",
         "@ionic-native/core": "5.0.0",
-        "@ionic-native/device": "^4.20.0",
+        "@ionic-native/device": "^5.11.0",
         "@ionic-native/facebook": "5.0.0",
         "@ionic-native/geolocation": "^5.9.0",
         "@ionic-native/image-picker": "5.0.0",

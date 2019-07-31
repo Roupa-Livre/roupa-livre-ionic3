@@ -3,8 +3,7 @@ import { Platform, Events, NavController, ModalController } from "ionic-angular"
 
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
-import { Device } from '@ionic-native/device';
-
+import { Device } from '@ionic-native/device/ngx';
 
 import { AngularTokenService } from 'angular-token';
 import { LoginServiceProvider } from "../services/login-service";
@@ -63,15 +62,17 @@ export class MyApp {
   }
 
   private onPushRegistration(registrationData) {
-    var postData = { registration_id: registrationData.registrationId, provider: null, device_uid: this.device.uuid }
-    if (this.platform.is('ios')) {
-      postData.provider = 'ios';
-    } else if (this.platform.is('android')) {
-      postData.provider = 'android';
-    }
+    if (this.platform.is('cordova')) {
+      var postData = { registration_id: registrationData.registrationId, provider: null, device_uid: this.device.uuid }
+      if (this.platform.is('ios')) {
+        postData.provider = 'ios';
+      } else if (this.platform.is('android')) {
+        postData.provider = 'android';
+      }
 
-    if (postData.provider != null) {
-      this.loginProvider.registerDevice(postData);
+      if (postData.provider != null) {
+        this.loginProvider.registerDevice(postData);
+      }
     }
   }
 

@@ -1,8 +1,8 @@
 <ion-header no-border class="header-shadow">
 	<ion-navbar color="white">
-		<ion-title>
-      <img class="headerAvatar" src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-			<span class="nameAvatar">Miguel</span>
+		<ion-title *ngIf="chat">
+      <img class="headerAvatar" [src]="chat.other_user | userImageSrc">
+			<span class="nameAvatar">{{ chat.other_user | shortName }}</span>
 		</ion-title>
 	</ion-navbar>
 </ion-header>
@@ -10,21 +10,21 @@
 
 
 <ion-content #content padding>
-	<div class="wrapper text-center h-full" layout vertical center center-center *ngIf="isNewMatch && messages.length == 0">
+	<div class="wrapper text-center h-full" layout vertical center center-center *ngIf="chat && messages && messages.length == 0">
 		<div>
 			<div class="m-b">
-				<div class="text-lg">Você e o <b>Miguel</b> curtiram a peça um do outro</div>
-				<div>3 horas atrás</div>
+				<div class="text-lg">Você e o <b>{{chat.other_user | shortName}}</b> curtiram a peça um do outro</div>
+				<div>{{ chat.created_at | timeToString }}</div>
 			</div>
 			<div class="m-b">
-				<demo-avatar [sizeClass]="'thumb-xl'"></demo-avatar>
+				<img class="rounded thumb-xl" [src]="chat.other_user | userImageSrc" />
 			</div>
 			<div class="text-lg">Suas mãos estão amarradas ou algo do tipo?</div>
 		</div>
 	</div>
 
-	<div class="chat-list" *ngIf="!isNewMatch || messages.length">
-		<div class="chat-item" *ngFor="let item of messages" [ngClass]="{'me': item.isMe}">
+	<div class="chat-list" *ngIf="messages.length">
+		<div class="chat-item" *ngFor="let item of messages; let i = index;" [ngClass]="{'me': (item.user_id == user.id)}">
 			<div class="chat-timestamp">
 				{{item.timestamp}}
 			</div>
@@ -36,16 +36,16 @@
 
 				<div class="chat-item-bubble" [ngClass]="{'bubble-image': item.type == 'image'}">
 					<!-- <i class="icon-tail"></i> -->
-					<div class="chat-body" *ngIf="item.type !== 'image'" [innerHtml]="item.body | nlbr"></div>
-					<img [src]="item.body" *ngIf="item.type == 'image'">
+					<div class="chat-body" *ngIf="item.type !== 'image'" [innerHtml]="item.message | nlbr"></div>
+					<img [src]="item.message" *ngIf="item.type == 'image'">
 				</div>
 
-				<div class="chat-item-reaction" *ngIf="!item.isMe && item.type == 'image'">
+				<div class="chat-item-reaction" *ngIf="item.user_id != user.id && item.type == 'image'">
 					<ion-icon name="md-heart-outline" class="text-muted"></ion-icon>
 				</div>
 			</div>
 
-			<div class="chat-item-status" *ngIf="item.isMe">Enviado</div>
+			<div class="chat-item-status" *ngIf="item.user_id == user.id && i == messages.length - 1">Enviado</div>
 		</div>
 	</div>
 </ion-content>

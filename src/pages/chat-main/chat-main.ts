@@ -1,27 +1,37 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthPage } from '../auth-page';
+import { ChatServiceProvider } from '../../services/chat-service';
+import { NavigationServiceProvider } from '../../services/navigation-service';
 
 @IonicPage()
 @Component({
 	selector: 'page-chat-main',
 	templateUrl: 'chat-main.html',
 })
-export class ChatMainPage {
+export class ChatMainPage extends AuthPage {
+
+  chats;
 
 	// CONSTRUCTOR
 	constructor(
-		public navCtrl: NavController,
-		public navParams: NavParams
-	) {
-	}
+    protected navCtrl: NavController,
+    protected navigationService: NavigationServiceProvider,
+    private chatService: ChatServiceProvider) {
+    super(navCtrl, navigationService);
+
+  }
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
+   this.chatService.getChats().then(chats => {
+     this.chats = chats;
+   });
 	}
 
 	// CLICK EVENTS
-	goToChatDetails(isNewMatch = false) {
-		this.navCtrl.push('ChatDetailsPage', { isNewMatch: isNewMatch });
+	goToChatDetails(chat) {
+		this.navCtrl.push('ChatDetailsPage', { chat, id: chat.id });
 	}
 
 	goToExplore() {

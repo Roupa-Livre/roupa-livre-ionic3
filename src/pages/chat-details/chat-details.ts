@@ -3,88 +3,87 @@ import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 
 import { ChatServiceProvider } from './../../services/chat-service';
 import Chat from '../../models/chat';
+import { AuthPage } from '../auth-page';
+import { NavigationServiceProvider } from '../../services/navigation-service';
+import { LoginServiceProvider } from '../../services/login-service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @IonicPage()
 @Component({
 	selector: 'page-chat-details',
 	templateUrl: 'chat-details.html',
 })
-export class ChatDetailsPage {
+export class ChatDetailsPage extends AuthPage {
 
 	// VARS
 	@ViewChild(Content) content: Content;
 
-	isNewMatch: boolean = false;
 	typingMessage: string = '';
-	messages: any[] = [];
-	chat: Chat = null;
+	messages: any = [];
+  chat: Chat = null;
+  user;
+  lastReadAt: Date;
 
 	// CONSTRUCTOR
 	constructor(
-		public navCtrl: NavController,
-		public navParams: NavParams,
-		private chatService: ChatServiceProvider
-	) {
-		this.isNewMatch = this.navParams.get('isNewMatch');
-		this.chat = this.navParams.data.chat;
-		this.init();
+    navCtrl: NavController,
+    navigationService: NavigationServiceProvider,
+    public navParams: NavParams,
+    private chatService: ChatServiceProvider,
+    private loginService: LoginServiceProvider) {
+    super(navCtrl,navigationService)
+
 	}
 
-	init() {
-		if (!this.isNewMatch) {
-			this.chatService.getChatHistory(this.chat.id)
-			.then((response: any[]) => {
-				this.messages = response;
-			});
-		}
+	async init() {
+    this.chat = this.navParams.data.chat;
+    this.user = await this.loginService.user();
+    this.messages = (await this.chatService.getChatMessages(this.chat.id)).reverse();
+    this.lastReadAt = new Date;
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 400);
 	}
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-		this.scrollToBottom();
+    this.init();
 	}
 
 	// CLICK EVENTS
-	sendMessage() {
+	async sendMessage() {
 		let message = {
 			isMe: true,
 			message: this.typingMessage,
-			chat_id: this.chat.id
+      chat_id: this.chat.id
 		};
 
-		this.chatService.sendMessage(message)
-		.then((isSended) => {
-
-			if (isSended) {
-				this.messages.push(message);
-				this.typingMessage = '';
-
-				this.scrollToBottom();
-				this.receiveMessage();
-			}
-		});
+		await this.chatService.sendMessage(message)
+		this.typingMessage = '';
+    this.receiveMessage();
 
 	}
 
-	receiveMessage() {
-		// TODO : CHANGE THIS TO A WS
-		setTimeout(() => {
-			this.messages.push({
-				isMe: false,
-				avatar: 'assets/img/dummy/hieu.png',
-				type: 'text',
-				body: 'Show. me conta mais...',
-				timestamp: '14 de Março de 2019'
-			});
-
-			this.scrollToBottom();
-		}, 500);
+	async receiveMessage() {
+		const currentCount = this.messages.length;
+    if (currentCount == 0) {
+      this.init();
+    } else {
+      const newMessages = (await this.chatService.getNextMessages(this.chat.id, this.lastReadAt)).reverse();
+      this.lastReadAt = new Date;
+      if (newMessages.length > 0) {
+        Array.prototype.push.apply(this.messages, newMessages);
+        setTimeout(() => {
+          this.scrollToBottom();
+        }, 400);
+      }
+    }
 	}
 
 	// SCROLL METHODS
 	scrollToBottom() {
-		this.content.resize();
-		this.content.scrollTo(0, this.content.scrollHeight, 350);
+		// this.content.resize();
+		this.content.scrollToBottom(350);
 	}
 
 }

@@ -2,6 +2,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Push } from '@ionic-native/push/ngx';
+import { Device } from '@ionic-native/device/ngx';
 
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -81,7 +82,8 @@ import { PushService } from '../services/push-service';
 		InAppBrowser,
 		SplashScreen,
 		StatusBar,
-		Push,
+    Push,
+    Device,
 		Toast,
     ItemServiceProvider,
     ItemSearcherService,

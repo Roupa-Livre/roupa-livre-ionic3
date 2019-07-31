@@ -23,6 +23,6 @@ export class UserImageSourcePipe implements PipeTransform {
       if (!result && user.social_image)
         result = getProbableApiUrl(this.tokenService, user.social_image);
     }
-    return result;
+    return result || 'assets/img/avatar.png';
   }
 }

@@ -7,7 +7,7 @@ import { ApiArray } from '../models/api-array';
 
 @Injectable()
 export class ChatServiceProvider extends BaseService {
-	
+
 	// METHODS
 	sendMessage(message) {
 		return new Promise(resolve => {
@@ -23,28 +23,17 @@ export class ChatServiceProvider extends BaseService {
 	// METHODS
 	getChatMessages(id) : Promise<ApiArray<any>>{
 		return this.getMany<any>(`chat_messages/?chat_id=${id}`);
-  	}
+  }
 
-	getChatHistory(id) {
-		return new Promise(resolve => {
-			let messages = this.getChatMessages(id);
-
-			// TODO : IMPLEMENTS WS USE TO GET DATA
-			// {
-			// 	isMe: true,
-			// 	type: 'text',
-			// 	body: 'Olá',
-			// 	timestamp: '10 de Março de 2019'
-			// }
-
-			resolve(messages);
-
-		});
-
+  getNextMessages(id, lastReadAt: Date) : Promise<ApiArray<any>>{
+		return this.getMany<any>(`chat_messages/?chat_id=${id}&&last_read_at=${lastReadAt.getTime()}`);
   }
 
   getChat(id: number) : Promise<Chat> {
     return this.getOne(`chats/${id}`);
+  }
+  getChats() {
+    return this.getMany(`chats`);
   }
 
 }

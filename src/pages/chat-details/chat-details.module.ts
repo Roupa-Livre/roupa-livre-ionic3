@@ -4,6 +4,7 @@ import { ChatDetailsPage } from './chat-details';
 
 import { ComponentsModule } from '../../components/components.module';
 import { DirectivesModule } from '../../directives/directives.module';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
 	declarations: [
@@ -12,7 +13,8 @@ import { DirectivesModule } from '../../directives/directives.module';
 	imports: [
 		IonicPageModule.forChild(ChatDetailsPage),
 		ComponentsModule,
-		DirectivesModule
+    DirectivesModule,
+    PipesModule
 	]
 
 })

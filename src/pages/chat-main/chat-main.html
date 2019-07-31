@@ -40,43 +40,15 @@
       CONVERSAS
     </ion-list-header>
 
-    <ion-item detail-push (tap)="goToChatDetails()">
+    <ion-item detail-push *ngFor="let chat of chats" (tap)="goToChatDetails(chat)">
       <ion-row align-items-center no-padding>
         <ion-col col-auto>
-          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+          <img class="rounded thumb-md" [src]="chat.other_user | userImageSrc">
         </ion-col>
         <ion-col>
           <div>
-            <div class="chatPerson">Sandra</div>
-            <div class="chatDescription">Listrada tamanho 36</div>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-item>
-
-    <ion-item detail-push (tap)="goToChatDetails()">
-      <ion-row align-items-center no-padding>
-        <ion-col col-auto>
-          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
-        </ion-col>
-        <ion-col>
-          <div>
-            <div class="chatPerson">Giovana</div>
-            <div class="chatDescription">Listrada tamanho 36</div>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-item>
-
-    <ion-item detail-push (tap)="goToChatDetails()">
-      <ion-row align-items-center no-padding>
-        <ion-col col-auto>
-          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
-        </ion-col>
-        <ion-col>
-          <div>
-            <div class="chatPerson">Pedro</div>
-            <div class="chatDescription">Listrada tamanho 36</div>
+            <div class="chatPerson">{{chat.other_user | shortName}}</div>
+            <div class="chatDescription" *ngIf="chat.other_user_apparels && chat.other_user_apparels.length > 0">{{chat.other_user_apparels[0].title}}</div>
           </div>
         </ion-col>
       </ion-row>
