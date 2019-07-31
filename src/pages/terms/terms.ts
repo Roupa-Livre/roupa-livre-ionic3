@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { NavigationServiceProvider } from '../../services/navigation-service';
 import { LoginServiceProvider } from '../../services/login-service';
 
 @IonicPage()
@@ -11,9 +12,9 @@ export class TermsPage {
 
 	// CONSTRUCTOR
 	constructor(
-		public navCtrl: NavController,
-		public navParams: NavParams,
-		private loginProvider: LoginServiceProvider,
+    public navCtrl: NavController, public navParams: NavParams,
+    private navigationService: NavigationServiceProvider,
+    private loginService: LoginServiceProvider,
 	) {
 	}
 
@@ -22,16 +23,18 @@ export class TermsPage {
 	}
 
 	ionViewCanEnter() {
-    return this.loginProvider.isLogged();
+    return true;
   }
 
 	// CLICK EVENTS
-	agree() {
-		this.navCtrl.setRoot('ItemExplorePage');
+	async agree() {
+    await this.loginService.agreeToTerms();
+    await this.navigationService.checkRoot();
 	}
 
-	cancel() {
-		this.navCtrl.setRoot("LoginPage");
+	async cancel() {
+    await this.loginService.logout();
+    await this.navigationService.checkRoot('back');
 	}
 
 }

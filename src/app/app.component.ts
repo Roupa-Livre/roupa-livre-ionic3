@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Platform } from "ionic-angular";
+import { Platform, Events } from "ionic-angular";
 
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
@@ -8,6 +8,7 @@ import { Push, PushObject, PushOptions } from "@ionic-native/push/ngx";
 
 import { AngularTokenService } from 'angular-token';
 import { LoginServiceProvider } from "../services/login-service";
+import { NavigationServiceProvider } from "../services/navigation-service";
 
 @Component({
   templateUrl: "app.html"
@@ -25,7 +26,9 @@ export class MyApp {
     splashScreen: SplashScreen,
 		private push: Push,
 		private _tokenService: AngularTokenService,
-		public loginProvider: LoginServiceProvider
+    public loginProvider: LoginServiceProvider,
+    private navigationService: NavigationServiceProvider,
+    private events: Events,
   ) {
 
     platform.ready().then(() => {
@@ -38,14 +41,14 @@ export class MyApp {
 			// keyboard.hideKeyboardAccessoryBar(true);
 
 			if (this._tokenService.userSignedIn()) {
-				this._tokenService.validateToken().toPromise().then(res => {
-					this.rootPage = loginProvider.getInitialPage();
+				this._tokenService.validateToken().toPromise().then(async res => {
+          this.rootPage = await this.navigationService.getRootPage();
 				}, error => {
 					// console.log('validateToken err', error);
-					this.rootPage = 'PublicPage';
+          this.rootPage = 'PublicPage';
 				})
 			} else {
-				this.rootPage = 'PublicPage';
+        this.rootPage = 'PublicPage';
 			}
 
 			if (this.platform.is('cordova')) {
@@ -74,7 +77,12 @@ export class MyApp {
 				this.pushObject.on('notification').subscribe((notification: any) => {
 					console.log('Received a notification', notification);
 				});
-			}
+      }
+
+      this.events.subscribe('check-root', data => {
+        this.rootPage = data.newRoot;
+      })
     });
+
   }
 }

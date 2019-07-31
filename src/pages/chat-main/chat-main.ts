@@ -25,9 +25,7 @@ export class ChatMainPage {
 	}
 
 	goToExplore() {
-		this.navCtrl.push('ItemExplorePage', {}, {
-			direction: 'back'
-		});
+		this.navCtrl.popToRoot();
 	}
 
 }

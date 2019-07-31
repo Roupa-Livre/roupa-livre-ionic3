@@ -42,9 +42,7 @@ export class AppHeaderComponent {
     console.log('AppHeaderComponent goMain - activeView : ', this.activeView);
 
     let direction = (this.activeView == "chat") ? "back" : "foward";
-    this.navCtrl.push('ItemExplorePage', {}, {
-			direction: direction
-		});
+    this.navCtrl.popToRoot();
     //this.mainClicked.emit();
   }
 

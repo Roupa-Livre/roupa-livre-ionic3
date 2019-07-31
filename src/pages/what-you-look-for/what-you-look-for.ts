@@ -26,15 +26,14 @@ export class WhatYouLookForPage {
   }
 
   searchApparels() {
+    // Tem que ser para a busca
     this.navCtrl.push("ItemExplorePage", {}, {
 			direction: 'forward'
 		});
   }
 
   skip() {
-    this.navCtrl.push("ItemExplorePage", {}, {
-			direction: 'forward'
-		});
+    this.navCtrl.popToRoot();
   }
 
 }

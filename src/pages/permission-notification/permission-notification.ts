@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavigationServiceProvider } from '../../services/navigation-service';
 
 @IonicPage()
 @Component({
@@ -10,14 +11,18 @@ export class PermissionNotificationPage {
 
   // CONSTRUCTOR
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams
+    public navCtrl: NavController, public navParams: NavParams,
+    private navigationService: NavigationServiceProvider
   ) {
   }
 
   // LIFECYCLE EVENTS
   ionViewDidLoad() {
     console.log('ionViewDidLoad PermissionNotificationPage');
+  }
+
+  ionViewCanEnter() {
+    return this.navigationService.canEnterPage(this.navCtrl, 'PermissionNotificationPage');
   }
 
   // CLICK EVENTS
@@ -27,12 +32,13 @@ export class PermissionNotificationPage {
       // await this.loginService.requuestPushPermission();
     } catch (ex) { }
 
-    this.navCtrl.push("WhatYouReleasePage", {}, {
-			direction: 'forward'
-		});
+    await this.navigationService.skipPush();
+    this.navigationService.checkRoot('forward');
   }
 
-  denyPermission() {
+  async denyPermission() {
+    await this.navigationService.skipPush();
+
     console.log("PERMISSION NOTIFICATION - DENY NOTIFICATION");
     this.navCtrl.push("WhatYouReleasePage", {}, {
 			direction: 'forward'

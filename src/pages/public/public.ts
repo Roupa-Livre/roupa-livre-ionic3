@@ -36,28 +36,8 @@ export class PublicPage {
 		});
 	}
 
-	loginWithFacebook() {
-		Promise.all([
-			this.loginProvider.loginWithFacebook(),
-			this.loginProvider.isFirstTime()
-		])
-		.then((responses) => {
-			let logged = responses[0];
-			let isFirstTime = responses[1];
-
-			if (logged) {
-				if (isFirstTime) {
-					this.navCtrl.push('TermsPage', {}, {
-            direction: 'forward'
-          });
-				} else {
-					this.navCtrl.push('ItemExplorePage', {}, {
-            direction: 'forward'
-          });
-				}
-			}
-		});
-
+	async loginWithFacebook() {
+    const response = await this.loginProvider.loginWithFacebook();
 	}
 
 }

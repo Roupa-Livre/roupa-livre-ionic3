@@ -25,6 +25,7 @@ import { AngularTokenModule } from 'angular-token';
 import { ItemServiceProvider } from '../services/item-service';
 import { LoginServiceProvider } from '../services/login-service';
 import { ChatServiceProvider } from '../services/chat-service';
+import { NavigationServiceProvider } from '../services/navigation-service';
 
 import { MyApp } from './app.component';
 
@@ -83,7 +84,8 @@ import { PropertyGroupService } from '../services/property-group-service';
 		Toast,
     ItemServiceProvider,
     ItemSearcherService,
-		LoginServiceProvider,
+    LoginServiceProvider,
+    NavigationServiceProvider,
     AngularTokenModule,
 		ToastService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -20,14 +20,15 @@ import { ItemSearcherService } from '../../services/item-searcher-service';
 import { Apparel } from '../../models/apparel';
 import { ItemServiceProvider } from '../../services/item-service';
 import { ChatServiceProvider } from '../../services/chat-service';
+import { NavigationServiceProvider } from '../../services/navigation-service';
 
 @IonicPage()
 @Component({
 	selector: 'page-item-explore',
 	templateUrl: 'item-explore.html'
 })
-// export class ItemExplorePage extends AuthPage {
-export class ItemExplorePage {
+export class ItemExplorePage extends AuthPage {
+// export class ItemExplorePage {
 
 	// VARS
 	@ViewChild('cardStack') swingStack: SwingStackComponent;
@@ -39,15 +40,16 @@ export class ItemExplorePage {
 
 	// CONSTRUCTOR
 	constructor(
-		private loginService: LoginServiceProvider,
-		public navCtrl: NavController,
+    navCtrl: NavController,
+    navigationService: NavigationServiceProvider,
+    private loginService: LoginServiceProvider,
 		public modalCtrl: ModalController,
 		public actionSheetCtrl: ActionSheetController,
     public itemSearcher: ItemSearcherService,
     private itemService: ItemServiceProvider,
     private chatService: ChatServiceProvider,
 	) {
-		//super(loginService);
+		super(navCtrl, navigationService);
 		this.init();
 	}
 

@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Push } from '@ionic-native/push/ngx';
 
-import { InAppBrowser, InAppBrowserEvent, InAppBrowserObject, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
-import { Platform } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { Platform, DateTime } from 'ionic-angular';
 
 // import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 import { Storage } from '@ionic/storage';
@@ -22,8 +23,7 @@ export class LoginServiceProvider extends BaseService {
 	constructor(http: Http, tokenService: AngularTokenService,
 		private platform: Platform,
 		private inAppBrowser: InAppBrowser,
-		private storage: Storage,
-    // private fb: Facebook,
+    private push: Push,
     private geolocation: Geolocation,
 		) {
     super(http, tokenService);
@@ -43,20 +43,7 @@ export class LoginServiceProvider extends BaseService {
 
 	hasAgreed() : boolean {
 		return this.isLogged() && (this.tokenService.currentUserData as any).agreed;
-	}
-
-	getInitialPage() {
-		const userData: any = this.tokenService.currentUserData;
-		if (userData) {
-			if (userData.agreed) {
-				return 'ItemExplorePage';
-			} else {
-				return 'TermsPage';
-			}
-		} else {
-			return 'PublicPage';
-		}
-	}
+  }
 
 	loginWithFacebook() {
 		return new Promise((resolve, reject) => {
@@ -88,26 +75,17 @@ export class LoginServiceProvider extends BaseService {
 		});
 	}
 
-	isFirstTime() : Promise<boolean> {
-
-		return new Promise(resolve => {
-
-			this.storage.get('firstLogin')
-			.then((value) => {
-
-				if (value == false) {
-					resolve(false);
-				} else {
-					this.storage.set('firstLogin', false);
-					resolve(true);
-				}
-			});
-
-		});
+  async hasPushPermission() {
+    return (await this.push.hasPermission()).isEnabled;
+  }
+  async requestPushPermission() {
+    // TODO
   }
 
-  async requuestPushPermission() {
-    // TODO
+  async tryUpdateLatLng() {
+    try {
+      await this.updateLatLng();
+    } catch (ex) {}
   }
 
   async updateLatLng() {
@@ -126,6 +104,16 @@ export class LoginServiceProvider extends BaseService {
     const result = await this.put('auth', updatedData);
     Object.assign(this.tokenService.currentUserData, updatedData);
     return result;
+  }
+
+  async agreeToTerms() {
+    const result = await this.post('users/agreed_to_terms', {});
+    Object.assign(this.tokenService.currentUserData, { agreed: true });
+    return result;
+  }
+
+  logout() {
+    return this.tokenService.signOut();
   }
 
 }

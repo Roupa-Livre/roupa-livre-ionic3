@@ -1,13 +1,17 @@
-import { LoginServiceProvider } from '../services/login-service';
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+
+import { NavigationServiceProvider } from '../services/navigation-service';
 
 
 export abstract class AuthPage {
 
 	// CONSTRUCTOR
-	constructor(public loginProvider: LoginServiceProvider) {}
+  constructor(protected navCtrl: NavController,
+    protected navigationService: NavigationServiceProvider) {}
 
-	ionViewCanEnter() {
-    return this.loginProvider.hasAgreed();
+  ionViewCanEnter() {
+    return this.navigationService.canEnterPage(this.navCtrl, 'ItemExplorePage');
   }
 
 }

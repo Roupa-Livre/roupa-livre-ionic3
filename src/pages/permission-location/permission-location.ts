@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginServiceProvider } from '../../services/login-service';
+import { NavigationServiceProvider } from '../../services/navigation-service';
 
 @IonicPage()
 @Component({
@@ -14,12 +15,17 @@ export class PermissionLocationPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private loginService: LoginServiceProvider,
+    private navigationService: NavigationServiceProvider,
   ) {
   }
 
   // LIFECYCLE EVENTS
   ionViewDidLoad() {
     console.log('ionViewDidLoad PermissionLocationPage');
+  }
+
+  ionViewCanEnter() {
+    return this.navigationService.canEnterPage(this.navCtrl, 'PermissionLocationPage');
   }
 
   // CLICK EVENTS
@@ -29,17 +35,14 @@ export class PermissionLocationPage {
     } catch (ex) { }
 
     console.log("PERMISSION LOCATION - ACTIVE LOCATION");
-    // TODO : ACTIVATE THE LOCATION
-    this.navCtrl.push("PermissionNotificationPage", {}, {
-			direction: 'forward'
-		});
+    await this.navigationService.skipLocation();
+    await this.navigationService.checkRoot()
   }
 
-  denyLocation() {
+  async denyLocation() {
     console.log("PERMISSION LOCATION - DENY LOCATION");
-    this.navCtrl.push("PermissionNotificationPage", {}, {
-			direction: 'forward'
-		});
+    await this.navigationService.skipLocation();
+    await this.navigationService.checkRoot()
   }
 
 }
