@@ -194,7 +194,7 @@ export class ItemExplorePage extends AuthPage {
     if (likeResult.chat) {
       return new Promise<boolean>((resolve, reject) => {
         this.chatService.getChat(likeResult.chat.id).then(chat => {
-          let modalMatched = this.modalCtrl.create('ItemMatchedPage', { item, chat });
+          let modalMatched = this.modalCtrl.create('ItemMatchedPage', { chat });
           modalMatched.onDidDismiss(resolve);
           modalMatched.present().catch(reject);
         }, reject);

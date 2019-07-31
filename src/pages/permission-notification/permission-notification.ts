@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NavigationServiceProvider } from '../../services/navigation-service';
+import { LoginServiceProvider } from '../../services/login-service';
 
 @IonicPage()
 @Component({
@@ -12,7 +13,8 @@ export class PermissionNotificationPage {
   // CONSTRUCTOR
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
-    private navigationService: NavigationServiceProvider
+    private navigationService: NavigationServiceProvider,
+    private loginService: LoginServiceProvider,
   ) {
   }
 
@@ -29,7 +31,7 @@ export class PermissionNotificationPage {
   async activePermission() {
     console.log("PERMISSION NOTIFICATION - ACTIVE NOTIFICATION");
     try {
-      // await this.loginService.requuestPushPermission();
+      await this.loginService.requestPushPermission();
     } catch (ex) { }
 
     await this.navigationService.skipPush();

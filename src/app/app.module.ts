@@ -36,6 +36,7 @@ import { Environment } from '../config/environment';
 import { ItemSearcherService } from '../services/item-searcher-service';
 import { PipesModule } from '../pipes/pipes.module';
 import { PropertyGroupService } from '../services/property-group-service';
+import { PushService } from '../services/push-service';
 
 @NgModule({
 	declarations: [
@@ -93,7 +94,8 @@ import { PropertyGroupService } from '../services/property-group-service';
     PropertyGroupService,
     ImageCompressService,
     ResizeOptions,
-    Geolocation
+    Geolocation,
+    PushService
 	]
 })
 export class AppModule {}

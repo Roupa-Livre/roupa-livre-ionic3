@@ -1,48 +1,57 @@
-import { Component } from "@angular/core";
-import { Platform, Events } from "ionic-angular";
+import { Component, ViewChild } from "@angular/core";
+import { Platform, Events, NavController, ModalController } from "ionic-angular";
 
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { Device } from '@ionic-native/device';
 
-import { Push, PushObject, PushOptions } from "@ionic-native/push/ngx";
 
 import { AngularTokenService } from 'angular-token';
 import { LoginServiceProvider } from "../services/login-service";
 import { NavigationServiceProvider } from "../services/navigation-service";
+import { PushService } from "../services/push-service";
+import { ChatServiceProvider } from "../services/chat-service";
 
 @Component({
   templateUrl: "app.html"
 })
 export class MyApp {
   // VARS
+  @ViewChild('nacContent') nacContent: NavController;
 	rootPage: any;
-
-	pushObject: PushObject;
 
   // CONSTRUCTOR
   constructor(
     private platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-		private push: Push,
-		private _tokenService: AngularTokenService,
+    private events: Events,
+    private device: Device,
+    private tokenService: AngularTokenService,
+    public modalCtrl: ModalController,
     public loginProvider: LoginServiceProvider,
     private navigationService: NavigationServiceProvider,
-    private events: Events,
+    private pushService: PushService,
+    private chatService: ChatServiceProvider,
   ) {
 
-    platform.ready().then(() => {
+    this.platform.ready().then(() => {
       // OKAY, SO THE PLATFORM IS READY AND OUR PLUGINS ARE AVAILABLE.
       // HERE YOU CAN DO ANY HIGHER LEVEL NATIVE THINGS YOU MIGHT NEED.
 
       statusBar.styleDefault();
       splashScreen.hide();
       // keyboard.disableScroll(true);
-			// keyboard.hideKeyboardAccessoryBar(true);
+      // keyboard.hideKeyboardAccessoryBar(true);
 
-			if (this._tokenService.userSignedIn()) {
-				this._tokenService.validateToken().toPromise().then(async res => {
+      this.subscribeToEvents();
+
+			if (this.tokenService.userSignedIn()) {
+				this.tokenService.validateToken().toPromise().then(async res => {
           this.rootPage = await this.navigationService.getRootPage();
+          if (await this.loginProvider.hasPushPermission()) {
+            this.pushService.init();
+          }
 				}, error => {
 					// console.log('validateToken err', error);
           this.rootPage = 'PublicPage';
@@ -50,39 +59,46 @@ export class MyApp {
 			} else {
         this.rootPage = 'PublicPage';
 			}
-
-			if (this.platform.is('cordova')) {
-				this.push.hasPermission().then((res: any) => {
-					if (res.isEnabled) {
-						console.log("We have permission to send push notifications");
-					} else {
-						console.log("We do not have permission to send push notifications");
-					}
-				});
-
-				this.pushObject = this.push.init({
-					android: {
-						iconColor: '#0064f0'
-					},
-					ios: {
-						alert: "true",
-						badge: "true",
-						sound: "true"
-					}
-				});
-
-				this.pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
-				this.pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-
-				this.pushObject.on('notification').subscribe((notification: any) => {
-					console.log('Received a notification', notification);
-				});
-      }
-
-      this.events.subscribe('check-root', data => {
-        this.rootPage = data.newRoot;
-      })
     });
+  }
 
+  private onPushRegistration(registrationData) {
+    var postData = { registration_id: registrationData.registrationId, provider: null, device_uid: this.device.uuid }
+    if (this.platform.is('ios')) {
+      postData.provider = 'ios';
+    } else if (this.platform.is('android')) {
+      postData.provider = 'android';
+    }
+
+    if (postData.provider != null) {
+      this.loginProvider.registerDevice(postData);
+    }
+  }
+
+  private async onPushNotification(data) {
+    if (data.hasOwnProperty('additionalData')) {
+      if (data.additionalData.type == 'message') {
+        if (!data.additionalData.foreground) {
+          const chat = this.chatService.getChat(data.additionalData.chat.id);
+          this.nacContent.push('ChatPage', { chat, id: data.additionalData.chat_id });
+        }
+      } else if (data.additionalData.type == 'match') {
+        const chat = this.chatService.getChat(data.additionalData.chat.id);
+        let modalMatched = this.modalCtrl.create('ItemMatchedPage', { chat });
+        modalMatched.present();
+      }
+    }
+  }
+
+  subscribeToEvents() {
+    this.events.subscribe('check-root', data => {
+      this.rootPage = data.newRoot;
+    });
+    this.events.subscribe('on-push-registration', registrationData => {
+      this.onPushRegistration(registrationData);
+    });
+    this.events.subscribe('on-push-notification', notificationData => {
+      this.onPushNotification(notificationData);
+    });
   }
 }

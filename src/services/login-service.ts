@@ -15,15 +15,16 @@ import 'rxjs/add/operator/map';
 import { AngularTokenService } from 'angular-token';
 import { RegisteringUser } from '../models/user';
 import { BaseService } from './base-service';
+import { PushService } from './push-service';
 
 @Injectable()
 export class LoginServiceProvider extends BaseService {
-
-	// CONSTRUCTOR
+  // CONSTRUCTOR
 	constructor(http: Http, tokenService: AngularTokenService,
 		private platform: Platform,
 		private inAppBrowser: InAppBrowser,
     private push: Push,
+    private pushService: PushService,
     private geolocation: Geolocation,
 		) {
     super(http, tokenService);
@@ -79,7 +80,7 @@ export class LoginServiceProvider extends BaseService {
     return (await this.push.hasPermission()).isEnabled;
   }
   async requestPushPermission() {
-    // TODO
+    return this.pushService.init();
   }
 
   async tryUpdateLatLng() {
@@ -110,6 +111,10 @@ export class LoginServiceProvider extends BaseService {
     const result = await this.post('users/agreed_to_terms', {});
     Object.assign(this.tokenService.currentUserData, { agreed: true });
     return result;
+  }
+
+  registerDevice(deviceData) {
+    return this.post('users/register_device', deviceData);
   }
 
   logout() {
