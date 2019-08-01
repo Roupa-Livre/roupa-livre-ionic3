@@ -1,0 +1,50 @@
+page-main {
+
+  h2.title {
+    color: #323232;
+    text-align: center;
+    font-size: 2.6rem;
+    width: 100%;
+  }
+
+  p.subtitle {
+    color: #323232;
+    text-align: center;
+    font-size: 1.4rem;
+    width: 90%;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  ion-list-header {
+    background: transparent !important;
+
+    button {
+      float: right;
+
+      &.item-button {
+        font-size: 16px;
+        margin: 0 !important;
+        padding: 0 0.5em !important;
+        height: 16px !important;
+      }
+    }
+
+    p.searchTitle {
+      color: #323232;
+      text-align: left;
+      font-size: 1.4rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    p.searchDescription {
+      color: #323232;
+      text-align: left;
+      font-size: 1.4rem;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+}

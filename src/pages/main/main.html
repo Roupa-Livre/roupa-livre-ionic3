@@ -1,0 +1,47 @@
+<ion-header no-border>
+	<app-header [activeView]="'main'"></app-header>
+</ion-header>
+
+<ion-content>
+
+  <!-- HEADER -->
+  <h2 class="title">Olá Mari ;)</h2>
+  <p class="subtitle">Essas são as peças de destaque escolhidas especialmente para você.</p>
+  <p class="subtitle">Você ainda não cadastrou as peças que vai liberar!</p>
+  <button ion-button color="blueLight" block clear small (tap)="goToOfferItem()">
+    CADASTRAR AGORA MESMO
+  </button>
+
+  <ion-list no-lines>
+    <!-- SEARCH BAR -->
+    <ion-list-header>
+      <button ion-button color="blueLight" clear (tap)="search()">FILTRAR</button>
+      <p class="searchTitle">Resultados da busca para:</p>
+      <p class="searchDescription">Sapatos Femininos tamanho 36</p>
+    </ion-list-header>
+
+    <!-- RESULTS -->
+    <ion-item detail-push>
+      Bota de Franja
+      Tamanho 36
+      Feminino adulto
+
+      Bota de Franja
+      Tamanho 36
+      Feminino adulto
+
+      Bota de Franja
+      Tamanho 36
+      Feminino adulto
+
+      Bota de Franja
+      Tamanho 36
+      Feminino adulto
+
+      Bota de Franja
+      Tamanho 36
+      Feminino adulto
+    </ion-item>
+  </ion-list>
+
+</ion-content>
