@@ -8,6 +8,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ItemListPage {
 
+  // VARS
+  public tempImage: string = "assets/img/dummy/blusa.jpg";
+
   // CONSTRUCTOR
   constructor(
     public navCtrl: NavController,
@@ -17,6 +20,12 @@ export class ItemListPage {
 
   ionViewDidLoad() {
     console.log('ITEMLISTPAGE - IONVIEWDIDLOAD');
+  }
+
+  goToChat() {
+    this.navCtrl.push('ChatDetailsPage', {}, {
+			direction: 'forward'
+		});
   }
 
 }

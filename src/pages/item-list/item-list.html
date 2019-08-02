@@ -1,10 +1,79 @@
-<ion-header>
+<ion-header no-border>
   <ion-navbar>
-    <ion-title>item-list</ion-title>
+
+    <ion-title></ion-title>
+
   </ion-navbar>
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+  <!-- PROFILE PHOTO -->
+  <div class="profilePhoto">
+    <button ion-button icon-only clear class="btn-edit" (tap)="goToChat()">
+      <img src="assets/img/newLayout/chat-bubbles-icon.svg">
+    </button>
+    <img [src]="'https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png'">
+  </div>
+
+  <!-- HEADER -->
+  <h2 class="title">Sarah Lima</h2>
+  <p class="subtitle">cerca de 12km</p>
+  <p class="subtitle">5 peças disponíveis</p>
+
+  <!-- RESULTS -->
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <div class="apparel" [style.backgroundImage]="(tempImage | itemImageBgSrc)">
+          <div class="apparelLabel">
+            <p class="apparelTitle">Bota de Franja em Couro</p>
+            <p class="apparelSize">Tamanho 36</p>
+            <p class="apparelInfo">Feminino adulto</p>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="apparel" [style.backgroundImage]="(tempImage | itemImageBgSrc)">
+          <div class="apparelLabel">
+            <p class="apparelTitle">Bota de Franja em Couro</p>
+            <p class="apparelSize">Tamanho 36</p>
+            <p class="apparelInfo">Feminino adulto</p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <div class="apparel" [style.backgroundImage]="(tempImage | itemImageBgSrc)">
+          <div class="apparelLabel">
+            <p class="apparelTitle">Bota de Franja em Couro</p>
+            <p class="apparelSize">Tamanho 36</p>
+            <p class="apparelInfo">Feminino adulto</p>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col col-6>
+        <div class="apparel" [style.backgroundImage]="(tempImage | itemImageBgSrc)">
+          <div class="apparelLabel">
+            <p class="apparelTitle">Bota de Franja em Couro</p>
+            <p class="apparelSize">Tamanho 36</p>
+            <p class="apparelInfo">Feminino adulto</p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <div class="apparel" [style.backgroundImage]="(tempImage | itemImageBgSrc)">
+          <div class="apparelLabel">
+            <p class="apparelTitle">Bota de Franja em Couro</p>
+            <p class="apparelSize">Tamanho 36</p>
+            <p class="apparelInfo">Feminino adulto</p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

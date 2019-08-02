@@ -1,3 +1,105 @@
 page-item-list {
 
+  .profilePhoto {
+    position: relative;
+
+    img {
+      background: #ccc;
+
+      width: 98px;
+      height: 98px;
+
+      border-radius: 999em;
+
+      margin: 1rem auto 3rem auto;
+      display: block;
+    }
+
+    .btn-edit {
+      position: absolute;
+      bottom: 0px;
+      right: calc(50% - 49px);
+      background-color: #3AE6D9;
+      background: linear-gradient(180deg, #3AE6D9 0%, #26B9E2 100%) !important;
+      width: 32px;
+      height: 32px;
+      border-radius: 999em;
+
+      padding: 0;
+      margin: 0;
+
+      img {
+        background: transparent !important;
+        margin: auto;
+
+        width: 19px;
+        height: 17px;
+      }
+    }
+  }
+
+  h2.title {
+    color: #323232;
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight: bold;
+    width: 100%;
+  }
+
+  p.subtitle {
+    color: #323232;
+    text-align: center;
+    font-size: 1.4rem;
+    width: 90%;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  ion-grid {
+    ion-col {
+      div.apparel {
+        background-size: cover;
+        border-radius: 10px;
+        height: 216px !important;
+        max-height: 216px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+
+        div.apparelLabel {
+          position: absolute;
+          bottom: 20px;
+          left: 20px;
+
+          p {
+            color: #fff;
+
+            margin: 0 !important;
+            padding: 0 !important;
+
+            &.apparelTitle {
+              font-size: 1.6rem;
+              font-weight: bold;
+
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+
+              width: 80% !important;
+            }
+
+            &.apparelSize {
+              font-size: 1.2rem;
+            }
+
+            &.apparelInfo {
+              font-size: 1.2rem;
+            }
+          }
+        }
+
+      }
+    }
+  }
+
 }
+
