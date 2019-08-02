@@ -4,6 +4,7 @@ page-main {
     color: #323232;
     text-align: center;
     font-size: 2.6rem;
+    font-weight: bold;
     width: 100%;
   }
 
@@ -16,34 +17,91 @@ page-main {
     margin: 0 auto;
   }
 
-  ion-list-header {
-    background: transparent !important;
+  ion-list {
+    padding: 0 !important;
+    margin: 0 !important;
 
-    button {
-      float: right;
+    ion-list-header {
+      background: transparent !important;
 
-      &.item-button {
-        font-size: 16px;
-        margin: 0 !important;
-        padding: 0 0.5em !important;
-        height: 16px !important;
+      button {
+        float: right;
+
+        &.item-button {
+          font-size: 16px;
+          margin: 0 !important;
+          padding: 0 0.5em !important;
+          height: 16px !important;
+        }
+      }
+
+      p {
+        letter-spacing: initial !important;
+        text-transform: initial !important;
+      }
+
+      p.searchTitle {
+        color: #323232;
+        text-align: left;
+        font-size: 1.2rem;
+        padding: 0;
+        margin: 0;
+      }
+
+      p.searchDescription {
+        color: #323232;
+        text-align: left;
+        font-size: 1.6rem;
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
       }
     }
+  }
 
-    p.searchTitle {
-      color: #323232;
-      text-align: left;
-      font-size: 1.4rem;
-      padding: 0;
-      margin: 0;
-    }
+  ion-grid {
+    ion-col {
+      div.apparel {
+        background-size: cover;
+        border-radius: 10px;
+        height: 216px !important;
+        max-height: 216px !important;
+        width: 100% !important;
+        max-width: 100% !important;
 
-    p.searchDescription {
-      color: #323232;
-      text-align: left;
-      font-size: 1.4rem;
-      padding: 0;
-      margin: 0;
+        div.apparelLabel {
+          position: absolute;
+          bottom: 20px;
+          left: 20px;
+
+          p {
+            color: #fff;
+
+            margin: 0 !important;
+            padding: 0 !important;
+
+            &.apparelTitle {
+              font-size: 1.6rem;
+              font-weight: bold;
+
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+
+              width: 80% !important;
+            }
+
+            &.apparelSize {
+              font-size: 1.2rem;
+            }
+
+            &.apparelInfo {
+              font-size: 1.2rem;
+            }
+          }
+        }
+
+      }
     }
   }
 
