@@ -3,6 +3,8 @@ import { RegisterData } from "angular-token";
 export default class User {
   public email: string;
   public name: string;
+  public phone: string;
+  public adress: string;
 }
 
 export class RegisteringUser implements RegisterData {

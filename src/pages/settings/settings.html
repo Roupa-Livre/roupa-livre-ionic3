@@ -16,24 +16,23 @@
 
     <ion-item>
       <ion-label fixed>Nome</ion-label>
-      <ion-input type="text" value="Mari Pelicari"></ion-input>
+      <ion-input type="text"  [(ngModel)]="user.name" (ngModelChange)="changeUser($event)">{{user.name}}</ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>E-mail</ion-label>
-      <ion-input type="text" value="maripelicari@gmail.com"></ion-input>
+      <ion-input type="text" [(ngModel)]="user.email" (ngModelChange)="changeUser($event)">{{user.email}}</ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>Telefone</ion-label>
-      <ion-input type="text" value="+55 11 99999-8888"></ion-input>
+      <ion-input type="text" [(ngModel)]="user.phone" (ngModelChange)="changeUser($event)">{{user.phone}}</ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>Endereço</ion-label>
-      <ion-textarea rows="3" maxLength="500" value="Rua Artur de Azevedo, 55
-Pinheiros - SP
-CEP 05404-000">
+      <ion-textarea rows="3" maxLength="500" [(ngModel)]="user.adress" (ngModelChange)="changeUser($event)">
+          {{user.adress}}
       </ion-textarea>
     </ion-item>
 
@@ -43,7 +42,7 @@ CEP 05404-000">
     Fique tranquilo que só você vê essas informações, ok? ;)
   </p>
 
-  <ion-list>
+  <!-- <ion-list>
 
     <ion-list-header>
       Contas Sincronizadas
@@ -59,7 +58,7 @@ CEP 05404-000">
       <ion-toggle color="secondary" checked="false"></ion-toggle>
     </ion-item>
 
-  </ion-list>
+  </ion-list> -->
 
   <ion-list class="aboutInfo">
 
@@ -70,14 +69,14 @@ CEP 05404-000">
     <ion-item detail-push>
       Termos de Uso
     </ion-item>
-
+<!-- 
     <ion-item detail-push>
       Política de Privacidade
     </ion-item>
 
     <ion-item detail-push>
       Perguntas Frequentes
-    </ion-item>
+    </ion-item> -->
 
   </ion-list>
 
