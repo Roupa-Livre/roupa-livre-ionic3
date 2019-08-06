@@ -10,7 +10,7 @@ export class SettingsServiceProvider extends BaseService {
 
 	// METHODS
 	async updateUser(user) {
-		const result = await this.put('auth', user);
+		const result = await this.put('auth/', user);
 		Object.assign(this.tokenService.currentUserData, user);
 		return result;
 	}
