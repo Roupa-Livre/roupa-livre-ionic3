@@ -38,6 +38,7 @@ import { ItemSearcherService } from '../services/item-searcher-service';
 import { PipesModule } from '../pipes/pipes.module';
 import { PropertyGroupService } from '../services/property-group-service';
 import { PushService } from '../services/push-service';
+import { SettingsServiceProvider } from '../services/settings-service';
 
 @NgModule({
 	declarations: [
@@ -97,7 +98,8 @@ import { PushService } from '../services/push-service';
     ImageCompressService,
     ResizeOptions,
     Geolocation,
-    PushService
+	PushService,
+	SettingsServiceProvider
 	]
 })
 export class AppModule {}
