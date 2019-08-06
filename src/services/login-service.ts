@@ -77,7 +77,7 @@ export class LoginServiceProvider extends BaseService {
 	}
 
   async hasPushPermission() {
-    return (await this.push.hasPermission()).isEnabled;
+    return this.platform.is('cordova') && (await this.push.hasPermission()).isEnabled;
   }
   async requestPushPermission() {
     return this.pushService.init();
@@ -90,7 +90,7 @@ export class LoginServiceProvider extends BaseService {
   }
 
   async updateLatLng() {
-    if (this.tokenService.userSignedIn()) {
+    if (this.tokenService.userSignedIn() && this.platform.is('cordova')) {
       const posOptions = { timeout: 10000, enableHighAccuracy: true };
       const position = await this.geolocation.getCurrentPosition(posOptions);
 

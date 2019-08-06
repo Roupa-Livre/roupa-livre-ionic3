@@ -9,6 +9,12 @@ page-chat-details {
     background: #fcfcfc !important;
   }
 
+  .scroll-content {
+    overflow: auto;  /* redundant, but just in case */
+    display: flex; /* redundant, but just in case */
+    flex-direction: column-reverse;
+  }
+
   ion-title {
 
     img.headerAvatar {
