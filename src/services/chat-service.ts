@@ -21,8 +21,12 @@ export class ChatServiceProvider extends BaseService {
 	}
 
 	// METHODS
-	getChatMessages(id) : Promise<ApiArray<any>>{
-		return this.getMany<any>(`chat_messages/?chat_id=${id}`);
+	getChatMessages(id, pageSize = 20) : Promise<ApiArray<any>>{
+		return this.getMany<any>(`chat_messages/?chat_id=${id}&page_size=${pageSize}`);
+  }
+
+  previousChatMessages(id, baseMessageId, pageSize = 20) : Promise<ApiArray<any>>{
+		return this.getMany<any>(`chat_messages/?chat_id=${id}&base_message_id=${baseMessageId}&page_size=${pageSize}`);
   }
 
   getNextMessages(id, lastReadAt: Date) : Promise<ApiArray<any>>{

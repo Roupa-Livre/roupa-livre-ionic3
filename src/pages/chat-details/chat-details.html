@@ -21,9 +21,9 @@
 			</div>
 			<div class="text-lg">Suas mãos estão amarradas ou algo do tipo?</div>
 		</div>
-	</div>
+  </div>
 
-	<div class="chat-list" *ngIf="messages.length">
+	<ion-list #messagesList class="chat-list" no-lines>
 		<div class="chat-item" *ngFor="let item of messages; let i = index;" [ngClass]="{'me': (item.user_id == user.id)}">
 			<div class="chat-timestamp">
 				{{item.timestamp}}
@@ -47,7 +47,11 @@
 
 			<div class="chat-item-status" *ngIf="item.user_id == user.id && i == messages.length - 1">Enviado</div>
 		</div>
-	</div>
+	</ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 
 
