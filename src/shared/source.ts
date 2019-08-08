@@ -32,3 +32,12 @@ export function getImageAsSource(auth: AngularTokenService, image) {
       throw ex;
   }
 };
+
+export function pureImageAsSource(auth: AngularTokenService, image) {
+  try {
+    return image ? getProbableApiUrl(auth, image) : null;
+  } catch (ex) {
+    if (image !== undefined)
+      throw ex;
+  }
+};

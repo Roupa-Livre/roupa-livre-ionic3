@@ -8,12 +8,14 @@ import { TimeToStringPipe } from './time-to-string/time-to-string';
 import { GenderNamePipe } from './gender-name/gender-name';
 import { AgeInfoNamePipe } from './age-info-name/age-info-name';
 import { NotDestroyedPipe } from './not-destroyed/not-destroyed';
+import { ImageSourcePipe } from './item-image-source/image-source';
 @NgModule({
 	declarations: [UserImageSourcePipe,
     ShortNamePipe,
     DistanceToStringPipe,
     ItemImageBgSourcePipe,
     ItemImageSourcePipe,
+    ImageSourcePipe,
     TimeToStringPipe,
     GenderNamePipe,
     AgeInfoNamePipe,
@@ -24,6 +26,7 @@ import { NotDestroyedPipe } from './not-destroyed/not-destroyed';
     DistanceToStringPipe,
     ItemImageBgSourcePipe,
     ItemImageSourcePipe,
+    ImageSourcePipe,
     TimeToStringPipe,
     GenderNamePipe,
     AgeInfoNamePipe,
