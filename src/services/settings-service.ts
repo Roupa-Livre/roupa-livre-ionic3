@@ -14,4 +14,10 @@ export class SettingsServiceProvider extends BaseService {
 		Object.assign(this.tokenService.currentUserData, user);
 		return result;
 	}
+
+	async updateUserImage(user) {
+		const result = await this.post('users/update_image/', user);
+		Object.assign(this.tokenService.currentUserData, user);
+		return result;
+	}	
 }

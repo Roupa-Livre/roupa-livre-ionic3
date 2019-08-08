@@ -5,6 +5,8 @@ export default class User {
   public name: string;
   public phone: string;
   public address: string;
+  public social_image: string;
+  public image: string;
 }
 
 export class RegisteringUser implements RegisterData {
