@@ -7,10 +7,7 @@ import User from '../../models/user';
 import { SettingsServiceProvider } from '../../services/settings-service';
 import { ImageCompressService, ResizeOptions, SourceImage } from 'ng2-image-compress';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-
-const defaultResize = new ResizeOptions();
-defaultResize.Resize_Quality = 90;
-defaultResize.Resize_Max_Width = 1440;
+import { UserResizeOptions } from '../../shared/utils';
 
 
 @IonicPage()
@@ -21,22 +18,22 @@ defaultResize.Resize_Max_Width = 1440;
 export class SettingsPage {
 
   public user: User;
- 
+
   	// CONSTRUCTOR
 	constructor(
     navCtrl: NavController,
-    navigationService: NavigationServiceProvider,    
-    public viewCtrl: ViewController,    
+    navigationService: NavigationServiceProvider,
+    public viewCtrl: ViewController,
     public imagePicker: ImagePicker,
     private platform: Platform,
     private settingsService: SettingsServiceProvider,
     public navParams: NavParams,
-    
+
 		private iab: InAppBrowser,
     private loginService: LoginServiceProvider) {
       this.init()
   }
-  
+
   init() {
     this.user = this.loginService.user();
   }
@@ -69,14 +66,14 @@ export class SettingsPage {
 
     const image = new SourceImage();
     image.imageDataUrl = results[0];
-    const processedImages = await ImageCompressService.IImageListToCompressedImageSourceEx([ image ], defaultResize);
+    const processedImages = await ImageCompressService.IImageListToCompressedImageSourceEx([ image ], UserResizeOptions);
 
     this.user.image = processedImages[0].compressedImage.imageDataUrl;
     this.user.social_image = this.user.image;
     this.changeImage();
   }
 
-  hasImage(img) { 
+  hasImage(img) {
     return img !== this.user.image || img !== null;
   }
 

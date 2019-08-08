@@ -6,10 +6,7 @@ import { Apparel } from '../../models/apparel';
 import { PropertyGroupService } from '../../services/property-group-service';
 import { ItemServiceProvider } from '../../services/item-service';
 import { ImageCompressService, ResizeOptions, SourceImage } from 'ng2-image-compress';
-
-const defaultResize = new ResizeOptions();
-defaultResize.Resize_Quality = 90;
-defaultResize.Resize_Max_Width = 1440;
+import { ApparelResizeOptions } from '../../shared/utils';
 
 @IonicPage()
 @Component({
@@ -195,7 +192,7 @@ export class ItemFormPage {
 
     const image = new SourceImage();
     image.imageDataUrl = results[0];
-    const processedImages = await ImageCompressService.IImageListToCompressedImageSourceEx([ image ], defaultResize);
+    const processedImages = await ImageCompressService.IImageListToCompressedImageSourceEx([ image ], ApparelResizeOptions);
     if (index < this.item.apparel_images.length) {
       delete this.item.apparel_images['_destroy'];
       delete this.item.apparel_images['file_url'];
