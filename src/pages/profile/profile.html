@@ -56,7 +56,8 @@
               Tamanho {{item.size_info}}
             </span>
           </p>
-          <button *ngIf="item.likes_count" ion-button clear color="blueLight" class="matches">{{item.likes_count}} Combinações</button>
+          <button *ngIf="item.matches" ion-button clear color="blueLight" class="stats matches">{{item.matches}} Combinações<span *ngIf="item.last_month_matches && item.last_month_matches != item.matches">, {{ item.last_month_matches }} esse mês</span></button>
+          <button *ngIf="item.last_month_likes" ion-button clear color="like" class="stats likes">{{item.last_month_likes}} likes esse mês</button>
         </ion-item>
 
       </ion-list>

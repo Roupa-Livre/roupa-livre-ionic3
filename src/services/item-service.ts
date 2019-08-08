@@ -24,6 +24,10 @@ export class ItemServiceProvider extends BaseService {
     return this.getMany<Apparel>('apparels/owned', mergedParams);
   }
 
+  getMatched(params = {}) : Promise<ApiArray<Apparel>>{
+    return this.getMany<Apparel>('apparels/matched', params);
+  }
+
   save(item) {
     const data = { apparel: Object.assign({}, item) }
     data.apparel.apparel_property_attributes = item.apparel_property;

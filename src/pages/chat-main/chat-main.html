@@ -10,30 +10,18 @@
 <ion-content>
 
   <ion-list>
-    <!-- <ion-list-header>
+    <ion-list-header>
       PEÇAS QUE COMBINARAM COM AS SUAS
     </ion-list-header>
 
     <ion-item>
       <ion-row align-items-center no-padding>
-        <ion-col col-auto>
-          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
-        </ion-col>
-        <ion-col col-auto>
-          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
-        </ion-col>
-        <ion-col col-auto>
-          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
-        </ion-col>
-        <ion-col col-auto>
-          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
-        </ion-col>
-        <ion-col col-auto>
-          <demo-avatar [sizeClass]="'thumb-md'"></demo-avatar>
+        <ion-col col-auto *ngFor="let apparel of matchedApparels" (tap)="goToApparelChat(apparel)">
+          <img class="rounded thumb-sm" [src]="apparel.apparel_images[0] | itemImageSrc">
         </ion-col>
       </ion-row>
     </ion-item>
-  </ion-list> -->
+  </ion-list>
 
   <ion-list>
     <ion-list-header>
