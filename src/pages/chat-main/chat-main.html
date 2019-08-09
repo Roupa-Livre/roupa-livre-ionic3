@@ -1,9 +1,11 @@
 <ion-header no-border>
 	<app-header [activeView]="'chat'"></app-header>
 
-	<!-- <ion-toolbar>
-		<ion-searchbar placeholder="Buscar"></ion-searchbar>
-	</ion-toolbar> -->
+	<ion-toolbar>
+		<ion-searchbar placeholder="Buscar" [(ngModel)]="searchTerm"
+      (ionInput)="onSearchInput($event)"
+      (ionClear)="onSearchClear($event)"></ion-searchbar>
+	</ion-toolbar>
 </ion-header>
 
 
@@ -16,6 +18,9 @@
 
     <ion-item>
       <ion-row align-items-center no-padding>
+        <ion-col col-auto *ngIf="loadingMatched">
+          <ion-spinner></ion-spinner>
+        </ion-col>
         <ion-col col-auto *ngFor="let apparel of matchedApparels" (tap)="goToApparelChat(apparel)">
           <img class="rounded thumb-sm" [src]="apparel.apparel_images[0] | itemImageSrc">
         </ion-col>
@@ -27,6 +32,10 @@
     <ion-list-header>
       CONVERSAS
     </ion-list-header>
+
+    <ion-item *ngIf="loading">
+      <ion-spinner></ion-spinner>
+    </ion-item>
 
     <ion-item detail-push *ngFor="let chat of chats" (tap)="goToChatDetails(chat)">
       <ion-row align-items-center no-padding>

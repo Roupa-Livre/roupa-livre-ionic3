@@ -36,11 +36,12 @@ export class ChatServiceProvider extends BaseService {
   getChat(id: number) : Promise<Chat> {
     return this.getOne(`chats/${id}`);
   }
+
   getChatByUser(user_id: number) : Promise<Chat> {
     return this.getOne(`chats/active_by_user/${user_id}`);
   }
-  getChats() {
-    return this.getMany(`chats`);
+  getChats(params = {}) {
+    return this.getMany(`chats`, params);
   }
 
 }

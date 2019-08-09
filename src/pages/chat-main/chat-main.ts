@@ -12,8 +12,12 @@ import { ItemServiceProvider } from '../../services/item-service';
 })
 export class ChatMainPage extends AuthPage {
 
+  loading;
   chats;
+  allChats;
+  loadingMatched;
   matchedApparels;
+  searchTerm;
 
 	// CONSTRUCTOR
 	constructor(
@@ -27,13 +31,50 @@ export class ChatMainPage extends AuthPage {
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
-    this.chatService.getChats().then(chats => {
-     this.chats = chats;
-    });
-    this.itemService.getMatched().then(matched => {
-      this.matchedApparels = matched;
-    });
-	}
+    return Promise.all([
+      this.reloadChats(),
+      this.reloadMatched(),
+    ]);
+  }
+
+  async reloadChats() {
+    try {
+      this.loading = true;
+      const params:any = { }
+      if (this.searchTerm && this.searchTerm.length > 3) {
+        params.term = this.searchTerm;
+      }
+      this.chats = [];
+      this.chats = await this.chatService.getChats(params);
+      if (!params.term) {
+        this.allChats = this.chats;
+      }
+      return this.chats;
+
+    } finally {
+      this.loading = false;
+    }
+  }
+
+  async reloadMatched() {
+    try {
+      this.loadingMatched = true;
+      this.matchedApparels = [];
+      this.matchedApparels = await this.itemService.getMatched();
+    } finally {
+      this.loadingMatched = false;
+    }
+  }
+
+  onSearchInput(ev) {
+    if (this.searchTerm && this.searchTerm.length > 0) {
+      this.reloadChats();
+    }
+  }
+
+  onSearchClear(ev) {
+    this.chats = this.allChats;
+  }
 
 	// CLICK EVENTS
 	goToChatDetails(chat) {
