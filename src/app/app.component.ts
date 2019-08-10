@@ -44,6 +44,7 @@ export class MyApp {
       // keyboard.hideKeyboardAccessoryBar(true);
 
       this.subscribeToEvents();
+      // this.testNotify();
 
 			if (this.tokenService.userSignedIn()) {
 				this.tokenService.validateToken().toPromise().then(async res => {
@@ -57,7 +58,8 @@ export class MyApp {
 				})
 			} else {
         this.rootPage = 'PublicPage';
-			}
+      }
+
     });
   }
 
@@ -77,18 +79,48 @@ export class MyApp {
   }
 
   private async onPushNotification(data) {
+    console.log('onPushNotification', data);
     if (data.hasOwnProperty('additionalData')) {
       if (data.additionalData.type == 'message') {
         if (!data.additionalData.foreground) {
           const chat = this.chatService.getChat(data.additionalData.chat.id);
-          this.nacContent.push('ChatPage', { chat, id: data.additionalData.chat_id });
+          this.nacContent.push('ChatMainPage', { chat, id: data.additionalData.chat_id });
         }
       } else if (data.additionalData.type == 'match') {
         const chat = this.chatService.getChat(data.additionalData.chat.id);
         let modalMatched = this.modalCtrl.create('ItemMatchedPage', { chat });
         modalMatched.present();
+      } else if (data.additionalData.type == 'custom') {
+        console.log('NotificationCustomPage');
+        let modalCustom = this.modalCtrl.create('NotificationCustomPage', { notificationData: data.additionalData });
+        modalCustom.onDidDismiss(data => {
+          if (data && data.page) {
+            this.nacContent.push(data.page, data.params);
+          }
+        })
+        modalCustom.present();
       }
     }
+  }
+
+  testNotify() {
+    setTimeout(() => {
+      console.log('testNotify');
+      this.events.publish('on-push-notification', {
+        additionalData: {
+          type: 'custom',
+          image: 'https://images.squarespace-cdn.com/content/v1/545a4cd9e4b01ba1e16be339/1510183845982-X9MADBNZERB087IB7PSA/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/background-curso.jpg?format=1500w',
+          // title: 'uma notificacao custom',
+          // body: '<ul><li>aqui vai meu conteudo</li>',
+          // actionLink: '/ChatMainPage',
+          // actionTitle: 'seus chats',
+          title: 'veja nosso site',
+          body: '<ul><li>que acha de conhecer nosso site?</li>',
+          actionLink: 'https://roupalivre.com.br',
+          actionTitle: 'CONHEÇA',
+        }
+      })
+    }, 5000);
   }
 
   subscribeToEvents() {

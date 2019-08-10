@@ -1,0 +1,20 @@
+<ion-content no-bounce>
+	<div layout vertical center>
+		<h2 class="title">{{data.title}}!</h2>
+
+		<div class="main-image" *ngIf="data.image">
+      <img class="item" [src]="data.image" alt="data.title">
+    </div>
+
+    <div class="description" [innerHtml]="safeHTML"></div>
+
+    <div class="groupButtons">
+			<button ion-button round block class="match" *ngIf="data.actionLink" (tap)="goToAction()">
+        {{ data.actionTitle || data.actionLink }}
+      </button>
+			<button ion-button round block class="continue" (tap)="close()">
+        FECHAR
+      </button>
+		</div>
+	</div>
+</ion-content>

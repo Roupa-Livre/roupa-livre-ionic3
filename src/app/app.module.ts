@@ -98,8 +98,9 @@ import { SettingsServiceProvider } from '../services/settings-service';
     ImageCompressService,
     ResizeOptions,
     Geolocation,
-	PushService,
-	SettingsServiceProvider
+	  PushService,
+    SettingsServiceProvider,
+    InAppBrowser,
 	]
 })
 export class AppModule {}
