@@ -10,12 +10,15 @@ export class ItemListPage {
 
   // VARS
   public tempImage: string = "assets/img/dummy/blusa.jpg";
+  private user;
+
 
   // CONSTRUCTOR
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams
   ) {
+    this.user = this.navParams.data.user;
   }
 
   ionViewDidLoad() {

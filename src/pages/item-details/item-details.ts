@@ -44,6 +44,12 @@ export class ItemDetailsPage {
 	ionViewDidLoad() {
 	}
 
+	openProfile(user) {
+		this.navCtrl.push('ItemListPage', {user}, {
+			direction: 'forward'
+		});
+	}
+
 	slideChanged() {
 		this.currentSlideIndex = this.slides.getActiveIndex();
 	}
