@@ -13,12 +13,12 @@
     <button ion-button icon-only clear class="btn-edit" (tap)="goToChat()">
       <img src="assets/img/newLayout/chat-bubbles-icon.svg">
     </button>
-    <img [src]="(user | userImageSrc) || 'https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png'">
+    <img [src]="(item.user | userImageSrc) || 'https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png'">
   </div>
 
   <!-- HEADER -->
-  <h2 class="title">{{user.name}}</h2>
-  <p class="subtitle">cerca de 12km</p>
+  <h2 class="title">{{item.user.name}}</h2>
+  <p class="subtitle">{{ item.distance | distanceToString }}</p>
   <p class="subtitle">5 peças disponíveis</p>
 
   <!-- RESULTS -->

@@ -49,4 +49,9 @@ export class ItemServiceProvider extends BaseService {
     return this.post('apparel_ratings', { apparel_rating });
   }
 
+  findApparelsByUser(user_id) : Promise<ApiArray<Apparel>>{
+    return this.getMany<Apparel>(`/apparels/apparels_by_user/${user_id}`);
+    
+  }
+
 }

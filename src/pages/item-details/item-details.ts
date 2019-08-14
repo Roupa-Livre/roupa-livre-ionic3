@@ -44,8 +44,8 @@ export class ItemDetailsPage {
 	ionViewDidLoad() {
 	}
 
-	openProfile(user) {
-		this.navCtrl.push('ItemListPage', {user}, {
+	openProfile(item) {
+		this.navCtrl.push('ItemListPage', {item}, {
 			direction: 'forward'
 		});
 	}

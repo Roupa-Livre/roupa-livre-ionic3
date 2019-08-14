@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ItemServiceProvider } from '../../services/item-service';
 
 @IonicPage()
 @Component({
@@ -10,15 +11,23 @@ export class ItemListPage {
 
   // VARS
   public tempImage: string = "assets/img/dummy/blusa.jpg";
-  private user;
+  private item;
+  private items;
 
 
   // CONSTRUCTOR
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public itemsService: ItemServiceProvider
   ) {
-    this.user = this.navParams.data.user;
+    this.item = this.navParams.data.item;
+    this.loadApparels();
+    
+  }
+
+  async loadApparels() {
+     this.items = await this.itemsService.findApparelsByUser(this.item.user_id);
   }
 
   ionViewDidLoad() {
