@@ -103,7 +103,8 @@ export class LoginServiceProvider extends BaseService {
 
   public async updateAccount(updatedData) {
     const result = await this.put('auth', updatedData);
-    Object.assign(this.tokenService.currentUserData, updatedData);
+    if (result && result.data)
+      Object.assign(this.tokenService.currentUserData, result.data);
     return result;
   }
 

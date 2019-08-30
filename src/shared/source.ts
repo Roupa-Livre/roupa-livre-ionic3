@@ -10,10 +10,10 @@ export function getProbableApiUrl(auth: AngularTokenService, url) {
     return fixedUrl;
 };
 
-export function getImageAsSource(auth: AngularTokenService, image) {
+export function getImageAsSource(auth: AngularTokenService, imageContainer) {
+  let image;
   try {
-    if (image.hasOwnProperty('image'))
-      image = image.image;
+    image = imageContainer.hasOwnProperty('image') ? imageContainer.image : imageContainer;
 
     if (image.hasOwnProperty('file_url'))
       return getProbableApiUrl(auth, image.file_url);

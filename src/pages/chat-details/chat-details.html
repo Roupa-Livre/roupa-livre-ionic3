@@ -1,7 +1,7 @@
 <ion-header no-border class="header-shadow">
 	<ion-navbar color="white">
 		<ion-title *ngIf="chat">
-      <img class="headerAvatar" [src]="chat.other_user | userImageSrc">
+      <img class="headerAvatar" [src]="chat.other_user.image | userImageSrc:chat.other_user.social_image">
 			<span class="nameAvatar">{{ chat.other_user | shortName }}</span>
 		</ion-title>
 	</ion-navbar>
@@ -17,7 +17,7 @@
 				<div>{{ chat.created_at | timeToString }}</div>
 			</div>
 			<div class="m-b">
-				<img class="rounded thumb-xl" [src]="chat.other_user | userImageSrc" />
+				<img class="rounded thumb-xl" [src]="chat.other_user.image | userImageSrc:chat.other_user.social_image" />
 			</div>
 			<div class="text-lg">Suas mãos estão amarradas ou algo do tipo?</div>
 		</div>

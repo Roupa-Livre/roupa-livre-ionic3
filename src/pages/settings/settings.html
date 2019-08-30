@@ -6,32 +6,32 @@
 
 <ion-content>
 
-  <div class="profilePhoto">
-    <img [src]="(user | userImageSrc) || 'https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png'">
+  <div class="profilePhoto" (tap)="changeProfilePhoto()">
+    <img [src]="user.image | userImageSrc:user.social_image">
   </div>
 
-  <button ion-button color="blueLight" block clear (tap)="changeProfilePhoto(user)">MUDAR FOTO DE PERFIL</button>
+  <button ion-button color="blueLight" block clear (tap)="changeProfilePhoto()">MUDAR FOTO DE PERFIL</button>
 
   <ion-list class="personalInfo">
 
     <ion-item>
       <ion-label fixed>Nome</ion-label>
-      <ion-input type="text"  [(ngModel)]="user.name" (ngModelChange)="changeUser($event)">{{user.name}}</ion-input>
+      <ion-input type="text"  [(ngModel)]="user.name" (ngModelChange)="saveUser($event)">{{user.name}}</ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>E-mail</ion-label>
-      <ion-input type="text" [(ngModel)]="user.email" (ngModelChange)="changeUser($event)" disabled>{{user.email}}</ion-input>
+      <ion-input type="text" [(ngModel)]="user.email" (ngModelChange)="saveUser($event)" disabled>{{user.email}}</ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>Telefone</ion-label>
-      <ion-input type="text" [(ngModel)]="user.phone" (ngModelChange)="changeUser($event)">{{user.phone}}</ion-input>
+      <ion-input type="text" [(ngModel)]="user.phone" (ngModelChange)="saveUser($event)">{{user.phone}}</ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>Endereço</ion-label>
-      <ion-textarea rows="3" maxLength="500" [(ngModel)]="user.address" (ngModelChange)="changeUser($event)">
+      <ion-textarea rows="3" maxLength="500" [(ngModel)]="user.address" (ngModelChange)="saveUser($event)">
           {{user.address}}
       </ion-textarea>
     </ion-item>
@@ -72,7 +72,7 @@
     <ion-item detail-push (tap)="navigate('https://docs.google.com/document/d/11JL3w2G0NUf8K2nPC477UA-WKFQyHeDSk3q_IfLFTkw/edit?usp=sharing')">
       Termos de Uso
     </ion-item>
-<!-- 
+<!--
     <ion-item detail-push>
       Política de Privacidade
     </ion-item>

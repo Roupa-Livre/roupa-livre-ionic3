@@ -40,7 +40,7 @@
     <ion-item detail-push *ngFor="let chat of chats" (tap)="goToChatDetails(chat)">
       <ion-row align-items-center no-padding>
         <ion-col col-auto>
-          <img class="rounded thumb-md" [src]="chat.other_user | userImageSrc">
+          <img class="rounded thumb-md" [src]="chat.other_user.image | userImageSrc:chat.other_user.social_image">
         </ion-col>
         <ion-col>
           <div>

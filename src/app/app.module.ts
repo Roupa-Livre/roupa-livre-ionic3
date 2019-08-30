@@ -19,7 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
 
-import { ImageCompressService,ResizeOptions,ImageUtilityService } from 'ng2-image-compress';
+import { ImageCompressService,ResizeOptions } from 'ng2-image-compress';
 
 import { AngularTokenModule } from 'angular-token';
 
@@ -38,7 +38,6 @@ import { ItemSearcherService } from '../services/item-searcher-service';
 import { PipesModule } from '../pipes/pipes.module';
 import { PropertyGroupService } from '../services/property-group-service';
 import { PushService } from '../services/push-service';
-import { SettingsServiceProvider } from '../services/settings-service';
 
 @NgModule({
 	declarations: [
@@ -99,7 +98,6 @@ import { SettingsServiceProvider } from '../services/settings-service';
     ResizeOptions,
     Geolocation,
 	  PushService,
-    SettingsServiceProvider,
     InAppBrowser,
 	]
 })
