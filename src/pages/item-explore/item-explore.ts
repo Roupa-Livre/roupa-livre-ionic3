@@ -173,11 +173,8 @@ export class ItemExplorePage extends AuthPage {
   private async doLike(item) {
     this.isLoading = true;
     try {
-      const likeResult = await this.itemService.rate(item, true);
-      const goToCustom = await this.checkMatching(item, likeResult);
-      if (goToCustom)
-        this.navCtrl.push(goToCustom.page, goToCustom.params);
-      else
+      const navigated = await this.navigationService.like(item, this.navCtrl);
+      if (!navigated)
         await this.goToNext();
     } finally {
       this.isLoading = false;
@@ -185,23 +182,10 @@ export class ItemExplorePage extends AuthPage {
   }
 
   private async doDislike(item) {
-    const dislikeResult = await this.itemService.rate(item, false);
+    const dislikeResult = await this.navigationService.dislike(item);
     // console.log('deslikeResult', dislikeResult);
     await this.goToNext();
   }
-
-	private async checkMatching(item, likeResult) : Promise<any> {
-    if (likeResult.chat) {
-      return new Promise<boolean>((resolve, reject) => {
-        this.chatService.getChat(likeResult.chat.id).then(chat => {
-          let modalMatched = this.modalCtrl.create('ItemMatchedPage', { chat });
-          modalMatched.onDidDismiss(resolve);
-          modalMatched.present().catch(reject);
-        }, reject);
-      });
-    }
-    return false;
-	}
 
 	trackByFn(index, item) {
 		return item.id;
@@ -221,12 +205,13 @@ export class ItemExplorePage extends AuthPage {
 	}
 
 	openItemDetails(item) {
-    let modal = this.modalCtrl.create('ItemDetailsPage', { item,
+    let modal = this.modalCtrl.create('ItemDetailsPage', {
+      item,
       likeCallback: item => {
         this.doLike(item);
       },
       dislikeCallback: item => {
-        this.doLike(item);
+        this.doDislike(item);
       }
     });
 		modal.present();

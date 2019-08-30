@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { NavController, Events } from 'ionic-angular';
+import { NavController, Events, ModalController } from 'ionic-angular';
 
 import { AngularTokenService } from 'angular-token';
 
@@ -10,6 +10,8 @@ import { Storage } from '@ionic/storage';
 
 import 'rxjs/add/operator/map';
 import { LoginServiceProvider } from './login-service';
+import { ChatServiceProvider } from './chat-service';
+import { ItemServiceProvider } from './item-service';
 
 @Injectable()
 export class NavigationServiceProvider {
@@ -17,8 +19,11 @@ export class NavigationServiceProvider {
 	// CONSTRUCTOR
   constructor(private tokenService: AngularTokenService,
     private loginService: LoginServiceProvider,
+    private chatService: ChatServiceProvider,
+    private itemService: ItemServiceProvider,
     private storage: Storage,
     private events: Events,
+    public modalCtrl: ModalController,
 		) {
   }
 
@@ -103,6 +108,33 @@ export class NavigationServiceProvider {
   async checkRoot(direction = 'foward') {
     const rootPage = await this.getRootPage();
     this.events.publish('check-root', { newRoot: rootPage, direction })
+  }
+
+	async checkMatching(item, likeResult) : Promise<any> {
+    if (likeResult.chat) {
+      return new Promise<boolean>((resolve, reject) => {
+        this.chatService.getChat(likeResult.chat.id).then(chat => {
+          let modalMatched = this.modalCtrl.create('ItemMatchedPage', { chat });
+          modalMatched.onDidDismiss(resolve);
+          modalMatched.present().catch(reject);
+        }, reject);
+      });
+    }
+    return Promise.resolve(false);
+  }
+
+  async like(item, navCtrl) {
+    const likeResult = await this.itemService.rate(item, true);
+    const goToCustom = await this.checkMatching(item, likeResult);
+    if (goToCustom) {
+      await navCtrl.push(goToCustom.page, goToCustom.params);
+      return true;
+    } else
+      return false;
+  }
+
+  async dislike(item) {
+    return await this.itemService.rate(item, false);
   }
 
 }

@@ -78,7 +78,7 @@
 
       <h2>{{item.user | shortName}}</h2>
       <p>{{ item.distance | distanceToString }}</p>
-      <button ion-button clear small color="blueLight" class="allItems" (click)="openProfile(item)">
+      <button *ngIf="!disableOwnerPage" ion-button clear small color="blueLight" class="allItems" (click)="openProfile(item)">
         VER TODAS PEÇAS
       </button>
     </ion-item>

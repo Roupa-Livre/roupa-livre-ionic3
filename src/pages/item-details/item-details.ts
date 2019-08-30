@@ -17,6 +17,7 @@ export class ItemDetailsPage {
 	currentSlideIndex: number = 0;
   isMe: boolean = true;
   item: Apparel;
+  disableOwnerPage: boolean = false;
 
 	// CONSTRUCTOR
 	constructor(
@@ -30,6 +31,7 @@ export class ItemDetailsPage {
 	) {
     this.isMe = (typeof this.navParams.get('isMe') == 'undefined') ? true : this.navParams.get('isMe');
     this.item = this.navParams.data.item;
+    this.disableOwnerPage = this.navParams.data.disableOwnerPage;
 		this.init();
 	}
 
@@ -44,10 +46,9 @@ export class ItemDetailsPage {
 	ionViewDidLoad() {
 	}
 
-	openProfile(item) {
-		this.navCtrl.push('ItemListPage', {item}, {
-			direction: 'forward'
-		});
+	async openProfile(item) {
+		await this.navCtrl.push('UserItemListPage', { item }, { direction: 'forward' });
+    this.viewCtrl.dismiss();
 	}
 
 	slideChanged() {
