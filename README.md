@@ -56,20 +56,18 @@ ionic cordova build --release android
 
 3 - Assine o apk
 ```
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../keys/play-store-nucleo.keystore platforms/android/build/outputs/apk/android-x86-release-unsigned.apk nucleo
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../keys//play-store-nucleo.keystore platforms/android/build/outputs/apk/android-armv7-release-unsigned.apk nucleo
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../keys/play-store-nucleo.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk nucleo --storepass:env NUCLEO_ROUPA_ANDROID_KEY
 rm -rf ./RELEASE
 mkdir -p RELEASE
-mv -f platforms/android/build/outputs/apk/android-x86-release-unsigned.apk ./RELEASE/android-x86-release-unsigned.apk
-mv -f platforms/android/build/outputs/apk/android-armv7-release-unsigned.apk ./RELEASE/android-armv7-release-unsigned.apk
-```
+mv -f platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ./RELEASE/android-release-unsigned.apk
 
-4 - Gere o APK final
-```
 rm -rf ./UPLOAD
 mkdir -p UPLOAD
-zipalign -v 4 ./RELEASE/android-x86-release-unsigned.apk ./UPLOAD/new_version-x86.apk
-zipalign -v 4 ./RELEASE/android-armv7-release-unsigned.apk ./UPLOAD/new_version-armv7.apk
+APP_VERSION=$(xmllint -xpath 'string(//*[local-name()="widget"]/@version)' config.xml \
+| cut -f1-3 -d.)
+APP_VERSIONCODE=$(xmllint -xpath 'string(//*[local-name()="widget"]/@android-versionCode)' config.xml \
+| cut -f1-3 -d.)
+zipalign -v 4 ./RELEASE/android-release-unsigned.apk ./UPLOAD/roupalivre-$APP_VERSION-$APP_VERSIONCODE.apk
 open ./UPLOAD
 ```
 
