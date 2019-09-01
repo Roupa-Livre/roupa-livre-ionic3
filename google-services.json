@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "468184339406",
+    "firebase_url": "https://roupalivre-144210.firebaseio.com",
+    "project_id": "roupalivre-144210",
+    "storage_bucket": "roupalivre-144210.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468184339406:android:3556621633a45b27",
+        "android_client_info": {
+          "package_name": "com.nucleo235.roupalivre"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468184339406-m6t82thmm4igpm386dilgru37rdensq7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzbzlQwI_w-EDUa_BzBJ-psD8S25fXr20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468184339406-m6t82thmm4igpm386dilgru37rdensq7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "468184339406-kif4e5ujb4dk43ndniadti4ps84q0rhr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nucleo235.roupalivre"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

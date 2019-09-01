@@ -1,4 +1,5 @@
 import { ResizeOptions } from "ng2-image-compress";
+import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 
 export const delay = t => new Promise(resolve => setTimeout(resolve, t));
 

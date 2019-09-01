@@ -12,7 +12,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -78,7 +78,7 @@ import { PushService } from '../services/push-service';
 		AppVersion,
     Keyboard,
     Facebook,
-		ImagePicker,
+		Camera,
 		InAppBrowser,
 		SplashScreen,
 		StatusBar,

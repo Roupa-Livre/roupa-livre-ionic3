@@ -22,11 +22,11 @@
         "@angular/platform-browser-dynamic": "7.0.0",
         "@angular/router": "7.0.0",
         "@ionic-native/app-version": "5.0.0",
+        "@ionic-native/camera": "^5.13.0",
         "@ionic-native/core": "5.0.0",
         "@ionic-native/device": "^5.11.0",
         "@ionic-native/facebook": "5.0.0",
         "@ionic-native/geolocation": "^5.9.0",
-        "@ionic-native/image-picker": "5.0.0",
         "@ionic-native/in-app-browser": "^5.12.0",
         "@ionic-native/keyboard": "5.0.0",
         "@ionic-native/push": "^5.0.0",
@@ -39,11 +39,11 @@
         "ajv-keywords": "^3.3.0",
         "angular-token": "github:Nucleo-235/angular-token-built",
         "angular2-swing": "0.14.0",
-        "com.synconset.imagepicker": "^2.1.10",
         "cordova-android": "7.1.4",
         "cordova-browser": "5.0.4",
         "cordova-ios": "4.5.4",
         "cordova-plugin-app-version": "^0.1.9",
+        "cordova-plugin-camera": "4.1.0",
         "cordova-plugin-device": "^1.1.7",
         "cordova-plugin-facebook4": "^3.2.0",
         "cordova-plugin-geolocation": "4.0.1",
@@ -89,9 +89,6 @@
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
             "ionic-plugin-keyboard": {},
-            "com.synconset.imagepicker": {
-                "PHOTO_LIBRARY_USAGE_DESCRIPTION": "your usage message"
-            },
             "cordova-plugin-whitelist": {},
             "cordova-sqlite-storage": {},
             "cordova-plugin-facebook4": {
@@ -106,6 +103,9 @@
             "phonegap-plugin-push": {
                 "ANDROID_SUPPORT_V13_VERSION": "27.+",
                 "FCM_VERSION": "11.6.2"
+            },
+            "cordova-plugin-camera": {
+                "ANDROID_SUPPORT_V4_VERSION": "27.+"
             }
         },
         "platforms": [
