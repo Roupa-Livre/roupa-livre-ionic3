@@ -9,6 +9,7 @@ import { GenderNamePipe } from './gender-name/gender-name';
 import { AgeInfoNamePipe } from './age-info-name/age-info-name';
 import { NotDestroyedPipe } from './not-destroyed/not-destroyed';
 import { ImageSourcePipe } from './item-image-source/image-source';
+import { TranslatePipe } from './translate/user-image-source';
 @NgModule({
 	declarations: [UserImageSourcePipe,
     ShortNamePipe,
@@ -19,7 +20,9 @@ import { ImageSourcePipe } from './item-image-source/image-source';
     TimeToStringPipe,
     GenderNamePipe,
     AgeInfoNamePipe,
-    NotDestroyedPipe],
+    NotDestroyedPipe,
+    TranslatePipe,
+  ],
 	imports: [],
 	exports: [UserImageSourcePipe,
     ShortNamePipe,
@@ -30,6 +33,8 @@ import { ImageSourcePipe } from './item-image-source/image-source';
     TimeToStringPipe,
     GenderNamePipe,
     AgeInfoNamePipe,
-    NotDestroyedPipe]
+    NotDestroyedPipe,
+    TranslatePipe,
+  ]
 })
 export class PipesModule {}

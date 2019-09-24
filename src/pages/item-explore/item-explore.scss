@@ -2,6 +2,43 @@
 
 page-item-explore {
 
+  ion-content.loading {
+    background: linear-gradient(-40deg, #3FF2D7 0%, #0372EF 100%) !important;
+    position: relative;
+    z-index: 1000;
+
+    .scroll-content {
+      margin-top: 0px !important;
+    }
+
+    .box {
+      justify-content: space-around;
+      height: 100%;
+
+      .logo {
+          img {
+              margin: 0 auto;
+
+              width: 118px;
+              height: auto;
+          }
+      }
+
+      .info {
+          color: #fff;
+
+          padding: 0 3em;
+
+          font-size: 1.2em;
+          font-weight: 700;
+
+          margin: 0 auto;
+
+          text-align: center;
+      }
+    }
+  }
+
 	.swipe-bg {
 		// background: #fff;
     // background-image: linear-gradient(#fff, #f6f7fb);

@@ -21,6 +21,7 @@ import { Apparel } from '../../models/apparel';
 import { ItemServiceProvider } from '../../services/item-service';
 import { ChatServiceProvider } from '../../services/chat-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
+import { t } from '../../shared/current-lang';
 
 @IonicPage()
 @Component({
@@ -36,7 +37,8 @@ export class ItemExplorePage extends AuthPage {
 
 	stackConfig: StackConfig;
   items: Apparel[] = [];
-	isLoading: boolean = true;
+	isLoading: boolean = false;
+	modalLoading;
 
 	// CONSTRUCTOR
 	constructor(
@@ -68,7 +70,7 @@ export class ItemExplorePage extends AuthPage {
 			throwOutDistance: (d) => {
 				return 800;
 			}
-		};
+    };
 	}
 
 	// LIFECYCLE EVENTS
@@ -78,6 +80,8 @@ export class ItemExplorePage extends AuthPage {
 
 	// LIFECYCLE EVENTS
 	ionViewWillEnter() {
+    this.showLoading();
+
     this.initialLoad();
     this.loginService.updateLatLng();
 	}
@@ -111,13 +115,27 @@ export class ItemExplorePage extends AuthPage {
     modalNotFound.present();
   }
 
+  async showLoading() {
+    if (!this.isLoading) {
+      this.isLoading = true;
+      // this.modalLoading = this.modalCtrl.create('LoadingPage', { customMessage: t('apparel.loading.message') });
+      // await this.modalLoading.present();
+    }
+  }
+
+  async hideLoading() {
+    // if (this.modalLoading)
+      // await this.modalLoading.dismiss();
+    this.isLoading = false;
+  }
+
   async loadMore() {
-    this.isLoading = true;
+    this.showLoading();
     try {
       const items = await this.itemSearcher.getNextItems();
       Array.prototype.push.apply(this.items, items);
     } finally {
-      this.isLoading = false;
+      this.hideLoading();
     }
   }
 

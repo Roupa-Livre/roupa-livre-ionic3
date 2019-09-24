@@ -1,10 +1,10 @@
 page-loading {
 
+    ion-content.loading {
+      background: linear-gradient(-40deg, #3FF2D7 0%, #0372EF 100%) !important;
+    }
+
     .loading {
-
-        background: url('../assets/img/bgBlur.jpg') center center transparent;
-        background-size: cover;
-
         .box {
             justify-content: space-around;
             height: 100%;

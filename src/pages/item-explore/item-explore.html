@@ -2,10 +2,8 @@
 	<app-header [activeView]="'main'"></app-header>
 </ion-header>
 
-
-
 <ion-content class="swipe-bg" no-bounce>
-	<div class="h-full no-cards" [hidden]="!isLoading" horizontal layout center center-center>
+	<!-- <div class="h-full no-cards" [hidden]="!isLoading" horizontal layout center center-center>
 		<div class="ripple-container">
 			<div class="thumb-lg ripple-trigger">
 				<img src="assets/img/logo.png" class="rounded b b-2x box-shadow thumb-lg">
@@ -13,9 +11,9 @@
 			<div class="ripple-1"></div>
 			<div class="ripple-2"></div>
 		</div>
-	</div>
+	</div> -->
 
-	<div class="swipe-container" [hidden]="isLoading">
+	<div class="swipe-container">
 		<div class="h-full wrapper-sm">
 			<div class="card-stack" swing-stack #cardStack [stackConfig]="stackConfig" (throwoutleft)="disliked()" (throwoutright)="liked()">
 				<div class="card-item" #card [style.zIndex]="-1 * i" swing-card *ngFor="let item of items; trackBy: trackByFn; let i = index">
@@ -63,6 +61,18 @@
 			<button ion-button (tap)="liked(item)">
 				<img src="assets/img/newLayout/like-button.svg" />
 			</button>
+		</div>
+	</div>
+</ion-content>
+
+<ion-content class="loading" *ngIf="isLoading" padding>
+	<div layout vertical center class="box">
+		<div class="logo">
+			<img src="assets/img/clock.png" alt="roupa livre" />
+		</div>
+
+		<div class="info">
+			{{ 'apparel.loading.message' | translate }}
 		</div>
 	</div>
 </ion-content>
