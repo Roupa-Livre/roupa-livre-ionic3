@@ -20,6 +20,12 @@ page-chat-main {
     font-weight: 400;
   }
 
+  ion-row.matched {
+    display: block;
+    flex-wrap: unset;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
 	// .matches-thumbs {
 	// 	ion-scroll {
 	// 		height: 96px;
