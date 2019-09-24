@@ -30,7 +30,7 @@ export class ChatServiceProvider extends BaseService {
   }
 
   getNextMessages(id, lastReadAt: Date) : Promise<ApiArray<any>>{
-		return this.getMany<any>(`chat_messages/?chat_id=${id}&&last_read_at=${lastReadAt.getTime()}`);
+		return this.getMany<any>(`chat_messages/?chat_id=${id}&&last_read_at=${lastReadAt.toISOString()}`);
   }
 
   getChat(id: number) : Promise<Chat> {

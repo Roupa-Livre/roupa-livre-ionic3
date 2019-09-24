@@ -9,22 +9,28 @@
 
 
 
-<ion-content #content padding>
-	<div class="wrapper text-center h-full" layout vertical center center-center *ngIf="chat && messages && messages.length == 0">
-		<div>
-			<div class="m-b">
-				<div class="text-lg">Você e o <b>{{chat.other_user | shortName}}</b> curtiram a peça um do outro</div>
-				<div>{{ chat.created_at | timeToString }}</div>
-			</div>
-			<div class="m-b">
-				<img class="rounded thumb-xl" [src]="chat.other_user.image | userImageSrc:chat.other_user.social_image" />
-			</div>
-			<div class="text-lg">Suas mãos estão amarradas ou algo do tipo?</div>
-		</div>
+<ion-content #content>
+  <div class="match-container h-full" layout vertical center *ngIf="chat && messages && messages.length == 0">
+    <div class="matchToastItems">
+      <div class="match-avatar match-left">
+        <img class="hanger reverse" src="assets/img/newLayout/match-hand-gray-right.svg" alt="">
+        <img class="item" [src]="chat.owned_apparels[0].main_image | itemImageSrc" alt="">
+      </div>
+
+      <div class="match-avatar match-right">
+          <img class="hanger" src="assets/img/newLayout/match-hand-gray-right.svg" alt="">
+        <img class="item" [src]="chat.other_user_apparels[0].main_image | itemImageSrc" alt="">
+      </div>
+    </div>
+
+    <p class="description">
+      Essas peças querem ser trocadas.<br />
+      Hora de combinar essa troca!
+    </p>
   </div>
 
-	<ion-list #messagesList class="chat-list" no-lines>
-		<div *ngFor="let item of messages; let i = index;">
+  <ion-list #messagesList class="chat-list" no-lines padding>
+    <div *ngFor="let item of messages; let i = index;">
       <div class="" *ngIf="item.type == 'InitialApparelChatMessage'">
         <div class="chat-timestamp">
           Opa, essas peças combinaram!
@@ -68,14 +74,13 @@
 
         <div class="chat-item-status" *ngIf="item.user_id == user.id && i == messages.length - 1">Enviado</div>
       </div>
-		</div>
-	</ion-list>
+    </div>
+  </ion-list>
 
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
-
 
 
 <ion-footer no-border [keyboardAttach]="content">

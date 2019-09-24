@@ -1,11 +1,11 @@
 import { AngularTokenService } from "angular-token";
 
 export function getProbableApiUrl(auth: AngularTokenService, url) {
-  if (url.startsWith('data:image/'))
+  if (url.indexOf('data:image/') == 0)
     return url;
   var fixedUrl = url ? (url.indexOf('?') > 1 ? url + '&type=large' : url + '?type=large') : url;
   if (fixedUrl[0] == '/')
-    return auth.apiBase + '/' + fixedUrl;
+    return auth.apiBase + fixedUrl;
   else
     return fixedUrl;
 };
@@ -15,7 +15,9 @@ export function getImageAsSource(auth: AngularTokenService, imageContainer) {
   try {
     image = imageContainer.hasOwnProperty('image') ? imageContainer.image : imageContainer;
 
-    if (image.hasOwnProperty('file_url'))
+    if (image.hasOwnProperty('file') && image.file && image.file.hasOwnProperty('url'))
+      return getProbableApiUrl(auth, image.file.url);
+    else if (image.hasOwnProperty('file_url'))
       return getProbableApiUrl(auth, image.file_url);
     else if (image.hasOwnProperty('data'))
       return image.data;
