@@ -16,6 +16,36 @@
       width: 100%;
       margin-bottom: 2rem;
     }
+    .selected {
+      .icon-container {
+        background: url('../assets/img/categories/categorias-selected.png');
+        background-size: cover;
+      }
+    }
+
+    .icon-container {
+      background: url('../assets/img/categories/categorias-noselect.png');
+      background-size: cover;
+      img {
+        position: relative;
+        width: 80%;
+        height: 80%;
+      }
+      .image-content {
+        position: absolute;
+        top: 20%;
+        bottom: 20%;
+        left: 20%;
+        right: 20%;
+      }
+      &:after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+        position: relative;
+        width: 100%;
+      }
+    }
 
     .optionsGrid {
 
@@ -26,11 +56,7 @@
         margin: 1rem auto 0 auto;
 
         img {
-          background: #eee;
-          width: 100%;
-          height: 100%;
-          max-width: 89px;
-          max-height: 89px;
+          // background: #eee;
 
           border-radius: 999em;
 

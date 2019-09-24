@@ -9,30 +9,14 @@
 
     <ion-grid class="optionsGrid">
       <ion-row>
-        <ion-col col-6>
-          <div class="option" (tap)="chooseReleaseOption()">
-            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-            <p>Acessórios</p>
-          </div>
-        </ion-col>
-        <ion-col col-6>
-          <div class="option" (tap)="chooseReleaseOption()">
-            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-            <p>Bolsas</p>
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-6>
-          <div class="option" (tap)="chooseReleaseOption()">
-            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-            <p>Calçados</p>
-          </div>
-        </ion-col>
-        <ion-col col-6>
-          <div class="option" (tap)="chooseReleaseOption()">
-            <img src="https://www.shareicon.net/data/512x512/2016/07/05/791214_man_512x512.png">
-            <p>Roupas</p>
+        <ion-col col-6 *ngFor="let group of groups">
+          <div class="option" [class.selected]="selectedGroup == group" (tap)="chooseReleaseOption(group)">
+            <div class="icon-container">
+              <div class="image-content">
+                <img [src]="'assets/img/categories/'+group.code+'.svg'">
+              </div>
+            </div>
+            <p>{{group.name}}</p>
           </div>
         </ion-col>
       </ion-row>
