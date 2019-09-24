@@ -17,6 +17,7 @@ export class ChatMainPage extends AuthPage {
   allChats;
   loadingMatched;
   matchedApparels;
+  allMatchedApparels;
   searchTerm;
 
 	// CONSTRUCTOR
@@ -31,19 +32,16 @@ export class ChatMainPage extends AuthPage {
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
+    const params:any = { };
     return Promise.all([
-      this.reloadChats(),
-      this.reloadMatched(),
+      this.reloadChats(params),
+      this.reloadMatched(params),
     ]);
   }
 
-  async reloadChats() {
+  async reloadChats(params: { term: string }) {
     try {
       this.loading = true;
-      const params:any = { }
-      if (this.searchTerm && this.searchTerm.length > 3) {
-        params.term = this.searchTerm;
-      }
       this.chats = [];
       this.chats = await this.chatService.getChats(params);
       if (!params.term) {
@@ -56,11 +54,14 @@ export class ChatMainPage extends AuthPage {
     }
   }
 
-  async reloadMatched() {
+  async reloadMatched(params: { term: string }) {
     try {
       this.loadingMatched = true;
       this.matchedApparels = [];
-      this.matchedApparels = await this.itemService.getMatched();
+      this.matchedApparels = await this.itemService.getMatched(params);
+      if (!params.term) {
+        this.allMatchedApparels = this.matchedApparels;
+      }
     } finally {
       this.loadingMatched = false;
     }
@@ -68,12 +69,20 @@ export class ChatMainPage extends AuthPage {
 
   onSearchInput(ev) {
     if (this.searchTerm && this.searchTerm.length > 0) {
-      this.reloadChats();
+      const params:any = { }
+      if (this.searchTerm && this.searchTerm.length > 3) {
+        params.term = this.searchTerm;
+      }
+      return Promise.all([
+        this.reloadChats(params),
+        this.reloadMatched(params),
+      ]);
     }
   }
 
   onSearchClear(ev) {
     this.chats = this.allChats;
+    this.matchedApparels = this.allMatchedApparels;
   }
 
 	// CLICK EVENTS
