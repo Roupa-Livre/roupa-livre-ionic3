@@ -19,6 +19,11 @@ export class FilterApparelProperty {
 
 export class SearchFilter {
   public range: number = 100;
+  public show_only_liked: boolean = false;
+  public show_only_likers: boolean = false;
+  public show_not_liked_again: boolean = false;
+  public show_liked_again: boolean = false;
+
   public apparel_property: FilterApparelProperty = new FilterApparelProperty;
   public apparel_tags: string[] = [];
 
@@ -26,13 +31,18 @@ export class SearchFilter {
   public group_props: string[] = [];
 
   public hasFilters() {
-    return this.range != 100 || !isEmptyObject(this.apparel_property);
+    return this.range != 100 || !isEmptyObject(this.apparel_property)
+      || this.show_only_liked
+      || this.show_only_likers
+      || this.show_not_liked_again
+      || this.show_liked_again;
   };
 }
 
 @Injectable()
 export class ItemSearcherService {
   private currentApparels: Apparel[] = [];
+  private alreadySeen: Apparel[] = [];
   private filter: SearchFilter = new SearchFilter;
 
   constructor(private itemService: ItemServiceProvider) {
@@ -80,6 +90,7 @@ export class ItemSearcherService {
 
   private clearCache() {
     this.currentApparels = [];
+    this.alreadySeen = [];
   }
 
   private getPageSize(minCount) {
@@ -92,6 +103,10 @@ export class ItemSearcherService {
 
     // return count;
   };
+
+  public addToAlreadySeen(apparel) {
+    this.alreadySeen.push(apparel);
+  }
 
   async getNextItems(count: number = 3) : Promise<Apparel[]> {
     const apparels = [];
@@ -106,6 +121,7 @@ export class ItemSearcherService {
     if (apparels.length < count) {
       const params: any = Object.assign({}, this.filter);
       params.page_size = this.getPageSize(count);
+      params.already_seen_ids = this.alreadySeen.map(apparel => apparel.id.toString()).join(',');
 
       const items = await this.itemService.getItems(params);
       if (items && items.length > 0) {

@@ -19,6 +19,7 @@
 
 	<ion-list no-lines>
 		<ion-list-header>
+      <button ion-button color="blueLight" clear (tap)="cleanFilters()">Limpar todos filtros</button>
 			Palavras chave ou hashtags
 		</ion-list-header>
 
@@ -29,7 +30,6 @@
 
 	<ion-list no-lines>
 		<ion-list-header>
-      <button ion-button color="blueLight" clear (tap)="cleanFilters()">Limpar filtros</button>
 			Características da Peça
 		</ion-list-header>
 
@@ -39,6 +39,33 @@
         <ion-option *ngFor="let option of group.properties" [value]="option.id">{{option.name}}</ion-option>
       </ion-select>
     </ion-item>
+
+  </ion-list>
+
+	<ion-list no-lines>
+    <ion-list-header>
+      O que ver?
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Somente de quem eu curti</ion-label>
+      <ion-toggle color="secondary" [(ngModel)]="filter.show_only_liked"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Somente quem curtiu minhas peças</ion-label>
+      <ion-toggle color="secondary" [(ngModel)]="filter.show_only_likers"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Ver também as que eu não curti</ion-label>
+      <ion-toggle color="secondary" [(ngModel)]="filter.show_not_liked_again"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Ver também as que eu já curti</ion-label>
+      <ion-toggle color="secondary" [(ngModel)]="filter.show_liked_again"></ion-toggle>
+    </ion-item>
+
   </ion-list>
 
   <ion-list no-lines>

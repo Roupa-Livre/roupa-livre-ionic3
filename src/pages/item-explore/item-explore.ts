@@ -170,6 +170,12 @@ export class ItemExplorePage extends AuthPage {
     }
   }
 
+  private async goToNextAlreadyRated() {
+    if (this.items.length > 0) {
+      await this.goToNext();
+    }
+  }
+
   private async goToNext() {
     if (this.items.length <= 2) {
       await this.loadMore();
@@ -187,12 +193,20 @@ export class ItemExplorePage extends AuthPage {
 	// SWIPE EVENTS
 	async disliked() {
     const item = this.items[0];
-    await this.doDislike(item);
+    this.itemSearcher.addToAlreadySeen(item);
+    if (item.already_rated)
+      await this.goToNextAlreadyRated();
+    else
+      await this.doDislike(item);
 	}
 
 	async liked() {
     const item = this.items[0];
-    await this.doLike(item);
+    this.itemSearcher.addToAlreadySeen(item);
+    if (item.already_rated)
+      await this.goToNextAlreadyRated();
+    else
+      await this.doLike(item);
   }
 
   private async doLike(item) {
