@@ -5,7 +5,7 @@
     .headerIcon {
       width: 201px;
       height: 180px;
-      margin: 40px auto 20px auto;
+      margin: 2.5% auto 0 auto;
     }
 
     h2.title {
@@ -14,7 +14,8 @@
       font-size: 2.6rem;
       font-weight: 800 !important;
       width: 100%;
-      margin-bottom: 2rem;
+      margin-top: 1.2rem;
+      margin-bottom: 1.2rem;
     }
     .selected {
       .icon-container {
@@ -48,8 +49,7 @@
     }
 
     .optionsGrid {
-
-      width: 70%;
+      width: 60%;
       margin: 0.5rem auto 0 auto;
 
       div.option {
@@ -75,7 +75,7 @@
     }
 
     .groupButtons {
-      margin: 5rem auto 0 auto;
+      margin: 3rem auto 0 auto;
       width: 100%;
 
       button {

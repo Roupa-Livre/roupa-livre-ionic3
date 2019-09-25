@@ -9,14 +9,14 @@
 
     <ion-grid class="optionsGrid">
       <ion-row>
-        <ion-col col-6 *ngFor="let group of groups">
-          <div class="option" [class.selected]="selectedGroup == group" (tap)="chooseReleaseOption(group)">
+        <ion-col col-6 *ngFor="let property of properties">
+          <div class="option" [class.selected]="selectedProperty == property" (tap)="chooseReleaseOption(property)">
             <div class="icon-container">
               <div class="image-content">
-                <img [src]="'assets/img/categories/'+group.code+'.svg'">
+                <img [src]="'assets/img/categories/'+property.code+'.svg'">
               </div>
             </div>
-            <p>{{group.name}}</p>
+            <p>{{property.name}}</p>
           </div>
         </ion-col>
       </ion-row>

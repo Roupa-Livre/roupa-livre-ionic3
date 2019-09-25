@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { NavigationServiceProvider } from '../../services/navigation-service';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,7 @@ export class AppHeaderComponent {
   // CONSTRUCTOR
   constructor(
     public navCtrl: NavController,
+    private navigationService: NavigationServiceProvider,
   ) {
     console.log('Hello AppHeaderComponent Component');
 
@@ -38,10 +40,11 @@ export class AppHeaderComponent {
   }
 
   // CLICK METHODS
-  goMain() {
+  async goMain() {
     console.log('AppHeaderComponent goMain - activeView : ', this.activeView);
 
     let direction = (this.activeView == "chat") ? "back" : "foward";
+    await this.navigationService.checkRoot(direction);
     this.navCtrl.popToRoot();
     //this.mainClicked.emit();
   }

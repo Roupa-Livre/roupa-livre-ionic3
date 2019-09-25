@@ -36,6 +36,8 @@ export class NavigationServiceProvider {
         return 'PermissionLocationPage';
       } else if (!(await this.hasPushPermission()) && !(await this.hasSawPush())) {
         return 'PermissionNotificationPage';
+      } else if (!(await this.hasSawWhatYouReleasePage())) {
+        return 'WhatYouReleasePage';
       } else {
         return 'ItemExplorePage';
       }
@@ -88,6 +90,11 @@ export class NavigationServiceProvider {
     return this.hasLocallySaw('locationPerm');
   }
 
+  async hasSawWhatYouReleasePage() {
+    return this.hasLocallySaw('WhatYouRelease');
+  }
+
+
 	async hasLocallySaw(sawKey) : Promise<boolean> {
     try {
       const value = await this.storage.get(sawKey);
@@ -103,6 +110,9 @@ export class NavigationServiceProvider {
   }
   async skipPush() {
     await this.storage.set('pushPerm', true);
+  }
+  async skipWhatYouRelease() {
+    await this.storage.set('WhatYouRelease', true);
   }
 
   async checkRoot(direction = 'foward') {

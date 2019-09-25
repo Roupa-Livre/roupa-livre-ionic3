@@ -125,7 +125,8 @@ export class MyApp {
 
   subscribeToEvents() {
     this.events.subscribe('check-root', data => {
-      this.rootPage = data.newRoot;
+      if (this.rootPage != data.newRoot)
+        this.rootPage = data.newRoot;
     });
     this.events.subscribe('on-push-registration', registrationData => {
       this.onPushRegistration(registrationData);

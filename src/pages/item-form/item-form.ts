@@ -8,6 +8,7 @@ import { ItemServiceProvider } from '../../services/item-service';
 import { ImageCompressService, ResizeOptions, SourceImage } from 'ng2-image-compress';
 import { ApparelResizeOptions } from '../../shared/utils';
 import { getPicture, ApparelCameraOptions } from '../../shared/camera';
+import { NavigationServiceProvider } from '../../services/navigation-service';
 
 @IonicPage()
 @Component({
@@ -41,6 +42,7 @@ export class ItemFormPage {
     private propertyGroupService: PropertyGroupService,
     private itemService: ItemServiceProvider,
     private platform: Platform,
+    private navigationService: NavigationServiceProvider,
 	) {
 		this.init();
 	}
@@ -70,10 +72,17 @@ export class ItemFormPage {
   async loadItem() {
     const item = this.navParams.data.item;
     const finalItem = item ? Object.assign(new Apparel, JSON.parse(JSON.stringify(item))) : new Apparel;
+    if (!finalItem.apparel_property) {
+      finalItem.apparel_property = { };
+    }
+    if (!item) {
+      if (this.navParams.data.initialGroup && this.navParams.data.initialProperty) {
+        if (!finalItem.apparel_property[this.navParams.data.initialGroup.prop_name])
+          finalItem.apparel_property[this.navParams.data.initialGroup.prop_name] = this.navParams.data.initialProperty.id;
+      }
+    }
     await this.reloadPropertyGroups(finalItem);
 
-    if (!finalItem.apparel_property)
-      finalItem.apparel_property = { };
     this.item = finalItem;
     this.tags = this.item.apparel_tags.map(v => v.name);
   }
@@ -170,19 +179,27 @@ export class ItemFormPage {
 	async save() {
     this.processTags();
     await this.itemService.save(this.item);
-		// TODO : IMPLEMENTAR SAVE
+
 		this.viewCtrl.dismiss(true);
   }
 
   delete() {
 		// TODO : IMPLEMENTAR DELETE
-		this.viewCtrl.dismiss();
+		this.dismiss();
   }
 
   cancel() {
-		// TODO : IMPLEMENTAR CANCEL
-		this.viewCtrl.dismiss();
-	}
+    // TODO : IMPLEMENTAR CANCEL
+    this.dismiss();
+  }
+
+  private async dismiss() {
+    if (this.navCtrl.getViews().length === 1) {
+      await this.navigationService.checkRoot();
+    } else {
+      this.viewCtrl.dismiss();
+    }
+  }
 
 	async openPhotoPicker(index) {
     let imageDataResult;

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PropertyGroupService } from '../../services/property-group-service';
+import { NavigationServiceProvider } from '../../services/navigation-service';
 
 const allowedCategories = ["acessory", "clothing", "shoes", "purse"];
 
@@ -11,51 +12,58 @@ const allowedCategories = ["acessory", "clothing", "shoes", "purse"];
 })
 export class WhatYouReleasePage {
 
-  groups = [];
-  selectedGroup = null;
+  group;
+  properties = [];
+  selectedProperty = null;
 
   // CONSTRUCTOR
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    private navigationService: NavigationServiceProvider,
     private propertyGroupService: PropertyGroupService,
   ) {
-    this.loadFirstTime();
+    this.loadGroups();
   }
 
-  async loadFirstTime() {
+  async loadGroups() {
     const rootGroups: any[] = await this.propertyGroupService.root();
     if (rootGroups.length > 0) {
-      const groups = [];
-      for (const group of rootGroups[0].properties) {
-        if (allowedCategories.indexOf(group.code) > -1) {
-          groups.push(group);
+      const properties = [];
+      this.group = rootGroups[0];
+      for (const property of this.group.properties) {
+        if (allowedCategories.indexOf(property.code) > -1) {
+          properties.push(property);
         }
       }
-      this.groups = groups;
+      this.properties = properties;
     }
   }
 
   // LIFECYCLE EVENTS
   ionViewDidLoad() {
-    this.loadFirstTime();
+    this.loadGroups();
     console.log('ionViewDidLoad WhatYouReleasePage');
   }
 
+  ionViewCanEnter() {
+    return this.navigationService.canEnterPage(this.navCtrl, 'WhatYouReleasePage');
+  }
+
   // CLICK EVENTS
-  chooseReleaseOption(option) {
+  chooseReleaseOption(property) {
     console.log("WHATYOURELEASEPAGE - CHOOSERELEASEOPTION");
-    this.selectedGroup = option;
+    this.selectedProperty = property;
   }
 
-  releaseApparel() {
-    this.navCtrl.push("WhatYouLookForPage", {}, {
-			direction: 'forward'
-		});
+  async releaseApparel() {
+    // this.navCtrl.push("WhatYouLookForPage", {}, { direction: 'forward' });
+    await this.navigationService.skipWhatYouRelease();
+
+    this.navCtrl.setRoot("ItemFormPage", { initialGroup: this.group, initialProperty: this.selectedProperty  }, { direction: 'forward' });
   }
 
-  skip() {
-    this.navCtrl.push("WhatYouLookForPage", {}, {
-			direction: 'forward'
-		});
+  async skip() {
+    await this.navigationService.skipWhatYouRelease();
+    await this.navigationService.checkRoot();
   }
 
 }
