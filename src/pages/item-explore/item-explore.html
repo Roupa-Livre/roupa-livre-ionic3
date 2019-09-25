@@ -3,26 +3,42 @@
 </ion-header>
 
 <ion-content class="swipe-bg" no-bounce>
-	<!-- <div class="h-full no-cards" [hidden]="!isLoading" horizontal layout center center-center>
-		<div class="ripple-container">
-			<div class="thumb-lg ripple-trigger">
-				<img src="assets/img/logo.png" class="rounded b b-2x box-shadow thumb-lg">
-			</div>
-			<div class="ripple-1"></div>
-			<div class="ripple-2"></div>
-		</div>
-	</div> -->
+	<div class="w-full no-cards titles" horizontal layout padding>
+    <ion-row>
+      <ion-col *ngIf="isSearching">
+        <p class="subtitle">Resultado da busca para:</p>
+        <p class="title">{{searchName}}</p>
+      </ion-col>
+      <ion-col id="exploring" *ngIf="!isSearching">
+        <p class="subtitle">Você está vendo:</p>
+        <p class="title">{{ 'apparel.explore.titles.default' | translate }}</p>
+      </ion-col>
+      <ion-col class="actions" col-auto align-self-end>
+        <button ion-button clear small end bottom color="blueLight" (click)="search()">
+          {{ 'menu.items.filter' | translate }}
+        </button>
+      </ion-col>
+    </ion-row>
+	</div>
+  <div class="empty-items" layout vertical center center-center *ngIf="!isLoading && items && items.length == 0">
+    <p class="description" *ngIf="isSearching">
+      Parece que não encontramos nada com esse filtro, que tal altera-lo?
+    </p>
+    <p class="description" *ngIf="!isSearching">
+      Parece que chegamos ao fim das peças!
+    </p>
+  </div>
 
-	<div class="swipe-container">
-		<div class="h-full wrapper-sm">
-			<div class="card-stack" swing-stack #cardStack [stackConfig]="stackConfig" (throwoutleft)="disliked()" (throwoutright)="liked()">
-				<div class="card-item" #card [style.zIndex]="-1 * i" swing-card *ngFor="let item of items; trackBy: trackByFn; let i = index">
-					<div [style.backgroundImage]="(item.apparel_images[0] | itemImageBgSrc)" class="div-img h-full r-3x"></div>
+  <div class="swipe-container">
+    <div class="h-full wrapper-sm">
+      <div class="card-stack" swing-stack #cardStack [stackConfig]="stackConfig" (throwoutleft)="disliked()" (throwoutright)="liked()">
+        <div class="card-item" #card [style.zIndex]="-1 * i" swing-card *ngFor="let item of items; trackBy: trackByFn; let i = index">
+          <div [style.backgroundImage]="(item.apparel_images[0] | itemImageBgSrc)" class="div-img h-full r-3x"></div>
 
-					<div class="card-caption" (tap)="openItemDetails(item)">
-						<div class="card-text pull-left">
-							<div class="title">{{item.title}}</div>
-							<div class="features">
+          <div class="card-caption" (tap)="openItemDetails(item)">
+            <div class="card-text pull-left">
+              <div class="title">{{item.title}}</div>
+              <div class="features">
                 <span *ngIf="item.size_info && (item.age_info || item.gender)">
                   Tamanho {{item.size_info}} - {{item.gender}} {{ item.age_info }}
                 </span>
@@ -33,23 +49,23 @@
                   Tamanho {{item.size_info}}
                 </span>
               </div>
-							<div class="description">{{item.description}}</div>
-						</div>
+              <div class="description">{{item.description}}</div>
+            </div>
 
-						<div class="moreInfo">
+            <div class="moreInfo">
               <button ion-button icon-only clear class="btnInfo">
                 <ion-icon name="ios-add" color="white"></ion-icon>
               </button>
-						</div>
-					</div>
+            </div>
+          </div>
 
-					<div class="stamp stamp-like">Sim</div>
-					<div class="stamp stamp-nope">Não</div>
-				</div>
-			</div>
-		</div>
+          <div class="stamp stamp-like">Sim</div>
+          <div class="stamp stamp-nope">Não</div>
+        </div>
+      </div>
+    </div>
 
-		<div class="bottom-actions" horizontal layout center center-center>
+		<div class="bottom-actions" horizontal layout center center-center *ngIf="items && items.length > 0">
 			<button ion-button (tap)="disliked(item)">
 				<img src="assets/img/newLayout/dislike-button.svg" />
 			</button>

@@ -4,24 +4,14 @@ import { IonicPage, NavController, ModalController, ActionSheetController } from
 import 'rxjs/Rx';
 import * as _ from 'lodash';
 
-import {
-	Direction,
-	StackConfig,
-	Stack,
-	Card,
-	ThrowEvent,
-	DragEvent,
-	SwingStackComponent,
-	SwingCardComponent } from 'angular2-swing';
+import { Direction, StackConfig, SwingStackComponent, SwingCardComponent } from 'angular2-swing';
 
 import { AuthPage } from '../auth-page';
 import { LoginServiceProvider } from '../../services/login-service';
 import { ItemSearcherService } from '../../services/item-searcher-service';
 import { Apparel } from '../../models/apparel';
-import { ItemServiceProvider } from '../../services/item-service';
-import { ChatServiceProvider } from '../../services/chat-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
-import { t } from '../../shared/current-lang';
+import { getLocalizedMessage } from '../../shared/current-lang';
 
 @IonicPage()
 @Component({
@@ -38,7 +28,10 @@ export class ItemExplorePage extends AuthPage {
 	stackConfig: StackConfig;
   items: Apparel[] = [];
 	isLoading: boolean = false;
-	modalLoading;
+  modalLoading;
+
+  isSearching: boolean = false;
+  searchName: string;
 
 	// CONSTRUCTOR
 	constructor(
@@ -48,8 +41,6 @@ export class ItemExplorePage extends AuthPage {
 		public modalCtrl: ModalController,
 		public actionSheetCtrl: ActionSheetController,
     public itemSearcher: ItemSearcherService,
-    private itemService: ItemServiceProvider,
-    private chatService: ChatServiceProvider,
 	) {
 		super(navCtrl, navigationService);
 		this.init();
@@ -97,7 +88,7 @@ export class ItemExplorePage extends AuthPage {
     }
   }
 
-  showNotFound() {
+  async showNotFound() {
     let modalNotFound = this.modalCtrl.create('ItemNotFoundPage');
     modalNotFound.onDidDismiss(data => {
       if (data && data.page) {
@@ -112,7 +103,7 @@ export class ItemExplorePage extends AuthPage {
         }
       }
     })
-    modalNotFound.present();
+    await modalNotFound.present();
   }
 
   async showLoading() {
@@ -137,6 +128,21 @@ export class ItemExplorePage extends AuthPage {
     } finally {
       this.hideLoading();
     }
+  }
+
+  async search() {
+    let modal = this.modalCtrl.create('ItemSearchPage', { });
+    modal.onDidDismiss(async (data) => {
+      if (data) {
+        await this.initialLoad();
+        const isSearching = this.itemSearcher.hasFilter();
+        if (isSearching) {
+          this.searchName = this.itemSearcher.getSearchName();
+        }
+        this.isSearching = isSearching;
+      }
+    })
+    await modal.present();
   }
 
 	// CARDS EVENTS
@@ -171,7 +177,8 @@ export class ItemExplorePage extends AuthPage {
 
     // Item not found
     if (this.items.length <= 1) {
-      this.showNotFound();
+      await this.showNotFound();
+      this.items = [];
     } else {
       this.items.shift();
     }

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { t } from '../../shared/current-lang';
+import { getLocalizedMessage } from '../../shared/current-lang';
 
 /**
  * Generated class for the UserImageSrcPipe pipe.
@@ -14,6 +14,6 @@ export class TranslatePipe implements PipeTransform {
    * Takes a value and makes it lowercase.
    */
   transform(key) {
-    return t(key);
+    return getLocalizedMessage(key);
   }
 }

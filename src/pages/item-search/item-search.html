@@ -1,6 +1,10 @@
 <ion-header no-border>
 	<ion-navbar color="white">
 
+    <ion-buttons start>
+      <button ion-button color="blueLight" (tap)="cancel()">Cancelar</button>
+    </ion-buttons>
+
     <ion-title>Buscar</ion-title>
 
     <ion-buttons end>
@@ -19,7 +23,7 @@
 		</ion-list-header>
 
 		<ion-item>
-			<ion-input type="text" placeholder="separe com vírgulas"></ion-input>
+      <ion-tags-input [(ngModel)]="filter.apparel_tags" [canBackspaceRemove]="true" placeholder="separe com vírgulas"></ion-tags-input>
 		</ion-item>
 	</ion-list>
 
@@ -29,62 +33,10 @@
 			Características da Peça
 		</ion-list-header>
 
-		<ion-item detail-push>
-			<ion-label>Categoria</ion-label>
-			<ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="category">
-				<ion-option value="1">Acessórios</ion-option>
-				<ion-option value="2">Roupas</ion-option>
-				<ion-option value="3">Calçados</ion-option>
-				<ion-option value="4">Bolsas</ion-option>
-			</ion-select>
-		</ion-item>
-
-		<ion-item detail-push>
-			<ion-label>Tipo</ion-label>
-			<ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="type">
-				<ion-option value="1">Bota</ion-option>
-				<ion-option value="2">Sandália</ion-option>
-				<ion-option value="3">Rasterinha</ion-option>
-				<ion-option value="4">Sapatilha</ion-option>
-				<ion-option value="5">Sapato</ion-option>
-				<ion-option value="5">Tênis</ion-option>
-			</ion-select>
-		</ion-item>
-
-		<ion-item detail-push>
-			<ion-label>Idade</ion-label>
-			<ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="age">
-				<ion-option value="1">Adulto</ion-option>
-				<ion-option value="2">Infantil</ion-option>
-			</ion-select>
-		</ion-item>
-
-		<ion-item detail-push>
-			<ion-label>Tamanho</ion-label>
-			<ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="size">
-				<ion-option value="1">Único</ion-option>
-				<ion-option value="2">34</ion-option>
-				<ion-option value="3">60</ion-option>
-				<ion-option value="4">PP</ion-option>
-				<ion-option value="5">P</ion-option>
-				<ion-option value="6">M</ion-option>
-				<ion-option value="7">G</ion-option>
-				<ion-option value="8">GG</ion-option>
-				<ion-option value="9">GGG</ion-option>
-			</ion-select>
-		</ion-item>
-
-    <ion-item detail-push>
-      <ion-label>Padrão</ion-label>
-      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="pattern">
-        <ion-option value="1">Liso</ion-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item detail-push>
-      <ion-label>Cor</ion-label>
-      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="color">
-        <ion-option value="1">Vermelho</ion-option>
+		<ion-item detail-push *ngFor="let group of propertyGroups">
+      <ion-label>{{group.name}}</ion-label>
+      <ion-select cancelText="Cancelar" okText="Ok" [(ngModel)]="filter.apparel_property[group.prop_name]" (ngModelChange)="groupPropertySelectionChanged(group)">
+        <ion-option *ngFor="let option of group.properties" [value]="option.id">{{option.name}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -97,11 +49,11 @@
 
     <ion-item>
       <ion-label>Distância</ion-label>
-      <ion-input class="distance" type="text" value="{{ distance }}km" readonly></ion-input>
+      <ion-input class="distance" type="text" value="{{ filter.range }}km" readonly></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-range min="1" max="100" step="5" color="blueLight" [(ngModel)]="distance"></ion-range>
+      <ion-range min="1" max="100" step="5" color="blueLight" [(ngModel)]="filter.range"></ion-range>
     </ion-item>
 
   </ion-list>

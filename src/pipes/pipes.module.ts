@@ -9,7 +9,7 @@ import { GenderNamePipe } from './gender-name/gender-name';
 import { AgeInfoNamePipe } from './age-info-name/age-info-name';
 import { NotDestroyedPipe } from './not-destroyed/not-destroyed';
 import { ImageSourcePipe } from './item-image-source/image-source';
-import { TranslatePipe } from './translate/user-image-source';
+import { TranslatePipe } from './translate/translate';
 @NgModule({
 	declarations: [UserImageSourcePipe,
     ShortNamePipe,

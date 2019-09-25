@@ -6,7 +6,7 @@ import { ApiArray } from '../models/api-array';
 
 const isEmptyObject = (obj) => {
   for(var prop in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+    if (obj[prop]) {
       return false;
     }
   }
@@ -20,6 +20,10 @@ export class FilterApparelProperty {
 export class SearchFilter {
   public range: number = 100;
   public apparel_property: FilterApparelProperty = new FilterApparelProperty;
+  public apparel_tags: string[] = [];
+
+  public apparel_property_names: { [key: string]: string } = {};
+  public group_props: string[] = [];
 
   public hasFilters() {
     return this.range != 100 || !isEmptyObject(this.apparel_property);
@@ -39,11 +43,31 @@ export class ItemSearcherService {
     return this.filter && this.filter.hasFilters();
   };
 
-  public getFilter() {
-    this.filter = new SearchFilter;
+  public getFilterClone() {
+    const filter = new SearchFilter();
+    Object.assign(filter, this.filter);
+
+    filter.apparel_property = {  };
+    Object.assign(filter.apparel_property, this.filter.apparel_property);
+
+    filter.apparel_property_names = {  };
+    Object.assign(filter.apparel_property_names, this.filter.apparel_property_names);
+
+    filter.group_props = [];
+    Object.assign(filter.group_props, this.filter.group_props);
+
+    filter.apparel_tags = [];
+    Object.assign(filter.apparel_tags, this.filter.apparel_tags);
+
+    return filter;
   };
 
-  public aplyFilter(filter: SearchFilter) {
+  public getSearchName() {
+    const filter = this.filter;
+    return filter.group_props.map(propName => filter.apparel_property_names[propName]).join(' ');
+  }
+
+  public applyFilter(filter: SearchFilter) {
     this.filter = filter;
     this.clearCache();
   };
@@ -51,6 +75,7 @@ export class ItemSearcherService {
   public clearFilter() {
     this.filter = new SearchFilter;
     this.clearCache();
+    return this.filter;
   };
 
   private clearCache() {

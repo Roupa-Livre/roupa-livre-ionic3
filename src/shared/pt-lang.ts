@@ -8,6 +8,8 @@ export default {
   'apparel.messages.error.loading': 'Oops. Parece que houve um erro. Tente novamente em alguns instantes.',
   'apparel.confirmations.add_apparels.title': 'Para trocar peças é preciso oferecer as suas também.',
   'apparel.confirmations.add_apparels.add_new_button': 'Oferecer peças',
+  'apparel.explore.titles.default': 'As peças mais perto de você',
+  'apparel.explore.titles.closest': 'As peças mais perto de você',
   'apparel.buttons.report': 'Denunciar',
   'apparel.report.title': 'Deseja denunciar esta peça?',
   'apparel.report.loading': 'Enviando denúncia',

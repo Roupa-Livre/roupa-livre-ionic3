@@ -12,6 +12,11 @@ export class ItemServiceProvider extends BaseService {
     var mergedParams: any = Object.assign({}, params)
     if (mergedParams.range && mergedParams.range >= 100)
       delete mergedParams["range"];
+    if (mergedParams.apparel_tags && mergedParams.apparel_tags.length > 0) {
+      mergedParams.apparel_tags = mergedParams.apparel_tags.join(',');
+    } else {
+      delete mergedParams["apparel_tags"];
+    }
 
     return this.getMany<Apparel>('apparels', mergedParams);
   }

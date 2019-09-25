@@ -39,6 +39,35 @@ page-item-explore {
     }
   }
 
+  .titles {
+    ion-row {
+      width: 100%;
+    }
+    ion-col {
+      padding: 0px;
+    }
+
+    .title {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+    }
+    .subtitle {
+      font-size: 0.9em;
+      margin: 0;
+      padding: 0;
+    }
+    .actions {
+      button, button.button-small-ios, .button-small-md {
+        height: auto;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+
 	.swipe-bg {
 		// background: #fff;
     // background-image: linear-gradient(#fff, #f6f7fb);
@@ -50,6 +79,18 @@ page-item-explore {
     padding-bottom: 160px;
     background: #f2f2f2 !important;
 	}
+
+  .empty-items {
+    height: 80%;
+    padding: 0 20%;
+    .description {
+      text-align: center;
+    }
+  }
+}
+
+.card-container {
+  height: 90%;
 }
 
 .card-stack {
