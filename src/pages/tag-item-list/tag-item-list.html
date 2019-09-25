@@ -1,0 +1,42 @@
+<ion-header no-border>
+  <ion-navbar>
+
+    <ion-title></ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- PROFILE PHOTO -->
+  <!-- <div class="profilePhoto"> -->
+    <!-- <button ion-button icon-only clear class="btn-edit" (tap)="goToChat()">
+      <img src="assets/img/newLayout/chat-bubbles-icon.svg">
+    </button> -->
+    <!-- <img [src]="item.user.image | userImageSrc:item.user.social_image"> -->
+  <!-- </div> -->
+
+  <!-- HEADER -->
+  <h2 class="title">{{tag.name}}</h2>
+  <!-- <p class="subtitle">{{ item.distance | distanceToString }}</p> -->
+  <p class="subtitle">{{count}} peças disponíveis</p>
+
+  <p *ngIf="tag.description && tag.description.length > 0" class="subtitle tag-info">{{tag.description}}</p>
+  <div *ngIf="tag.body && tag.body.length > 0" class="description" [innerHtml]="safeHTML"></div>
+
+  <!-- RESULTS -->
+  <ion-grid>
+      <ion-row>
+        <ion-col col-6 *ngFor="let item of items">
+          <div class="apparel" [style.backgroundImage]="(item.apparel_images[0] | itemImageBgSrc)" (tap)="open(item)">
+            <div class="apparelLabel">
+              <p class="apparelTitle">{{item.title}}</p>
+              <p class="apparelSize" *ngIf="item.size_info">Tamanho {{item.size_info}}</p>
+              <p class="apparelInfo">{{item.age_info}} {{item.gender}}</p>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+
+</ion-content>

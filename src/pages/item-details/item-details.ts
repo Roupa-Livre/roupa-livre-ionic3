@@ -49,7 +49,12 @@ export class ItemDetailsPage {
 	async openProfile(item) {
 		await this.navCtrl.push('UserItemListPage', { item }, { direction: 'forward' });
     this.viewCtrl.dismiss();
-	}
+  }
+
+  async openTag(tag) {
+		await this.navCtrl.push('TagItemListPage', { tag: { id: tag.global_tag_id, name: tag.name } }, { direction: 'forward' });
+    this.viewCtrl.dismiss();
+  }
 
 	slideChanged() {
 		this.currentSlideIndex = this.slides.getActiveIndex();

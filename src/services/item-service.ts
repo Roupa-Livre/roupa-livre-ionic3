@@ -51,7 +51,10 @@ export class ItemServiceProvider extends BaseService {
 
   findApparelsByUser(user_id) : Promise<ApiArray<Apparel>>{
     return this.getMany<Apparel>(`/apparels/apparels_by_user/${user_id}`);
-    
+  }
+
+  findApparelsByTag(tag_id) : Promise<ApiArray<Apparel>>{
+    return this.getMany<Apparel>(`/apparels/apparels_by_tag/${tag_id}`);
   }
 
 }

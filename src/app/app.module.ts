@@ -38,6 +38,7 @@ import { ItemSearcherService } from '../services/item-searcher-service';
 import { PipesModule } from '../pipes/pipes.module';
 import { PropertyGroupService } from '../services/property-group-service';
 import { PushService } from '../services/push-service';
+import { TagServiceProvider } from '../services/tag-service';
 
 @NgModule({
 	declarations: [
@@ -86,6 +87,7 @@ import { PushService } from '../services/push-service';
     Device,
 		Toast,
     ItemServiceProvider,
+    TagServiceProvider,
     ItemSearcherService,
     LoginServiceProvider,
     NavigationServiceProvider,
