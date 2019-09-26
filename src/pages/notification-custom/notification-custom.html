@@ -2,15 +2,15 @@
 	<div layout vertical center>
 		<h2 class="title">{{data.title}}!</h2>
 
-		<div class="main-image" *ngIf="data.image">
-      <img class="item" [src]="data.image" alt="data.title">
+		<div class="main-image" *ngIf="data.image_url && data.image_url.length > 0">
+      <img class="item" [src]="data.image_url" alt="data.title">
     </div>
 
-    <div class="description" [innerHtml]="safeHTML"></div>
+    <div *ngIf="data.body && data.body.length > 0" class="description" [innerHtml]="safeHTML"></div>
 
     <div class="groupButtons">
-			<button ion-button round block class="match" *ngIf="data.actionLink" (tap)="goToAction()">
-        {{ data.actionTitle || data.actionLink }}
+			<button ion-button round block class="match" *ngIf="data.action_link && data.action_link.length > 0" (tap)="goToAction()">
+        {{ data.action_title && data.action_title.length > 0 ? data.action_title : data.action_link }}
       </button>
 			<button ion-button round block class="continue" (tap)="close()">
         FECHAR

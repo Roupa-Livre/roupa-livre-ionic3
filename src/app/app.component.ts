@@ -109,15 +109,15 @@ export class MyApp {
       this.events.publish('on-push-notification', {
         additionalData: {
           type: 'custom',
-          image: 'https://images.squarespace-cdn.com/content/v1/545a4cd9e4b01ba1e16be339/1510183845982-X9MADBNZERB087IB7PSA/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/background-curso.jpg?format=1500w',
+          image_url: 'https://images.squarespace-cdn.com/content/v1/545a4cd9e4b01ba1e16be339/1510183845982-X9MADBNZERB087IB7PSA/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/background-curso.jpg?format=1500w',
           // title: 'uma notificacao custom',
           // body: '<ul><li>aqui vai meu conteudo</li>',
-          // actionLink: '/ChatMainPage',
-          // actionTitle: 'seus chats',
+          // action_link: '/ChatMainPage',
+          // action_title: 'seus chats',
           title: 'veja nosso site',
           body: '<ul><li>que acha de conhecer nosso site?</li>',
-          actionLink: 'https://roupalivre.com.br',
-          actionTitle: 'CONHEÇA',
+          action_link: 'https://roupalivre.com.br',
+          action_title: 'CONHEÇA',
         }
       })
     }, 5000);

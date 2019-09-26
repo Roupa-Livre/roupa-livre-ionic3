@@ -28,7 +28,9 @@ export class NotificationCustomPage {
 	) {
     this.user = this.loginService.user();
     this.data = this.navParams.data.notificationData;
-    this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.data.body);
+    if (this.data.body && this.data.body.length > 0) {
+      this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.data.body);
+    }
 	}
 
 	// LIFECYCLE EVENTS
@@ -36,14 +38,14 @@ export class NotificationCustomPage {
   }
 
   goToAction() {
-    if (this.data.actionLink[0] == '/')  {
-      if (this.data.actionLink.length > 2) {
-        const queryIdx = this.data.actionLink.indexOf('?');
-        let page = this.data.actionLink.substring(1);
+    if (this.data.action_link[0] == '/')  {
+      if (this.data.action_link.length > 2) {
+        const queryIdx = this.data.action_link.indexOf('?');
+        let page = this.data.action_link.substring(1);
         let params = { };
         if (queryIdx > -1) {
-          page = this.data.actionLink.substring(1, queryIdx)
-          const queryParams = this.data.actionLink.substring(queryIdx);
+          page = this.data.action_link.substring(1, queryIdx)
+          const queryParams = this.data.action_link.substring(queryIdx);
           const urlParams = new URLSearchParams(queryParams);
           urlParams.forEach((value: string, key: string) => { params[key] = value; });
         }
@@ -51,7 +53,7 @@ export class NotificationCustomPage {
         this.viewCtrl.dismiss({ page, params });
       }
     } else {
-      this.iab.create(this.data.actionLink, '_system');
+      this.iab.create(this.data.action_link, '_system');
     }
   }
 
