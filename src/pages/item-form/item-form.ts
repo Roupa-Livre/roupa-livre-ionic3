@@ -142,7 +142,16 @@ export class ItemFormPage {
   private processTags() {
     const apparelTags = this.item.apparel_tags.slice(0);
     const newTags = [];
+    const processedTagNames = []
     for (const tagName of this.tags) {
+      const tagNameSplitted = tagName.split(/[\.,\/#!$%\^&\*;:{}=\-_`~()\s]+/);
+      for (const splittedName of tagNameSplitted) {
+        const trimmedName = splittedName.trim();
+        if (trimmedName.length > 0)
+          processedTagNames.push(trimmedName);
+      }
+    }
+    for (const tagName of processedTagNames) {
       const found = apparelTags.find(item => item.name === tagName);
       if (found) {
         const idx = apparelTags.indexOf(found);
