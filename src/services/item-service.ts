@@ -47,11 +47,15 @@ export class ItemServiceProvider extends BaseService {
   }
 
   rate(apparel: Apparel, liked: boolean) {
-    const apparel_rating = new ApparelRating();
+    const apparel_rating = Object.assign(new ApparelRating(), apparel.rating || {});
     apparel_rating.apparel_id = apparel.id;
     apparel_rating.liked = liked;
 
-    return this.post('apparel_ratings', { apparel_rating });
+    if (apparel_rating.id > 0) {
+      return this.put(`apparel_ratings/${apparel_rating.id}`, { apparel_rating });
+    } else {
+      return this.post('apparel_ratings', { apparel_rating });
+    }
   }
 
   findApparelsByUser(user_id) : Promise<ApiArray<Apparel>>{

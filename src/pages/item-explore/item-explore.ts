@@ -170,12 +170,6 @@ export class ItemExplorePage extends AuthPage {
     }
   }
 
-  private async goToNextAlreadyRated() {
-    if (this.items.length > 0) {
-      await this.goToNext();
-    }
-  }
-
   private async goToNext() {
     if (this.items.length <= 2) {
       await this.loadMore();
@@ -194,35 +188,32 @@ export class ItemExplorePage extends AuthPage {
 	async disliked() {
     const item = this.items[0];
     this.itemSearcher.addToAlreadySeen(item);
-    if (item.already_rated)
-      await this.goToNextAlreadyRated();
-    else
-      await this.doDislike(item);
+    await this.doDislike(item);
 	}
 
 	async liked() {
     const item = this.items[0];
-    this.itemSearcher.addToAlreadySeen(item);
-    if (item.already_rated)
-      await this.goToNextAlreadyRated();
-    else
-      await this.doLike(item);
+    await this.doLike(item);
   }
 
   private async doLike(item) {
     this.isLoading = true;
     try {
-      const navigated = await this.navigationService.like(item, this.navCtrl);
-      if (!navigated)
+      if (!item.rating || !item.rating.liked) {
+        const navigated = await this.navigationService.like(item, this.navCtrl);
+        if (!navigated)
+          await this.goToNext();
+      } else {
         await this.goToNext();
+      }
     } finally {
       this.isLoading = false;
     }
   }
 
   private async doDislike(item) {
-    const dislikeResult = await this.navigationService.dislike(item);
-    // console.log('deslikeResult', dislikeResult);
+    if (!item.rating || item.rating.liked)
+      await this.navigationService.dislike(item);
     await this.goToNext();
   }
 
