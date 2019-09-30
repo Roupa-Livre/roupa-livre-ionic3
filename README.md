@@ -90,7 +90,7 @@ ionic cordova build ios --release
 
 3 - Abra o projeto pelo XCode, e faça o Archive e Publish
 ```
-open platforms/ios/RoupaLivre.xcodeproj
+open platforms/ios/RoupaLivre.xcworkspace
 ```
 
 4 - Volte os plugins removidos
