@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { RegisteringUser } from '../../models/user';
 import { LoginServiceProvider } from '../../services/login-service';
 import { ToastService } from '../../services/toast-service';
+import { NavigationServiceProvider } from '../../services/navigation-service';
 
 const emailRegex =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -23,7 +24,8 @@ export class RegisterPage {
     public navParams: NavParams,
     private loginProvider: LoginServiceProvider,
     private toast: ToastService,
-  ) {
+    private navigationService: NavigationServiceProvider,
+    ) {
   }
 
   // LIFECYCLE EVENTS
@@ -56,9 +58,7 @@ export class RegisterPage {
 
       this.toast.showMessage(`Oba! Que bom que você se conectou com a gente!`);
 
-      this.navCtrl.push('PermissionLocationPage', {}, {
-        direction: 'forward'
-      });
+      await this.navigationService.checkRoot();
     } catch (ex) {
       this.toast.showError(`Por favor preencha todos os campos`);
     }

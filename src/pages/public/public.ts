@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoginServiceProvider } from '../../services/login-service';
+import { NavigationServiceProvider } from '../../services/navigation-service';
 
 
 @IonicPage()
@@ -16,6 +17,7 @@ export class PublicPage {
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public loginProvider: LoginServiceProvider,
+    private navigationService: NavigationServiceProvider,
 	) {
 	}
 
@@ -38,6 +40,7 @@ export class PublicPage {
 
 	async loginWithFacebook() {
     const response = await this.loginProvider.loginWithFacebook();
+    await this.navigationService.checkRoot();
 	}
 
 }

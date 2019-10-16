@@ -22,7 +22,7 @@ export class SettingsPage {
   	// CONSTRUCTOR
 	constructor(
     navCtrl: NavController,
-    navigationService: NavigationServiceProvider,
+    private navigationService: NavigationServiceProvider,
     public viewCtrl: ViewController,
     public navParams: NavParams,
     private platform: Platform,
@@ -44,6 +44,12 @@ export class SettingsPage {
   // CLICK EVENTS
   navigate(url: string) {
     this.iab.create(url);
+  }
+
+  logout() {
+    this.loginService.logout().toPromise().then(() => {
+      this.navigationService.checkRoot();
+    });
   }
 
 	// LIFECYCLE EVENTS

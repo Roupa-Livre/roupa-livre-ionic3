@@ -10,6 +10,7 @@ export default {
   'apparel.confirmations.add_apparels.add_new_button': 'Oferecer peças',
   'apparel.explore.titles.default': 'As peças mais perto de você',
   'apparel.explore.titles.closest': 'As peças mais perto de você',
+  'apparel.explore.titles.filtering': 'Mostrando resultados da busca:',
   'apparel.buttons.report': 'Denunciar',
   'apparel.report.title': 'Deseja denunciar esta peça?',
   'apparel.report.loading': 'Enviando denúncia',

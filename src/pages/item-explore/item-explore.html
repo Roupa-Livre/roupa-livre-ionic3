@@ -6,8 +6,13 @@
 	<div class="w-full no-cards titles" horizontal layout padding>
     <ion-row>
       <ion-col *ngIf="isSearching">
-        <p class="subtitle">Resultado da busca para:</p>
-        <p class="title">{{searchName}}</p>
+        <div *ngIf="searchName && searchName.length > 0">
+          <p class="subtitle">Resultado da busca para:</p>
+          <p class="title">{{searchName}}</p>
+        </div>
+        <div *ngIf="!searchName || searchName.length == 0">
+          <p class="subtitle" >{{ 'apparel.explore.titles.filtering' | translate }}</p>
+        </div>
       </ion-col>
       <ion-col id="exploring" *ngIf="!isSearching">
         <p class="subtitle">Você está vendo:</p>

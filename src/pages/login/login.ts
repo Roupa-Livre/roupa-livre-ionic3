@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoginServiceProvider } from '../../services/login-service';
 import { ToastService } from '../../services/toast-service';
+import { NavigationServiceProvider } from '../../services/navigation-service';
 
 @IonicPage()
 @Component({
@@ -20,7 +21,8 @@ export class LoginPage {
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public loginProvider: LoginServiceProvider,
-		private toast: ToastService,
+    private toast: ToastService,
+    private navigationService: NavigationServiceProvider,
 	) {
 	}
 
@@ -37,9 +39,7 @@ export class LoginPage {
 
     try {
       const user = await this.loginProvider.login(this.email, this.password);
-      this.navCtrl.push('PermissionLocationPage', {}, {
-        direction: 'forward'
-      });
+      await this.navigationService.checkRoot();
     } catch(ex) {
       this.toast.showError(`Email/senha inválidos`);
     }
