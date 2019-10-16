@@ -79,4 +79,10 @@ export class LoginPage {
 		});
   }
 
+  resetPassword() {
+    this.navCtrl.push('ResetPasswordPage', {}, {
+			direction: 'forward'
+		});
+  }
+
 }

@@ -114,6 +114,10 @@ export class LoginServiceProvider extends BaseService {
     return result;
   }
 
+  async reset(email) {
+    return await this.post('users/reset_password', { email });
+  }
+
   registerDevice(deviceData) {
     return this.post('users/register_device', deviceData);
   }
