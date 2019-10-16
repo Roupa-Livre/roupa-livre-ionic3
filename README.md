@@ -44,17 +44,12 @@ Procedimentos a partir de um UNIX/MAC
 
 ### Google Play Store ###
 
-1 - Remova plugins que podem conflitar:
-```
-cordova plugin rm cordova-plugin-console
-```
-
-2 - Compile para Release
+1 - Compile para Release
 ```
 ionic cordova build --release android
 ```
 
-3 - Assine o apk
+2 - Assine o apk
 ```
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../keys/play-store-nucleo.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk nucleo --storepass:env NUCLEO_ROUPA_ANDROID_KEY
 rm -rf ./RELEASE
@@ -71,29 +66,14 @@ zipalign -v 4 ./RELEASE/android-release-unsigned.apk ./UPLOAD/roupalivre-$APP_VE
 open ./UPLOAD
 ```
 
-5 - Volte os plugins removidos
-```
-cordova plugin add cordova-plugin-console
-```
-
 ### iOS ###
 
-1 - Remova plugins que podem conflitar:
-```
-cordova plugin rm cordova-plugin-console
-```
-
-2 - Compile para Release
+1 - Compile para Release
 ```
 ionic cordova build ios --release
 ```
 
-3 - Abra o projeto pelo XCode, e faça o Archive e Publish
+2 - Abra o projeto pelo XCode, e faça o Archive e Publish
 ```
 open platforms/ios/RoupaLivre.xcworkspace
-```
-
-4 - Volte os plugins removidos
-```
-cordova plugin add cordova-plugin-console
 ```
