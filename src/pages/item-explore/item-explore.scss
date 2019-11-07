@@ -75,7 +75,7 @@ page-item-explore {
 	}
 
 	.swipe-container {
-		height: 100%;
+		height: calc(100% - 60px);
     padding-bottom: 160px;
     background: #f2f2f2 !important;
 	}
