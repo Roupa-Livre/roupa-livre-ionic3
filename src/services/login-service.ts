@@ -48,11 +48,14 @@ export class LoginServiceProvider extends BaseService {
 
 	loginWithFacebook() {
 		return new Promise((resolve, reject) => {
-      return this.tokenService.signInOAuth('facebook', this.inAppBrowser, this.platform)
+      this.tokenService.signInOAuth('facebook', this.inAppBrowser, this.platform)
         .subscribe((response: any) => {
-          // console.log('USER LOGGED INTO FACEBOOK - RESPONSE : ', response);
-          // throw 'err';
-          return resolve(true);
+          this.tokenService.validateToken().toPromise().then(() => {
+            return resolve(true);
+          }, e => {
+            console.log('ERROR LOGGING USER INTO FACEBOOK [VALIDATE] : ', e);
+            reject(e);
+          });
         }, e => {
           console.log('ERROR LOGGING USER INTO FACEBOOK : ', e);
           reject(e);

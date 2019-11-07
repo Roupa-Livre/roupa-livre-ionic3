@@ -115,7 +115,7 @@ export class NavigationServiceProvider {
     await this.storage.set('WhatYouRelease', true);
   }
 
-  async checkRoot(direction = 'foward') {
+  async checkRoot(direction = 'forward') {
     const rootPage = await this.getRootPage();
     this.events.publish('check-root', { newRoot: rootPage, direction })
   }

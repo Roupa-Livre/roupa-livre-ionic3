@@ -43,7 +43,7 @@ export class AppHeaderComponent {
   async goMain() {
     console.log('AppHeaderComponent goMain - activeView : ', this.activeView);
 
-    let direction = (this.activeView == "chat") ? "back" : "foward";
+    let direction = (this.activeView == "chat") ? "back" : "forward";
     await this.navigationService.checkRoot(direction);
     this.navCtrl.popToRoot();
     //this.mainClicked.emit();
@@ -62,7 +62,7 @@ export class AppHeaderComponent {
     console.log('AppHeaderComponent goChat - activeView : ', this.activeView);
 
     this.navCtrl.push('ChatMainPage', {}, {
-			direction: "foward"
+			direction: "forward"
 		});
     //this.chatClicked.emit();
   }

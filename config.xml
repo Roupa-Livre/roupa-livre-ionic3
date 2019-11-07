@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="02000100" id="com.nucleo235.roupalivre" ios-CFBundleVersion="2.0.1.0" version="2.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="02000101" id="com.nucleo235.roupalivre" ios-CFBundleVersion="2.0.1.1" version="2.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>RoupaLivre</name>
     <description>Roupa Livre</description>
     <author email="mobileapps@nucleo235.com.br" href="http://nucleo235.com.br/">
@@ -14,7 +14,8 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="ScrollEnabled" value="false" />
-    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-targetSdkVersion”" value="28" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />

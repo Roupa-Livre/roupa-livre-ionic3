@@ -40,8 +40,8 @@ export class RegisterPage {
         this.toast.showError(`Senha e confirmação devem ser as mesmas`);
         return;
       }
-      if (!this.user.password || this.user.password.length < 8) {
-        this.toast.showError(`Senha deve ter pelo menos 8 caracteres`);
+      if (!this.user.password || this.user.password.length < 6) {
+        this.toast.showError(`Senha deve ter pelo menos 6 caracteres`);
         return;
       }
       if (!this.user.name || this.user.name.length < 2) {
@@ -60,7 +60,7 @@ export class RegisterPage {
 
       await this.navigationService.checkRoot();
     } catch (ex) {
-      this.toast.showError(`Por favor preencha todos os campos`);
+      this.toast.showError(`Erro inesperado, por favor tente novamente mais tarde ou contate nosso suporte.`);
     }
   }
 
