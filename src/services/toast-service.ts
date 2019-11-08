@@ -15,29 +15,39 @@ export class ToastService {
 
 	showError(errorMessage) {
     this.platform.ready().then(() => {
-      if (this.platform.is('cordova')) {
-        this.toast.show(errorMessage, '3000', 'center');
-      } else {
-        this.toastCtrl.create({
-          message: errorMessage,
-          duration: 3000,
-          position: 'middle'
-        }).present();
-      }
+      this.toastCtrl.create({
+        message: errorMessage,
+        duration: 3000,
+        position: 'middle'
+      }).present();
+      // if (this.platform.is('cordova')) {
+      //   this.toast.showLongCenter(errorMessage);
+      // } else {
+      //   this.toastCtrl.create({
+      //     message: errorMessage,
+      //     duration: 3000,
+      //     position: 'middle'
+      //   }).present();
+      // }
     });
   }
 
   showMessage(errorMessage) {
     this.platform.ready().then(() => {
-      if (this.platform.is('cordova')) {
-        this.toast.show(errorMessage, '3000', 'center');
-      } else {
-        this.toastCtrl.create({
-          message: errorMessage,
-          duration: 3000,
-          position: 'middle'
-        }).present();
-      }
+      this.toastCtrl.create({
+        message: errorMessage,
+        duration: 3000,
+        position: 'middle'
+      }).present();
+      // if (this.platform.is('cordova')) {
+      //   this.toast.showLongCenter(errorMessage);
+      // } else {
+      //   this.toastCtrl.create({
+      //     message: errorMessage,
+      //     duration: 3000,
+      //     position: 'middle'
+      //   }).present();
+      // }
     });
 	}
 

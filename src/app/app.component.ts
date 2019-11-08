@@ -83,11 +83,11 @@ export class MyApp {
     if (data.hasOwnProperty('additionalData')) {
       if (data.additionalData.type == 'message') {
         if (!data.additionalData.foreground) {
-          const chat = this.chatService.getChat(data.additionalData.chat.id);
+          const chat = this.chatService.getChat(data.additionalData.chat_id);
           this.nacContent.push('ChatMainPage', { chat, id: data.additionalData.chat_id });
         }
       } else if (data.additionalData.type == 'match') {
-        const chat = this.chatService.getChat(data.additionalData.chat.id);
+        const chat = this.chatService.getChat(data.additionalData.chat_id);
         let modalMatched = this.modalCtrl.create('ItemMatchedPage', { chat });
         modalMatched.present();
       } else if (data.additionalData.type == 'custom') {

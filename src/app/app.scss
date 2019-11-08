@@ -169,3 +169,7 @@ ion-navbar[transparent] .back-button-icon.icon {
     padding-top: env(safe-area-inset-top);
   }
 }
+
+ion-toast {
+  z-index: 10000;
+}
