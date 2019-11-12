@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Platform, ActionSheetController } from 'ionic-angular';
-import { NavigationServiceProvider } from '../../services/navigation-service';
-import { LoginServiceProvider } from '../../services/login-service';
-import User from '../../models/user';
-import { ImageCompressService, ResizeOptions, SourceImage } from 'ng2-image-compress';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-import { UserResizeOptions } from '../../shared/utils';
-import { getPicture, UserCameraOptions } from '../../shared/camera';
 import { Camera } from '@ionic-native/camera/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { ActionSheetController, IonicPage, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
+import { ImageCompressService, SourceImage } from 'ng2-image-compress';
+import User from '../../models/user';
+import { AnalyticsService } from '../../services/analytics-service';
+import { LoginServiceProvider } from '../../services/login-service';
+import { NavigationServiceProvider } from '../../services/navigation-service';
+import { getPicture, UserCameraOptions } from '../../shared/camera';
+import { UserResizeOptions } from '../../shared/utils';
 
 
 @IonicPage()
@@ -29,7 +30,8 @@ export class SettingsPage {
     private actionSheetCtrl: ActionSheetController,
     private camera: Camera,
 		private iab: InAppBrowser,
-    private loginService: LoginServiceProvider) {
+    private loginService: LoginServiceProvider,
+    private analyticsService: AnalyticsService) {
       this.init()
   }
 
@@ -56,6 +58,10 @@ export class SettingsPage {
 	ionViewDidLoad() {
     this.init();
 	}
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('settings');
+  }
 
   async saveUser() {
     await this.loginService.updateAccount(this.user);

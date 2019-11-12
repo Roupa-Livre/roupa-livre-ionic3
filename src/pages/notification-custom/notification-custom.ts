@@ -5,6 +5,7 @@ import Chat from '../../models/chat';
 import { LoginServiceProvider } from '../../services/login-service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { AnalyticsService } from '../../services/analytics-service';
 
 @IonicPage()
 @Component({
@@ -25,6 +26,7 @@ export class NotificationCustomPage {
     private loginService: LoginServiceProvider,
     private sanitizer: DomSanitizer,
     private iab: InAppBrowser,
+    private analyticsService: AnalyticsService
 	) {
     this.user = this.loginService.user();
     this.data = this.navParams.data.notificationData;
@@ -35,6 +37,10 @@ export class NotificationCustomPage {
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
+  }
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('notification-custom');
   }
 
   goToAction() {

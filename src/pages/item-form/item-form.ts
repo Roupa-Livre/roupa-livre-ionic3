@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Platform, ActionSheetController } from 'ionic-angular';
-
 import { Camera } from '@ionic-native/camera/ngx';
+import { ActionSheetController, IonicPage, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
+import { ImageCompressService, SourceImage } from 'ng2-image-compress';
 import { Apparel } from '../../models/apparel';
-import { PropertyGroupService } from '../../services/property-group-service';
+import { AnalyticsService } from '../../services/analytics-service';
 import { ItemServiceProvider } from '../../services/item-service';
-import { ImageCompressService, ResizeOptions, SourceImage } from 'ng2-image-compress';
-import { ApparelResizeOptions } from '../../shared/utils';
-import { getPicture, ApparelCameraOptions } from '../../shared/camera';
+import { LoginServiceProvider } from '../../services/login-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
+import { PropertyGroupService } from '../../services/property-group-service';
+import { ApparelCameraOptions, getPicture } from '../../shared/camera';
+import { ApparelResizeOptions } from '../../shared/utils';
+
 
 @IonicPage()
 @Component({
@@ -24,6 +26,8 @@ export class ItemFormPage {
   public tags: string[] = [];
   public propertyGroups = [];
 
+  private user;
+
 	// CONSTRUCTOR
 	constructor(
 		public navCtrl: NavController,
@@ -35,22 +39,30 @@ export class ItemFormPage {
     private itemService: ItemServiceProvider,
     private platform: Platform,
     private navigationService: NavigationServiceProvider,
+    private loginService: LoginServiceProvider,
+    private analyticsService: AnalyticsService
 	) {
 		this.init();
 	}
 
-	init() {
+	async init() {
     this.profileImages = [
 			'assets/img/dummy/blusa.jpg',
 			'assets/img/dummy/blusa.jpg',
 			'assets/img/dummy/blusa.jpg',
 			''
     ];
+
+    this.user = await this.loginService.user();
 	}
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
     this.loadItem();
+  }
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('item-form');
   }
 
   async loadItem() {
@@ -171,14 +183,20 @@ export class ItemFormPage {
 	// CLICK EVENTS
 	async save() {
     this.processTags();
+    const existent = this.item.id && this.item.id > 0;
     await this.itemService.save(this.item);
+    if (existent) {
+      this.analyticsService.trackEvent('item_updated', { userId: this.user.id, itemId: this.item.id, itemTitle: this.item.title });
+    } else {
+      this.analyticsService.trackEvent('item_created', { userId: this.user.id, itemTitle: this.item.title });
+    }
 
 		this.viewCtrl.dismiss(true);
   }
 
-  delete() {
-		// TODO : IMPLEMENTAR DELETE
-		this.dismiss();
+  async delete() {
+    await this.itemService.delete(this.item);
+    this.viewCtrl.dismiss(true);
   }
 
   cancel() {

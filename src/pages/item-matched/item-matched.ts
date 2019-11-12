@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import User from '../../models/user';
 import Chat from '../../models/chat';
 import { LoginServiceProvider } from '../../services/login-service';
+import { AnalyticsService } from '../../services/analytics-service';
 
 @IonicPage()
 @Component({
@@ -20,6 +21,7 @@ export class ItemMatchedPage {
 		public navParams: NavParams,
     public viewCtrl: ViewController,
     private loginService: LoginServiceProvider,
+    private analyticsService: AnalyticsService
 	) {
     this.chat = this.navParams.data.chat;
     this.user = this.loginService.user();
@@ -28,6 +30,10 @@ export class ItemMatchedPage {
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
 	}
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('item-matched');
+  }
 
 	// CLICK EVENTS
 	goToChat() {

@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { initDomAdapter } from '@angular/platform-browser/src/browser';
+import { AnalyticsService } from '../../services/analytics-service';
 
 @IonicPage()
 @Component({
@@ -20,13 +21,15 @@ export class AboutPage {
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		private appVersion: AppVersion,
-		private iab: InAppBrowser
+    private iab: InAppBrowser,
+    private analyticsService: AnalyticsService,
 	) {
 	}
 
 	// LIFECYCLE EVENTS
 	ionViewDidEnter() {
-		this.init();
+    this.init();
+    this.analyticsService.trackPage('about');
   }
 
   init() {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { ItemSearcherService, SearchFilter } from '../../services/item-searcher-service';
 import { PropertyGroupService } from '../../services/property-group-service';
+import { AnalyticsService } from '../../services/analytics-service';
 
 @IonicPage()
 @Component({
@@ -21,6 +22,7 @@ export class ItemSearchPage {
     private itemSearcherService: ItemSearcherService,
     private propertyGroupService: PropertyGroupService,
     private viewCtrl: ViewController,
+    private analyticsService: AnalyticsService
 	) {
     this.filter = this.itemSearcherService.getFilterClone();
 	}
@@ -28,6 +30,10 @@ export class ItemSearchPage {
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
     this.loadFilter();
+  }
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('item-search');
   }
 
   async loadFilter() {

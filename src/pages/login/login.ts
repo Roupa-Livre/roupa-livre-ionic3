@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginServiceProvider } from '../../services/login-service';
 import { ToastService } from '../../services/toast-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
+import { AnalyticsService } from '../../services/analytics-service';
 
 @IonicPage()
 @Component({
@@ -23,12 +24,17 @@ export class LoginPage {
 		public loginProvider: LoginServiceProvider,
     private toast: ToastService,
     private navigationService: NavigationServiceProvider,
+    private analyticsService: AnalyticsService
 	) {
 	}
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
 	}
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('login');
+  }
 
 	// CLICK EVENTS
 	async login() {

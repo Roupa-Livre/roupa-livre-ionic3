@@ -3,6 +3,7 @@ import { App, IonicPage, NavController, NavParams, Slides, ViewController, Actio
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from 'ionic-angular';
 import { Apparel } from '../../models/apparel';
+import { AnalyticsService } from '../../services/analytics-service';
 
 @IonicPage()
 @Component({
@@ -27,7 +28,8 @@ export class ItemDetailsPage {
 		public statusBar: StatusBar,
 		public platform: Platform,
 		public actionSheetCtrl: ActionSheetController,
-		public app: App
+		public app: App,
+    private analyticsService: AnalyticsService
 	) {
     this.isMe = (typeof this.navParams.get('isMe') == 'undefined') ? true : this.navParams.get('isMe');
     this.item = this.navParams.data.item;
@@ -45,6 +47,10 @@ export class ItemDetailsPage {
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
 	}
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('item-details');
+  }
 
 	async openProfile(item) {
 		await this.navCtrl.push('UserItemListPage', { item }, { direction: 'forward' });

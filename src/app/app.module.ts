@@ -22,6 +22,7 @@ import { Toast } from '@ionic-native/toast/ngx';
 import { ImageCompressService,ResizeOptions } from 'ng2-image-compress';
 
 import { AngularTokenModule } from 'angular-token';
+import { AnalyticsFirebase } from '@ionic-native/analytics-firebase/ngx';
 
 import { ItemServiceProvider } from '../services/item-service';
 import { LoginServiceProvider } from '../services/login-service';
@@ -29,6 +30,9 @@ import { ChatServiceProvider } from '../services/chat-service';
 import { NavigationServiceProvider } from '../services/navigation-service';
 
 import { MyApp } from './app.component';
+
+import firebaseApp from 'firebase/app';
+import 'firebase/analytics'
 
 import { DirectivesModule } from '../directives/directives.module';
 import { ComponentsModule } from '../components/components.module';
@@ -39,6 +43,9 @@ import { PipesModule } from '../pipes/pipes.module';
 import { PropertyGroupService } from '../services/property-group-service';
 import { PushService } from '../services/push-service';
 import { TagServiceProvider } from '../services/tag-service';
+import { AnalyticsService } from '../services/analytics-service';
+
+firebaseApp.initializeApp(Environment.firebase);
 
 @NgModule({
 	declarations: [
@@ -101,6 +108,8 @@ import { TagServiceProvider } from '../services/tag-service';
     Geolocation,
 	  PushService,
     InAppBrowser,
+    AnalyticsFirebase,
+    AnalyticsService,
 	]
 })
 export class AppModule {}

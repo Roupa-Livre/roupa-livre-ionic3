@@ -46,6 +46,10 @@ export class ItemServiceProvider extends BaseService {
     }
   }
 
+  delete(item) {
+    return this.delete(`apparels/${item.id}`);
+  }
+
   rate(apparel: Apparel, liked: boolean) {
     const apparel_rating = Object.assign(new ApparelRating(), apparel.rating || {});
     apparel_rating.apparel_id = apparel.id;

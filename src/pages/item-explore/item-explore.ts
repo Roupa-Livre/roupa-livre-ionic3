@@ -12,6 +12,7 @@ import { ItemSearcherService } from '../../services/item-searcher-service';
 import { Apparel } from '../../models/apparel';
 import { NavigationServiceProvider } from '../../services/navigation-service';
 import { getLocalizedMessage } from '../../shared/current-lang';
+import { AnalyticsService } from '../../services/analytics-service';
 
 @IonicPage()
 @Component({
@@ -41,6 +42,7 @@ export class ItemExplorePage extends AuthPage {
 		public modalCtrl: ModalController,
 		public actionSheetCtrl: ActionSheetController,
     public itemSearcher: ItemSearcherService,
+    private analyticsService: AnalyticsService
 	) {
 		super(navCtrl, navigationService);
 		this.init();
@@ -76,6 +78,10 @@ export class ItemExplorePage extends AuthPage {
     this.initialLoad();
     this.loginService.updateLatLng();
 	}
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('item-explore');
+  }
 
   async initialLoad() {
     this.items = [];
@@ -201,6 +207,7 @@ export class ItemExplorePage extends AuthPage {
     try {
       if (!item.rating || !item.rating.liked) {
         const navigated = await this.navigationService.like(item, this.navCtrl);
+        this.analyticsService.trackEvent('item_liked', { itemId: item.id, itemTitle: item.title });
         if (!navigated)
           await this.goToNext();
       } else {

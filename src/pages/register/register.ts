@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisteringUser } from '../../models/user';
+import { AnalyticsService } from '../../services/analytics-service';
 import { LoginServiceProvider } from '../../services/login-service';
-import { ToastService } from '../../services/toast-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
+import { ToastService } from '../../services/toast-service';
 
 const emailRegex =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -25,12 +26,17 @@ export class RegisterPage {
     private loginProvider: LoginServiceProvider,
     private toast: ToastService,
     private navigationService: NavigationServiceProvider,
+    private analyticsService: AnalyticsService
     ) {
   }
 
   // LIFECYCLE EVENTS
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
+  }
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('register');
   }
 
   // CLICK EVENTS

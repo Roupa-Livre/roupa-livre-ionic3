@@ -7,6 +7,7 @@ import { AuthPage } from '../auth-page';
 import { NavigationServiceProvider } from '../../services/navigation-service';
 import { LoginServiceProvider } from '../../services/login-service';
 import { delay } from '../../shared/utils';
+import { AnalyticsService } from '../../services/analytics-service';
 
 @IonicPage()
 @Component({
@@ -34,7 +35,8 @@ export class ChatDetailsPage extends AuthPage {
     navigationService: NavigationServiceProvider,
     public navParams: NavParams,
     private chatService: ChatServiceProvider,
-    private loginService: LoginServiceProvider) {
+    private loginService: LoginServiceProvider,
+    private analyticsService: AnalyticsService) {
     super(navCtrl,navigationService)
 
 	}
@@ -65,7 +67,11 @@ export class ChatDetailsPage extends AuthPage {
     });
 
     this.init();
-	}
+  }
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('chat-details');
+  }
 
 	// CLICK EVENTS
 	async sendMessage() {
@@ -75,7 +81,9 @@ export class ChatDetailsPage extends AuthPage {
       chat_id: this.chat.id
 		};
 
-		await this.chatService.sendMessage(message)
+    await this.chatService.sendMessage(message)
+    this.analyticsService.trackEvent('message_sent', { chatId: this.chat.id, userId: this.user.id, userName: this.user.name });
+
 		this.typingMessage = '';
     this.receiveMessage();
 

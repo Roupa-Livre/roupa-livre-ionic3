@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { ItemServiceProvider } from '../../services/item-service';
+import { IonicPage, ModalController, NavController, NavParams, ViewController } from 'ionic-angular';
+import { AnalyticsService } from '../../services/analytics-service';
 import { ChatServiceProvider } from '../../services/chat-service';
+import { ItemServiceProvider } from '../../services/item-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
 
 @IonicPage()
@@ -31,6 +32,7 @@ export class UserItemListPage {
     public itemsService: ItemServiceProvider,
     private chatService: ChatServiceProvider,
 		public modalCtrl: ModalController,
+    private analyticsService: AnalyticsService
   ) {
     this.item = this.navParams.data.item;
     this.loadApparels();
@@ -44,6 +46,10 @@ export class UserItemListPage {
 
   ionViewDidLoad() {
     console.log('ITEMLISTPAGE - IONVIEWDIDLOAD');
+  }
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('user-item-list');
   }
 
   async open(item) {

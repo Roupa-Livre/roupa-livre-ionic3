@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AnalyticsService } from '../../services/analytics-service';
 import { LoginServiceProvider } from '../../services/login-service';
 import { ToastService } from '../../services/toast-service';
 
@@ -20,12 +20,17 @@ export class ResetPasswordPage {
 		public navParams: NavParams,
 		public loginProvider: LoginServiceProvider,
     private toast: ToastService,
+    private analyticsService: AnalyticsService
 	) {
 	}
 
 	// LIFECYCLE EVENTS
 	ionViewDidLoad() {
 	}
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('reset-password');
+  }
 
 	// CLICK EVENTS
 	async reset() {

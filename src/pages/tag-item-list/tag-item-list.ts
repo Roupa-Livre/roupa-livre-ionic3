@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
+import { DomSanitizer } from '@angular/platform-browser';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { IonicPage, ModalController, NavController, NavParams, ViewController } from 'ionic-angular';
+import { AnalyticsService } from '../../services/analytics-service';
 import { ItemServiceProvider } from '../../services/item-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
 import { TagServiceProvider } from '../../services/tag-service';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @IonicPage()
 @Component({
@@ -34,6 +35,7 @@ export class TagItemListPage {
     private tagService: TagServiceProvider,
     public modalCtrl: ModalController,
     private sanitizer: DomSanitizer,
+    private analyticsService: AnalyticsService
   ) {
     this.tag = this.navParams.data.tag;
     this.loadApparels();
@@ -51,6 +53,10 @@ export class TagItemListPage {
 
   ionViewDidLoad() {
     console.log('ITEMLISTPAGE - IONVIEWDIDLOAD');
+  }
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('tag-item-list');
   }
 
   async open(item) {

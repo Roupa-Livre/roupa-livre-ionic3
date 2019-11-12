@@ -4,6 +4,7 @@ import { AuthPage } from '../auth-page';
 import { ChatServiceProvider } from '../../services/chat-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
 import { ItemServiceProvider } from '../../services/item-service';
+import { AnalyticsService } from '../../services/analytics-service';
 
 @IonicPage()
 @Component({
@@ -25,7 +26,8 @@ export class ChatMainPage extends AuthPage {
     protected navCtrl: NavController,
     protected navigationService: NavigationServiceProvider,
     private chatService: ChatServiceProvider,
-    private itemService: ItemServiceProvider) {
+    private itemService: ItemServiceProvider,
+    private analyticsService: AnalyticsService) {
     super(navCtrl, navigationService);
 
   }
@@ -37,6 +39,10 @@ export class ChatMainPage extends AuthPage {
       this.reloadChats(params),
       this.reloadMatched(params),
     ]);
+  }
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('chat-main');
   }
 
   async reloadChats(params: { term: string }) {

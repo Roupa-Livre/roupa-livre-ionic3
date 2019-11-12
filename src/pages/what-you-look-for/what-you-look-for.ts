@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AnalyticsService } from '../../services/analytics-service';
 
 @IonicPage()
 @Component({
@@ -11,13 +12,18 @@ export class WhatYouLookForPage {
   // CONSTRUCTOR
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    private analyticsService: AnalyticsService
   ) {
   }
 
   // LIFECYCLE EVENTS
   ionViewDidLoad() {
     console.log('ionViewDidLoad WhatYouLookForPage');
+  }
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('what-you-look-for');
   }
 
   // CLICK EVENTS

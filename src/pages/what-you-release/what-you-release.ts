@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PropertyGroupService } from '../../services/property-group-service';
+import { AnalyticsService } from '../../services/analytics-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
+import { PropertyGroupService } from '../../services/property-group-service';
 
 const allowedCategories = ["acessory", "clothing", "shoes", "purse"];
 
@@ -20,6 +21,7 @@ export class WhatYouReleasePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private navigationService: NavigationServiceProvider,
     private propertyGroupService: PropertyGroupService,
+    private analyticsService: AnalyticsService
   ) {
     this.loadGroups();
   }
@@ -46,6 +48,10 @@ export class WhatYouReleasePage {
 
   ionViewCanEnter() {
     return this.navigationService.canEnterPage(this.navCtrl, 'WhatYouReleasePage');
+  }
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('what-you-release');
   }
 
   // CLICK EVENTS

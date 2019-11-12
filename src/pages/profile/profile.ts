@@ -4,6 +4,7 @@ import { ItemServiceProvider } from '../../services/item-service';
 import { Apparel } from '../../models/apparel';
 import { ApiArray } from '../../models/api-array';
 import { LoginServiceProvider } from '../../services/login-service';
+import { AnalyticsService } from '../../services/analytics-service';
 
 @IonicPage()
 @Component({
@@ -21,6 +22,7 @@ export class ProfilePage {
     public navParams: NavParams,
     private itemsService: ItemServiceProvider,
     private loginService: LoginServiceProvider,
+    private analyticsService: AnalyticsService
 	) {
 	}
 
@@ -29,6 +31,10 @@ export class ProfilePage {
     this.loadItems();
 
     this.user = this.loginService.user();
+  }
+
+  ionViewDidEnter() {
+    this.analyticsService.trackPage('profile');
   }
 
   async loadItems() {
