@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AnalyticsService } from '../../services/analytics-service';
+import { ToastService } from '../../services/toast-service';
 
 @IonicPage()
 @Component({
@@ -13,7 +14,8 @@ export class WhatYouLookForPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private analyticsService: AnalyticsService
+    private analyticsService: AnalyticsService,
+    private toastService: ToastService,
   ) {
   }
 
@@ -31,15 +33,22 @@ export class WhatYouLookForPage {
     console.log("WHATYOULOOKFORPAGE - CHOOSELOOKFOROPTION");
   }
 
-  searchApparels() {
-    // Tem que ser para a busca
-    this.navCtrl.push("ItemExplorePage", {}, {
-			direction: 'forward'
-		});
+  async searchApparels() {
+    const loading = await this.toastService.showSimpleLoading();
+    try {
+      await this.navCtrl.push("ItemExplorePage", {}, { direction: 'forward' });
+    } finally {
+      loading.dismiss();
+    }
   }
 
-  skip() {
-    this.navCtrl.popToRoot();
+  async skip() {
+    const loading = await this.toastService.showSimpleLoading();
+    try {
+      await this.navCtrl.popToRoot();
+    } finally {
+      loading.dismiss();
+    }
   }
 
 }

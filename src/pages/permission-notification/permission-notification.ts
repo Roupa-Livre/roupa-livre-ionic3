@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NavigationServiceProvider } from '../../services/navigation-service';
 import { LoginServiceProvider } from '../../services/login-service';
+import { NavigationServiceProvider } from '../../services/navigation-service';
+import { ToastService } from '../../services/toast-service';
 
 @IonicPage()
 @Component({
@@ -15,6 +16,7 @@ export class PermissionNotificationPage {
     public navCtrl: NavController, public navParams: NavParams,
     private navigationService: NavigationServiceProvider,
     private loginService: LoginServiceProvider,
+    private toastService: ToastService,
   ) {
   }
 
@@ -30,21 +32,28 @@ export class PermissionNotificationPage {
   // CLICK EVENTS
   async activePermission() {
     console.log("PERMISSION NOTIFICATION - ACTIVE NOTIFICATION");
+    const loading = await this.toastService.showSimpleLoading();
     try {
-      await this.loginService.requestPushPermission();
-    } catch (ex) { }
+      try {
+        await this.loginService.requestPushPermission();
+      } catch (ex) { }
 
-    await this.navigationService.skipPush();
-    this.navigationService.checkRoot('forward');
+      await this.navigationService.skipPush();
+      await this.navigationService.checkRoot('forward');
+    } finally {
+      loading.dismiss();
+    }
   }
 
   async denyPermission() {
-    await this.navigationService.skipPush();
-
     console.log("PERMISSION NOTIFICATION - DENY NOTIFICATION");
-    this.navCtrl.push("WhatYouReleasePage", {}, {
-			direction: 'forward'
-		});
+    const loading = await this.toastService.showSimpleLoading();
+    try {
+      await this.navigationService.skipPush();
+      await this.navigationService.checkRoot('forward');
+    } finally {
+      loading.dismiss();
+    }
   }
 
 }

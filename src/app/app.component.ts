@@ -1,22 +1,21 @@
 import { Component, ViewChild } from "@angular/core";
-import { Platform, Events, NavController, ModalController } from "ionic-angular";
-
-import { StatusBar } from "@ionic-native/status-bar/ngx";
-import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { Device } from '@ionic-native/device/ngx';
-
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AngularTokenService } from 'angular-token';
+import { Events, ModalController, NavController, Platform } from "ionic-angular";
+import { ChatServiceProvider } from "../services/chat-service";
 import { LoginServiceProvider } from "../services/login-service";
 import { NavigationServiceProvider } from "../services/navigation-service";
 import { PushService } from "../services/push-service";
-import { ChatServiceProvider } from "../services/chat-service";
+import { ToastService } from "../services/toast-service";
 
 @Component({
   templateUrl: "app.html"
 })
 export class MyApp {
   // VARS
-  @ViewChild('nacContent') nacContent: NavController;
+  @ViewChild('navContent') navContent: NavController;
 	rootPage: any;
 
   // CONSTRUCTOR
@@ -32,6 +31,7 @@ export class MyApp {
     private navigationService: NavigationServiceProvider,
     private pushService: PushService,
     private chatService: ChatServiceProvider,
+    private toastService: ToastService,
   ) {
 
     this.platform.ready().then(() => {
@@ -53,7 +53,7 @@ export class MyApp {
             this.pushService.init();
           }
 				}, error => {
-					// console.log('validateToken err', error);
+          // console.log('validateToken err', error);
           this.rootPage = 'PublicPage';
 				})
 			} else {
@@ -84,7 +84,7 @@ export class MyApp {
       if (data.additionalData.type == 'message') {
         if (!data.additionalData.foreground) {
           const chat = this.chatService.getChat(data.additionalData.chat_id);
-          this.nacContent.push('ChatMainPage', { chat, id: data.additionalData.chat_id });
+          this.navContent.push('ChatMainPage', { chat, id: data.additionalData.chat_id });
         }
       } else if (data.additionalData.type == 'match') {
         const chat = this.chatService.getChat(data.additionalData.chat_id);
@@ -95,7 +95,7 @@ export class MyApp {
         let modalCustom = this.modalCtrl.create('NotificationCustomPage', { notificationData: data.additionalData });
         modalCustom.onDidDismiss(data => {
           if (data && data.page) {
-            this.nacContent.push(data.page, data.params);
+            this.navContent.push(data.page, data.params);
           }
         })
         modalCustom.present();
@@ -123,10 +123,21 @@ export class MyApp {
     }, 5000);
   }
 
+  async changeRoot(newRoot) {
+    const loading = await this.toastService.showSimpleLoading();
+    try {
+      await this.navContent.setRoot(newRoot);
+      this.rootPage = newRoot;
+    } finally {
+      loading.dismiss();
+    }
+  }
+
   subscribeToEvents() {
     this.events.subscribe('check-root', data => {
-      if (this.rootPage != data.newRoot)
-        this.rootPage = data.newRoot;
+      if (this.rootPage != data.newRoot) {
+        this.changeRoot(data.newRoot);
+      }
     });
     this.events.subscribe('on-push-registration', registrationData => {
       this.onPushRegistration(registrationData);

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ToastController, Platform } from 'ionic-angular';
-import { Toast } from '@ionic-native/toast/ngx';
+import { ToastController, Platform, LoadingController } from 'ionic-angular';
 
 @Injectable()
 export class ToastService {
@@ -9,7 +8,7 @@ export class ToastService {
 	// CONSTRUCTOR
   constructor(
     private platform: Platform,
-    private toast: Toast,
+    private loadingCtrl: LoadingController,
     private toastCtrl: ToastController) {
 	}
 
@@ -20,15 +19,6 @@ export class ToastService {
         duration: 3000,
         position: 'middle'
       }).present();
-      // if (this.platform.is('cordova')) {
-      //   this.toast.showLongCenter(errorMessage);
-      // } else {
-      //   this.toastCtrl.create({
-      //     message: errorMessage,
-      //     duration: 3000,
-      //     position: 'middle'
-      //   }).present();
-      // }
     });
   }
 
@@ -39,16 +29,16 @@ export class ToastService {
         duration: 3000,
         position: 'middle'
       }).present();
-      // if (this.platform.is('cordova')) {
-      //   this.toast.showLongCenter(errorMessage);
-      // } else {
-      //   this.toastCtrl.create({
-      //     message: errorMessage,
-      //     duration: 3000,
-      //     position: 'middle'
-      //   }).present();
-      // }
     });
-	}
+  }
+
+  async showSimpleLoading(message = null) {
+    let loading = this.loadingCtrl.create({
+      content: message || 'Carregando ...'
+    });
+    await loading.present();
+
+    return loading;
+  }
 
 }

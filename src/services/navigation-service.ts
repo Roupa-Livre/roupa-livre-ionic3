@@ -28,7 +28,7 @@ export class NavigationServiceProvider {
   }
 
 	async getRootPage() {
-    const userData: any = this.tokenService.currentUserData;
+    const userData: any = this.tokenService.currentUserData || (await this.tokenService.validateToken().toPromise() ? this.tokenService.currentUserData : null);
 		if (userData) {
 			if (!userData.agreed) {
 				return 'TermsPage';
@@ -42,6 +42,7 @@ export class NavigationServiceProvider {
         return 'ItemExplorePage';
       }
 		} else {
+      console.log('PublicPage');
 			return 'PublicPage';
 		}
   }

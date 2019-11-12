@@ -8,6 +8,7 @@ import { ItemServiceProvider } from '../../services/item-service';
 import { LoginServiceProvider } from '../../services/login-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
 import { PropertyGroupService } from '../../services/property-group-service';
+import { ToastService } from '../../services/toast-service';
 import { ApparelCameraOptions, getPicture } from '../../shared/camera';
 import { ApparelResizeOptions } from '../../shared/utils';
 
@@ -40,7 +41,8 @@ export class ItemFormPage {
     private platform: Platform,
     private navigationService: NavigationServiceProvider,
     private loginService: LoginServiceProvider,
-    private analyticsService: AnalyticsService
+    private analyticsService: AnalyticsService,
+    private toastService: ToastService,
 	) {
 		this.init();
 	}
@@ -182,16 +184,20 @@ export class ItemFormPage {
 
 	// CLICK EVENTS
 	async save() {
-    this.processTags();
-    const existent = this.item.id && this.item.id > 0;
-    await this.itemService.save(this.item);
-    if (existent) {
-      this.analyticsService.trackEvent('item_updated', { userId: this.user.id, itemId: this.item.id, itemTitle: this.item.title });
-    } else {
-      this.analyticsService.trackEvent('item_created', { userId: this.user.id, itemTitle: this.item.title });
+    const loading = await this.toastService.showSimpleLoading("Salvando ...");
+    try {
+      this.processTags();
+      const existent = this.item.id && this.item.id > 0;
+      await this.itemService.save(this.item);
+      if (existent) {
+        this.analyticsService.trackEvent('item_updated', { userId: this.user.id, itemId: this.item.id, itemTitle: this.item.title });
+      } else {
+        this.analyticsService.trackEvent('item_created', { userId: this.user.id, itemTitle: this.item.title });
+      }
+    } finally {
+      loading.dismiss();
     }
-
-		this.viewCtrl.dismiss(true);
+    this.viewCtrl.dismiss(true);
   }
 
   async remove() {

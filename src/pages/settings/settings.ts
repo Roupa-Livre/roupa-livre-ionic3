@@ -7,6 +7,7 @@ import User from '../../models/user';
 import { AnalyticsService } from '../../services/analytics-service';
 import { LoginServiceProvider } from '../../services/login-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
+import { ToastService } from '../../services/toast-service';
 import { getPicture, UserCameraOptions } from '../../shared/camera';
 import { UserResizeOptions } from '../../shared/utils';
 
@@ -31,6 +32,7 @@ export class SettingsPage {
     private camera: Camera,
 		private iab: InAppBrowser,
     private loginService: LoginServiceProvider,
+    private toastService: ToastService,
     private analyticsService: AnalyticsService) {
       this.init()
   }
@@ -64,8 +66,13 @@ export class SettingsPage {
   }
 
   async saveUser() {
-    await this.loginService.updateAccount(this.user);
-    this.reloadUser();
+    const loading = await this.toastService.showSimpleLoading("Salvando ...");
+    try {
+      await this.loginService.updateAccount(this.user);
+      this.reloadUser();
+    } finally {
+      loading.dismiss();
+    }
   }
 
   async changeProfilePhoto() {

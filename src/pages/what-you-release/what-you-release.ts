@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AnalyticsService } from '../../services/analytics-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
 import { PropertyGroupService } from '../../services/property-group-service';
+import { ToastService } from '../../services/toast-service';
 
 const allowedCategories = ["acessory", "clothing", "shoes", "purse"];
 
@@ -21,7 +22,8 @@ export class WhatYouReleasePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private navigationService: NavigationServiceProvider,
     private propertyGroupService: PropertyGroupService,
-    private analyticsService: AnalyticsService
+    private analyticsService: AnalyticsService,
+    private toastService: ToastService
   ) {
     this.loadGroups();
   }
@@ -61,15 +63,23 @@ export class WhatYouReleasePage {
   }
 
   async releaseApparel() {
-    // this.navCtrl.push("WhatYouLookForPage", {}, { direction: 'forward' });
-    await this.navigationService.skipWhatYouRelease();
-
-    this.navCtrl.setRoot("ItemFormPage", { initialGroup: this.group, initialProperty: this.selectedProperty  }, { direction: 'forward' });
+    const loading = await this.toastService.showSimpleLoading();
+    try {
+      await this.navigationService.skipWhatYouRelease();
+      await this.navCtrl.setRoot("ItemFormPage", { initialGroup: this.group, initialProperty: this.selectedProperty  }, { direction: 'forward' });
+    } finally {
+      loading.dismiss();
+    }
   }
 
   async skip() {
-    await this.navigationService.skipWhatYouRelease();
-    await this.navigationService.checkRoot();
+    const loading = await this.toastService.showSimpleLoading();
+    try {
+      await this.navigationService.skipWhatYouRelease();
+      await this.navigationService.checkRoot();
+    } finally {
+      loading.dismiss();
+    }
   }
 
 }

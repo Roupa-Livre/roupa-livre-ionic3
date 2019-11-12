@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
-import { NavigationServiceProvider } from '../../services/navigation-service';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginServiceProvider } from '../../services/login-service';
+import { NavigationServiceProvider } from '../../services/navigation-service';
+import { ToastService } from '../../services/toast-service';
 
 @IonicPage()
 @Component({
@@ -15,6 +16,7 @@ export class TermsPage {
     public navCtrl: NavController, public navParams: NavParams,
     private navigationService: NavigationServiceProvider,
     private loginService: LoginServiceProvider,
+    private toastService: ToastService,
 	) {
 	}
 
@@ -28,8 +30,13 @@ export class TermsPage {
 
 	// CLICK EVENTS
 	async agree() {
-    await this.loginService.agreeToTerms();
-    await this.navigationService.checkRoot();
+    const loading = await this.toastService.showSimpleLoading();
+    try {
+      await this.loginService.agreeToTerms();
+      await this.navigationService.checkRoot();
+    } finally {
+      loading.dismiss();
+    }
 	}
 
 	async cancel() {

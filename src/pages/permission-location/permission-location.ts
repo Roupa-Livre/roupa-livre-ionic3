@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginServiceProvider } from '../../services/login-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
+import { ToastService } from '../../services/toast-service';
 
 @IonicPage()
 @Component({
@@ -16,6 +17,7 @@ export class PermissionLocationPage {
     public navParams: NavParams,
     private loginService: LoginServiceProvider,
     private navigationService: NavigationServiceProvider,
+    private toastService: ToastService,
   ) {
   }
 
@@ -30,19 +32,29 @@ export class PermissionLocationPage {
 
   // CLICK EVENTS
   async activeLocation() {
-    try {
-      await this.loginService.updateLatLng();
-    } catch (ex) { }
-
     console.log("PERMISSION LOCATION - ACTIVE LOCATION");
-    await this.navigationService.skipLocation();
-    await this.navigationService.checkRoot()
+    const loading = await this.toastService.showSimpleLoading();
+    try {
+      try {
+        await this.loginService.updateLatLng();
+      } catch (ex) { }
+
+      await this.navigationService.skipLocation();
+      await this.navigationService.checkRoot()
+    } finally {
+      loading.dismiss();
+    }
   }
 
   async denyLocation() {
     console.log("PERMISSION LOCATION - DENY LOCATION");
-    await this.navigationService.skipLocation();
-    await this.navigationService.checkRoot()
+    const loading = await this.toastService.showSimpleLoading();
+    try {
+      await this.navigationService.skipLocation();
+      await this.navigationService.checkRoot()
+    } finally {
+      loading.dismiss();
+    }
   }
 
 }
