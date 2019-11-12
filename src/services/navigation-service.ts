@@ -27,8 +27,16 @@ export class NavigationServiceProvider {
 		) {
   }
 
+  private async refreshAndGetUser() {
+    try {
+      return await this.tokenService.validateToken().toPromise() ? this.tokenService.currentUserData : null;
+    } catch (ex) {
+      return null;
+    }
+  }
+
 	async getRootPage() {
-    const userData: any = this.tokenService.currentUserData || (await this.tokenService.validateToken().toPromise() ? this.tokenService.currentUserData : null);
+    const userData: any = this.tokenService.currentUserData || await this.refreshAndGetUser();
 		if (userData) {
 			if (!userData.agreed) {
 				return 'TermsPage';

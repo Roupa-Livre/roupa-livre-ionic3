@@ -22,7 +22,6 @@ import { Toast } from '@ionic-native/toast/ngx';
 import { ImageCompressService,ResizeOptions } from 'ng2-image-compress';
 
 import { AngularTokenModule } from 'angular-token';
-import { AnalyticsFirebase } from '@ionic-native/analytics-firebase/ngx';
 
 import { ItemServiceProvider } from '../services/item-service';
 import { LoginServiceProvider } from '../services/login-service';
@@ -108,7 +107,6 @@ firebaseApp.initializeApp(Environment.firebase);
     Geolocation,
 	  PushService,
     InAppBrowser,
-    AnalyticsFirebase,
     AnalyticsService,
 	]
 })
