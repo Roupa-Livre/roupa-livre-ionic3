@@ -34,8 +34,10 @@ export class ResetPasswordPage {
 
 	// CLICK EVENTS
 	async reset() {
+    const loading = await this.toast.showSimpleLoading();
     try {
       await this.loginProvider.reset(this.email);
+      await loading.dismiss();
       this.toast.showMessage('Uma nova senha foi enviada por e-mail.');
       if (this.navCtrl.canGoBack()) {
         this.navCtrl.pop();
@@ -43,6 +45,7 @@ export class ResetPasswordPage {
         this.navCtrl.popToRoot();
       }
     } catch(ex) {
+      await loading.dismiss();
       this.toast.showError('Erro ao fazer reset.');
     }
 

@@ -3,7 +3,7 @@ import { AngularTokenService } from "angular-token";
 export function getProbableApiUrl(auth: AngularTokenService, url) {
   if (url.indexOf('data:image/') == 0)
     return url;
-  var fixedUrl = url ? (url.indexOf('?') > 1 ? url + '&type=large' : url + '?type=large') : url;
+  var fixedUrl = url ? (url.indexOf('?') > -1 ? url + '&type=large' : url + '?type=large') : url;
   if (fixedUrl[0] == '/')
     return auth.apiBase + fixedUrl;
   else
@@ -28,7 +28,7 @@ export function getImageAsSource(auth: AngularTokenService, imageContainer) {
         return null;
     }
     else
-      return image;
+      return getProbableApiUrl(auth, image);
   } catch (ex) {
     if (image !== undefined)
       throw ex;

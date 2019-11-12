@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AnalyticsService } from '../../services/analytics-service';
 import { LoginServiceProvider } from '../../services/login-service';
 import { NavigationServiceProvider } from '../../services/navigation-service';
-import { AnalyticsService } from '../../services/analytics-service';
+import { ToastService } from '../../services/toast-service';
 
 
 @IonicPage()
@@ -19,7 +19,8 @@ export class PublicPage {
 		public navParams: NavParams,
 		public loginProvider: LoginServiceProvider,
     private navigationService: NavigationServiceProvider,
-    private analyticsService: AnalyticsService
+    private analyticsService: AnalyticsService,
+    private toastService: ToastService,
 	) {
 	}
 
@@ -45,8 +46,13 @@ export class PublicPage {
 	}
 
 	async loginWithFacebook() {
-    const response = await this.loginProvider.loginWithFacebook();
-    await this.navigationService.checkRoot();
+    const loading = await this.toastService.showSimpleLoading();
+    try {
+      const response = await this.loginProvider.loginWithFacebook();
+      await this.navigationService.checkRoot();
+    } finally {
+      loading.dismiss();
+    }
 	}
 
 }

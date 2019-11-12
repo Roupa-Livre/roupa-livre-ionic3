@@ -29,7 +29,7 @@ export class NavigationServiceProvider {
 
   private async refreshAndGetUser() {
     try {
-      return await this.tokenService.validateToken().toPromise() ? this.tokenService.currentUserData : null;
+      return this.tokenService.currentAuthData && await this.tokenService.validateToken().toPromise() ? this.tokenService.currentUserData : null;
     } catch (ex) {
       return null;
     }
@@ -50,8 +50,7 @@ export class NavigationServiceProvider {
         return 'ItemExplorePage';
       }
 		} else {
-      console.log('PublicPage');
-			return 'PublicPage';
+      return 'PublicPage';
 		}
   }
 

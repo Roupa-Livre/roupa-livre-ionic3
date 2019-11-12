@@ -38,45 +38,15 @@ export class LoginPage {
 
 	// CLICK EVENTS
 	async login() {
-    // TODO : IMPLEMENTAR O METODO CORRETAMENTE
-    // this.navCtrl.push('PermissionLocationPage', {}, {
-		// 	direction: 'forward'
-    // });
-
+    const loading = await this.toast.showSimpleLoading();
     try {
       const user = await this.loginProvider.login(this.email, this.password);
       await this.navigationService.checkRoot();
+      await loading.dismiss();
     } catch(ex) {
+      await loading.dismiss();
       this.toast.showError(`Email/senha inválidos`);
     }
-
-		// Promise.all([
-		// 	this.loginProvider.login(this.email, this.password),
-		// 	this.loginProvider.isFirstTime()
-		// ])
-		// .then((responses) => {
-		// 	let logged = responses[0];
-		// 	let isFirstTime = responses[1];
-
-		// 	if (logged) {
-		// 		if (isFirstTime) {
-		// 			this.navCtrl.push('TermsPage', {}, {
-    //        direction: 'forward'
-    //      });
-		// 		} else {
-		// 			this.navCtrl.push('ItemExplorePage', {}, {
-    //        direction: 'forward'
-    //      });
-		// 		}
-		// 	}
-		// }, error => {
-		// 	if (error && error.status === 401) {
-		// 		this.toast.showError(`Email/senha inválidos`);
-		// 	} else {
-		// 		this.toast.showError(`Erro inesperado ao efetuar login`);
-		// 	}
-		// });
-
   }
 
   register() {
