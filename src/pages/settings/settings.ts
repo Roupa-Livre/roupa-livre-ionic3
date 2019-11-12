@@ -49,7 +49,7 @@ export class SettingsPage {
   }
 
   logout() {
-    this.loginService.logout().toPromise().then(() => {
+    this.loginService.logout().then(() => {
       this.navigationService.checkRoot();
     });
   }

@@ -74,7 +74,7 @@ export class LoginServiceProvider extends BaseService {
   register(registeringUser: RegisteringUser) {
 		return new Promise((resolve, reject) => {
 			return this.tokenService.registerAccount(registeringUser).subscribe(res => {
-				resolve(res);
+        this.tokenService.validateToken().toPromise().then(() => resolve(res), reject);
 			}, reject);
 		});
 	}
@@ -126,7 +126,7 @@ export class LoginServiceProvider extends BaseService {
   }
 
   logout() {
-    return this.tokenService.signOut();
+    return this.tokenService.signOut().toPromise();
   }
 
 }
