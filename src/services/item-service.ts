@@ -46,7 +46,7 @@ export class ItemServiceProvider extends BaseService {
     }
   }
 
-  delete(item) {
+  remove(item) {
     return this.delete(`apparels/${item.id}`);
   }
 

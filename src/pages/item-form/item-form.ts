@@ -194,8 +194,8 @@ export class ItemFormPage {
 		this.viewCtrl.dismiss(true);
   }
 
-  async delete() {
-    await this.itemService.delete(this.item);
+  async remove() {
+    await this.itemService.remove(this.item);
     this.viewCtrl.dismiss(true);
   }
 
